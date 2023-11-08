@@ -1,0 +1,281 @@
+<body>
+    <div class="container">
+        <aside>
+            <app-admin-navbar></app-admin-navbar>
+        </aside>
+
+        <div class="content">
+
+            <div class="container-xl">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h2><b>Events</b></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"></label>
+                                        </span>
+                                    </th>
+                                    <th>Organization</th>
+                                    <th>Event Title</th>
+                                    <th>Event Date</th>
+                                    <th>View</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let EventItem of EventArray">
+                                    <td>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                            <label for="checkbox1"></label>
+                                        </span>
+                                    </td>
+                                    <td>{{EventItem.orgName}}</td>
+                                    <td>{{EventItem.eventTitle}}</td>
+                                    <td>{{EventItem.eventDate}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-target="#viewEventModal" (click)="setUpdate(EventItem)"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-target="#editEventModal" (click)="setUpdate(EventItem)"><i class="bi bi-pencil-square"></i></button>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-target="#deleteEventModal" (click)="setDelete(EventItem)"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteEventModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body text-center center">
+            <img src="../../../../assets/img/failed.png">
+            <h2>Are you sure?</h2>          
+            <button type="button" class="btn btn-success1" (click)="deleteEvent()" data-bs-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Edit Event Modal -->
+<div class="modal fade" id="editEventModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body center">
+                <h2 class="text-center">Edit Event</h2>
+                <form id="editEventForm">
+                    <!-- Basic Information -->
+                    <div class="form-group">
+                        <label for="editEventName" style="margin-top: 10px;">Event Name</label>
+                        <input type="text" class="form-control" id="editEventName" placeholder="Enter event name" [(ngModel)]="eventTitle" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editEventDescription" style="margin-top: 10px;">Event Description</label>
+                        <textarea class="form-control" id="editEventDescription" placeholder="Enter event description" [(ngModel)]="eventDesc" [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEventDate" style="margin-top: 10px;">Event Date</label>
+                        <input type="date" class="form-control" id="editEventDate" [(ngModel)]="eventDate" [ngModel]="eventDate | date: 'yyyy-MM-dd'" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editEventTime" style="margin-top: 10px;">Event Time</label>
+                        <input type="time" class="form-control" id="editEventTime" [(ngModel)]="eventTime" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label for="editLocation" style="margin-top: 10px;">Location</label>
+                        <select class="form-control" id="editLocation">
+                            <option value="Physical">Physical</option>
+                            <option value="Online">Online</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="editVenueLocation" style="display:none;">
+                        <label for="editPhysicalLocationInput">Physical Location</label>
+                        <input type="text" class="form-control" id="editVenueLocationInput" [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group" id="editOnlineLocation" style="display:none;">
+                        <label for="editOnlineLocationInput">Online Meeting URL</label>
+                        <input type="text" class="form-control" id="editOnlineLocationInput" [(ngModel)]="meetingURL" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group" id="editHybridLocation" style="display:none;">
+                        <label for="editHybridPhysicalLocationInput">Hybrid Physical Location</label>
+                        <input type="text" class="form-control" id="editHybridVenueLocationInput" [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
+                        <label for="editHybridOnlineLocationInput">Hybrid Online Meeting URL</label>
+                        <input type="text" class="form-control" id="editHybridOnlineLocationInput" [(ngModel)]="meetingURL" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <!-- Event Details -->
+                    <div class="form-group" id="editEventPoster">
+                        <div>
+                            <label style="margin-top: 10px;">Official Poster of the Event: </label>
+                            <input class="form-control" type="file" id="formFile" onchange="preview('frame')" (change)="onChange($event)" [value]="poster" [(ngModel)]="poster" [ngModelOptions]="{standalone: true}" accept="image/*">
+                            <label>Recommended image size: 2160 x 1080px | Maximum file size: 10MB | Supported image files: JPEG or PNG</label>
+                        </div>
+                        <img id="frame" src="" class="img-fluid" />
+                    </div>
+
+                    <div class="form-group" id="editEventProgramme">
+                        <div>
+                            <label style="margin-top: 10px;">Programme: </label>
+                            <input class="form-control" type="file" id="formFile1" onchange="preview('frame1')" (change)="onChange($event)" [value]="programme" [(ngModel)]="programme" [ngModelOptions]="{standalone: true}"  accept="image/*">
+                            <label>Recommended image size: 2160 x 1080px | Maximum file size: 10MB | Supported image files: JPEG or PNG</label>
+                        </div>
+                        <img id="frame1" src="" class="img-fluid" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editEventVideo" style="margin-top: 10px;">Official Event Video</label>
+                        <input type="text" class="form-control" id="editEventVideo" placeholder="Enter event video url" [(ngModel)]="video" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <!-- Ticket Details -->
+                    <div class="form-group">
+                        <label for="editEventSeats" style="margin-top: 10px;">Number of Available Seats</label>
+                        <input type="text" class="form-control" id="editEventSeats" placeholder="Enter number of available seats" [(ngModel)]="eventSeats" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editEventPrice" style="margin-top: 10px;">Event Registration Price</label>
+                        <input type="text" class="form-control" [(ngModel)]="eventPrice" [ngModelOptions]="{standalone: true}" name="currency-field" id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="Enter amount of registration price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editEventPriceDeets" style="margin-top: 10px;">Payment Process and Details</label>
+                        <input type="text" class="form-control" id="editEventPriceDeets" placeholder="Enter payment process and details" [(ngModel)]="eventPaymentDetails" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <div class="text-center center">
+                        <button type="submit" class="btn btn-success1" (click)="updateEvent()" data-bs-dismiss="modal">Save</button>
+                        <button type="button" class="btn btn-danger1" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Event Modal -->
+<div class="modal fade" id="viewEventModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body center">
+                <form id="editEventForm">
+                    <!-- Basic Information -->
+                    <div class="form-group">
+                        <label for="editEventName" style="margin-top: 10px;">Event Name</label>
+                        <input type="text" class="form-control" id="editEventName" placeholder="Enter event name" [(ngModel)]="eventTitle" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editEventDescription" style="margin-top: 10px;">Event Description</label>
+                        <textarea class="form-control" id="editEventDescription" placeholder="Enter event description" [(ngModel)]="eventDesc" [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEventDate" style="margin-top: 10px;">Event Date</label>
+                        <input type="date" class="form-control" id="editEventDate" [(ngModel)]="eventDate" [ngModel]="eventDate | date: 'yyyy-MM-dd'" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editEventTime" style="margin-top: 10px;">Event Time</label>
+                        <input type="time" class="form-control" id="editEventTime" [(ngModel)]="eventTime" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label for="editLocation" style="margin-top: 10px;">Location</label>
+                        <select class="form-control" id="editLocation">
+                            <option value="Physical">Physical</option>
+                            <option value="Online">Online</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="editVenueLocation" style="display:none;">
+                        <label for="editPhysicalLocationInput">Physical Location</label>
+                        <input type="text" class="form-control" id="editVenueLocationInput" [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group" id="editOnlineLocation" style="display:none;">
+                        <label for="editOnlineLocationInput">Online Meeting URL</label>
+                        <input type="text" class="form-control" id="editOnlineLocationInput" [(ngModel)]="meetingURL" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group" id="editHybridLocation" style="display:none;">
+                        <label for="editHybridPhysicalLocationInput">Hybrid Physical Location</label>
+                        <input type="text" class="form-control" id="editHybridVenueLocationInput" [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
+                        <label for="editHybridOnlineLocationInput">Hybrid Online Meeting URL</label>
+                        <input type="text" class="form-control" id="editHybridOnlineLocationInput" [(ngModel)]="meetingURL" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <!-- Event Details -->
+                    <div class="form-group" id="editEventPoster">
+                        <div>
+                            <label style="margin-top: 10px;">Official Poster of the Event: </label>
+                            <br>
+                            <img [src]="poster" style="width: 450px; height: 300px; border-radius: 20px; display: block; margin: auto;">
+                            <label>Recommended image size: 2160 x 1080px | Maximum file size: 10MB | Supported image files: JPEG or PNG</label>
+                        </div>
+                        <img id="frame" src="" class="img-fluid" />
+                    </div>
+
+                    <div class="form-group" id="editEventProgramme">
+                        <div>
+                            <label style="margin-top: 10px;">Programme: </label>
+                            <br>
+                            <img [src]="programme" style="width: 450px; height: 300px; border-radius: 20px; display: block; margin: auto;">
+                            <label>Recommended image size: 2160 x 1080px | Maximum file size: 10MB | Supported image files: JPEG or PNG</label>
+                        </div>
+                        <img id="frame1" src="" class="img-fluid" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editEventVideo" style="margin-top: 10px;">Official Event Video</label>
+                        <input type="text" class="form-control" id="editEventVideo" placeholder="Enter event video url" [(ngModel)]="video" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <!-- Ticket Details -->
+                    <div class="form-group">
+                        <label for="editEventSeats" style="margin-top: 10px;">Number of Available Seats</label>
+                        <input type="text" class="form-control" id="editEventSeats" placeholder="Enter number of available seats" [(ngModel)]="eventSeats" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editEventPrice" style="margin-top: 10px;">Event Registration Price</label>
+                        <input type="text" class="form-control" [(ngModel)]="eventPrice" [ngModelOptions]="{standalone: true}" name="currency-field" id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="Enter amount of registration price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editEventPriceDeets" style="margin-top: 10px;">Payment Process and Details</label>
+                        <input type="text" class="form-control" id="editEventPriceDeets" placeholder="Enter payment process and details" [(ngModel)]="eventPaymentDetails" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <div class="text-center center">
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+
+
+
+

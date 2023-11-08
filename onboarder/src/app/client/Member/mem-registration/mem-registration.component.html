@@ -1,0 +1,69 @@
+<body>
+    <div class="container">
+        <aside>
+            <app-mem-navbar></app-mem-navbar>
+        </aside>
+  
+        <div class="content" *ngFor="let event of eventInfo">
+              <div class="card-body">
+
+                <div class="img-square-wrapper">
+                    <img class="" [src]="event.poster" width="100%" alt="Card image cap">
+                </div>
+    
+                <div class="col-md-12">
+                    <h2 class="form-label mt-3 text-uppercase text-center">{{event.eventTitle}}</h2>
+                    <div class="card-body">
+                        <p class="card-event-deets text-center mb-5">{{event.eventDesc}}</p>
+                    </div>
+                </div>
+    
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Available Seats</label>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{event.eventSeats}} SEATS LEFT</h5>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <label class="form-label">Date of the Event</label>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{event.eventDate}}</h5>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <label class="form-label">Time of the Event</label>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{event.eventTime}} (GMT +8)</h5>
+                        </div>
+                    </div>
+                </div>
+    
+                <label class="form-label">Program Flow</label> 
+                <div class="img-square-wrapper">
+                    <img class="" [src]="event.programme" width="100%" alt="Card image cap">
+                </div>
+
+                <label class="form-label">Video Teaser</label> 
+                <div class="card-body">
+                    <a [href]="event.video">{{event.video}}</a>
+                </div>
+                  
+                <label class="form-label">Event Registration Fee and Payment Process</label>
+                <div class="card-body">
+                    <h5 class="card-title-event">Event Registration Fee: {{event.eventPrice}}</h5>
+                    <p class="card-text-event">Before proceeding with registration, please follow this steps: <br> {{event.eventPaymentDetails}}</p>
+                </div>
+    
+                <div class="d-flex justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-success" (click)="redirecttoRegForm(event.orgName, event._id)">Register</button>
+                </div>
+              </div>
+            </div>
+        </div>
+  </body>
+  
+  
+  

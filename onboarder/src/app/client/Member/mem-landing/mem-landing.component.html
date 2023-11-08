@@ -1,0 +1,29 @@
+<body>
+  <h1 class="text-body-emphasis">Do you have an account or are you a new user?</h1>
+      <p class="p1 col-lg-8 mx-auto fs-5 text-muted">
+        To start your onboarding journey, Please log in or sign up and fill in the necessary information needed to join your organization.
+      </p>
+<div class="container my-5">
+    <div class="container-child p-2 text-center bg-body-tertiary rounded-3">
+      <div class="d-inline-flex gap-2 mb-3">
+        <div class="Card row align-items-md-stretch p-5 justify-content-center">
+            <div class="col-md-5">
+                <div  class="Card-child h-100 p-5 text-white rounded-3">
+                    <h2>I am a new user</h2>
+                    <p>Proceed by clicking the button below and fill in the necessary information.</p>
+                    <button class="btn btn-outline-light" type="button"  (click)="navigatetoSignUp()">Sign Up</button>
+                </div>
+            </div>
+    
+            <div class="col-md-5">
+                <div class="Card-child h-100 p-5 text-white rounded-3">
+                    <h2>I have an account</h2>
+                    <p>Proceed by logging in your registered account and check for updates and announcements.</p>
+                    <button class="btn btn-outline-light" type="button" (click)="navigatetoLogIn()">Log In</button>
+                </div>
+            </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+</body>

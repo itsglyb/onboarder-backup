@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter&family=Plus+Jakarta+Sans:wght@200&display=swap');
+
+.badge {
+    background: linear-gradient(135deg, #1e30f3 0%, #e21e80 100%);
+}
+/* NAV BAR */
+header {
+    background-color: #007FE1;
+    width: 100%; 
+}
+.nav-item a {   
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 800;
+    margin: 6px;
+}
+.nav-item a:after {
+   display: block;
+   content      : '';
+   border-bottom: solid 2px #fff;
+   transform    : scaleX(0);
+   transition   : transform 300ms ease-in-out;
+}
+
+.nav-item a:hover:after {
+   transform: scaleX(1);
+}
+.login {
+  background-color: #00E1D3;
+  text-decoration: none;
+  color: #FFF;
+  font-size: 20px;
+  padding: 5px 20px;
+  border-radius: 30px;
+  float: left;
+  margin-left: 10%;
+  margin-top: 8px;
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 700;
+}
+/*DEVELOPERS*/
+section {
+    padding: 60px 0;
+    overflow: hidden;
+  }
+  
+  .section-bg {
+    background-color: #f3f5fa;
+  }
+  
+  .section-title {
+    text-align: center;
+    padding-bottom: 30px;
+  }
+  
+  .section-title h2 {
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: auto;
+    color: #000;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(0.25turn, #007FE1, #000fe17c, #00e1d244);
+    border-image-slice: 1;
+    width: 35%;
+    padding: 10px;
+
+  }
+  .section-title p {
+    margin-bottom: 0;
+    padding: 25px;
+    font-size: 20px;
+  }
+  
+  .team .member {
+    position: relative;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 5px;
+    background: #fff;
+    transition: 0.5s;
+    height: 100%;
+  }
+  
+  .team .member .pic {
+    overflow: hidden;
+    width: 180px;
+    border-radius: 50%;
+  }
+  
+  .team .member .pic img {
+    transition: ease-in-out 0.3s;
+  }
+  
+  .team .member:hover {
+    transform: translateY(-10px);
+  }
+  
+  .team .member .member-info {
+    padding-left: 30px;
+  }
+  
+  .team .member h4 {
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #000EE1;
+  }
+  
+  .team .member span {
+    display: block;
+    font-size: 15px;
+    padding-bottom: 10px;
+    position: relative;
+    font-weight: 500;
+  }
+  
+  .team .member span::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: #007FE1;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .team .member p {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+  }
+  
+  .team .member .social {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+  }
+  
+  .team .member .social a {
+    transition: ease-in-out 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    width: 32px;
+    height: 32px;
+    background: #eff2f8;
+    text-decoration: none;
+  }
+  
+  .team .member .social a i {
+    color: #37517e;
+    font-size: 16px;
+    margin: 0 2px;
+  }
+  
+  .team .member .social a:hover {
+    background: #007FE1;
+  }
+  
+  .team .member .social a:hover i {
+    color: #fff;
+  }
+  
+  .team .member .social a + a {
+    margin-left: 8px;
+  }
+    /*Footer*/
+footer {
+  background-color: #007FE1;
+}

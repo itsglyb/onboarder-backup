@@ -1,0 +1,9 @@
+.abc {
+    background: #007fe1;
+background: -webkit-linear-gradient(0deg, #007fe1 0%, #00e1d3 100%);
+background: linear-gradient(0deg, #007fe1 0%, #00e1d3 100%);
+}
+h6 {
+    text-align: center;
+    padding-top: 20px;
+}

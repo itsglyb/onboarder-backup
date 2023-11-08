@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="sidebar">
+
+        <div class="head">
+            <div class="user-img">
+                <img src="../../../../assets/img/profile-pic.png" alt="profile pic">
+            </div>
+
+            <div class="user-details">
+                <p class="title">ADMIN</p>
+                <p class="name">{{admin}}</p>
+            </div>
+        </div>
+        
+        <div class="nav">
+            <div class="menu">
+                <p class="title">Main</p>
+
+                <ul>
+                    <li>
+                        <a routerLink="/admin-users">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="text">Users</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/admin-orgs">
+                            <i class="bi bi-people-fill"></i>
+                            <span class="text">Organizations</span>  
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/admin-events">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <span class="text">Events</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="menu-low">
+                <p class="title">Account</p>
+
+                <ul>
+                    <li>
+                        <a (click)="logout()">
+                            <i  class="fa-solid fa-right-from-bracket"></i>
+                            <span class="text">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>  

@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter&family=Plus+Jakarta+Sans:wght@200&display=swap');
+
+.badge {
+    background: linear-gradient(135deg, #1e30f3 0%, #e21e80 100%);
+}
+
+
+/* NAV BAR */
+header {
+    background-color: #007FE1;
+    width: 100%; 
+}
+.nav-item a {   
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 800;
+    margin: 6px;
+}
+.nav-item a:after {
+   display: block;
+   content      : '';
+   border-bottom: solid 2px #fff;
+   transform    : scaleX(0);
+   transition   : transform 300ms ease-in-out;
+}
+
+.nav-item a:hover:after {
+   transform: scaleX(1);
+}
+
+.login {
+    background-color: #00E1D3;
+    text-decoration: none;
+    color: #FFF;
+    font-size: 20px;
+    padding: 5px 20px;
+    border-radius: 30px;
+    float: left;
+    margin-left: 10%;
+    margin-top: 8px;
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 700;
+}
+
+/*Home*/
+#Hero {
+    background-image: url('data:image/svg+xml,<svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 380" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(0, 127, 225, 1)" offset="0%"></stop><stop stop-color="rgba(0, 225, 210, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(%23sw-gradient-0)" d="M0,152L48,133C96,114,192,76,288,69.7C384,63,480,89,576,82.3C672,76,768,38,864,44.3C960,51,1056,101,1152,107.7C1248,114,1344,76,1440,107.7C1536,139,1632,241,1728,234.3C1824,228,1920,114,2016,107.7C2112,101,2208,203,2304,253.3C2400,304,2496,304,2592,253.3C2688,203,2784,101,2880,88.7C2976,76,3072,152,3168,177.3C3264,203,3360,177,3456,171C3552,165,3648,177,3744,152C3840,127,3936,63,4032,69.7C4128,76,4224,152,4320,158.3C4416,165,4512,101,4608,76C4704,51,4800,63,4896,76C4992,89,5088,101,5184,120.3C5280,139,5376,165,5472,202.7C5568,241,5664,291,5760,272.3C5856,253,5952,165,6048,139.3C6144,114,6240,152,6336,190C6432,228,6528,266,6624,240.7C6720,215,6816,127,6864,82.3L6912,38L6912,380L6864,380C6816,380,6720,380,6624,380C6528,380,6432,380,6336,380C6240,380,6144,380,6048,380C5952,380,5856,380,5760,380C5664,380,5568,380,5472,380C5376,380,5280,380,5184,380C5088,380,4992,380,4896,380C4800,380,4704,380,4608,380C4512,380,4416,380,4320,380C4224,380,4128,380,4032,380C3936,380,3840,380,3744,380C3648,380,3552,380,3456,380C3360,380,3264,380,3168,380C3072,380,2976,380,2880,380C2784,380,2688,380,2592,380C2496,380,2400,380,2304,380C2208,380,2112,380,2016,380C1920,380,1824,380,1728,380C1632,380,1536,380,1440,380C1344,380,1248,380,1152,380C1056,380,960,380,864,380C768,380,672,380,576,380C480,380,384,380,288,380C192,380,96,380,48,380L0,380Z"></path></svg>');
+    background-size: cover;
+    filter: drop-shadow(15px 10px 7px #007FE1);
+}
+.Card {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.Card2 {
+    background-color: #007FE1;
+    filter: drop-shadow(3px 3px 5px #707070);   
+}
+.Card3 {
+    background-color: #007FE1;
+    filter: drop-shadow(3px 3px 5px #707070); 
+}
+.learn-more-btn{
+    background-color:#007FE1;
+
+}
+/*About*/
+#About {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1500' height='560' preserveAspectRatio='none' viewBox='0 0 1500 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1474%26quot%3b)' fill='none'%3e%3cpath d='M-119.2 318.64 a135.68 135.68 0 1 0 271.36 0 a135.68 135.68 0 1 0 -271.36 0z' fill='rgba(0%2c 127%2c 225%2c 0.07)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M476.6 469.8 a183.55 183.55 0 1 0 367.1 0 a183.55 183.55 0 1 0 -367.1 0z' fill='rgba(0%2c 127%2c 225%2c 0.07)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1303.659%2c377.788C1340.093%2c378.56%2c1376.106%2c366.034%2c1396.693%2c335.964C1420.335%2c301.432%2c1432.792%2c256.021%2c1411.817%2c219.806C1390.878%2c183.652%2c1345.317%2c172.143%2c1303.659%2c175.333C1267.414%2c178.109%2c1238.383%2c202.597%2c1220.835%2c234.432C1203.969%2c265.03%2c1199.738%2c301.907%2c1217.216%2c332.159C1234.686%2c362.397%2c1268.745%2c377.048%2c1303.659%2c377.788' fill='rgba(0%2c 127%2c 225%2c 0.07)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1117.97 193.33 a143.17 143.17 0 1 0 286.34 0 a143.17 143.17 0 1 0 -286.34 0z' fill='rgba(0%2c 127%2c 225%2c 0.07)' class='triangle-float3'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1474'%3e%3crect width='1500' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
+        background-size: cover;
+        background-repeat: no-repeat;
+}
+#About a {
+    text-decoration: none;
+}
+#About section {
+    font-family: 'Poppins', sans-serif !important;;
+}
+
+/*Benefits*/
+#Benefits {
+    /*background-color: #bedef7;*/
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='400' preserveAspectRatio='none' viewBox='0 0 1440 500'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1643%26quot%3b)' fill='none'%3e%3crect width='1440' height='500' x='0' y='0' fill='url(%26quot%3b%23SvgjsLinearGradient1644%26quot%3b)'%3e%3c/rect%3e%3cpath d='M 0%2c60 C 144%2c90.8 432%2c222.8 720%2c214 C 1008%2c205.2 1296%2c55.6 1440%2c16L1440 500L0 500z' fill='rgba(0%2c 127%2c 225%2c 0.24)'%3e%3c/path%3e%3cpath d='M 0%2c342 C 144%2c363.2 432%2c446.4 720%2c448 C 1008%2c449.6 1296%2c369.6 1440%2c350L1440 500L0 500z' fill='rgba(0%2c 225%2c 211%2c 0.16)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1643'%3e%3crect width='1440' height='500' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='16.32%25' y1='-47%25' x2='83.68%25' y2='147%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1644'%3e%3cstop stop-color='rgba(31%2c 115%2c 223%2c 0.51)' offset='0.8'%3e%3c/stop%3e%3cstop stop-color='rgba(0%2c 69%2c 158%2c 0.66)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
+    background-size: cover;
+
+}
+#Benefits section{
+    font-family: 'Poppins', sans-serif !important;
+    
+}
+/*Step Section */
+#Step section {
+    padding: 60px 0;
+
+}
+#Step .section-header {
+margin-bottom: 60px;
+position: relative;
+padding-bottom: 20px;
+}
+
+#Step .section-header::before {
+content: '';
+position: absolute;
+display: block;
+width: 60px;
+height: 5px;
+background: #007FE1;
+bottom: 0;
+left: calc(50% - 25px);
+}
+
+#Step .section-header h1 {
+font-size: 50px;
+text-align: center;
+margin-bottom: 10px;
+font-weight: 600;
+}
+
+#Step .section-header p {
+text-align: center;
+padding: 0;
+margin: 0;
+font-size: 18px;
+font-weight: 500;
+color: #FFF;
+}
+
+#Step .work-porcess-area.white {
+background: #FFFFFF;
+}
+
+#Step .work-porcess-area .process-info {
+margin-top: 7px;
+}
+
+#Step .work-porcess-area .process-info .single-process {
+width: 160px;
+height: 160px;
+-webkit-border-radius: 50%;
+-moz-border-radius: 50%;
+-ms-border-radius: 50%;
+-o-border-radius: 50%;
+border-radius: 50%;
+padding-top: 53px;
+margin: 0 auto;
+background: #FFFFFF;
+-webkit-box-shadow: 0 10px 30px 0 #007FE1;
+-o-box-shadow: 0 10px 30px 0 #007FE1;
+-moz-box-shadow: 0 10px 30px 0 #007FE1;
+-ms-box-shadow: 0 10px 30px 0 #007FE1;
+box-shadow: 0 10px 30px 0 #007FE1;
+position: relative;
+-webkit-transition: all 0.5s;
+-o-transition: all 0.5s;
+-moz-transition: all 0.5s;
+-ms-transition: all 0.5s;
+transition: all 0.5s;
+cursor: pointer;
+}
+
+#Step .work-porcess-area .process-info .single-process:hover {
+-webkit-box-shadow: 0 10px 30px 0 #007FE1;
+-o-box-shadow: 0 10px 30px 0 #007FE1;
+-moz-box-shadow: 0 10px 30px 0 #007FE1;
+-ms-box-shadow: 0 10px 30px 0 #007FE1;
+box-shadow: 0 10px 30px 0 #007FE1;
+}
+
+#Step .work-porcess-area .process-info .single-process:after {
+position: absolute;
+content: "\f101";
+font-family: "fontawesome";
+top: 50%;
+-webkit-transform: translateY(-50%);
+-o-transform: translateY(-50%);
+-moz-transform: translateY(-50%);
+-ms-transform: translateY(-50%);
+transform: translateY(-50%);
+right: -65px;
+color: #007FE1;
+}
+
+#Step .work-porcess-area .process-info .single-process.first {
+background: #00E1D3;
+}
+
+#Step .work-porcess-area .process-info .single-process.first i:before {
+color: #FFFFFF;
+}
+
+#Step .work-porcess-area .process-info .single-process.first h4 {
+color: #FFFFFF;
+}
+
+#Step .work-porcess-area .process-info .single-process.thard {
+background: #00E1D3;
+}
+
+#Step .work-porcess-area .process-info .single-process.thard i:before {
+color: #FFFFFF;
+}
+
+#Step .work-porcess-area .process-info .single-process.thard h4 {
+color: #FFFFFF;
+padding: 0 15px;
+}
+
+#Step .work-porcess-area .process-info .single-process.last:after {
+display: none;
+}
+
+#Step .work-porcess-area .process-info .single-process i {
+display: block;
+line-height: 25px;
+margin-bottom: 12px;
+}
+
+#Step .work-porcess-area .process-info .single-process i:before {
+font-size: 36px;
+color: #007FE1;
+}
+
+#Step .work-porcess-area .process-info .single-process h4 {
+font-size: 16px;
+font-weight: 600;
+text-transform: capitalize;
+color: #007FE1;
+}
+
+@media only screen and (max-width: 767px) {
+#Step.work-porcess-area .process-info .single-process::after {
+display: none;
+}
+#Step .work-porcess-area .process-info .single-process{
+margin-top: 30px;
+}
+#Step .work-porcess-area .section-title h2{
+margin-bottom: 5px;
+}
+#Step .section-header h2 {
+font-size: 30px;
+}
+
+}
+/*Footer*/
+footer {
+    background-color: #007FE1;
+}

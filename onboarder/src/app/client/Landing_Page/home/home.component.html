@@ -1,0 +1,205 @@
+<header class="d-flex justify-content-center py-3">
+    <ul class="nav">
+      <li class="nav-item"><a routerLink="/home" class="nav-link">Home</a></li>
+      <li class="nav-item"><a routerLink="/about" class="nav-link">About</a></li>
+      <li class="nav-item"><a routerLink="/services" class="nav-link">Services</a></li>
+      <li class="nav-item"><a routerLink="/developers" class="nav-link">Developers</a></li>
+      <li class="nav-item-1"><a routerLink="/auth-login" class="login">Login</a></li>
+    </ul>
+  </header>
+  
+  <div id="Hero" class="Hero d-flex justify-content-center align-items-center">
+          <div class="p-5 text-center rounded-3">
+              <img class="bi mt-1 mb-2" src="assets/img/logo-name1.png">
+              <h1 class="text-white-emphasis text-white">Membership Made Easy, Events Made Memorable</h1>
+              <p class="col-lg-8 mx-auto fs-4 text-white">
+                  A comprehensive event and membership management system designed to streamline and simplify the process of organizing and managing events while efficiently handling membership-related tasks.
+              </p>
+              <div class="d-inline-flex gap-2 mb-5"></div>
+              <button class="learn-more-btn d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill mb-5" style="filter: drop-shadow(3px 3px 5px #707070);" type="button" routerLink="/about">
+                  Learn More
+              </button> 
+          </div>
+      </div>
+
+
+      <div id="Call to Action" class="Card align-items-md-stretch p-5 justify-content-center">
+          <div class="col-md-5">
+              <div  class="Card2 h-100 p-5 text-white rounded-3">
+                  <h2>Register your Organization</h2>
+                  <p class="fs-5">To start your onboarding journey, register your organization to make your organization visible to your members.</p>
+                  <button class="btn btn-outline-light" type="button"  (click)="navigatetoOrg()">Register Organization</button>
+              </div>
+          </div>
+  
+          <div class="col-md-5">
+              <div class="Card3 h-100 p-5 text-white rounded-3">
+                  <h2>Join an Organization</h2>
+                  <p class="fs-5">Join your organization through your org code to access the announcements and updates.</p>
+                  <button class="btn btn-outline-light" type="button" (click)="navigatetoMem()">Join Organization</button>
+              </div>
+          </div>
+      </div>  
+   
+      <div id="About" class="py-5 px-5">
+          <section>
+              <div class="text-center mb-5 col-md-10 mx-auto">
+                  <h2 class="display-4" style="font-weight: 600; text-transform: uppercase;">What we <span style="color: #007FE1">Offer</span></h2>
+                  <p class="mx-5"> There's a lot of things that Organizations and Members can explore in OnBoarder. </p>
+              </div>
+              <div class="row">
+                  <div class="col-md-4 my-4 ">
+                      <a href="#" class="text-dark">
+                          <div class="px-3 py-5">
+                              <span class="text-uppercase">Onboarder Offers</span>
+                              <h3 class="text-capitalize my-2" style="font-weight: 600">Event and Membership Solution for Professional Organization</h3>
+                              <button class="btn my-4 px-4 py-2 rounded-pill text-white" style="background-color: #007FE1; filter: drop-shadow(3px 3px 5px #707070);">See More</button>
+                          </div>
+                      </a>
+                  </div>
+                  
+                  <div class="col-md-4 my-4 ">
+                      <a href="#" class="text-dark">
+                          <div class="px-3 py-5 rounded-3" style="background-color: #00E1D3;filter: drop-shadow(7px 8px 6px #949494);">
+                              <div class="font-weight-bold circle rounded-circle d-flex align-items-center justify-content-center mx-auto my-3"
+                                   style="width: 60px;height: 60px;">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                                  </svg>
+                              </div>
+                              <div class="px-3 text-center pb-3">
+                                  <h5 class="text-uppercase" style="font-weight: 600">Membership management</h5>
+                                  <p class="font-weight-light my-3">Organizations can create a membership form customized to their needs 
+                                    and manage their members. </p>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+                  <div class="col-md-4 my-4 ">
+                      <a href="#" class="text-dark">
+                          <div class="px-3 py-5 text-white rounded-3" style="background-color: #007FE1; filter: drop-shadow(7px 8px 6px #949494);">
+                              <div class="font-weight-bold circle rounded-circle d-flex align-items-center justify-content-center mx-auto my-3"
+                                   style="width: 60px;height: 60px;">
+                                  
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
+                                        <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                                        <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                                      </svg>
+                              </div>
+                              <div class="px-3 text-center pb-3">
+                                  <h5 class="text-uppercase" style="font-weight: 600">Events Management</h5>
+                                  <p class="font-weight-light my-3">Organizations can create events where members can join.</p>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+          </section>
+      </div>
+  
+      <div id="Benefits" class="py-5 px-5">
+          <section>
+              <div class="text-center mb-3">
+                  <span>BENEFITS</span>
+                  <h2 class="display-4" style="font-weight: 600; text-transform: uppercase">Why Choose <span style="color: #000EE1">Onboarder?</span></h2>
+              </div>
+              <div class="row">
+                  <div class="col-md-4 my-2">
+                      <div class="px-3 my-5">
+                          <div class="circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
+                               style="width: 60px;height: 60px; background-color: #007FE1">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-1-circle" viewBox="0 0 16 16">
+                                  <path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383h1.312Z"/>
+                                </svg>
+                          </div>
+                          <div class="px-3 text-center pb-3">
+                              <h5 class="text-uppercase" style="font-weight: 600">All in One</h5>
+                              <p class="font-weight-light my-3">OnBoarder is a one-stop-shop for organizations.</p>
+                          </div>
+                      </div>
+                  </div>
+                <div class="col-md-4 my-2">
+                      <div class="px-3 my-5">
+                          <div class="circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
+                               style="width: 60px;height: 60px; background-color: #007FE1">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-2-circle" viewBox="0 0 16 16">
+                                  <path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306Z"/>
+                                </svg>
+                          </div>
+                          <div class="px-3 text-center pb-3">
+                              <h5 class="text-uppercase" style="font-weight: 600">Membership Approval</h5>
+                              <p class="font-weight-light my-3">Organizations' can approve or reject an application by reviewing the applicant's submitted files.</p>
+                          </div>
+                      </div>
+                  </div>
+                <div class="col-md-4 my-2">
+                      <div class="px-3 my-5">
+                          <div class="circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
+                               style="width: 60px;height: 60px; background-color: #007FE1">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-3-circle" viewBox="0 0 16 16">
+                                  <path d="M7.918 8.414h-.879V7.342h.838c.78 0 1.348-.522 1.342-1.237 0-.709-.563-1.195-1.348-1.195-.79 0-1.312.498-1.348 1.055H5.275c.036-1.137.95-2.115 2.625-2.121 1.594-.012 2.608.885 2.637 2.062.023 1.137-.885 1.776-1.482 1.875v.07c.703.07 1.71.64 1.734 1.917.024 1.459-1.277 2.396-2.93 2.396-1.705 0-2.707-.967-2.754-2.144H6.33c.059.597.68 1.06 1.541 1.066.973.006 1.6-.563 1.588-1.354-.006-.779-.621-1.318-1.541-1.318Z"/>
+                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z"/>
+                                </svg>
+                          </div>
+                          <div class="px-3 text-center pb-3">
+                              <h5 class="text-uppercase" style="font-weight: 600">Customization of Forms</h5>
+                              <p class="font-weight-light my-3"> Within the dashboard, organizations can create and customize forms by 
+                                choosing one of the options provided in the forms.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </div>
+
+
+<div id="Step">
+<section class="container work-porcess-area section mb-5">
+    <div class="container">
+
+
+<div class="section-header">
+  
+    <h1 class="display-4" style="text-transform: uppercase">Step - by - step <span style="color: #000EE1">Process</span></h1>
+</div>
+        <div class="process-info">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="single-process first text-center">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <h4>Register your Organization</h4>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-process secend text-center">
+                        <i class="fas fa-cog"></i>
+                        <h4>Setup your Platform</h4>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-process thard text-center">
+                        <i class="fa-solid fa-table-list"></i>
+                        <h4>Customize your form</h4>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-process last text-center">
+                        <i class="fas fa-sync-alt"></i>
+                        <h4>Explore and Enjoy!</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+      
+      <footer class="bg-primary text-center text-lg-start">
+          <!-- Copyright -->
+          <div class="text-center p-3 text-white">
+            © 2023 Copyright: Technovators | Academic Year 2023 - 2024
+          </div>
+        </footer>
+  
+    

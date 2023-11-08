@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter&family=Plus+Jakarta+Sans:wght@200&display=swap');
+
+.carousel {
+    margin-top: 10px;
+}
+
+.row {
+    margin-top: 10px;
+}
+
+.event {
+    background-color: #fff;
+}
+
+.container-fluid {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f6f6f6;
+}
+
+* {
+    margin: 0;
+    padding: 0
+  }
+  
+  html {
+    height: 100%
+  }
+  
+  p {
+    color: grey
+  }
+  
+  #heading {
+    text-transform: uppercase;
+    color: #3676d7;
+    font-weight: normal
+  }
+  
+  #msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+  }
+  
+  #msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+  }
+  
+  .form-card {
+    text-align: left
+  }
+  
+  #msform fieldset:not(:first-of-type) {
+    display: none
+  }
+  
+  #msform input,
+  #msform textarea {
+    padding: 8px 15px 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    background-color: #ECEFF1;
+    font-size: 16px;
+    letter-spacing: 1px
+  }
+  
+  #msform input:focus,
+  #msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #3676d7;
+    outline-width: 0
+  }
+  
+  #msform .action-button {
+    width: 120px;
+    background: #3676d7;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 3px;
+    margin: 10px 0px 15px 5px;
+    float: right
+  }
+  
+  #msform .action-button:hover,
+  #msform .action-button:focus {
+    background-color: #3676d7
+  }
+  
+  #msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right
+  }
+  
+  #msform .action-button-previous:hover,
+  #msform .action-button-previous:focus {
+    background-color: #000000
+  }
+  
+  .card {
+    z-index: 0;
+    border: none;
+    position: relative
+  }
+  
+  .fs-title {
+    font-size: 25px;
+    color: #3676d7;
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left
+  }
+  
+  .purple-text {
+    color: #3676d7;
+    font-weight: normal
+  }
+  
+  .steps {
+    font-size: 25px;
+    color: gray;
+    margin-bottom: 10px;
+    font-weight: normal;
+    text-align: right
+  }
+  
+  .fieldlabels {
+    color: gray;
+    text-align: left
+  }
+  
+  #progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+  }
+  
+  #progressbar .active {
+    color: #3676d7;
+  }
+  
+  #progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 20%;
+    float: left;
+    position: relative;
+    font-weight: 400
+  }
+  
+  #progressbar #account:before {
+    font-family: FontAwesome;
+    content: "\f06a"
+  }
+  
+  #progressbar #information:before {
+    font-family: FontAwesome;
+    content: "\f129"
+  }
+
+  #progressbar #check:before {
+    font-family: FontAwesome;
+    content: "\f772"
+  }
+  #progressbar #file:before {
+    font-family: FontAwesome;
+    content: "\e4ef"
+  }
+  
+  #progressbar #ticket:before {
+    font-family: FontAwesome;
+    content: "\f145"
+  }
+  
+  #progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+  }
+  
+  #progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+  }
+  
+  #progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+  }
+  
+  #progressbar li.active:before,
+  #progressbar li.active:after {
+    background: #3676d7;
+  }
+  
+  .progress {
+    height: 20px
+  }
+  
+  .progress-bar {
+    background-color: #3676d7;
+  }
+  
+  .fit-image {
+    width: 100%;
+    object-fit: cover
+  }
+
+  .modal-confirm {		
+    color: #434e65;
+    width: 525px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .modal-confirm .modal-content {
+    padding: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+  }
+  .modal-confirm .modal-header {
+    background: #47c9a2;
+    border-bottom: none;   
+    position: relative;
+    text-align: center;
+    margin: -20px -20px 0;
+    border-radius: 5px 5px 0 0;
+    padding: 35px;
+  }
+  .modal-confirm h4 {
+    text-align: center;
+    font-size: 36px;
+    margin: 10px 0;
+  }
+  .modal-confirm .form-control, .modal-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px; 
+  }
+  .modal-confirm .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 0.5;
+  }
+  .modal-confirm .close:hover {
+    opacity: 0.8;
+  }
+  .modal-confirm .icon-box {
+    color: #fff;		
+    text-align: center;
+  }
+  .modal-confirm .icon-box i {
+    font-size: 130px;
+    margin: -4px 0 0 -4px;
+  }
+  .modal-confirm.modal-dialog {
+    margin-top: 80px;
+  }
+  .modal-confirm .btn, .modal-confirm .btn:active {
+    color: #fff;
+    border-radius: 4px;
+    background: #eeb711 !important;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border-radius: 30px;
+    margin-top: 10px;
+    padding: 6px 20px;
+    border: none;
+  }
+  .modal-confirm .btn:hover, .modal-confirm .btn:focus {
+    background: #eda645 !important;
+    outline: none;
+  }
+  .modal-confirm .btn span {
+    margin: 1px 3px 0;
+    float: left;
+  }
+  .modal-confirm .btn i {
+    margin-top: 6px;
+    margin-left: 3px;
+    font-size: 15px;
+    float: right;
+  }
+  .trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+  }
+
+
+  .location{
+    position:inherit;
+    width: 100%;
+    /* border-bottom-style: solid;
+    border-bottom-color: #e7e2e2; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2%;
+  }
+
+  
+  
+  .location div {
+    padding: .5rem;
+    border-radius: 5px;
+  }
+
+  .location .button-container {
+    display: flex; 
+    justify-content: center; 
+    
+  }
+
+  .location button.active {
+    background-color: #198754;
+    
+  }
+ .loc{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+ } 
+ .location button {
+  margin: .25rem;
+  margin-top: 0;
+  padding: 5% 20% 5% 20%;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #F5F5F5;
+  color: black;
+  border: 1px solid #198754;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.container {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.form-select {
+  padding: 10px;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.text-title {
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.card {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.card-date {
+  font-weight: 800;
+  color: gray;
+}
+
+.card-text {
+  margin-bottom: 3px;
+  margin-top: 0;
+}
+
+.card-eventtitle {
+  margin-bottom: 5px;
+  font-weight: 800;
+}
+
+.card-title {
+  margin-top: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #435d7d;
+}
+.card-title1 {
+  margin-top: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #435d7d;
+}
+
+.card-body {
+  margin-left: 10px;
+}
+
+button {
+  margin-bottom: 0px;
+}
+
+.img-preview {
+  width: 180px;
+  height: 110px;
+}

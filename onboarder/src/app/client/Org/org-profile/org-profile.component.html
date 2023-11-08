@@ -1,0 +1,130 @@
+<body>
+    <div class="container">
+        <aside>
+            <app-org-navbar></app-org-navbar>
+        </aside>
+
+        <div class="content">
+            <nav class="navbar navbar-expand-lg  rounded" aria-label="Thirteenth navbar example">
+                <div class="container-fluid">          
+                  <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                    <a class="navbar-brand col-lg-9 me-0">Organization Profile</a>
+                    <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+                      <button type="button" class="btn btn-success" data-bs-backdrop="fade" data-bs-toggle="modal" data-bs-target="#editOrgProfileModal">Edit Profile</button>
+                    </div>
+                  </div>
+                </div>
+            </nav> 
+
+            <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
+              <div class="img-square-wrapper">
+                  <img class="" [src]="this.logo" alt="Organization Logo" style="width: 100px; height: auto;">
+              </div>
+              <div class="card-body">
+                  <h4 class="card-eventtitle" name="orgName" value="orgName" [(ngModel)]="orgName" [ngModelOptions]="{standalone: true}">{{orgName}}</h4>
+                  <h5 class="card-eventtitle" name="email" value="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">{{email}}</h5>
+                  <p class="card-text" name="about" value="about" [(ngModel)]="about" [ngModelOptions]="{standalone: true}">{{about}}</p>
+              </div>
+            </div>
+
+          <hr>
+
+          <div class="card-body">
+              <h4 class="card-eventtitle">History</h4>
+              <p class="card-text" name="orgHistory" value="orgHistory" [(ngModel)]="orgHistory" [ngModelOptions]="{standalone: true}">{{orgHistory}}</p>
+          </div>
+
+          <hr>
+
+          <div class="card-body">
+            <h4 class="card-eventtitle">Mission</h4>
+            <p class="card-text" name="mission" value="mission" [(ngModel)]="mission" [ngModelOptions]="{standalone: true}">{{mission}}</p>
+          </div>
+
+          <hr>
+
+          <div class="card-body">
+              <h4 class="card-eventtitle">Vision</h4>
+              <p class="card-text" name="vision" value="vision" [(ngModel)]="vision" [ngModelOptions]="{standalone: true}">{{vision}}</p>
+          </div>
+
+          <hr>
+
+          <div class="card-body">
+              <h4 class="card-eventtitle">Core Values</h4>
+              <p class="card-text" name="coreValues" value="coreValues" [(ngModel)]="coreValues" [ngModelOptions]="{standalone: true}">{{coreValues}}</p>
+          </div>
+
+          <hr>
+
+             
+      </div>
+
+    </div>
+
+    
+<!-- Edit Org Profile User Modal -->
+<div class="modal fade" id="editOrgProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body center gap-3">
+        <form id="editOrgForm">
+            <h2 class="text-center">Edit Organization Information</h2>
+            <form id="editOrgForm">
+                <!-- Organization Logo Upload -->
+                <div class="form-group" id="editEventLogo">
+                  <div>
+                      <label style="margin-top: 10px;">Organization's Logo </label>
+                      <input class="form-control" type="file" id="formFile" onchange="preview('frame')" (change)="onChange($event)" [value]="logo" [(ngModel)]="logo" [ngModelOptions]="{standalone: true}">
+                  </div>
+                  <img id="frame" src="" class="img-fluid" />
+                </div>
+
+                <!-- Organization Information -->
+                <div class="form-group">
+                    <label style="margin-top: 10px;">Organization Name</label>
+                        <input type="text" class="form-control" id="editOrgName" placeholder="Enter organization name" [(ngModel)]="orgName" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="form-group">
+                  <label style="margin-top: 10px;">Organization Email</label>
+                  <input type="text" class="form-control" id="editOrgEmail" placeholder="Enter the organization email" name="email" value="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                </div>  
+                <div class="form-group">
+                    <label style="margin-top: 10px;">Brief Description of the Organization's Purpose</label>
+                    <textarea class="form-control" id="editOrgDescription" placeholder="Enter organization description" name="about" value="about" [(ngModel)]="about" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>                    
+                <div class="form-group">
+                    <label style="margin-top: 10px;">Organization's History</label>
+                    <textarea class="form-control" id="editOrgHistory" placeholder="Enter organization history" name="orgHistory" value="orgHistory" [(ngModel)]="orgHistory" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+
+                <!-- Organization Goals -->
+                <div class="form-group">
+                    <label style="margin-top: 10px;">Mission</label>
+                    <textarea class="form-control" id="editOrgMission" placeholder="Enter organization mission" name="mission" value="mission" [(ngModel)]="mission" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label style="margin-top: 10px;">Vision</label>
+                    <textarea class="form-control" id="editOrgVision" placeholder="Enter organization vision" name="vision" value="vision" [(ngModel)]="vision" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label style="margin-top: 10px;">Core Values</label>
+                    <textarea class="form-control" id="editCoreValues" placeholder="Enter your organization's core values" name="coreValues" value="coreValues" [(ngModel)]="coreValues" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+
+
+                <div class="text-center center">
+                  <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="updateOrgInfo()">Save Changes</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>                
+                </div>
+            </form>
+        </form> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+

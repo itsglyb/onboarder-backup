@@ -1,0 +1,113 @@
+<body>
+    <div class="container">
+        <aside>
+            <app-org-navbar></app-org-navbar>
+        </aside>
+  
+        <div class="content" *ngFor="let event of eventInfo">
+              <div class="card-body">
+
+                <div class="img-square-wrapper">
+                    <img class="" [src]="event.poster" width="100%" alt="Card image cap">
+                </div>
+    
+                <div class="col-md-12">
+                    <h2 class="form-label mt-3 text-uppercase text-center">{{event.eventTitle}}</h2>
+                    <div class="card-body">
+                        <p class="card-event-deets text-center mb-5">{{event.eventDesc}}</p>
+                    </div>
+                </div>
+    
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Available Seats</label>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{event.eventSeats}} SEATS LEFT</h5>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <label class="form-label">Date of the Event</label>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{event.eventDate}}</h5>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <label class="form-label">Time of the Event</label>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{event.eventTime}} (GMT +8)</h5>
+                        </div>
+                    </div>
+                </div>
+    
+                <label class="form-label">Program Flow</label> 
+                <div class="img-square-wrapper">
+                    <img class="" [src]="event.programme" width="100%" alt="Card image cap">
+                </div>
+
+                <label class="form-label">Video Teaser</label> 
+                <div class="card-body">
+                    <a [href]="event.video">{{event.video}}</a>
+                </div>
+                  
+                <label class="form-label">Event Registration Fee and Payment Process</label>
+                <div class="card-body">
+                    <h5 class="card-title-event">Event Registration Fee: {{event.eventPrice}}</h5>
+                    <p class="card-text-event">Before proceeding with registration, please follow this steps: <br> {{event.eventPaymentDetails}}</p>
+                </div>
+    
+            </div>
+
+            <div class="container-xl">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h2><b>Registered Members</b></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Full Name</th>
+                                    <th>Membership Type</th>
+                                    <th>Email Address</th>
+                                    <th>Contact Number</th>
+                                    <th>Proof of Payment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let member of regMemArray">
+                                    <td>{{member.memName}}</td>
+                                    <td>{{member.memType}}</td>
+                                    <td>{{member.emailAddress}}</td>
+                                    <td>{{member.contactno}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-target="#viewEventModal" (click)="openImage(member)"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="viewEventModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngFor="let member of regMemArray">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body center">
+                    <h2>Proof of Payment</h2>
+                    <img class="image" [src]="proofofPayment" alt="Proof of Payment">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+  
+  
+  

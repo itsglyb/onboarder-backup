@@ -1,0 +1,103 @@
+<body>
+    <div class="container">
+        <aside>
+            <app-mem-navbar></app-mem-navbar>
+        </aside>
+
+        <div class="content"*ngFor="let OrganizationItem of orgInfo">
+            <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
+                <div class="img-square-wrapper">
+                    <img class="img-logo" [src]="OrganizationItem.logo" alt="Card image cap">
+                </div>
+                <div class="card-body" *ngFor="let status of membershipStatus" >
+                    <h4 class="card-eventtitle">{{OrganizationItem.orgName}}</h4>
+                    <p class="card-text">{{OrganizationItem.about}}</p>
+
+                    <!-- <p class="card-text"*ngIf="status[0]?.isVerified">Your Membership Expires on: <span style="color: blue;">{{OrganizationItem.dateCreated}}</span></p>  -->
+
+                    <button class="btn btn-primary"  style="background-color: green; border:none;" *ngIf="status[0]?.isVerified">MEMBER</button>
+
+                    <button class="btn btn-primary" style="background-color: green; border:none;"  *ngIf="status.length > 0 && !status[0]?.isVerified && !status[0]?.isRejected">WAITING FOR VERIFICATION</button> 
+
+                     <button class="btn btn-primary" style="background-color: green; border:none;" (click)="redirectToMemOrMemForm(OrganizationItem._id)" *ngIf="status.length === 0 || 
+                     (status[0]?.isRejected && !status[0]?.isVerified)">REGISTER</button>
+
+                    <p class="card-text" *ngIf="status.length > 0 && !status[0]?.isVerified && !status[0]?.isRejected">If the Register button appears the next time you visit, it means that your membership application was rejected. Email this organization for clarifications and register again. Here's your reference number: <span style="color: blue;"> {{status[0]._id}}</span></p>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- <div class="container-fluid">
+                <h1 class="mt-5">Events</h1>
+                    
+                <div class="scrolling-wrapper row flex-row flex-nowrap mt-1 pb-4 pt-1">
+                        <div class="col-5">
+                                <div class="row">
+                                    <div class="col-12 mt-3">
+                                        <div class="card">
+                                            <div class="card-horizontal">
+                                              
+                                                <div class="img-square-wrapper">
+                                                    <img class="img-preview" src="assets\img\jcm.jpg" alt="Card image cap">
+                                                </div>
+                                                <div class="card-body">
+                                                  <span class="card-date">Event Date</span>
+                                                  <h4 class="card-eventtitle">Event <title></title></h4>
+                                                  <p class="card-text">Event Desc</p> 
+                                                  <button class="btn btn-primary">Read More</button>
+                                                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                   
+                                                  </div>                              
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div> 
+                        </div>
+ 
+                </div>
+            </div> -->
+
+            
+
+            <div class="card-body">
+                <h4 class="card-eventtitle">About</h4>
+                <p class="card-text">{{OrganizationItem.about}}</p>
+            </div>
+
+            <hr>
+
+            <div class="card-body">
+                <h4 class="card-eventtitle">History</h4>
+                <p class="card-text">{{OrganizationItem.orgHistory}}</p>
+            </div>
+
+            <hr>
+
+            <div class="card-body">
+                <h4 class="card-eventtitle">Vision</h4>
+                <p class="card-text">{{OrganizationItem.vision}}</p>
+            </div>
+
+            <hr>
+
+            <div class="card-body">
+                <h4 class="card-eventtitle">Mission</h4>
+                <p class="card-text">{{OrganizationItem.mission}}</p>
+            </div>
+
+            <hr>
+
+            <div class="card-body">
+                <h4 class="card-eventtitle">Core Values</h4>
+                <p class="card-text">{{OrganizationItem.coreValues}}</p>
+            </div>
+
+            <hr>
+
+        </div>
+    </div>
+</body>
+
+

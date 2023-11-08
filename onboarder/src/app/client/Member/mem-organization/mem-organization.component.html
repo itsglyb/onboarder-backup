@@ -1,0 +1,83 @@
+<body>
+    <div class="container">
+        <aside>
+            <app-mem-navbar></app-mem-navbar>
+        </aside>
+
+        <div class="content">
+            <nav class="navbar navbar-expand-lg  rounded" aria-label="Thirteenth navbar example">
+                <div class="container-fluid">          
+                  <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                    <a class="navbar-brand col-lg-9 me-0">Member Organization/s</a>
+                  </div>
+                  <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#joinOrgModal">Join by Code</button>
+                    
+                  </div>
+                </div>
+            </nav> 
+
+            <div class="row" *ngIf="OrganizationArray && OrganizationArray.length > 0; else loading">
+              <div class="col-6 mt-3">
+                  <div class="card" *ngFor="let OrganizationItem of OrganizationArray" >
+                      <div class="card-horizontal">
+                          <div class="img-square-wrapper">
+                              <img class="img-logo" [src]="OrganizationItem.logo" alt="Card image cap">
+                          </div>
+
+                          
+                          <div class="card-body" >
+
+                            <h4 class="card-eventtitle">{{OrganizationItem.orgName}}</h4>
+                            <p class="card-text">{{OrganizationItem.about}}</p>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                              <button class="btn btn-primary" (click)="redirectToOrgProfile(OrganizationItem._id)">Read More</button>
+
+                            </div>   
+                            
+                            
+
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+         
+            </div>
+
+            <ng-template #loading>
+              <!-- Display loading message -->
+              <p>Loading...</p>
+            </ng-template>  
+        </div>
+    </div>
+
+<!-- Join by Code -->
+<div class="modal fade" id="joinOrgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center center">
+      
+        <form [formGroup]="form" (submit)="submit($event)">
+
+
+
+          <div class="form-group">
+
+            <input type="text" class="form-control" id="editUserEmail" placeholder="Enter the org code" formControlName="orgCode">
+          </div>
+
+          <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Join Org</button>
+
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+           </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+

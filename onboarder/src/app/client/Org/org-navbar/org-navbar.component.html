@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="sidebar">
+
+        <div class="head">
+            <div class="user-img">
+                <img [src]="logo" alt="profile pic">
+            </div>
+
+            <div class="user-details">
+                <p class="title">{{orgCode}}</p>
+                <p class="name">{{organization}}</p>
+            </div>
+        </div>
+        
+        <div class="nav">
+            <div class="menu">
+                <p class="title">Main</p>
+
+                <ul>
+
+                    <li>
+                        <a routerLink="/org-memverification">
+                            <i class="bi bi-patch-check-fill"></i>
+                            <span class="text">Member Verification</span>  
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/org-memreject">
+                            <i class="bi bi-patch-minus-fill"></i>
+                            <span class="text">Rejected Applicants</span>  
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/org-members">
+                            <i class="fa-solid fa-people-group"></i>
+                            <span class="text">Members</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/org-memforms">
+                            <i class="fa-solid fa-file-lines"></i>
+                            <span class="text">Membership Form</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a (click)="redirecttoOrgEvent(orgID)">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <span class="text">Events</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="menu-low">
+                <p class="title">Account</p>
+
+                <ul>
+                    <li>
+                        <a routerLink="/org-profile">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="text">Profile</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a>
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span class="text" (click)="logout()">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>  
