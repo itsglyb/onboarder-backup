@@ -7,7 +7,7 @@
         <div class="content"*ngFor="let OrganizationItem of orgInfo">
             <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
                 <div class="img-square-wrapper">
-                    <img class="img-logo" [src]="OrganizationItem.logo" alt="Card image cap">
+                    <img class="img-logo" [src]="OrganizationItem.logo ? OrganizationItem.logo : 'assets/img/profile-pic.png'" alt="Card image cap">
                 </div>
                 <div class="card-body" *ngFor="let status of membershipStatus" >
                     <h4 class="card-eventtitle">{{OrganizationItem.orgName}}</h4>
