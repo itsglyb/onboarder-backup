@@ -18,7 +18,7 @@
 
             <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
               <div class="img-square-wrapper">
-                  <img class="" [src]="this.logo" alt="Organization Logo" style="width: 100px; height: auto;">
+                  <img class="" [src]="this.logo ? this.logo : 'assets/img/profile-pic.png'" alt="Organization Logo" style="width: 100px; height: auto;">
               </div>
               <div class="card-body">
                   <h4 class="card-eventtitle" name="orgName" value="orgName" [(ngModel)]="orgName" [ngModelOptions]="{standalone: true}">{{orgName}}</h4>

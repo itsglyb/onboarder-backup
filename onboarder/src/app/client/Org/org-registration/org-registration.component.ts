@@ -134,13 +134,7 @@ makeRandomCode(lengthOfCode: number, possible: string) {
 
 
   validateStep2() {
-    const organization = this.form.getRawValue();
-    if (organization.mission === "" || organization.vision === "" || organization.coreValues === "") {
-      Swal.fire("Error", "Please fill up all the required fields in Step 2.", "error");
-      this.isStep2Valid = false;
-    } else {
       this.isStep2Valid = true;
-    }
   }
 
 
@@ -151,6 +145,7 @@ makeRandomCode(lengthOfCode: number, possible: string) {
     validateStep3() {
       this.isStep3Valid = true;
     }
+    
   
 
   submit() {

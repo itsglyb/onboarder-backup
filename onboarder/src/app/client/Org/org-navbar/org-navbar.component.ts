@@ -73,7 +73,7 @@ export class OrgNavbarComponent implements OnInit {
     const lengthOfCode = 8;
     const newOrgCode = this.makeRandomCode(lengthOfCode, possible);
     const expirationDate = new Date();
-    expirationDate.setMinutes(expirationDate.getMinutes() + 3); // Set expiration date to 3 minutes from now
+    expirationDate.setMinutes(expirationDate.getDate() + 30); 
 
     this.http.patch(`http://localhost:5000/api/organization/${this.orgID}`, {
       orgCode: newOrgCode,
