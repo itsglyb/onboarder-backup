@@ -38,21 +38,22 @@
 
           <div class="card-body">
             <h4 class="card-eventtitle">Mission</h4>
-            <p class="card-text" name="mission" value="mission" [(ngModel)]="mission" [ngModelOptions]="{standalone: true}">{{mission}}</p>
-          </div>
+            <textarea class="card-text" name="mission" [(ngModel)]="mission" [ngModelOptions]="{standalone: true}">{{ mission ? mission : 'No data provided.' }}</textarea>
+        </div>
+        
 
           <hr>
 
           <div class="card-body">
               <h4 class="card-eventtitle">Vision</h4>
-              <p class="card-text" name="vision" value="vision" [(ngModel)]="vision" [ngModelOptions]="{standalone: true}">{{vision}}</p>
+              <p class="card-text" name="vision" value="vision" [(ngModel)]="vision" [ngModelOptions]="{standalone: true}">{{ vision ? vision : 'No data provided.' }}</p>
           </div>
 
           <hr>
 
           <div class="card-body">
               <h4 class="card-eventtitle">Core Values</h4>
-              <p class="card-text" name="coreValues" value="coreValues" [(ngModel)]="coreValues" [ngModelOptions]="{standalone: true}">{{coreValues}}</p>
+              <p class="card-text" name="coreValues" value="coreValues" [(ngModel)]="coreValues" [ngModelOptions]="{standalone: true}">{{ coreValues ? coreValues : 'No data provided.' }}</p>
           </div>
 
           <hr>

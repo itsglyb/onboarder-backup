@@ -76,23 +76,41 @@
             <hr>
 
             <div class="card-body">
-                <h4 class="card-eventtitle">Vision</h4>
-                <p class="card-text">{{OrganizationItem.vision}}</p>
+                <h4 class="card-eventtitle">Mission</h4>
+                <ng-container *ngIf="OrganizationItem.mission; else noCoreValues">
+                    <p class="card-text">{{OrganizationItem.mission}}</p>
+                </ng-container>
+                <ng-template #noCoreValues>
+                    <p class="card-text">No mission available</p>
+                </ng-template>
             </div>
+            
 
             <hr>
 
             <div class="card-body">
-                <h4 class="card-eventtitle">Mission</h4>
-                <p class="card-text">{{OrganizationItem.mission}}</p>
+                <h4 class="card-eventtitle">Vision</h4>
+                <ng-container *ngIf="OrganizationItem.Vision; else noCoreValues">
+                    <p class="card-text">{{OrganizationItem.coreValues}}</p>
+                </ng-container>
+                <ng-template #noCoreValues>
+                    <p class="card-text">No vision available</p>
+                </ng-template>
             </div>
+            
 
             <hr>
 
             <div class="card-body">
                 <h4 class="card-eventtitle">Core Values</h4>
-                <p class="card-text">{{OrganizationItem.coreValues}}</p>
+                <ng-container *ngIf="OrganizationItem.coreValues; else noCoreValues">
+                    <p class="card-text">{{OrganizationItem.coreValues}}</p>
+                </ng-container>
+                <ng-template #noCoreValues>
+                    <p class="card-text">No core values available</p>
+                </ng-template>
             </div>
+            
 
             <hr>
 
