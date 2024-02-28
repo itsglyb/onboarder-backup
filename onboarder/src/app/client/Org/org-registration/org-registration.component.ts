@@ -216,3 +216,4 @@ makeRandomCode(lengthOfCode: number, possible: string) {
     this.router.navigate(['auth-login']);
   }
 }
+

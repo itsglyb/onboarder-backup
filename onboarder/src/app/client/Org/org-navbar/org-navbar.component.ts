@@ -11,12 +11,11 @@ declare var $: any; // Declare jQuery to avoid TypeScript errors
 })
 export class OrgNavbarComponent implements OnInit {
   organization!: string;
-  logo!:string;
-  orgCode!:string;
-  orgID!:string;
+  logo!: string;
+  orgCode!: string;
+  orgID!: string;
 
-  constructor(private http:HttpClient,
-    private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   redirecttoOrgEvent(orgID: string) {
     this.router.navigate(['/org-events', orgID]);
@@ -26,18 +25,19 @@ export class OrgNavbarComponent implements OnInit {
     this.http.get('http://localhost:5000/api/organization', {
       withCredentials: true
     }).subscribe(
-      (res:any) => {
+      (res: any) => {
         this.organization = `${res.orgName}`;
         this.logo = `${res.logo}`;
-        this.orgCode = `${res.orgCode}`; 
+        this.orgCode = `${res.orgCode}`;
         this.orgID = `${res._id}`;
+        this.generateNewOrgCode(); 
       },
       (err) => {
         this.organization = "error"
         this.logo = "error"
         this.orgCode = "error"
       }
-    )
+    );
 
     // Load and initialize the JavaScript file
     this.loadScript('assets/js/navbar.js').then(() => {
@@ -50,14 +50,11 @@ export class OrgNavbarComponent implements OnInit {
   logout() {
     this.http.post('http://localhost:5000/api/logout', null, { withCredentials: true }).subscribe(
       (response) => {
-        // Handle the successful logout response here
         this.router.navigate(['/auth-login']);
       },
       (error) => {
-        // Handle any errors that occur during the logout process
       }
     );
-   
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -65,9 +62,40 @@ export class OrgNavbarComponent implements OnInit {
       const scriptElement = document.createElement('script');
       scriptElement.src = scriptUrl;
       scriptElement.type = 'text/javascript';
-      scriptElement.onload = () => resolve(); // Change this line
-      scriptElement.onerror = (error) => reject(error); // Change this line
+      scriptElement.onload = () => resolve();
+      scriptElement.onerror = (error) => reject(error);
       document.body.appendChild(scriptElement);
     });
+  }
+
+  generateNewOrgCode() {
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
+    const lengthOfCode = 8;
+    const newOrgCode = this.makeRandomCode(lengthOfCode, possible);
+    const expirationDate = new Date();
+    expirationDate.setMinutes(expirationDate.getMinutes() + 3); // Set expiration date to 3 minutes from now
+
+    this.http.patch(`http://localhost:5000/api/organization/${this.orgID}`, {
+      orgCode: newOrgCode,
+      expirationDate: expirationDate
+    }, {
+      withCredentials: true
+    }).subscribe(
+      () => {
+        console.log('New Org Code generated: ' + newOrgCode);
+        this.orgCode = newOrgCode;
+      },
+      (err) => {
+        console.error('Error updating org code:', err);
+      }
+    );
+  }
+
+  makeRandomCode(lengthOfCode: number, possible: string) {
+    let text = "";
+    for (let i = 0; i < lengthOfCode; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
   }
 }
