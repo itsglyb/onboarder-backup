@@ -133,12 +133,13 @@ export class OrgCreateEventComponent implements OnInit{
     validateStep3(){
       const event = this.form.getRawValue();
       if (
-        event.eventSeats === "" ||
-        event.eventPrice === "" ||
-        event.eventPaymentDetails === ""
+        event.eventSeats == "" ||
+        event.eventPrice == "" ||
+        event.eventPaymentDetails == ""
       ) {
         Swal.fire("Error", "Please fill up all the required fields in Step 3", "error");
         this.isStep3Valid = false;
+        return;
       }
       else {
         this.isStep3Valid = true;
