@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LottieModule } from 'ngx-lottie';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { NgxGpAutocompleteModule } from "@angular-magic/ngx-gp-autocomplete";
 import player from 'lottie-web';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,6 +49,7 @@ import { MemRejectComponent } from './client/Org/mem-reject/mem-reject.component
 import { NotfoundpageComponent } from './client/extrapages/notfoundpage/notfoundpage.component';
 import { GuestEventsComponent } from './client/Landing_Page/guest-events/guest-events.component';
 import { GuestEventsListingComponent } from './client/Landing_Page/guest-events-listing/guest-events-listing.component';
+import { Loader } from '@googlemaps/js-api-loader';
 
 
 export function playerFactory(): any {  
@@ -99,10 +102,19 @@ export function playerFactory(): any {
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxGpAutocompleteModule,
     LottieModule.forRoot({ player: playerFactory }),  
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide: Loader,
+      useValue: new Loader({
+        apiKey: 'AIzaSyCXXxThWT7V26AaIuyTs3W5sMOaCCNkEsA',
+        libraries: ['places']
+      })
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -36,7 +36,7 @@
                     <div class="col-md-4">
                         <label class="form-label">Time of the Event</label>
                         <div class="card-body">
-                            <h5 class="card-title text-center">{{event.eventTime}} (GMT +8)</h5>
+                            <h5 class="card-title text-center">{{event.eventTime}}</h5>
                         </div>
                     </div>
                 </div>
@@ -48,8 +48,14 @@
 
                 <label class="form-label">Video Teaser</label> 
                 <div class="card-body">
-                    <a [href]="event.video">{{event.video}}</a>
+                    <ng-container *ngIf="event.video">
+                    <a [href]="event.video">{{ event.video }}</a>
+                    </ng-container>
+                <ng-container *ngIf="!event.video">
+                    No video provided.
+                </ng-container>
                 </div>
+
                   
                 <label class="form-label">Event Registration Fee and Payment Process</label>
                 <div class="card-body">
@@ -58,7 +64,7 @@
                 </div>
     
                 <div class="d-flex justify-content-center align-items-center">
-                    <button type="submit" class="btn btn-success" (click)="redirecttoRegForm(event.orgName, event._id)">Register</button>
+                    <button type="submit" class="btn btn-success" (click)="redirecttoRegForm(event.orgName, event._id)" [disabled]="isNoSeatsLeft()">Register</button>
                 </div>
               </div>
             </div>

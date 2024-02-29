@@ -20,6 +20,7 @@ export class OrgProfileComponent implements OnInit {
   mission!: string;
   coreValues!: string;
   logo:string | ArrayBuffer | undefined;
+  orgCode!: string;
   OrgArray: any[] = [];
 
   
@@ -62,6 +63,7 @@ export class OrgProfileComponent implements OnInit {
         this.vision = "error";
         this.coreValues = "error";
         this.logo = "error";
+        this.orgCode = "error";
       }
     );
   }
@@ -77,7 +79,46 @@ export class OrgProfileComponent implements OnInit {
     this.vision = `${res.vision}`;
     this.coreValues = `${res.coreValues}`;
     this.logo = `${res.logo}`
+    this.orgCode = `${res.orgCode}`;
   }
+
+  checkOrgCodeExpiration(): void {
+    if (!this.orgCode) {
+      console.error('OrgCode not found');
+      return;
+    }
+
+    const currentDate = new Date();
+    const expirationDate = new Date(this.orgCode.split('-')[1]); // Extract expiration date from orgCode
+    if (currentDate > expirationDate) {
+      // OrgCode has expired, generate a new one
+      this.generateNewOrgCode();
+    }
+  }
+
+  makeRandomCode(lengthOfCode: number, possible: string) {
+    let text="";
+    for (let i = 0; i < lengthOfCode; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  }
+
+  generateNewOrgCode(): void {
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
+    const lengthOfCode = 8;
+    const result = this.makeRandomCode(lengthOfCode, possible);
+    const currentDate = new Date();
+    const expirationDate = new Date(currentDate);
+    expirationDate.setDate(expirationDate.getTime() + 3 * 60 * 1000); // Set expiration date to 30 days from today
+
+    // Set the new orgCode with expiration date
+    this.orgCode = `${result}-${expirationDate.toISOString()}`;
+
+    // Update orgCode in the backend
+    this.updateOrgInfo();
+  }
+
 
   updateOrgInfo(): void {
     let orgData = {
@@ -90,7 +131,8 @@ export class OrgProfileComponent implements OnInit {
       "mission": this.mission,
       "vision": this.vision,
       "coreValues": this.coreValues,
-      "logo": this.logo
+      "logo": this.logo,
+      "orgCode": this.orgCode
     };
 
     this.http.patch('http://localhost:5000/api/organization' + '/' + this._id, orgData, {
@@ -108,6 +150,7 @@ export class OrgProfileComponent implements OnInit {
         this.vision = updatedData.vision;
         this.coreValues = updatedData.coreValues;
         this.logo = updatedData.logo;
+        this.orgCode = updatedData.orgCode;
 
         console.log(updatedData);
       },

@@ -18,7 +18,7 @@
 
             <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
               <div class="img-square-wrapper">
-                  <img class="" [src]="this.logo" alt="Organization Logo" style="width: 100px; height: auto;">
+                  <img class="" [src]="this.logo ? this.logo : 'assets/img/profile-pic.png'" alt="Organization Logo" style="width: 100px; height: auto;">
               </div>
               <div class="card-body">
                   <h4 class="card-eventtitle" name="orgName" value="orgName" [(ngModel)]="orgName" [ngModelOptions]="{standalone: true}">{{orgName}}</h4>
@@ -38,21 +38,22 @@
 
           <div class="card-body">
             <h4 class="card-eventtitle">Mission</h4>
-            <p class="card-text" name="mission" value="mission" [(ngModel)]="mission" [ngModelOptions]="{standalone: true}">{{mission}}</p>
-          </div>
+            <p class="card-text" name="mission" [(ngModel)]="mission" [ngModelOptions]="{standalone: true}">{{ mission ? mission : 'No data provided.' }}</p>
+        </div>
+        
 
           <hr>
 
           <div class="card-body">
               <h4 class="card-eventtitle">Vision</h4>
-              <p class="card-text" name="vision" value="vision" [(ngModel)]="vision" [ngModelOptions]="{standalone: true}">{{vision}}</p>
+              <p class="card-text" name="vision" value="vision" [(ngModel)]="vision" [ngModelOptions]="{standalone: true}">{{ vision ? vision : 'No data provided.' }}</p>
           </div>
 
           <hr>
 
           <div class="card-body">
               <h4 class="card-eventtitle">Core Values</h4>
-              <p class="card-text" name="coreValues" value="coreValues" [(ngModel)]="coreValues" [ngModelOptions]="{standalone: true}">{{coreValues}}</p>
+              <p class="card-text" name="coreValues" value="coreValues" [(ngModel)]="coreValues" [ngModelOptions]="{standalone: true}">{{ coreValues ? coreValues : 'No data provided.' }}</p>
           </div>
 
           <hr>

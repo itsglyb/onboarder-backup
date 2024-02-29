@@ -7,7 +7,7 @@
         <div class="content"*ngFor="let OrganizationItem of orgInfo">
             <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
                 <div class="img-square-wrapper">
-                    <img class="img-logo" [src]="OrganizationItem.logo" alt="Card image cap">
+                    <img class="img-logo" [src]="OrganizationItem.logo ? OrganizationItem.logo : 'assets/img/profile-pic.png'" alt="Card image cap">
                 </div>
                 <div class="card-body" *ngFor="let status of membershipStatus" >
                     <h4 class="card-eventtitle">{{OrganizationItem.orgName}}</h4>
@@ -76,23 +76,41 @@
             <hr>
 
             <div class="card-body">
-                <h4 class="card-eventtitle">Vision</h4>
-                <p class="card-text">{{OrganizationItem.vision}}</p>
+                <h4 class="card-eventtitle">Mission</h4>
+                <ng-container *ngIf="OrganizationItem.mission; else noCoreValues">
+                    <p class="card-text">{{OrganizationItem.mission}}</p>
+                </ng-container>
+                <ng-template #noCoreValues>
+                    <p class="card-text">No mission available</p>
+                </ng-template>
             </div>
+            
 
             <hr>
 
             <div class="card-body">
-                <h4 class="card-eventtitle">Mission</h4>
-                <p class="card-text">{{OrganizationItem.mission}}</p>
+                <h4 class="card-eventtitle">Vision</h4>
+                <ng-container *ngIf="OrganizationItem.Vision; else noCoreValues">
+                    <p class="card-text">{{OrganizationItem.coreValues}}</p>
+                </ng-container>
+                <ng-template #noCoreValues>
+                    <p class="card-text">No vision available</p>
+                </ng-template>
             </div>
+            
 
             <hr>
 
             <div class="card-body">
                 <h4 class="card-eventtitle">Core Values</h4>
-                <p class="card-text">{{OrganizationItem.coreValues}}</p>
+                <ng-container *ngIf="OrganizationItem.coreValues; else noCoreValues">
+                    <p class="card-text">{{OrganizationItem.coreValues}}</p>
+                </ng-container>
+                <ng-template #noCoreValues>
+                    <p class="card-text">No core values available</p>
+                </ng-template>
             </div>
+            
 
             <hr>
 

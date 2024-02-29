@@ -123,7 +123,7 @@ makeRandomCode(lengthOfCode: number, possible: string) {
 
   validateStep1() {
     const organization = this.form.getRawValue();
-    if (organization.orgName === "" || organization.orgType === "" || organization.about === "" || organization.orgHistory === "") {
+    if (organization.orgName == "" || organization.orgType == "" || organization.about == "" || organization.orgHistory == "") {
       Swal.fire("Error", "Please fill up all the required fields in Step 1.", "error");
       this.isStep1Valid = false;
     } else {
@@ -134,13 +134,7 @@ makeRandomCode(lengthOfCode: number, possible: string) {
 
 
   validateStep2() {
-    const organization = this.form.getRawValue();
-    if (organization.mission === "" || organization.vision === "" || organization.coreValues === "") {
-      Swal.fire("Error", "Please fill up all the required fields in Step 2.", "error");
-      this.isStep2Valid = false;
-    } else {
       this.isStep2Valid = true;
-    }
   }
 
 
@@ -151,68 +145,64 @@ makeRandomCode(lengthOfCode: number, possible: string) {
     validateStep3() {
       this.isStep3Valid = true;
     }
+    
   
 
-  submit() {
-    let possible = "ABCDEFGHIJKLMNOPQRSTUVWYXZabcdefghijklmnopqrstuvwxyz123456789"
-    const lengthOfCode = 8;
-    const result = this.makeRandomCode(lengthOfCode, possible);
-    this.form.get('orgCode')?.setValue(result);
-    let organization = this.form.getRawValue()
-    console.log(organization)
-    if(organization.email == "" || organization.password == ""){
-      Swal.fire("Error", "Please fill up all the required fields.", "error")
-    }
-  else if(!this.ValidateEmail(organization.email)){
- 
-    Swal.fire('Error', 'Please enter a valid email address', 'error');
-
-  } 
-
-  else if(organization.password !== organization.cpassword){
- 
-    Swal.fire('Error', 'Password not match', 'error');
-
-  } 
-  
-  else {
-
-    this.http.post('http://localhost:5000/api/orgRegister', organization, {
-  withCredentials: true,
-}).subscribe(
-  (orgResponse: any) => {
+    submit() {
+      let possible = "ABCDEFGHIJKLMNOPQRSTUVWYXZabcdefghijklmnopqrstuvwxyz123456789"
+      const lengthOfCode = 8;
+      const result = this.makeRandomCode(lengthOfCode, possible);
+      this.form.get('orgCode')?.setValue(result);
+      let organization = this.form.getRawValue();
+      console.log(organization);
+      
+      // Calculate expiration date
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 30); // Set expiration for 3 minutes from now
     
-    console.log('Org Registration Response:', orgResponse);
+      if (organization.email == "" || organization.password == "") {
+        Swal.fire("Error", "Please fill up all the required fields.", "error");
+      } else if (!this.ValidateEmail(organization.email)) {
+        Swal.fire('Error', 'Please enter a valid email address', 'error');
+      } else if (organization.password !== organization.cpassword) {
+        Swal.fire('Error', 'Password not match', 'error');
+      } else {
+        // Include expirationDate in the organization data
+        organization.expirationDate = expirationDate.toISOString();
     
-
-    const orgID = orgResponse.orgID; // Get the organization ID from the response
+        this.http.post('http://localhost:5000/api/orgRegister', organization, {
+          withCredentials: true,
+        }).subscribe(
+          (orgResponse: any) => {
+            console.log('Org Registration Response:', orgResponse);
     
-    // Use the orgID when creating the membership form
-    const membershipForm = {
-      orgID: orgID,
-    };
-
-    this.http.post('http://localhost:5000/api/createForm', membershipForm, {
-      withCredentials: true,
-    }).subscribe(
-      () => {
-        // Membership form created successfully
-        const successEvent = new Event('postRequestSuccess');
-        document.dispatchEvent(successEvent);
-      },
-      (err) => {
-        Swal.fire("Error", err.error.message, 'error');
+            const orgID = orgResponse.orgID;
+            const membershipForm = {
+              orgID: orgID,
+            };
+    
+            this.http.post('http://localhost:5000/api/createForm', membershipForm, {
+              withCredentials: true,
+            }).subscribe(
+              () => {
+                // Membership form created successfully
+                const successEvent = new Event('postRequestSuccess');
+                document.dispatchEvent(successEvent);
+              },
+              (err) => {
+                Swal.fire("Error", err.error.message, 'error');
+              }
+            );
+          },
+          (err) => {
+            Swal.fire("Error", err.error.message, 'error');
+          }
+        );
       }
-    );
-  },
-  (err) => {
-    Swal.fire("Error", err.error.message, 'error');
-  }
-);
-
     }
-  }
+    
   done(){
     this.router.navigate(['auth-login']);
   }
 }
+

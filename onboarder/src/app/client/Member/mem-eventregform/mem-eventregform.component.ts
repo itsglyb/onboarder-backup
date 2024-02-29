@@ -59,50 +59,82 @@ export class MemEventregformComponent implements OnInit{
   submit(){
     const regForm = this.form.getRawValue();
     
+    // Fetch event details including the current number of available seats
     this.http.get(`http://localhost:5000/api/thisevent/${this.eventID}`, {
-              withCredentials: true
+        withCredentials: true
+    }).subscribe(
+        (event: any) => {
+            // Calculate the updated number of available seats after registration
+            const updatedSeats = event.eventSeats - 1; // Assuming 1 seat per registration, adjust accordingly
+
+            // Update the eventSeats in the event object
+            event.eventSeats = updatedSeats;
+
+            // Send a PUT request to update the eventSeats in the database
+            this.http.patch(`http://localhost:5000/api/event/${this.eventID}`, event, {
+                withCredentials: true
             }).subscribe(
-              (event: any) => {
-                this.http.get('http://localhost:5000/api/member', {
-          withCredentials: true
-        }).subscribe(
-          (memberRes: any) => {
+                (updateResponse: any) => {
+                    console.log('Event seats updated successfully', updateResponse);
+                    
+                    // Proceed with registration form submission
+                    this.http.get('http://localhost:5000/api/member', {
+                        withCredentials: true
+                    }).subscribe(
+                        (memberRes: any) => {
+                            // Extract member details and prepare registration form data
+                            const orgID = event.orgID;
+                            const orgName = event.orgName;
+                            const eventID = event._id;
+                            const memID = memberRes._id;
 
-            const orgID = event.orgID;
-            const orgName = event.orgName;
-            const eventID = event._id;
-            const memID = memberRes._id;
+                            const regFormData = {
+                                orgID: orgID,
+                                orgName: orgName,
+                                eventID: eventID,
+                                memID: memID,
+                                memName: regForm.memName,
+                                memType: regForm.memType,
+                                proofofPayment: regForm.proofofPayment,
+                                emailAddress: regForm.emailAddress,
+                                contactno: regForm.contactno
+                            };
 
-            const regFormData = {
-              orgID: orgID,
-              orgName: orgName,
-              eventID: eventID,
-              memID: memID,
-              memName: regForm.memName,
-              memType: regForm.memType,
-              proofofPayment: regForm.proofofPayment,
-              emailAddress: regForm.emailAddress,
-              contactno: regForm.contactno
-            };
+                            // Send registration form data to createRegForm endpoint
+                            this.http.post('http://localhost:5000/api/createRegForm', regFormData, {
+                                withCredentials: true
+                            }).subscribe(
+                                (regFormResponse: any) => {
+                                    console.log('Registered successfully to the event', regFormResponse);
+                                    Swal.fire("Success", "You are registered to the event!");
 
-            this.http.post('http://localhost:5000/api/createRegForm', regFormData, {
-              withCredentials: true
-            }).subscribe(
-              (regFormResponse: any) => {
-                console.log('Registered successfully to the event', regFormResponse);
-                Swal.fire("Success", "You are registered to the event!")
+                                    // Reset the form after successful submission
+                                    this.form.reset();
 
-                this.form.reset();
-              },
-              (err) => {
-                console.log(err);
-              }
-            )
-          }
-        )
-              }
-            )
-  }
-  
+                                    // Redirect to the event details page
+                                    this.router.navigate(['/member-event-details', this.orgName, this.eventID]);
+                                },
+                                (err) => {
+                                    console.log(err);
+                                }
+                            )
+                        }
+                    )
+                },
+                (updateError) => {
+                    console.error('Error updating event seats:', updateError);
+                    // Handle error updating event seats
+                }
+            );
+        },
+        (eventError) => {
+            console.error('Error fetching event details:', eventError);
+            // Handle error fetching event details
+        }
+    );
+}
+
+
+
   
 }

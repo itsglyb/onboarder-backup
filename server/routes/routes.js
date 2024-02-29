@@ -404,7 +404,7 @@ router.post('/orgRegister', async (req, res) => {
   let userType = req.body.userType
   let logo = req.body.logo
   let orgCode = req.body.orgCode
-
+  let expirationDate = req.body.expirationDate
  
 
   const salt = await bcrypt.genSalt(10)
@@ -429,7 +429,8 @@ router.post('/orgRegister', async (req, res) => {
       coreValues:coreValues,
       userType:userType,
       logo: logo,
-      orgCode: orgCode
+      orgCode: orgCode,
+      expirationDate: expirationDate
   })
 
   const result = await organization.save();
@@ -665,10 +666,20 @@ router.post('/createEvent', async (req, res) => {
   let eventPrice = req.body.eventPrice;
   let eventPaymentDetails = req.body.eventPaymentDetails;
 
+  // Function to determine AM or PM based on time
+  const getAMorPM = (time) => {
+    // Extract hours from the time
+    const hours = parseInt(time.split(':')[0]);
+    // Return AM if hours are less than 12, otherwise PM
+    return hours < 12 ? 'AM' : 'PM';
+  };
+
   try {
+    // Append AM or PM to eventTime
+    eventTime += ` ${getAMorPM(eventTime)}`;
+
     const events = new Events({
       orgID: orgID,
-
       orgName: orgName,
       eventTitle: eventTitle,
       eventDesc: eventDesc,
@@ -685,11 +696,12 @@ router.post('/createEvent', async (req, res) => {
     });
 
     await events.save();
-    res.status(201).json({ events});
+    res.status(201).json({ events });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
+
 
 //read events
 router.get('/viewevent', async (req,res) => {

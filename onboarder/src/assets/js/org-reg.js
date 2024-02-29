@@ -20,7 +20,7 @@ $(document).ready(function(){
             return false;
         } else if (current === 3 && !validateStep2(formData)) {
             return false;
-        } else if (current === 4 && !validateStep3()) {
+        } else if (current === 4 && !validateStep3(formData)) {
             return false;
         }
         else if (current === 5 && !validateStep4(formData)) {
@@ -125,10 +125,10 @@ $(document).ready(function(){
    
     const organization = getFormData(formData);
 
-    if (organization.orgName.trim() === '' || 
-        organization.orgType.trim() === '' || 
-        organization.about.trim() === '' || 
-        organization.orgHistory.trim() === ''
+    if (organization.orgName == '' || 
+        organization.orgType == '' || 
+        organization.about == '' || 
+        organization.orgHistory == ''
         ) {
         Swal.fire('Error', 'Please fill out all fields.', 'error');
         return false;
@@ -140,21 +140,14 @@ $(document).ready(function(){
 
 
 function validateStep2(formData) {
-    const organization = getFormData(formData);
-    if (organization.mission.trim() === '' || 
-    organization.vision.trim() === '' || 
-    organization.coreValues.trim() === '') {
-        Swal.fire('Error', 'Please fill out all fields', 'error');
-        return false;
-    }
-
 
     return true; // Step 2 is valid
 }
 
-function validateStep3(){
+function validateStep3() {
     return true;
 }
+
 
 function validateStep4(formData) {
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

@@ -53,6 +53,9 @@ const organizationSchema = new mongoose.Schema ({
     },
     orgCode: {
         type: String
+    },
+    expirationDate: {
+        type: Date
     }
 
 })

@@ -23,7 +23,7 @@
                   <div class="card" *ngFor="let OrganizationItem of OrganizationArray" >
                       <div class="card-horizontal">
                           <div class="img-square-wrapper">
-                              <img class="img-logo" [src]="OrganizationItem.logo" alt="Card image cap">
+                              <img class="img-logo" [src]="OrganizationItem.logo ? OrganizationItem.logo : 'assets/img/profile-pic.png'" alt="Card image cap">
                           </div>
 
                           
