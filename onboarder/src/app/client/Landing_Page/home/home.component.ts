@@ -35,8 +35,10 @@ export class HomeComponent implements OnInit {
   navigatetoOrg() {
     this.router.navigate(['org-landing']);
   }
-
   navigatetoMem() {
     this.router.navigate(['member-landing']);
+  }
+  redirectToLogin() {
+    this.router.navigate(['/auth-login']);
   }
 }

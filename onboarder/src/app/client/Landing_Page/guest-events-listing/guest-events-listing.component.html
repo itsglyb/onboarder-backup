@@ -1,13 +1,19 @@
-<header class="d-flex justify-content-center py-3">
-    <ul class="nav">
-      <li class="nav-item"><a routerLink="/home" class="nav-link">Home</a></li>
-      <li class="nav-item"><a routerLink="/about" class="nav-link">About</a></li>
-      <li class="nav-item"><a routerLink="/services" class="nav-link">Services</a></li>
-      <li class="nav-item"><a routerLink="/guestEvents" class="nav-link">Events</a></li>
-      <li class="nav-item"><a routerLink="/developers" class="nav-link">Developers</a></li>
-      <li class="nav-item-1"><a routerLink="/auth-login" class="login">Login</a></li>
+<nav class="nav-bar">
+  <div class="nav-hold">
+    <div class="nav-logo">
+      <a href="#"><img src="assets/img/logo-name1.png"></a>
+    </div>
+    <div class="nav-menu" id="nav">&#9776;</div>
+        <ul class="nav-items">
+          <li class="nav-item"><a routerLink="/home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a routerLink="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a routerLink="/services" class="nav-link">Services</a></li>
+          <li class="nav-item"><a routerLink="/guestEvents" class="nav-link">Events</a></li>
+          <li class="nav-item"><a routerLink="/developers" class="nav-link">Developers</a></li>
+          <li><button class="login-button" (click)="redirectToLogin()">Login</button></li>
     </ul>
-  </header>
+  </div>
+</nav>
 
   <div class="banner">
     <h1>Events</h1>

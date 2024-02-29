@@ -1,43 +1,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter&family=Plus+Jakarta+Sans:wght@200&display=swap');
 
-.badge {
-    background: linear-gradient(135deg, #1e30f3 0%, #e21e80 100%);
-}
 /* NAV BAR */
-header {
-    background-color: #007FE1;
-    width: 100%; 
+a{
+  text-decoration:none;
 }
-.nav-item a {   
-    color: #fff;
-    font-size: 20px;
-    font-family: 'Plus Jakarta Sans';
-    font-weight: 800;
-    margin: 6px;
+.nav-bar{
+  background-color: #007FE1;
+  width: 100%;
+  border-bottom: 1px solid white;
 }
-.nav-item a:after {
-   display: block;
-   content      : '';
-   border-bottom: solid 2px #fff;
-   transform    : scaleX(0);
-   transition   : transform 300ms ease-in-out;
+.nav-hold{
+  display:block;
+  width: 90%;
 }
-
-.nav-item a:hover:after {
-   transform: scaleX(1);
+.nav-logo{
+  float: left;
+  display: block;
+  padding: 20px 0px 0px 20px;
 }
-.login {
-  background-color: #00E1D3;
-  text-decoration: none;
+.nav-logo img {
+  width: 250px;
+}
+.nav-items{
+  float: right;
+  margin: 18px 0 0;
+}
+.nav-items li {
+  display: block;
+  float: left;
+  padding: 15px;
+  margin-left: 10px;
+}
+.nav-items li a {
+  color: #f9f9f9;
+  font-size: 22px;
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 800;
+  padding: 7px;
+  position: relative; /* Added for positioning the pseudo-element */
+}
+.nav-items li a:after {
+  content: '';
+  display: block;
+  border-bottom: solid 3px #02e6ee;
+  transform: scaleX(0);
+  transition: transform 300ms ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.nav-items li:hover a:after {
+  transform: scaleX(1);
+}
+.login-button{
+  background-color: transparent;
+  border: 1.5px solid #f2f5f7;
   color: #FFF;
   font-size: 20px;
-  padding: 5px 20px;
+  padding: 4px 22px 7px;
   border-radius: 30px;
-  float: left;
-  margin-left: 10%;
-  margin-top: 8px;
+  margin-left: 5%;
   font-family: 'Plus Jakarta Sans';
   font-weight: 700;
+}
+.login-button:hover {
+  color: #131418;
+  background-color: #f2f5f7;
+  border:1.5px solid #f2f5f7;
+  transition: all ease-in-out 350ms;
+}
+.nav-hold { 
+  overflow:hidden;
+}
+.nav-menu {
+  display: none;
+}
+/*media Queries*/
+@media screen and (max-width: 768px){
+  .nav-menu{
+    display: block;
+    float: right;
+    padding: 25px 20px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 30px;
+  }
+  .nav-items{
+    width: 100%;
+    float: left;
+    height: 0px;
+    padding:0px;
+    margin:0px;
+    
+  }
+  .nav-items li{
+    width: 100%;
+    display: block;
+  }  
+}
+.nav-open{
+  height: auto;
 }
 /*About Banner */
 .banner {

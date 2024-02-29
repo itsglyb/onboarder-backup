@@ -1,109 +1,107 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter&family=Plus+Jakarta+Sans:wght@200&display=swap');
 
 /* NAV BAR */
+a{
+  text-decoration:none;
+}
 .nav-bar{
-    background-color: #007FE1;
-    width: 100%; 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  background-color: #007FE1;
+  width: 100%;
+  border-bottom: 1px solid white;
+}
+.nav-hold{
+  display:block;
+  width: 90%;
 }
 .nav-logo{
-    float: left;
-    display: block;
-    padding: 30px 0px 20px 20px;
-    font-weight: 600;
+  float: left;
+  display: block;
+  padding: 20px 0px 0px 20px;
 }
-.nav-logo a{
-    color: #f9f9f9;
-}
-/* .nav-items{
-    display: inline;
-} */
-.nav-items li{
-    display: inline-block;
-    padding: 10px;
-}
-a {
-    text-decoration:none;
-}
-.nav-items li a {
-    color: #fff;
-    font-size: 20px;
-    font-family: 'Plus Jakarta Sans';
-    font-weight: 800;
-    margin: 6px;
-}
-.nav-items li:hover {
-    background: linear-gradient(206deg, #007fe1 0%, #00e1d3 100%);
-    border-bottom: solid 2px #fff;
-    
-}
-.nav-menu{
-    display: none;
-    float: right;
-}
-/*media Queries*/
- @media screen and (max-width: 768px){
-.nav-menu{
-    display: block;
-    float: right;
-    padding: 10px 20px;
-    cursor: pointer;
-    color: #fff;
+.nav-logo img {
+  width: 250px;
 }
 .nav-items{
+  float: right;
+  margin: 18px 0 0;
+}
+.nav-items li {
+  display: block;
+  float: left;
+  padding: 15px;
+  margin-left: 10px;
+}
+.nav-items li a {
+  color: #f9f9f9;
+  font-size: 22px;
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 800;
+  padding: 7px;
+  position: relative; /* Added for positioning the pseudo-element */
+}
+.nav-items li a:after {
+  content: '';
+  display: block;
+  border-bottom: solid 3px #02e6ee;
+  transform: scaleX(0);
+  transition: transform 300ms ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.nav-items li:hover a:after {
+  transform: scaleX(1);
+}
+.login-button{
+  background-color: transparent;
+  border: 1.5px solid #f2f5f7;
+  color: #FFF;
+  font-size: 20px;
+  padding: 4px 22px 7px;
+  border-radius: 30px;
+  margin-left: 5%;
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 700;
+}
+.login-button:hover {
+  color: #131418;
+  background-color: #f2f5f7;
+  border:1.5px solid #f2f5f7;
+  transition: all ease-in-out 350ms;
+}
+.nav-hold { 
+  overflow:hidden;
+}
+.nav-menu {
+  display: none;
+}
+/*media Queries*/
+@media screen and (max-width: 768px){
+  .nav-menu{
+    display: block;
+    float: right;
+    padding: 25px 20px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 30px;
+  }
+  .nav-items{
     width: 100%;
     float: left;
     height: 0px;
     padding:0px;
     margin:0px;
-}
-.nav-items li{
+    
+  }
+  .nav-items li{
     width: 100%;
     display: block;
-    }  
+  }  
 }
 .nav-open{
-      height: auto;
-  }
-/* header {
-    background-color: #007FE1;
-    width: 100%; 
+  height: auto;
 }
-.nav-item a {   
-    color: #fff;
-    font-size: 20px;
-    font-family: 'Plus Jakarta Sans';
-    font-weight: 800;
-    margin: 6px;
-}
-.nav-item a:after {
-   display: block;
-   content      : '';
-   border-bottom: solid 2px #fff;
-   transform    : scaleX(0);
-   transition   : transform 300ms ease-in-out;
-}
-
-.nav-item a:hover:after {
-   transform: scaleX(1);
-} */
-
-.login {
-    background-color: #00E1D3;
-    text-decoration: none;
-    color: #FFF;
-    font-size: 20px;
-    padding: 5px 20px;
-    border-radius: 30px;
-    float: left;
-    margin-left: 10%;
-    margin-top: 8px;
-    font-family: 'Plus Jakarta Sans';
-    font-weight: 700;
-}
-
 /*Home*/
 #Hero {
     background-image: url('data:image/svg+xml,<svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 380" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(0, 127, 225, 1)" offset="0%"></stop><stop stop-color="rgba(0, 225, 210, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(%23sw-gradient-0)" d="M0,152L48,133C96,114,192,76,288,69.7C384,63,480,89,576,82.3C672,76,768,38,864,44.3C960,51,1056,101,1152,107.7C1248,114,1344,76,1440,107.7C1536,139,1632,241,1728,234.3C1824,228,1920,114,2016,107.7C2112,101,2208,203,2304,253.3C2400,304,2496,304,2592,253.3C2688,203,2784,101,2880,88.7C2976,76,3072,152,3168,177.3C3264,203,3360,177,3456,171C3552,165,3648,177,3744,152C3840,127,3936,63,4032,69.7C4128,76,4224,152,4320,158.3C4416,165,4512,101,4608,76C4704,51,4800,63,4896,76C4992,89,5088,101,5184,120.3C5280,139,5376,165,5472,202.7C5568,241,5664,291,5760,272.3C5856,253,5952,165,6048,139.3C6144,114,6240,152,6336,190C6432,228,6528,266,6624,240.7C6720,215,6816,127,6864,82.3L6912,38L6912,380L6864,380C6816,380,6720,380,6624,380C6528,380,6432,380,6336,380C6240,380,6144,380,6048,380C5952,380,5856,380,5760,380C5664,380,5568,380,5472,380C5376,380,5280,380,5184,380C5088,380,4992,380,4896,380C4800,380,4704,380,4608,380C4512,380,4416,380,4320,380C4224,380,4128,380,4032,380C3936,380,3840,380,3744,380C3648,380,3552,380,3456,380C3360,380,3264,380,3168,380C3072,380,2976,380,2880,380C2784,380,2688,380,2592,380C2496,380,2400,380,2304,380C2208,380,2112,380,2016,380C1920,380,1824,380,1728,380C1632,380,1536,380,1440,380C1344,380,1248,380,1152,380C1056,380,960,380,864,380C768,380,672,380,576,380C480,380,384,380,288,380C192,380,96,380,48,380L0,380Z"></path></svg>');

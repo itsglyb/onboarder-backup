@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -8,10 +9,28 @@ declare var $: any;
 })
 export class GuestEventsListingComponent implements OnInit {
 
-  constructor(private el: ElementRef, private renderer2: Renderer2) {}
+  constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef) {}
 
-  ngOnInit() {
-    // No need to call showModalAfterDelay here if you want to trigger it after some event.
+  ngOnInit(): void {
+    const n = "#nav";
+    const no = ".nav-items";
+
+    $(n).click(() => {
+      const noElement = this.el.nativeElement.querySelector(no);
+
+      if ($(noElement).hasClass("nav-open")) {
+        $(noElement).animate({ height: 0 }, 300);
+        setTimeout(() => {
+          $(noElement).removeAttr('style').removeClass("nav-open");
+        }, 320);
+      } else {
+        const h = $(noElement).css("height", "auto").height();
+        $(noElement).height(0).animate({ height: h }, 300);
+        setTimeout(() => {
+          $(noElement).removeAttr('style').addClass("nav-open");
+        }, 320);
+      }
+    });
   }
 
   showModalAfterDelay() {
@@ -42,7 +61,10 @@ export class GuestEventsListingComponent implements OnInit {
     $('#susbc-form').modal('hide');
     $('#susbc-form-thank').modal('hide');
   }
-  
+
+  redirectToLogin() {
+    this.router.navigate(['/auth-login']);
+  }
   // constructor(private el: ElementRef) {}
 
   // ngOnInit() {
