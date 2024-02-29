@@ -97,7 +97,14 @@ export class OrgCreateEventComponent implements OnInit{
   
     validateStep1(){
       const event = this.form.getRawValue();
-      if (
+      const eventDate = new Date(event.eventDate);
+      const currentDate = new Date();
+      
+      // Check if the event date is in the past
+      if (eventDate < currentDate) {
+        Swal.fire("Error", "Please select a future date for the event", "error");
+        this.isStep1Valid = false;
+      } else if (
         event.eventTitle == '' ||
         event.eventDesc == '' ||
         event.eventDate == '' ||
@@ -105,9 +112,11 @@ export class OrgCreateEventComponent implements OnInit{
       ){
         Swal.fire("Error", "Please fill up all the required fields in Step 1", "error");
         this.isStep1Valid = false;
-      }
+      } else {
         this.isStep1Valid = true;
+      }
     }
+    
 
     validateStep2(){
       this.isStep2Valid = true;
