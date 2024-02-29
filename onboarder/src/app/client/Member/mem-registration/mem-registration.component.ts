@@ -11,6 +11,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class MemRegistrationComponent implements OnInit {
   videoUrl: string = 'https://www.youtube.com/watch?v=YOUR_VIDEO_ID';
   eventInfo: any[] = [];
+  eventSeats: number = 0; // Initialize eventSeats property
 
   constructor (
     private http: HttpClient, 
@@ -23,7 +24,7 @@ export class MemRegistrationComponent implements OnInit {
     this.route.params.subscribe(params => {
       const _id = params['id'];
       this.getEventInfo(_id);
-    })
+    });
   }
 
   getEventInfo(_id: string) {
@@ -31,7 +32,9 @@ export class MemRegistrationComponent implements OnInit {
     .subscribe((resultData: any) => {
       console.log(resultData);
       this.eventInfo = [resultData];
-    })
+      // Set the value of eventSeats property
+      this.eventSeats = resultData.eventSeats;
+    });
   }
 
   getTrustedUrl(videoUrl: string): SafeResourceUrl {
@@ -40,5 +43,10 @@ export class MemRegistrationComponent implements OnInit {
 
   redirecttoRegForm(orgName: string, _id: string){
     this.router.navigate(['/member-event-regform', orgName, _id]);
+  }
+
+  isNoSeatsLeft(): boolean {
+    // Check if eventSeats is 0
+    return this.eventSeats == 0;
   }
 }

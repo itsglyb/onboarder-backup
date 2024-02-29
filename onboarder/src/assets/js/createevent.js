@@ -232,13 +232,21 @@ $(document).ready(function(){
 
   function validateStep1(formData){
       const event = getFormData(formData);
-
-      if(event.eventTitle == '' || event.eventDesc == '' ||
+      const eventDate = newDate(event.eventDate);
+      const currentDate = new Date(event.eventDate);
+      
+      if (eventDate < currentDate) {
+        Swal.fire("Error", "Please select a future date for the event", "error");
+        return false;
+      }
+      else if(event.eventTitle == '' || event.eventDesc == '' ||
           event.eventDate == '' || event.eventTime == ''){
           Swal.fire('Error', 'Please fill out all fields.', 'error');
           return false;
       }
-      return true;
+      else {
+        return true;
+      }
   }
 
   function validateStep2(){
