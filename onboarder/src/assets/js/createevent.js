@@ -231,23 +231,22 @@ $(document).ready(function(){
   }
 
   function validateStep1(formData){
-      const event = getFormData(formData);
-      const eventDate = newDate(event.eventDate);
-      const currentDate = new Date(event.eventDate);
-      
-      if (eventDate < currentDate) {
-        Swal.fire("Error", "Please select a future date for the event", "error");
+    const event = getFormData(formData);
+    const eventDate = new Date(event.eventDate); // Corrected new Date()
+    const currentDate = new Date();
+    
+    if (event.eventTitle.trim() == '' || event.eventDesc.trim() == '' ||
+        event.eventDate.trim() == '' || event.eventTime.trim == '') {
+        Swal.fire('Error', 'Please fill out all fields.', 'error');
         return false;
-      }
-      else if(event.eventTitle == '' || event.eventDesc == '' ||
-          event.eventDate == '' || event.eventTime == ''){
-          Swal.fire('Error', 'Please fill out all fields.', 'error');
-          return false;
-      }
-      else {
+    } if (eventDate < currentDate) {
+      Swal.fire("Error", "Please select a future date for the event", "error");
+      return false;
+    } 
+    else {
         return true;
-      }
-  }
+    }
+}
 
   function validateStep2(){
       return true;

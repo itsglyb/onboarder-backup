@@ -70,53 +70,61 @@ export class OrgCreateEventComponent implements OnInit{
       });
     }
 
-    public AddressChange(address: any) {
-    
-      const eventTimeControl = this.form.get('eventTime');
-      if (eventTimeControl) {
-        const currentEventTime = eventTimeControl.value;
-        // Extract hours and minutes from the time string
-        const [hours, minutes] = currentEventTime.split(':').map(Number);
-        // Create a Date object to determine AM or PM
-        const timeDate = new Date();
-        timeDate.setHours(hours, minutes);
-        // Check if it's AM or PM
-        const amOrPm = timeDate.getHours() >= 12 ? 'PM' : 'AM';
-        // Append AM or PM to the time string
-        const newEventTime = `${currentEventTime} ${amOrPm}`;
-        this.form.patchValue({ eventTime: newEventTime });
-      }
+      public AddressChange(address: any) {
+      
+        const eventTimeControl = this.form.get('eventTime');
+        if (eventTimeControl) {
+          const currentEventTime = eventTimeControl.value;
+          // Extract hours and minutes from the time string
+          const [hours, minutes] = currentEventTime.split(':').map(Number);
+          // Create a Date object to determine AM or PM
+          const timeDate = new Date();
+          timeDate.setHours(hours, minutes);
+          // Check if it's AM or PM
+          const amOrPm = timeDate.getHours() >= 12 ? 'PM' : 'AM';
+          // Append AM or PM to the time string
+          const newEventTime = `${currentEventTime} ${amOrPm}`;
+          this.form.patchValue({ eventTime: newEventTime });
+        }
 
-      this.formattedaddress = address.formatted_address;
-      // Set the formatted address to the location form control
-      this.form.patchValue({ location: this.formattedaddress });
-    }
+        this.formattedaddress = address.formatted_address;
+        // Set the formatted address to the location form control
+        this.form.patchValue({ location: this.formattedaddress });
+      }
     
     
     
   
-    validateStep1(){
-      const event = this.form.getRawValue();
-      const eventDate = new Date(event.eventDate);
-      const currentDate = new Date();
+      validateStep1() {
+        const event = this.form.getRawValue();
+        const eventDate = new Date(event.eventDate);
+        const currentDate = new Date();
       
-      // Check if the event date is in the past
-      if (eventDate < currentDate) {
-        Swal.fire("Error", "Please select a future date for the event", "error");
-        this.isStep1Valid = false;
-      } else if (
-        event.eventTitle == '' ||
-        event.eventDesc == '' ||
-        event.eventDate == '' ||
-        event.eventTime == ''
-      ){
-        Swal.fire("Error", "Please fill up all the required fields in Step 1", "error");
-        this.isStep1Valid = false;
-      } else {
+        // Check if the event date is in the past
+      
+        // Check if any required field in Step 1 is empty
+        if (
+          !event.eventTitle.trim() ||
+          !event.eventDesc.trim() ||
+          !event.eventDate.trim() ||
+          !event.eventTime.trim()
+        ) {
+          Swal.fire("Error", "Please fill up all the required fields in Step 1", "error");
+          this.isStep1Valid = false;
+          return;
+        }
+
+        if (eventDate < currentDate) {
+          Swal.fire("Error", "Please select a future date for the event", "error");
+          this.isStep1Valid = false;
+          return;
+        }
+      
+        // If all validations pass, set isStep1Valid to true
         this.isStep1Valid = true;
       }
-    }
-    
+      
+
 
     validateStep2(){
       this.isStep2Valid = true;
