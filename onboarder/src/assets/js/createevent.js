@@ -235,8 +235,8 @@ $(document).ready(function(){
     const eventDate = new Date(event.eventDate); // Corrected new Date()
     const currentDate = new Date();
     
-    if (event.eventTitle.trim() == '' || event.eventDesc.trim() == '' ||
-        event.eventDate.trim() == '' || event.eventTime.trim == '') {
+    if (event.eventTitle == '' || event.eventDesc == '' ||
+        event.eventDate == '' || event.eventTime == '') {
         Swal.fire('Error', 'Please fill out all fields.', 'error');
         return false;
     } if (eventDate < currentDate) {
