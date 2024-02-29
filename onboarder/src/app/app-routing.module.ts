@@ -5,6 +5,8 @@ import { HomeComponent } from './client/Landing_Page/home/home.component';
 import { AboutComponent } from './client/Landing_Page/about/about.component';
 import { ServicesComponent } from './client/Landing_Page/services/services.component';
 import { DevelopersComponent } from './client/Landing_Page/developers/developers.component';
+import { GuestEventsComponent } from './client/Landing_Page/guest-events/guest-events.component';
+import { GuestEventsListingComponent } from './client/Landing_Page/guest-events-listing/guest-events-listing.component';
 
 import { OrgLandingComponent } from './client/Org/org-landing/org-landing.component';
 import { OrgRegistrationComponent } from './client/Org/org-registration/org-registration.component';
@@ -44,6 +46,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'developers', component: DevelopersComponent },
+  { path: 'guestEvents', component: GuestEventsComponent },
+  { path: 'guestEventsListing' , component: GuestEventsListingComponent},
 
   { path: 'org-landing', component: OrgLandingComponent },
   { path: 'org-registration', component: OrgRegistrationComponent },

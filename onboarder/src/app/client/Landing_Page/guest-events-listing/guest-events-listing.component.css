@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter&family=Plus+Jakarta+Sans:wght@200&display=swap');
+
+.badge {
+    background: linear-gradient(135deg, #1e30f3 0%, #e21e80 100%);
+}
+/* NAV BAR */
+header {
+    background-color: #007FE1;
+    width: 100%; 
+}
+.nav-item a {   
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 800;
+    margin: 6px;
+}
+.nav-item a:after {
+   display: block;
+   content      : '';
+   border-bottom: solid 2px #fff;
+   transform    : scaleX(0);
+   transition   : transform 300ms ease-in-out;
+}
+
+.nav-item a:hover:after {
+   transform: scaleX(1);
+}
+.login {
+  background-color: #00E1D3;
+  text-decoration: none;
+  color: #FFF;
+  font-size: 20px;
+  padding: 5px 20px;
+  border-radius: 30px;
+  float: left;
+  margin-left: 10%;
+  margin-top: 8px;
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 700;
+}
+/*About Banner */
+.banner {
+  background-image: url("src\assets\img\bg_06.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  border-top:1px solid #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  filter:brightness(85%);
+  color: white;
+}
+.banner h1 {
+    font-size: 90px;
+    padding: 15px;
+}
+.banner h2 {
+    font-size: 28px;
+    font-weight: 400;
+}
+.event-container {
+    font-family: "Roboto", sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+  
+.event-container .upcoming-events {
+    font-size: 40px;
+    text-align: center;
+    border-bottom: 1px solid #b1b1b1;
+    padding-bottom: 20px;
+    margin: 15px;
+}
+
+.event-container .event {
+    box-shadow: 0 4px 16px -8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    border-radius: 8px;
+    margin: 32px 0;
+}
+
+.event .event-left {
+    background: rgba(0, 127, 225, 0.25);
+    /* max-width: 100%;  */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 8px 48px; */
+    border-radius: 8px 0 0 8px;
+    position: relative;
+}
+
+.event .event-left .event-date {
+    top: 20px;
+    left: 20px;
+    position: absolute;
+    color: #fff;
+    z-index: 1;
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+}
+  
+.event .event-left .date {
+    width: 75px;
+	font-size: 1.5em;
+	line-height: 1em;
+	font-weight: bold;
+	text-align: center;
+    padding: .5em 0;
+	margin-bottom: .7em;
+    box-shadow:0px 1px 0px #e0e0e041;
+    background: #007FE1;
+}
+
+.event .event-left img {
+    max-width: 300px;
+    display: block;
+    opacity: 0.7;
+}
+.event .event-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 24px;
+}
+.event .event-right h3.event-title {
+    font-size: 24px;
+    margin: 10px 0 10px 0;
+    color: #218bbb;
+    text-transform: uppercase;
+  }
+  
+.event .event-right .event-time {
+    background: #f5e79c;
+    display: flex;
+    width: 100px;
+    padding: 8px;
+    border-radius: 16px;
+    margin: 15px 0 5px;
+    font-size: 14px;
+}
+.event .event-right .event-time span, .event .event-right .event-location span {
+    padding-left: 4px;
+}
+  
+.event .event-right .event-time img {
+    height: 20px;
+    padding-right: 8px;
+}
+.event .event-right .event-location {
+    background: #8ce291;
+    display: flex;
+    width: 250px;
+    padding: 8px;
+    border-radius: 16px;
+    margin: 10px 0;
+    font-size: 14px;
+}   
+.event .event-right a {
+    background-color: #007FE1;
+    color: white;
+    text-decoration: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    box-shadow: 4px 8px 8px -6.5px #383636;
+    float: right;
+}
+.event .event-right a:hover {
+    background-color: #007fe1cc;
+}
+  @media (max-width: 550px) {
+    .event {
+      flex-direction: column;
+    }
+  
+    .event .event-left {
+      padding: 0;
+      border-radius: 8px 8px 0 0;
+    }
+  
+    .event .event-left .event-date .date,
+    .event .event-left .event-date .month {
+      display: inline-block;
+      font-size: 24px;
+    }
+  
+    .event .event-left .event-date {
+      padding: 10px 0;
+    }
+  }
+label{
+    color:#000;
+    font-weight:500;
+    background:#fff;
+    margin-bottom:5px;
+    padding:4px;
+    border-radius:4px;
+}
+input{
+    margin-bottom:10px
+}
+  .sub-bg {
+    background: url('https://the-french.co.uk/wp-content/uploads/2018/02/111-400x600.jpg')no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.subs-header{
+    padding-top: 0px;
+    border-bottom: 0px;
+}
+.heading-text h4{
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 2px solid #c7c7c7;
+    display: inline-block;
+    border-radius: 20px;
+    box-shadow: inset 10px 12px 13px -7px rgba(122, 122, 122, 0.7);
+    -moz-box-shadow: inset 10px 12px 13px -7px rgba(122, 122, 122, 0.7);
+    -webkit-box-shadow: inset 10px 12px 13px -7px rgba(122, 122, 122, 0.7);
+    -o-box-shadow: inset 10px 12px 13px -7px rgba(122, 122, 122, 0.7);
+    background-color: #6fce43;
+}
+.heading-text{
+    margin-top: 10px;
+}
+.close:not(:disabled):not(.disabled):focus, .close:not(:disabled):not(.disabled):hover {
+      outline: none;
+}
+#susbc-form-thank .modal-content{
+    background-color: #f5f5f5;
+}

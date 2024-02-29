@@ -45,6 +45,8 @@ import { MemOrgmemformComponent } from './client/Member/mem-orgmemform/mem-orgme
 import { OrgEventDetailsComponent } from './client/Org/org-event-details/org-event-details.component';
 import { MemRejectComponent } from './client/Org/mem-reject/mem-reject.component';
 import { NotfoundpageComponent } from './client/extrapages/notfoundpage/notfoundpage.component';
+import { GuestEventsComponent } from './client/Landing_Page/guest-events/guest-events.component';
+import { GuestEventsListingComponent } from './client/Landing_Page/guest-events-listing/guest-events-listing.component';
 
 
 export function playerFactory(): any {  
@@ -86,7 +88,9 @@ export function playerFactory(): any {
     MemOrgmemformComponent,
     OrgEventDetailsComponent,
     MemRejectComponent,
-    NotfoundpageComponent
+    NotfoundpageComponent,
+    GuestEventsComponent,
+    GuestEventsListingComponent
   ],
   imports: [
   
