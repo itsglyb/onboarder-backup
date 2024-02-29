@@ -30,6 +30,13 @@ export class OrgCreateEventComponent implements OnInit{
   isStep3Valid = false;
   isStep4Valid = false;
 
+  formattedaddress=" "; 
+  options={ 
+    componentRestrictions:{ 
+      country:["PH"] 
+    } 
+  } 
+
   onButtonClicked(buttonNumber: number) {
     this.activeButton = buttonNumber;
   }
@@ -62,21 +69,44 @@ export class OrgCreateEventComponent implements OnInit{
         console.error('Error loading createeventphotoupload.js', error);
       });
     }
+
+    public AddressChange(address: any) {
+    
+      const eventTimeControl = this.form.get('eventTime');
+      if (eventTimeControl) {
+        const currentEventTime = eventTimeControl.value;
+        // Extract hours and minutes from the time string
+        const [hours, minutes] = currentEventTime.split(':').map(Number);
+        // Create a Date object to determine AM or PM
+        const timeDate = new Date();
+        timeDate.setHours(hours, minutes);
+        // Check if it's AM or PM
+        const amOrPm = timeDate.getHours() >= 12 ? 'PM' : 'AM';
+        // Append AM or PM to the time string
+        const newEventTime = `${currentEventTime} ${amOrPm}`;
+        this.form.patchValue({ eventTime: newEventTime });
+      }
+
+      this.formattedaddress = address.formatted_address;
+      // Set the formatted address to the location form control
+      this.form.patchValue({ location: this.formattedaddress });
+    }
+    
+    
+    
   
     validateStep1(){
       const event = this.form.getRawValue();
       if (
-        event.eventTitle === "" ||
-        event.eventDesc === "" ||
-        event.eventDate === "" ||
-        event.eventTime === ""
+        event.eventTitle == '' ||
+        event.eventDesc == '' ||
+        event.eventDate == '' ||
+        event.eventTime == ''
       ){
         Swal.fire("Error", "Please fill up all the required fields in Step 1", "error");
         this.isStep1Valid = false;
       }
-      else {
         this.isStep1Valid = true;
-      }
     }
 
     validateStep2(){

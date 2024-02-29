@@ -14,6 +14,7 @@ export class OrgNavbarComponent implements OnInit {
   logo!: string;
   orgCode!: string;
   orgID!: string;
+  expirationDate!:string;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -30,7 +31,12 @@ export class OrgNavbarComponent implements OnInit {
         this.logo = `${res.logo}`;
         this.orgCode = `${res.orgCode}`;
         this.orgID = `${res._id}`;
-        this.generateNewOrgCode(); 
+        this.expirationDate = `${res.expirationDate}`;
+        const expirationDate1 = new Date(this.expirationDate);
+        const currentDate = new Date();
+        if (expirationDate1 <= currentDate) {
+          this.generateNewOrgCode();
+        }
       },
       (err) => {
         this.organization = "error"
@@ -73,11 +79,11 @@ export class OrgNavbarComponent implements OnInit {
     const lengthOfCode = 8;
     const newOrgCode = this.makeRandomCode(lengthOfCode, possible);
     const expirationDate = new Date();
-    expirationDate.setMinutes(expirationDate.getDate() + 30); 
+    expirationDate.setDate(expirationDate.getDate() + 30); // expires in 30 days
 
     this.http.patch(`http://localhost:5000/api/organization/${this.orgID}`, {
       orgCode: newOrgCode,
-      expirationDate: expirationDate
+      expirationDate: expirationDate.toISOString() // Convert to ISO string for backend compatibility
     }, {
       withCredentials: true
     }).subscribe(

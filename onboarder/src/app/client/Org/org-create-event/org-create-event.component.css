@@ -355,7 +355,8 @@
   }
 
   .location button.active {
-    background-color: #198754;
+    background-color: #3676d7;
+    color: white;
     
   }
  .loc{
@@ -372,7 +373,7 @@
   font-weight: bold;
   background-color: #F5F5F5;
   color: black;
-  border: 1px solid #198754;
+  border: 1px solid black;
   border-radius: 50px;
   cursor: pointer;
 }

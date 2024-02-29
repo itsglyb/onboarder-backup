@@ -33,7 +33,13 @@ $(document).ready(function(){
         // Show the next fieldset
         next_fs.show();
 
-
+        if (current === 1 && !validateStep1(formData)) {
+          return false;
+        } else if (current === 2 && !validateStep2(formData)) {
+          return false;
+        } else if (current === 3 && !validateStep3(formData)) {
+          return false;
+        } 
         current_fs.animate({opacity: 0}, {
         step: function(now) {
         // for making fielset appear animation
@@ -221,4 +227,36 @@ function getFormData() {
   };
   return formData;
 }
+
+  function validateStep1(formData){
+    const event = getFormData(formData);
+
+    if(event.eventTitle == '' || event.eventDesc == '' ||
+    event.eventDate == '' || event.eventTime == ''){
+      Swal.fire('Error', 'Please fill out all fields.', 'error');
+      return false;
+    }
+    return true;
+  }
+
+  function validateStep2(){
+    return true;
+  }
+
+  function validateStep3(formData){
+    const event = getFormData(formData);
+
+    if(event.eventSeats == '' ||
+    event.eventPrice == '' ||
+    event.eventPaymentDetails == '') {
+      Swal.fire("Error", "Please fill up all the required fields in Step 3", "error");
+      return false;
+    }
+    return true;
+  }
+
+  function validateStep4(){
+    return true;
+  }
+
 }); 

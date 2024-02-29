@@ -105,13 +105,13 @@
                                 </div>
                             </div> 
 
-                            <label class="fieldlabels">Mission: *</label> 
+                            <label class="fieldlabels">Mission: </label> 
                             <input type="text" id="mission" name="orgType" formControlName="mission" placeholder="Mission" /> 
 
-                            <label class="fieldlabels">Vision: *</label> 
+                            <label class="fieldlabels">Vision: </label> 
                             <input type="text" id="vision" formControlName="vision" placeholder="Vision" /> 
 
-                            <label class="fieldlabels">Core Values: *</label>
+                            <label class="fieldlabels">Core Values: </label>
                             <input type="text"  id="coreValues" formControlName="coreValues" placeholder="Core Values" />
 
                     </div> 
@@ -131,7 +131,7 @@
                                     </div>
                                 </div> 
 
-                                <label class="fieldlabels">Upload Your Organizations Logo:</label> 
+                                <label class="fieldlabels">Upload Your Organization Logo:</label> 
                                 <input type="file" formControlName="logo" name="logo" accept="image/*" (change)="onChange($event)"> 
 
                                 <input type="button" name="next" class="next action-button" (click)="validateStep3()" value="Next"/> 

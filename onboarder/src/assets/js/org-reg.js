@@ -125,10 +125,10 @@ $(document).ready(function(){
    
     const organization = getFormData(formData);
 
-    if (organization.orgName.trim() === '' || 
-        organization.orgType.trim() === '' || 
-        organization.about.trim() === '' || 
-        organization.orgHistory.trim() === ''
+    if (organization.orgName == '' || 
+        organization.orgType == '' || 
+        organization.about == '' || 
+        organization.orgHistory == ''
         ) {
         Swal.fire('Error', 'Please fill out all fields.', 'error');
         return false;

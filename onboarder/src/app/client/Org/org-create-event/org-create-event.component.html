@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                <h2 id="heading">REGISTER YOUR ORGANIZATION</h2>
+                <h2 id="heading">CREATE AN EVENT</h2>
                 <p>Fill all form field to go to next step</p>
                 <form [formGroup]="form" id="msform">
                     <!-- progressbar -->
@@ -39,16 +39,16 @@
                                 <input type="date" id="eventDate" name="eventDate" formControlName="eventDate"/>
                                 
                                 <label class="fieldlabels">Time of the Event: *</label> 
-                                <input type="time" id="eventTime" name="eventTime" formControlName="eventTime"/>
+                                <input type="time" id="eventTime" name="eventTime" formControlName="eventTime" step="any/"/>
     
     
                             </div> 
 
 
                             <div class="location">
-                                <label class="fieldlabels">Location</label>
+                                <label class="fieldlabels">Mode</label>
                                 <div class="button-container">
-                                    <button (click)="onButtonClicked(1)" [class.active]="activeButton === 1">Venue</button>
+                                    <button (click)="onButtonClicked(1)" [class.active]="activeButton === 1">Physical</button>
                                     <button (click)="onButtonClicked(2)" [class.active]="activeButton === 2">Online</button>
                                     <button (click)="onButtonClicked(3)" [class.active]="activeButton === 3">Hybrid</button>
                                 </div>
@@ -57,8 +57,9 @@
                               <!-- Add content that will change based on the button pressed -->
                               <div class="loc" *ngIf="activeButton === 1">
                                 <div class="content">                                    
-                                    <label class="fieldlabels">Search Location</label>  
-                                    <input placeholder=" " id="location" name="location" type="text" formControlName="location">
+                                    <label class="fieldlabels">Location</label>  
+                                    <input ngx-gp-autocomplete [options] = 
+                                    "options"  (onAddressChange)="AddressChange($event)" formControlName="location">
                                   </div>
                               </div>
                               <div class="loc" *ngIf="activeButton === 2">
