@@ -26,7 +26,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="validationTooltip01" class="form-label">Membership Type</label>
-                  <input type="text" class="form-control" id="validationTooltip01" placeholder="Please enter your membership type" formControlName="memType" required>
+                  <input type="text" class="form-control" id="validationTooltip01" [(ngModel)]="memType" formControlName="memType" readonly>
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
