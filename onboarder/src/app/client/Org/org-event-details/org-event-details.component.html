@@ -48,7 +48,8 @@
 
                 <label class="form-label">Video Teaser</label> 
                 <div class="card-body">
-                    <a [href]="event.video">{{event.video ? event.video : 'No data provided.'}}</a>
+                    <a *ngIf="event.video" [href]="event.video">{{event.video}}</a>
+                    <p *ngIf="!event.video">No data provided.</p>
                 </div>
                   
                 <label class="form-label">Event Registration Fee and Payment Process</label>
