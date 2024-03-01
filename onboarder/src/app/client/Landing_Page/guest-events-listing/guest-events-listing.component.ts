@@ -1,6 +1,25 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 declare var $: any;
+
+interface OrgEvent {
+  _id: string,
+  orgID: string,
+  eventTitle: string;
+  eventDesc: string;
+  eventDate: Date;
+  eventTime: string;
+  location: string;
+  meetingURL: string;
+  poster: string;
+  programme: string;
+  video: string;
+  eventSeats: string;
+  eventPrice: string;
+  eventPaymentDetails: string;
+}
 
 @Component({
   selector: 'app-guest-events-listing',
@@ -9,11 +28,18 @@ declare var $: any;
 })
 export class GuestEventsListingComponent implements OnInit {
 
-  constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef) {}
-
+  constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef, private route: ActivatedRoute, private http: HttpClient) {
+  }
+  
+  orgEventArray: OrgEvent[] = [];
+  orgEvent$: Observable<OrgEvent[]> | undefined;
   ngOnInit(): void {
     const n = "#nav";
     const no = ".nav-items";
+    this.route.params.subscribe(params => {
+      const orgID = params['orgID'];
+      this.getOrgEvent(orgID);
+    })
 
     $(n).click(() => {
       const noElement = this.el.nativeElement.querySelector(no);
@@ -30,6 +56,15 @@ export class GuestEventsListingComponent implements OnInit {
           $(noElement).removeAttr('style').addClass("nav-open");
         }, 320);
       }
+    });
+  }
+
+  getOrgEvent(orgID: string) {
+    this.orgEvent$ = this.http.get<OrgEvent[]>(`http://localhost:5000/api/events/${orgID}`);
+    this.orgEvent$.subscribe((data) => {
+      this.orgEventArray = data;
+      // Update the length variable
+      console.log('Organization Events:', data);
     });
   }
 
