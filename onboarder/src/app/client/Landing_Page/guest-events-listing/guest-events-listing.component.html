@@ -44,7 +44,7 @@
               <i class="fa fa-location-dot"></i> <span>{{event.location ? event.location : 'No data provided'}}</span>
           </div>
           <div class="register-btn">
-              <button class="btn btn-primary" (click)="showModalAfterDelay()">Register</button>
+              <button class="btn btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle)">Register</button>
           </div>
       </div>
   </div>
@@ -59,35 +59,35 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-center">
-                        <img class="img-fluid" src="assets\img\icpep.png" alt="" style="width: 30%;">
-                        <h4>Institute of Computer Engineers of the Philippines</h4>
+                        <img class="img-fluid" [src]="poster ? poster : 'assets/img/image-holder.png'" alt="" style="width: 30%;">
+                        <h4>{{eventTitle}}</h4>
                     </div>
                     <!-- <div class="heading-text text-center ">
                         <h4 class="shadow px-2 py-8 mb-2" style="color: black;">ICPEP Seminar</h4>
                     </div> -->
                     <div class="row">
                         <div class="col-md-12">
-                            <form id="subs-form" (submit)="onSubmitForm($event)">
+                            <form id="subs-form" (submit)="onSubmitForm($event)"  novalidate [formGroup]="form">
                                 <div class="form-group row">
                                     <div class="col-md-12 col-xs-12">
                                         <label for="fulltName" class="">Full Name </label>
-                                        <input type="text" class="form-control" id="fullName" placeholder="Please enter your full name" required>
+                                        <input type="text" class="form-control" id="fullName" placeholder="Please enter your full name" formControlName="memName" required>
                                     </div>
                                     <div class="col-md-12 col-xs-12" >
                                         <label for="emailAddress">Email Address </label>
-                                        <input type="text" class="form-control" id="emailAddress" placeholder="Please enter your email address" required>
+                                        <input type="text" class="form-control" id="emailAddress" placeholder="Please enter your email address" formControlName="emailAddress" required>
                                     </div>
                                     <div class="col-md-12 col-xs-12">
                                         <label for="contactNo">Contact No. </label>
-                                        <input type="text" class="form-control" id="contactNo" placeholder="Please enter last your contact number" required>
+                                        <input type="text" class="form-control" id="contactNo" placeholder="Please enter last your contact number" formControlName="contactno" required>
                                     </div>
                                     <div class="col-md-12 col-xs-12">
                                         <label for="memType">Membership Type </label>
-                                        <input type="text" class="form-control" id="contactNo" placeholder="Please enter last your membership type" required>
+                                        <input type="text" class="form-control" id="memType" [(ngModel)]="memType" formControlName="memType" readonly value="Guest">
                                     </div>
                                     <div class="col-md-12 col-xs-12">
                                         <label for="customFile">Proof of Payment </label>
-                                        <input type="file" class="form-control" id="customFile" placeholder="Please enter last name" required>
+                                        <input type="file" class="form-control" id="proofofPayment" placeholder="Please enter last name" formControlName="proofofPayment" required>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
