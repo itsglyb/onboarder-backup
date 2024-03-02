@@ -60,6 +60,11 @@ export class OrgMembersComponent {
   memForm$: Observable<MemForm> | undefined;
   form!:FormGroup
   membersDetails: any[] = [];
+  Math: any = Math;
+  searchQuery: string = '';
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalPages: number = 0;
   _id="";
   isVerified = "";
   isRejected = "";
@@ -251,5 +256,41 @@ export class OrgMembersComponent {
   
   
     }
+
+    startIndex(): number {
+      return (this.currentPage - 1) * this.itemsPerPage;
+    }
+  
+    // Calculate the end index of the items to display on the current page
+    endIndex(): number {
+      return Math.min(this.startIndex() + this.itemsPerPage - 1, this.membersDetails.length - 1);
+    }
+  
+    // Function to change the current page
+    setPage(page: number) {
+      this.currentPage = page;
+    }
+  
+    search() {
+      // If search query is empty, reset OrganizationArray to show all organizations
+      if (!this.searchQuery.trim()) {
+        this.getAllMembers();
+        return;
+      }
+  
+      // Convert searchQuery to lowercase for case-insensitive search
+      const searchTerm = this.searchQuery.toLowerCase();
+  
+      // Filter OrganizationArray based on search query
+      this.membersDetails = this.membersDetails.filter(mem => {
+        // Check if organization and orgName property exist
+        if (mem && mem.fullName) {
+          // Perform case-insensitive search on orgName
+          return mem.fullName.toLowerCase().includes(searchTerm);
+        }
+        return false; // Exclude organization if orgName is not present
+      });
+    }
+  
 }
 
