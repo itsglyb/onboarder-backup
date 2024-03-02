@@ -88,7 +88,7 @@
                                     <th>Proof of Payment</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngIf="regMemArray.length > 0; else noData">
                                 <tr *ngFor="let member of regMemArray.slice(startIndex(), endIndex() + 1)">
                                     <td>{{member.memName}}</td>
                                     <td>{{member.memType}}</td>
@@ -99,6 +99,11 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <ng-template #noData>
+                                <tr>
+                                    <td class="text-center" colspan="6">No data available</td>
+                                </tr>
+                            </ng-template>
                         </table>
                     </div>
                 </div>        
@@ -137,7 +142,7 @@
                                     <th>Proof of Payment</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngIf="regGuestArray.length > 0; else noData">
                                 <tr *ngFor="let guest of regGuestArray.slice(startIndex1(), endIndex1() + 1)">
                                     <td>{{guest.guestName}}</td>
                                     <td>{{guest.emailAddress}}</td>
@@ -147,6 +152,11 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <ng-template #noData>
+                                <tr>
+                                    <td class="text-center" colspan="6">No data available</td>
+                                </tr>
+                            </ng-template>
                         </table>
                     </div>
                 </div>        

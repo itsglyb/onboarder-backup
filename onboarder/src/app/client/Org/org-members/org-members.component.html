@@ -33,32 +33,34 @@
                           </div>
                         </div>
                         <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Application ID</th>
-                                    <th>Full Name</th>
-                                    <th>Email</th>
-                                    <th>Registration Date</th>
-                                    <th>Membership Type</th>
-                                    <th>View Details</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let MemberItem of membersDetails.slice(startIndex(), endIndex() + 1)" >
-                                    <td>{{MemberItem._id}}</td>
-                                    <td>{{MemberItem.fullName}}</td>
-                                    <td>{{MemberItem.email}}</td>
-                                    <td>{{MemberItem.dateCreated}}</td>
-                                    <td>{{MemberItem.chooseMem}}</td>
-
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewMemberModal" (click)="setView(MemberItem)"><i class="fa-solid fa-eye"></i></button>
-                                    </td>
-                                   
-                                </tr>
-                            </tbody>
-                        </table>
+                          <thead>
+                              <tr>
+                                  <th>Application ID</th>
+                                  <th>Full Name</th>
+                                  <th>Email</th>
+                                  <th>Registration Date</th>
+                                  <th>Membership Type</th>
+                                  <th>View Details</th>
+                              </tr>
+                          </thead>
+                          <tbody *ngIf="membersDetails.length > 0; else noData">
+                              <tr *ngFor="let MemberItem of membersDetails.slice(startIndex(), endIndex() + 1)">
+                                  <td>{{MemberItem._id}}</td>
+                                  <td>{{MemberItem.fullName}}</td>
+                                  <td>{{MemberItem.email}}</td>
+                                  <td>{{MemberItem.dateCreated}}</td>
+                                  <td>{{MemberItem.chooseMem}}</td>
+                                  <td>
+                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewMemberModal" (click)="setView(MemberItem)"><i class="fa-solid fa-eye"></i></button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                          <ng-template #noData>
+                              <tr>
+                                  <td class="text-center" colspan="6">No data available</td>
+                              </tr>
+                          </ng-template>
+                      </table>                      
                     </div>
                 </div>        
             </div>

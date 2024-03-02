@@ -43,7 +43,7 @@
                                     <th>Review</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngIf="rejectedApplicationDetails.length > 0; else noData">
                                 <tr *ngFor="let ApplicationItems of rejectedApplicationDetails.slice(startIndex(), endIndex() + 1)">
                                     
                                     <td>{{ApplicationItems._id}}</td>
@@ -60,6 +60,11 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <ng-template #noData>
+                              <tr>
+                                  <td class="text-center" colspan="6">No data available</td>
+                              </tr>
+                          </ng-template>
                         </table>
                     </div>
                 </div>        

@@ -20,12 +20,12 @@
                         <div class="table-title">
                           <div class="row p-0 ">
                             <div class="col-8 m-0 p-0">
-                                <h2><b>Member Verification</b></h2>
+                                <h2><b>Membership Verification</b></h2>
                             </div>
                             <div class="col-4 m-0 p-0">
                               <div class="d-flex justify-content-end ml-auto">
                                 <div class="input-group">
-                                  <input type="text" class="search form-control" placeholder="Search by member's name" [(ngModel)]="searchQuery">
+                                  <input type="text" class="search form-control" placeholder="Search by applicant's name" [(ngModel)]="searchQuery">
                                   <button class="btn btn-primary" type="button" (click)="search()">Search</button>
                                 </div>
                               </div>
@@ -43,7 +43,7 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngIf="membershipApplicationDetails.length > 0; else noData">
                                 <tr *ngFor="let ApplicationItem of membershipApplicationDetails.slice(startIndex(), endIndex() + 1)" >
                                     <td>{{ApplicationItem._id}}</td>
                                     <td>{{ApplicationItem.fullName}}</td>
@@ -59,6 +59,11 @@
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rejectMemberModal" (click)="setRejectModalId(ApplicationItem._id)"><i class="fa-solid fa-square-xmark"></i></button>                                    </td>
                                 </tr>
                             </tbody>
+                            <ng-template #noData>
+                              <tr>
+                                  <td class="text-center" colspan="6">No data available</td>
+                              </tr>
+                          </ng-template>
                         </table>
                     </div>
                 </div>        
