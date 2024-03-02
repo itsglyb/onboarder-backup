@@ -28,9 +28,13 @@
       </div>
 
       <section>
+        <ng-template #loading>
+            <!-- Display loading message -->
+            <p>Loading...</p>
+          </ng-template>  
         <div class="container">
 
-            <div class="row">
+            <div class="row" >
                 <div class="col-12">
                     <div class="section-title">
                         <h2 class="text-center">Your Path to Success Starts Here</h2>
@@ -39,98 +43,25 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div *ngIf="OrgArray && OrgArray.length > 0; else loading">
+                <div class="row" *ngFor="let org of OrgArray">
 
-                  <div class="col-md-4">
-                    <div class="card profile-card-3">
-                        <div class="background-block">
-                            <img src="assets\img\bg_04.png" alt="profile-sample1" class="background"/>
-                        </div>
-                        <div class="profile-thumb-block">
-                            <img src="assets\img\icpep.png" alt="profile-image" class="profile"/>
-                        </div>
-                        <div class="card-content">
-                        <h2>Institute of Computer Engineers of the Philippines <small>Come and look at our events!</small></h2>
-                        <button (click)="onBtnClick()" class="btn card_btn">VIEW EVENTS</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card profile-card-3">
-                        <div class="background-block">
-                            <img src="assets\img\bg_04.png" alt="profile-sample1" class="background"/>
-                        </div>
-                        <div class="profile-thumb-block">
-                            <img src="assets\img\icpep.png" alt="profile-image" class="profile"/>
-                        </div>
-                        <div class="card-content">
-                        <h2>Institute of Computer Engineers of the Philippines <small>Come and look at our events!</small></h2>
-                        <button class="btn card_btn">VIEW EVENTS</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card profile-card-3">
-                        <div class="background-block">
-                            <img src="assets\img\bg_04.png" alt="profile-sample1" class="background"/>
-                        </div>
-                        <div class="profile-thumb-block">
-                            <img src="assets\img\icpep.png" alt="profile-image" class="profile"/>
-                        </div>
-                        <div class="card-content">
-                        <h2>Institute of Computer Engineers of the Philippines <small>Come and look at our events!</small></h2>
-                        <button class="btn card_btn">VIEW EVENTS</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card profile-card-3">
-                        <div class="background-block">
-                            <img src="assets\img\bg_04.png" alt="profile-sample1" class="background"/>
-                        </div>
-                        <div class="profile-thumb-block">
-                            <img src="assets\img\icpep.png" alt="profile-image" class="profile"/>
-                        </div>
-                        <div class="card-content">
-                        <h2>Institute of Computer Engineers of the Philippines <small>Come and look at our events!</small></h2>
-                        <button class="btn card_btn">VIEW EVENTS</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card profile-card-3">
-                        <div class="background-block">
-                            <img src="assets\img\bg_04.png" alt="profile-sample1" class="background"/>
-                        </div>
-                        <div class="profile-thumb-block">
-                            <img src="assets\img\icpep.png" alt="profile-image" class="profile"/>
-                        </div>
-                        <div class="card-content">
-                        <h2>Institute of Computer Engineers of the Philippines <small>Come and look at our events!</small></h2>
-                        <button class="btn card_btn">VIEW EVENTS</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card profile-card-3">
-                        <div class="background-block">
-                            <img src="assets\img\bg_04.png" alt="profile-sample1" class="background"/>
-                        </div>
-                        <div class="profile-thumb-block">
-                            <img src="assets\img\icpep.png" alt="profile-image" class="profile"/>
-                        </div>
-                        <div class="card-content">
-                        <h2>Institute of Computer Engineers of the Philippines <small>Come and look at our events!</small></h2>
-                        <button class="btn card_btn">VIEW EVENTS</button>
-                        </div>
-                    </div>
-                </div>
-
+                    <div class="col-md-4">
+                      <div class="card profile-card-3">
+                          <div class="background-block">
+                              <img src="assets\img\bg_04.png" alt="profile-sample1" class="background"/>
+                          </div>
+                          <div class="profile-thumb-block">
+                              <img [src]="org.logo ? org.logo : 'assets/img/profile-pic.png'" alt="profile-image" class="profile"/>
+                          </div>
+                          <div class="card-content">
+                          <h2>{{org.orgName }}<small>{{org.orgType}}</small></h2>
+                          <button (click)="onBtnClick(org._id)" class="btn card_btn">VIEW EVENTS</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+  
+          </div>
             </div>
-        </div>
       </section>

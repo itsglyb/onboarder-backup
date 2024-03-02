@@ -15,260 +15,103 @@
   </div>
 </nav>
 
-  <div class="banner">
-    <h1>Events</h1>
-    <h2>Browse through our Events Calendar to find out what’s going on throughout the year.</h2>
+<div class="banner">
+  <h1>Events</h1>
+  <h2>Browse through our Events Calendar to find out what’s going on throughout the year.</h2>
+</div>
+
+<div class="event-container">
+  <h3 class="upcoming-events">UPCOMING EVENTS</h3>
+
+  <div *ngIf="orgEvent$ | async as orgEventArray; else loading"> 
+    <div class="event" *ngFor="let event of orgEventArray">
+      <div class="event-left">
+          <div class="event-date">
+              <p class="date">{{event.eventDate}}</p>
+          </div>
+          <img [src]="event.poster ? event.poster : 'assets/img/profile-pic.png'" alt="Events Banner">
+      </div>
+  
+      <div class="event-right">     
+          <h3 class="event-title">{{event.eventTitle}}</h3>
+          <div class="event-description">
+              {{event.eventDesc}}
+          </div>
+          <div class="event-time">
+              <i class="fa fa-clock" aria-hidden="true"></i> <span>{{event.eventTime}}</span>
+          </div>
+          <div class="event-location">
+              <i class="fa fa-location-dot"></i> <span>{{event.location ? event.location : 'No data provided'}}</span>
+          </div>
+          <div class="register-btn">
+              <button class="btn btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle, +event.eventSeats)" [disabled]="+event.eventSeats === 0">Register</button>
+          </div>
+      </div>
+    </div>
   </div>
-
-  <div class="event-container">
-    <h3 class="upcoming-events">UPCOMING EVENTS</h3>
-
-    <div class="event">
-        <div class="event-left">
-            <div class="event-date">
-                <p class="date">OCT 16</p>
-            </div>
-            <img src="assets\img\icpep.png" alt="Events Banner">
-        </div>
     
-        <div class="event-right">     
-            <h3 class="event-title">Events Name</h3>
-            <div class="event-description">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus, ratione.
-            </div>
-            <div class="event-time">
-                <i class="fa fa-clock" aria-hidden="true"></i> <span>10: 00 am</span>
-            </div>
-            <div class="event-location">
-                <i class="fa fa-location-dot"></i> <span>Richmond Hotel, Mandaluyong City</span>
-            </div>
-            <div class="register-btn">
-                <button class="btn btn-primary" (click)="showModalAfterDelay()">Register</button>
-            </div>
+  <div class="modal fade" id="susbc-form" tabindex="-1" role="dialog">
+    <div class="modal-dialog shadow-lg p-3 mb-5 bg-white rounded">
+      <div class="modal-content sub-bg">
+        <div class="modal-header subs-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeModal()">&times;</button>
         </div>
-    </div>
-    
-    <div class="modal fade" id="susbc-form" tabindex="-1" role="dialog">
-        <div class="modal-dialog shadow-lg p-3 mb-5 bg-white rounded">
-            <div class="modal-content sub-bg">
-                <div class="modal-header subs-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeModal()">&times;</button>
-
+        <div class="modal-body">
+          <div class="text-center">
+            <img class="img-fluid" [src]="poster ? poster : 'assets/img/image-holder.png'" alt="" style="width: 30%;">
+            <h4>{{eventTitle}}</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <form id="subs-form" (submit)="onSubmitForm($event)" novalidate [formGroup]="form">
+                <div class="form-group row">
+                  <div class="col-md-12 col-xs-12">
+                    <label for="fullName" class="">Full Name </label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Please enter your full name" formControlName="guestName" required>
+                  </div>
+                  <div class="col-md-12 col-xs-12">
+                    <label for="emailAddress">Email Address </label>
+                    <input type="text" class="form-control" id="emailAddress" placeholder="Please enter your email address" formControlName="emailAddress" required>
+                  </div>
+                  <div class="col-md-12 col-xs-12">
+                    <label for="contactNo">Contact No. </label>
+                    <input type="text" class="form-control" id="contactNo" placeholder="Please enter your contact number" formControlName="contactno" required>
+                  </div>
+                  <div class="col-md-12 col-xs-12">
+                    <label for="proofofPayment">Proof of Payment </label>
+                    <input type="file" class="form-control" id="proofofPayment" placeholder="Please upload proof of payment" formControlName="proofofPayment" (change)="onChange($event)" accept="image/*" required>
+                  </div>
                 </div>
-                <div class="modal-body">
-                    <div class="text-center">
-                        <img class="img-fluid" src="assets\img\icpep.png" alt="" style="width: 30%;">
-                        <h4>Institute of Computer Engineers of the Philippines</h4>
-                    </div>
-                    <!-- <div class="heading-text text-center ">
-                        <h4 class="shadow px-2 py-8 mb-2" style="color: black;">ICPEP Seminar</h4>
-                    </div> -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form id="subs-form" (submit)="onSubmitForm($event)">
-                                <div class="form-group row">
-                                    <div class="col-md-12 col-xs-12">
-                                        <label for="fulltName" class="">Full Name </label>
-                                        <input type="text" class="form-control" id="fullName" placeholder="Please enter your full name" required>
-                                    </div>
-                                    <div class="col-md-12 col-xs-12" >
-                                        <label for="emailAddress">Email Address </label>
-                                        <input type="text" class="form-control" id="emailAddress" placeholder="Please enter your email address" required>
-                                    </div>
-                                    <div class="col-md-12 col-xs-12">
-                                        <label for="contactNo">Contact No. </label>
-                                        <input type="text" class="form-control" id="contactNo" placeholder="Please enter last your contact number" required>
-                                    </div>
-                                    <div class="col-md-12 col-xs-12">
-                                        <label for="memType">Membership Type </label>
-                                        <input type="text" class="form-control" id="contactNo" placeholder="Please enter last your membership type" required>
-                                    </div>
-                                    <div class="col-md-12 col-xs-12">
-                                        <label for="customFile">Proof of Payment </label>
-                                        <input type="file" class="form-control" id="customFile" placeholder="Please enter last name" required>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="modal fade" id="susbc-form-thank" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content sub-bg shadow-lg">
-                <div class="modal-header subs-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeModal()">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center">
-                        <img src="assets\img\success.png" alt="">
-                    </div>
-                    <div class="heading-text text-center">
-                        <h4>Registered Successfully!</h4>
-                        <h6>You are now officially registered to this event. Check your email for more information.</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
-      <!-- <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">×</button>
-              <h3 class="">Test Modal Form</h3>
-      
-            </div>
-            <div class="modal-body">
-              <p>Instructional copy here.</p>
-              <form role="form">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-                  <p class="help-block">Example block-level help text here.</p>
-                </div>
-                <label for="form-control">Select Example</label>
-                <select class="form-control">
-                  <option>One</option>
-                  <option>Two</option>
-                  <option>Three</option>
-                </select>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Check example
-                  </label>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
               </form>
-      
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" (click)="closeModal()">Close</button>
             </div>
           </div>
         </div>
-      </div> -->
-      
-
-    <!-- <div class="event">
-      <div class="event-left">
-        <div class="event-date">
-          <div class="date">22</div>
-          <div class="month">Dec</div>
-        </div>
-      </div>
-
-      <div class="event-right">
-        <h3 class="event-title">Some Title Here</h3>
-
-        <div class="event-description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,
-          ratione.
-        </div>
-
-        <div class="event-timing">
-          <img src="images/time.png" alt="" /> 10:45 am
-        </div>
       </div>
     </div>
-
-    <h3 class="year">2021</h3>
-
-    <div class="event">
-      <div class="event-left">
-        <div class="event-date">
-          <div class="date">8</div>
-          <div class="month">Jan</div>
-        </div>
-      </div>
-
-      <div class="event-right">
-        <h3 class="event-title">Some Title Here</h3>
-
-        <div class="event-description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,
-          ratione.
-        </div>
-
-        <div class="event-timing">
-          <img src="images/time.png" alt="" /> 10:00 am
-        </div>
-      </div>
-    </div>
-
-    <div class="event">
-      <div class="event-left">
-        <div class="event-date">
-          <div class="date">9</div>
-          <div class="month">Mar</div>
-        </div>
-      </div>
-
-      <div class="event-right">
-        <h3 class="event-title">Some Title Here</h3>
-
-        <div class="event-description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,
-          ratione.
-        </div>
-
-        <div class="event-timing">
-          <img src="images/time.png" alt="" /> 10:30 am
-        </div>
-      </div>
-    </div>
-
-    <div class="event">
-      <div class="event-left">
-        <div class="event-date">
-          <div class="date">4</div>
-          <div class="month">Apr</div>
-        </div>
-      </div>
-
-      <div class="event-right">
-        <h3 class="event-title">Some Title Here</h3>
-
-        <div class="event-description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,
-          ratione.
-        </div>
-
-        <div class="event-timing">
-          <img src="images/time.png" alt="" /> 10:00 am
-        </div>
-      </div>
-    </div>
-
-    <div class="event">
-      <div class="event-left">
-        <div class="event-date">
-          <div class="date">8</div>
-          <div class="month">Jun</div>
-        </div>
-      </div>
-
-      <div class="event-right">
-        <h3 class="event-title">Some Title Here</h3>
-
-        <div class="event-description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,
-          ratione.
-        </div>
-
-        <div class="event-timing">
-          <img src="images/time.png" alt="" /> 10:00 am
-        </div>
-      </div>
-    </div> -->
   </div>
+    
+  <div class="modal fade" id="susbc-form-thank" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content sub-bg shadow-lg">
+        <div class="modal-header subs-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img src="assets/img/success.png" alt="">
+          </div>
+          <div class="heading-text text-center">
+            <h4>Registered Successfully!</h4>
+            <h6>You are now officially registered for this event. Check your email for more information.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <!-- Display loading message -->
+    <p>Loading...</p>
+  </ng-template> 
+</div>

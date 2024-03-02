@@ -1,6 +1,26 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable, catchError, tap } from 'rxjs';
 declare var $: any;
+
+interface OrgEvent {
+  _id: string,
+  orgID: string,
+  eventTitle: string;
+  eventDesc: string;
+  eventDate: Date;
+  eventTime: string;
+  location: string;
+  meetingURL: string;
+  poster: string;
+  programme: string;
+  video: string;
+  eventSeats: string;
+  eventPrice: string;
+  eventPaymentDetails: string;
+}
 
 @Component({
   selector: 'app-guest-events-listing',
@@ -8,12 +28,40 @@ declare var $: any;
   styleUrls: ['./guest-events-listing.component.css']
 })
 export class GuestEventsListingComponent implements OnInit {
+  eventDesc!: string;
+  poster!: string;
+  memID: string = ""; 
+  eventSeats: number = 0;// Initialize memID property
 
-  constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef) {}
+  constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef, private route: ActivatedRoute, private http: HttpClient, private formBuilder: FormBuilder) {
+  }
+  
+  orgEventArray: OrgEvent[] = [];
+  form!: FormGroup;
+  orgEvent$: Observable<OrgEvent[]> | undefined;
+  orgID!: string;
+  orgName!:string;
+  eventID!: string;
+  eventTitle!:string;
+  eventInfo: any[] = [];// Declare and initialize memType here
 
   ngOnInit(): void {
     const n = "#nav";
     const no = ".nav-items";
+    this.route.params.subscribe(params => {
+      this.orgID = params['orgID'];
+      this.eventID = params['_id'];
+      this.orgName = params['orgName'];
+      this.eventTitle = params['eventTitle'];
+      this.getOrgEvent(this.orgID);
+    })
+
+    this.form = this.formBuilder.group({
+      guestName: ['', Validators.required],
+      proofofPayment: ['', Validators.required],
+      emailAddress: ['', Validators.required],
+      contactno: ['', Validators.required]
+    });
 
     $(n).click(() => {
       const noElement = this.el.nativeElement.querySelector(no);
@@ -33,29 +81,106 @@ export class GuestEventsListingComponent implements OnInit {
     });
   }
 
-  showModalAfterDelay() {
-    this.showSusbcFormModal(); // Show the modal immediately without delay
+  getOrgEvent(orgID: string) {
+    this.orgEvent$ = this.http.get<OrgEvent[]>(`http://localhost:5000/api/events/${orgID}`);
+    this.orgEvent$.subscribe((data) => {
+      this.orgEventArray = data;
+      // Update the length variable
+      console.log('Organization Events:', data);
+    });
   }
 
-  showSusbcFormModal() {
+
+  showModalAfterDelay(eventID: string, poster: string, eventTitle: string, eventSeats: number) {
+    this.showSusbcFormModal(eventID, poster, eventTitle, eventSeats);
+}
+
+  
+  showSusbcFormModal(eventID: string, poster: string, eventTitle: string, eventSeats: number) {
     const susbcFormModal = this.el.nativeElement.querySelector('#susbc-form');
+    this.eventID = eventID;
+    this.poster = poster; // Set the eventID property of the component
+    this.eventTitle = eventTitle;
+    this.eventSeats = eventSeats;
     $(susbcFormModal).modal('show');
-  }
+}
 
+onChange = ($event: Event) => {
+  const target = $event.target as HTMLInputElement;
+  const file: File = (target.files as FileList)[0];
+  this.convertfiletobase64(file, (base64String) => {
+    this.form.get('proofofPayment')?.setValue(base64String);
+  });
+}
+
+convertfiletobase64(file: File, callback: (base64string: string) => void) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    let base64string = reader.result as string;
+    callback(base64string);
+  };
+  reader.readAsDataURL(file);
+}
+
+  
   onSubmitForm(e: Event) {
     e.preventDefault();
   
     const subsForm = this.el.nativeElement.querySelector('#subs-form');
     const susbcFormModal = this.el.nativeElement.querySelector('#susbc-form');
     const susbcFormThankModal = this.el.nativeElement.querySelector('#susbc-form-thank');
-  
-    // Reset form
-    $(subsForm).trigger('reset');
-  
-    // Hide form modal and show thank you modal
-    $(susbcFormModal).modal('hide');
-    $(susbcFormThankModal).modal('show');
+    
+    const regForm = this.form.getRawValue();
+    const formData = {
+        orgID: this.orgID,
+        orgName: this.orgName,
+        eventID: this.eventID,// Use the memID obtained previously
+        guestName: regForm.guestName,
+        proofofPayment: regForm.proofofPayment,
+        emailAddress: regForm.emailAddress,
+        contactno: regForm.contactno
+    };
+    console.log("Response:", formData);
+
+    this.http.get(`http://localhost:5000/api/thisevent/${this.eventID}`, { withCredentials: true }).subscribe(
+      (event: any) => {
+        const updatedSeats = event.eventSeats - 1;
+        event.eventSeats = updatedSeats;
+        this.http.patch(`http://localhost:5000/api/event/${this.eventID}`, event, { withCredentials: true }).subscribe(
+          () => {
+            this.registerToEvent(formData);
+          },
+          (updateError) => {
+            console.error('Error updating event seats:', updateError);
+          }
+        );
+      },
+      (eventError) => {
+        console.error('Error fetching event details:', eventError);
+      }
+    );
   }
+
+  registerToEvent(formData: any) {
+    this.http.post('http://localhost:5000/api/createguestRegForm', formData, { withCredentials: true }).subscribe(
+        () => {
+            
+            const subsForm = this.el.nativeElement.querySelector('#subs-form');
+            const susbcFormModal = this.el.nativeElement.querySelector('#susbc-form');
+            const susbcFormThankModal = this.el.nativeElement.querySelector('#susbc-form-thank');
+  
+            $(subsForm).trigger('reset');
+  
+            // Hide form modal and show thank you modal
+            $(susbcFormModal).modal('hide');
+            $(susbcFormThankModal).modal('show');
+        },
+        (err) => {
+            console.error('Error registering to the event:', err);
+            // Handle the error here
+        }
+    );
+}
 
   closeModal() {
     $('#susbc-form').modal('hide');
@@ -65,18 +190,4 @@ export class GuestEventsListingComponent implements OnInit {
   redirectToLogin() {
     this.router.navigate(['/auth-login']);
   }
-  // constructor(private el: ElementRef) {}
-
-  // ngOnInit() {
-  //   $(document).ready(() => {
-  //     $('#openBtn').click((event: Event) => {
-  //       event.preventDefault();
-  //       $('#myModal').modal('show');
-  //     });
-  //   });
-  // }
-
-  // closeModal() {
-  //   $('#myModal').modal('hide');
-  // }
 }

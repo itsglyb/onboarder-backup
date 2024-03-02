@@ -48,7 +48,8 @@
   }
   
   #msform input,
-  #msform textarea {
+  #msform textarea,
+  #msform select {
     padding: 8px 15px 8px 15px;
     border: 1px solid #ccc;
     border-radius: 0px;
@@ -309,3 +310,5 @@
     display: inline-block;
     margin: 100px auto;
   }
+
+

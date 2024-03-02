@@ -54,7 +54,7 @@ aside {
 }
 .table-title {        
 	padding-bottom: 15px;
-	background: #435d7d;
+	background: #007fe1b2;
 	color: #fff;
 	padding: 16px 30px;
 	min-width: 100%;
@@ -93,8 +93,9 @@ table.table tr th, table.table tr td {
 	padding: 12px 15px;
 	vertical-align: middle;
 }
-table.table tr th:first-child {
-	width: 60px;
+table.table tr th:first-child,
+table.table tr td:first-child {
+	width: 300px; 
 }
 table.table tr th:last-child {
 	width: 100px;
@@ -268,3 +269,24 @@ table.table .avatar {
 	padding-left: 30px;
 	padding-right: 30px;
 }
+
+.btn-primary1 {
+	color: #fff; /* Text color */
+	background-color: #007bff; /* Background color */
+	border-color: #007bff; /* Border color */
+	/* Additional styles such as padding, border-radius, etc. */
+  }
+  
+  .btn-primary1:hover {
+	color: #fff; /* Text color on hover */
+	background-color: #0069d9; /* Background color on hover */
+	border-color: #0062cc; /* Border color on hover */
+	/* Additional styles for hover state */
+  }
+  
+  .btn-primary1:focus,
+  .btn-primary1.focus {
+	/* Additional styles for focus state */
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); /* Example of focus state outline */
+  }
+  

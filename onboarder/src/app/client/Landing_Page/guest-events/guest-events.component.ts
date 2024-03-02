@@ -1,5 +1,6 @@
 import { Component, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 declare var $: any;
 
 @Component({
@@ -9,11 +10,15 @@ declare var $: any;
 })
 export class GuestEventsComponent {
 
-  constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef) {}
+  constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef, private http: HttpClient) {
+    this.getOrgs();
+  }
 
+  OrgArray: any[] = [];
   ngOnInit(): void {
     const n = "#nav";
     const no = ".nav-items";
+    this.getOrgs();
 
     $(n).click(() => {
       const noElement = this.el.nativeElement.querySelector(no);
@@ -33,10 +38,17 @@ export class GuestEventsComponent {
     });
   }
   
+  getOrgs(): void {
+    this.http.get("http://localhost:5000/api/vieworganization")
+    .subscribe((resData:any) => {
+      console.log(resData);
+      this.OrgArray = resData;
+    })
+  }
   // Fires on button click
-  onBtnClick(){
+  onBtnClick(orgID:string){
     // Navigate to /products page
-    this.router.navigate(['/guestEventsListing']);
+    this.router.navigate(['/guestEventsListing', orgID]);
   }
   redirectToLogin() {
     this.router.navigate(['/auth-login']);

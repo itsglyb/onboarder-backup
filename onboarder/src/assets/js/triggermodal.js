@@ -13,6 +13,10 @@ $(document).on('click', '.btn-success', function() {
     $('#viewEventModal').modal('show');
 });
 
+$(document).on('click', '.btn-success12', function() {
+  $('#viewEventModal1').modal('show');
+});
+
 // Mga kiming pahanash sa location-eventsu 
 $('#editEventModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal

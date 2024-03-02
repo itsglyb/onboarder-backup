@@ -9,7 +9,10 @@ const MemForm = require('../models/membershipForm');
 
 const Admin = require('../models/admin');
 const EventRegForm = require('../models/eventregForm');
+const GuestRegForm = require('../models/guestRegForm');
 const MembershipApplication = require('../models/membershipApplication');
+const guestRegForm = require('../models/guestRegForm');
+
 
 
 const ObjectId = mongoose.Types.ObjectId;
@@ -1126,6 +1129,44 @@ router.get('/myEvents/:memID', async (req, res) => {
   }
 });
 
+router.post('/createguestRegForm', async (req, res) => {
+  let orgID = req.body.orgID;
+  let orgName = req.body.orgName;
+  let eventID = req.body.eventID;
+  let guestName = req.body.guestName;
+  let proofofPayment = req.body.proofofPayment;
+  let emailAddress = req.body.emailAddress;
+  let contactno = req.body.contactno;
+  try {
+    const eventRegForm = new GuestRegForm({
+      orgID: orgID,
+      orgName: orgName,
+      eventID: eventID,
+      guestName: guestName,
+      proofofPayment: proofofPayment,
+      emailAddress: emailAddress,
+      contactno: contactno
+    });
+
+    await eventRegForm.save();
+    res.status(201).json({ eventRegForm });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+})
+
+router.get('/myguestEventForm/:eventID', async (req, res) => {
+  try {
+    const eventID = req.params.eventID;
+    const eventForms = await GuestRegForm.find({ eventID: eventID });
+    if (!eventForms || eventForms.length === 0) {
+      return res.status(404).send({ error: 'Members not found for the specified event' });
+    }
+    res.send(eventForms);
+  } catch (error) {
+    res.status(500).send({ error: 'Internal Server Error' });
+  }
+});
 
 module.exports = router
 

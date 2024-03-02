@@ -54,7 +54,7 @@ aside {
 }
 .table-title {        
 	padding-bottom: 15px;
-	background: #435d7d;
+	background: #007fe1b2;
 	color: #fff;
 	padding: 16px 30px;
 	min-width: 100%;
@@ -93,8 +93,9 @@ table.table tr th, table.table tr td {
 	padding: 12px 15px;
 	vertical-align: middle;
 }
-table.table tr th:first-child {
-	width: 60px;
+table.table tr th:first-child,
+table.table tr td:first-child {
+	width: 100px; 
 }
 table.table tr th:last-child {
 	width: 100px;

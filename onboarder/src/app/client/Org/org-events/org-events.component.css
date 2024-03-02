@@ -111,3 +111,15 @@ button {
     width: 300px;
     height: 180px;
 }
+
+.btn .btn-danger, .btn-danger1 {
+	background-color: #F44336;
+	color: white;
+    margin: 10px;
+}
+
+.btn .btn-success, .btn-success1 {
+	background-color: #0a7f29;
+	color: white;
+    margin: 10px;
+}

@@ -164,7 +164,7 @@
                                     <div class="card">
                                         <div class="card-horizontal">
                                             <div class="img-square-wrapper">
-                                                <img class="img-preview" src="{{form.value.poster}}" alt="Card image cap">
+                                                <img class="img-preview" src="{{form.value.poster ? form.value.poster : 'assets/img/image-holder.png'}}" alt="Card image cap">
                                             </div>
                                             <div class="card-body">
                                               <span class="card-date">{{form.value.eventDate}}</span>

@@ -10,6 +10,8 @@ import { DatePipe } from '@angular/common';
 })
 export class AdminEventsComponent implements OnInit{
   EventArray: any[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
   _id = "";
   eventTitle = "";
   eventDesc = "";
@@ -23,7 +25,9 @@ export class AdminEventsComponent implements OnInit{
   eventSeats = "";
   eventPrice = "";
   eventPaymentDetails = "";
-
+  Math: any = Math; 
+  searchQuery: string = '';
+  
   constructor(private http: HttpClient, private datePipe: DatePipe){
     this.getAllEvents();
   }
@@ -142,6 +146,40 @@ export class AdminEventsComponent implements OnInit{
         console.error('Error deleting event:', error);
       }
     )
+  }
+  startIndex(): number {
+    return (this.currentPage - 1) * this.itemsPerPage;
+  }
+
+  // Calculate the end index of the items to display on the current page
+  endIndex(): number {
+    return Math.min(this.startIndex() + this.itemsPerPage - 1, this.EventArray.length - 1);
+  }
+
+  // Function to change the current page
+  setPage(page: number) {
+    this.currentPage = page;
+  }
+
+  search() {
+    // If search query is empty, reset MemberArray to show all members
+    if (!this.searchQuery.trim()) {
+      this.getAllEvents();
+      return;
+    }
+  
+    // Convert searchQuery to lowercase for case-insensitive search
+    const searchTerm = this.searchQuery.toLowerCase();
+  
+    // Filter MemberArray based on search query
+    this.EventArray = this.EventArray.filter(event => {
+      // Check if member and memName property exist
+      if (event && event.eventTitle) {
+        // Perform case-insensitive search on memName
+        return event.eventTitle.toLowerCase().includes(searchTerm);
+      }
+      return false; // Exclude member if memName is not present
+    });
   }
 
   

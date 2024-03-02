@@ -6,6 +6,7 @@ import { LottieModule } from 'ngx-lottie';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { NgxGpAutocompleteModule } from "@angular-magic/ngx-gp-autocomplete";
 import player from 'lottie-web';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -103,6 +104,7 @@ export function playerFactory(): any {
     HttpClientModule,
     ReactiveFormsModule,
     NgxGpAutocompleteModule,
+    NgxPaginationModule,
     LottieModule.forRoot({ player: playerFactory }),  
     
   ],
