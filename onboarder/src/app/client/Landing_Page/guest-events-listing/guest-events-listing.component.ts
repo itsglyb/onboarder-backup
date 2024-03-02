@@ -30,7 +30,8 @@ interface OrgEvent {
 export class GuestEventsListingComponent implements OnInit {
   eventDesc!: string;
   poster!: string;
-  memID: string = ""; // Initialize memID property
+  memID: string = ""; 
+  eventSeats: number = 0;// Initialize memID property
 
   constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef, private route: ActivatedRoute, private http: HttpClient, private formBuilder: FormBuilder) {
   }
@@ -42,7 +43,7 @@ export class GuestEventsListingComponent implements OnInit {
   orgName!:string;
   eventID!: string;
   eventTitle!:string;
-  memType: string = 'Guest'; // Declare and initialize memType here
+  eventInfo: any[] = [];// Declare and initialize memType here
 
   ngOnInit(): void {
     const n = "#nav";
@@ -52,14 +53,11 @@ export class GuestEventsListingComponent implements OnInit {
       this.eventID = params['_id'];
       this.orgName = params['orgName'];
       this.eventTitle = params['eventTitle'];
-      this.memType;
       this.getOrgEvent(this.orgID);
-      this.getMemberID(); // Call function to get memID
     })
 
     this.form = this.formBuilder.group({
-      memName: ['', Validators.required],
-      memType: ['', Validators.required],
+      guestName: ['', Validators.required],
       proofofPayment: ['', Validators.required],
       emailAddress: ['', Validators.required],
       contactno: ['', Validators.required]
@@ -92,17 +90,36 @@ export class GuestEventsListingComponent implements OnInit {
     });
   }
 
-  showModalAfterDelay(eventID: string, poster: string, eventTitle: string) {
-    this.showSusbcFormModal(eventID, poster, eventTitle);
+
+  showModalAfterDelay(eventID: string, poster: string, eventTitle: string, eventSeats: number) {
+    this.showSusbcFormModal(eventID, poster, eventTitle, eventSeats);
 }
 
   
-  showSusbcFormModal(eventID: string, poster: string, eventTitle: string) {
+  showSusbcFormModal(eventID: string, poster: string, eventTitle: string, eventSeats: number) {
     const susbcFormModal = this.el.nativeElement.querySelector('#susbc-form');
     this.eventID = eventID;
     this.poster = poster; // Set the eventID property of the component
     this.eventTitle = eventTitle;
+    this.eventSeats = eventSeats;
     $(susbcFormModal).modal('show');
+}
+
+onChange = ($event: Event) => {
+  const target = $event.target as HTMLInputElement;
+  const file: File = (target.files as FileList)[0];
+  this.convertfiletobase64(file, (base64String) => {
+    this.form.get('proofofPayment')?.setValue(base64String);
+  });
+}
+
+convertfiletobase64(file: File, callback: (base64string: string) => void) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    let base64string = reader.result as string;
+    callback(base64string);
+  };
+  reader.readAsDataURL(file);
 }
 
   
@@ -117,33 +134,37 @@ export class GuestEventsListingComponent implements OnInit {
     const formData = {
         orgID: this.orgID,
         orgName: this.orgName,
-        eventID: this.eventID,
-        memID: this.memID, // Use the memID obtained previously
-        memName: regForm.memName,
-        memType: regForm.memType,
+        eventID: this.eventID,// Use the memID obtained previously
+        guestName: regForm.guestName,
         proofofPayment: regForm.proofofPayment,
         emailAddress: regForm.emailAddress,
         contactno: regForm.contactno
     };
     console.log("Response:", formData);
 
-    // Call getMemberID to ensure memID is fetched before registering
-    this.getMemberID().subscribe(() => {
-      // Send the form data to the backend
-      this.registerToEvent(formData);
-  
-      // Reset form
-      $(subsForm).trigger('reset');
-    
-      // Hide form modal and show thank you modal
-      $(susbcFormModal).modal('hide');
-      $(susbcFormThankModal).modal('show');
-    });
+    this.http.get(`http://localhost:5000/api/thisevent/${this.eventID}`, { withCredentials: true }).subscribe(
+      (event: any) => {
+        const updatedSeats = event.eventSeats - 1;
+        event.eventSeats = updatedSeats;
+        this.http.patch(`http://localhost:5000/api/event/${this.eventID}`, event, { withCredentials: true }).subscribe(
+          () => {
+            this.registerToEvent(formData);
+          },
+          (updateError) => {
+            console.error('Error updating event seats:', updateError);
+          }
+        );
+      },
+      (eventError) => {
+        console.error('Error fetching event details:', eventError);
+      }
+    );
   }
 
   registerToEvent(formData: any) {
-    this.http.post('http://localhost:5000/api/createRegForm', formData, { withCredentials: true }).subscribe(
+    this.http.post('http://localhost:5000/api/createguestRegForm', formData, { withCredentials: true }).subscribe(
         () => {
+            
             const subsForm = this.el.nativeElement.querySelector('#subs-form');
             const susbcFormModal = this.el.nativeElement.querySelector('#susbc-form');
             const susbcFormThankModal = this.el.nativeElement.querySelector('#susbc-form-thank');
@@ -160,21 +181,6 @@ export class GuestEventsListingComponent implements OnInit {
         }
     );
 }
-
-  getMemberID(): Observable<any> {
-    // Make HTTP request to fetch memID
-    return this.http.get<any>('http://localhost:5000/api/member',  { withCredentials: true })
-      .pipe(
-        tap((response) => {
-          this.memID = "Guest"; // Assuming memID is available in the response
-          console.log('Member ID:', this.memID);
-        }),
-        catchError((error) => {
-          console.error('Error fetching member ID:', error);
-          throw error;
-        })
-      );
-  }
 
   closeModal() {
     $('#susbc-form').modal('hide');

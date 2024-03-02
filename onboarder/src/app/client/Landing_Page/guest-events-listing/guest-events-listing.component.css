@@ -304,3 +304,9 @@ input{
 .register-btn {
   margin-bottom: 10px;
 }
+
+.close {
+  border: none;
+  background-color: white;
+  font-size: 20px;
+}

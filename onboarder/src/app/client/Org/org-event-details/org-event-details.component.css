@@ -285,3 +285,33 @@ table.table .avatar {
     height: 300px;
     border-radius: 10px;
 }
+
+.btn-success12 {
+    color: #fff;
+    background-color: #28a745; /* Green */
+    border-color: #28a745; /* Green */
+}
+
+.btn-success12:hover {
+    background-color: #218838; /* Darker green on hover */
+    border-color: #1e7e34; /* Darker green on hover */
+}
+
+.btn-success12:focus, .btn-success12.focus {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5); /* Green focus shadow */
+}
+
+.btn-success12.disabled, .btn-success12:disabled {
+    background-color: #28a745; /* Green for disabled button */
+    border-color: #28a745; /* Green for disabled button */
+}
+
+.btn-success12:not(:disabled):not(.disabled):active, .btn-success12:not(:disabled):not(.disabled).active, .show > .btn-success12.dropdown-toggle {
+    color: #fff;
+    background-color: #1e7e34; /* Darker green for active state */
+    border-color: #1c7430; /* Darker green for active state */
+}
+
+.btn-success12:not(:disabled):not(.disabled):active:focus, .btn-success12:not(:disabled):not(.disabled).active:focus, .show > .btn-success12.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5), 0 0 0 0.2rem rgba(40, 167, 69, 0.5); /* Green focus shadow for active state */
+}

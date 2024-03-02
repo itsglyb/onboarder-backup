@@ -64,9 +64,17 @@
                 <div class="table-responsive">
                     <div class="table-wrapper">
                         <div class="table-title">
-                            <div class="row">
-                                <div class="col-sm-6">
+                            <div class="row p-0 ">
+                                <div class="col-8 m-0 p-0">
                                     <h2><b>Registered Members</b></h2>
+                                </div>
+                                <div class="col-4 m-0 p-0">
+                                  <div class="d-flex justify-content-end ml-auto">
+                                    <div class="input-group">
+                                      <input type="text" class="search form-control" placeholder="Search by event name" [(ngModel)]="searchQuery">
+                                      <button class="btn btn-primary" type="button" (click)="search()">Search</button>
+                                    </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +89,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let member of regMemArray">
+                                <tr *ngFor="let member of regMemArray.slice(startIndex(), endIndex() + 1)">
                                     <td>{{member.memName}}</td>
                                     <td>{{member.memType}}</td>
                                     <td>{{member.emailAddress}}</td>
@@ -95,20 +103,91 @@
                     </div>
                 </div>        
             </div>
+
+            <div class="text-center">
+                <button class="btn btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)">Previous</button>
+                <span>Page {{ currentPage }} of {{ Math.ceil(regMemArray.length / itemsPerPage) }}</span>
+                <button class="btn btn-link" [disabled]="currentPage === Math.ceil(regMemArray.length / itemsPerPage)" (click)="setPage(currentPage + 1)">Next</button>
+              </div>
+
+            <div class="container-xl">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row p-0 ">
+                                <div class="col-8 m-0 p-0">
+                                    <h2><b>Registered Guests</b></h2>
+                                </div>
+                                <div class="col-4 m-0 p-0">
+                                  <div class="d-flex justify-content-end ml-auto">
+                                    <div class="input-group">
+                                      <input type="text" class="search form-control" placeholder="Search by event name" [(ngModel)]="searchQuery">
+                                      <button class="btn btn-primary" type="button" (click)="search1()">Search</button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Full Name</th>
+                                    <th>Email Address</th>
+                                    <th>Contact Number</th>
+                                    <th>Proof of Payment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let guest of regGuestArray.slice(startIndex1(), endIndex1() + 1)">
+                                    <td>{{guest.guestName}}</td>
+                                    <td>{{guest.emailAddress}}</td>
+                                    <td>{{guest.contactno}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success12" data-bs-toggle="modal" data-target="#viewEventModal" (click)="openImage(guest)"><i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>        
+            </div>
+            <div class="text-center">
+                <button class="btn btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)">Previous</button>
+                <span>Page {{ currentPage }} of {{ Math.ceil(regGuestArray.length / itemsPerPage) }}</span>
+                <button class="btn btn-link" [disabled]="currentPage === Math.ceil(regGuestArray.length / itemsPerPage)" (click)="setPage(currentPage + 1)">Next</button>
+              </div>
         </div>
     </div>
 
-    <div class="modal fade" id="viewEventModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngFor="let member of regMemArray">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body center">
-                    <h2>Proof of Payment</h2>
-                    <p *ngIf="!proofofPayment">The member did not submit proof of payment.</p>
-                    <img *ngIf="proofofPayment" class="image" [src]="proofofPayment" alt="Proof of Payment">
+
+    <div *ngFor="let member of regMemArray">
+        <div class="modal fade" id="viewEventModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngIf="_id">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body center">
+                        <h2>Proof of Payment</h2>
+                        <p *ngIf="!proofofPayment">The member did not submit proof of payment.</p>
+                        <img *ngIf="proofofPayment" class="image" [src]="proofofPayment" alt="Proof of Payment">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div *ngFor="let guest of regGuestArray">
+        <div class="modal fade" id="viewEventModal1" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngIf="_id">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body center">
+                        <h2>Proof of Payment</h2>
+                        <p *ngIf="!guest.proofofPayment">The guest did not submit proof of payment.</p>
+                        <img *ngIf="guest.proofofPayment" class="image" [src]="guest.proofofPayment" alt="Proof of Payment">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </body>
   
   
