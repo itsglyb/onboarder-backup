@@ -15,8 +15,19 @@
                 </div>
               </div>
           </nav> 
+          <div class="row justify-content-end">
+            <div class="col-lg-5 ml-auto mb-0 p2">
+                <div class="input-group">
+                    <input type="text" class="search form-control" placeholder="Search by event name" [(ngModel)]="searchQuery">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button" (click)="search()">Search</button>
+                    </div>
+                  </div>
+            </div>
+          </div>
+          
 
-          <div *ngIf="orgEvent$ | async as orgEventArray; else loading">
+          <div  class="event-container" *ngIf="orgEvent$ | async as orgEventArray; else loading" #eventContainer>
             <div class="row">
               <div class="col-12 mt-3">
                 <div class="card" *ngFor="let event of orgEventArray">

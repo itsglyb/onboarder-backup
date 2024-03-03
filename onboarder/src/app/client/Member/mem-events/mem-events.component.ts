@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class MemEventsComponent implements OnInit {
   EventArray: any[] = [];
+  searchQuery: string = '';
+  @ViewChild('eventContainer') eventContainer!: ElementRef;
 
   constructor(private http: HttpClient,
     private router: Router,
@@ -45,6 +47,34 @@ export class MemEventsComponent implements OnInit {
         // Handle errors from the first request if necessary
       }
     );
+  }
+
+  search() {
+    // If search query is empty, reset orgEventArray to show all events
+    if (!this.searchQuery.trim()) {
+      this.getAllEvents();
+      return;
+    }
+  
+    // Convert searchQuery to lowercase for case-insensitive search
+    const searchTerm = this.searchQuery.toLowerCase();
+  
+    // Find index of the event that matches the search query
+    const index = this.EventArray.findIndex(event => {
+      return event.eventTitle.toLowerCase().includes(searchTerm);
+    });
+  
+    if (index !== -1) {
+      // Scroll to the corresponding card
+      this.scrollToEventCard(index);
+    }
+  }
+  
+  scrollToEventCard(index: number) {
+    const eventCard = this.eventContainer.nativeElement.querySelectorAll('.event')[index];
+    if (eventCard) {
+      eventCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   redirecttoEventDetails(orgID: string, _id: string){

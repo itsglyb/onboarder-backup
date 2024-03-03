@@ -23,8 +23,17 @@
 
 <div class="event-container">
   <h3 class="upcoming-events">UPCOMING EVENTS</h3>
-
-  <div *ngIf="orgEvent$ | async as orgEventArray; else loading"> 
+  <div class="col-12 m-0 p-0">
+    <div class="d-flex justify-content-center ml-auto mb-3">
+      <div class="input-group">
+        <input type="text" class="search form-control" placeholder="Search by event name" [(ngModel)]="searchQuery">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" (click)="search()">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class ="event-container" *ngIf="orgEvent$ | async as orgEventArray; else loading" #eventContainer> 
     <div class="event" *ngFor="let event of orgEventArray">
       <div class="event-left">
           <div class="event-date">
