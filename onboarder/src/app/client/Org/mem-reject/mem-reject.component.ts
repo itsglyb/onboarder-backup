@@ -65,6 +65,11 @@ export class MemRejectComponent {
   form!:FormGroup
 
   rejectedApplicationDetails: any[] = [];
+  Math: any = Math;
+  searchQuery: string = '';
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalPages: number = 0;
 
   _id="";
   isVerified = "";
@@ -203,6 +208,41 @@ constructor(
         // Populate the form controls with the received data
         this.form.patchValue(resultData);
       });
+  }
+
+  startIndex(): number {
+    return (this.currentPage - 1) * this.itemsPerPage;
+  }
+
+  // Calculate the end index of the items to display on the current page
+  endIndex(): number {
+    return Math.min(this.startIndex() + this.itemsPerPage - 1, this.rejectedApplicationDetails.length - 1);
+  }
+
+  // Function to change the current page
+  setPage(page: number) {
+    this.currentPage = page;
+  }
+
+  search() {
+    // If search query is empty, reset OrganizationArray to show all organizations
+    if (!this.searchQuery.trim()) {
+      this.getAllApplication();
+      return;
+    }
+
+    // Convert searchQuery to lowercase for case-insensitive search
+    const searchTerm = this.searchQuery.toLowerCase();
+
+    // Filter OrganizationArray based on search query
+    this.rejectedApplicationDetails = this.rejectedApplicationDetails.filter(rej => {
+      // Check if organization and orgName property exist
+      if (rej && rej.fullName) {
+        // Perform case-insensitive search on orgName
+        return rej.fullName.toLowerCase().includes(searchTerm);
+      }
+      return false; // Exclude organization if orgName is not present
+    });
   }
 }
 

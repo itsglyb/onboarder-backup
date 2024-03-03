@@ -37,7 +37,7 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngIf="OrganizationArray.length > 0; else noData">
                                 <tr *ngFor="let OrganizationItem of OrganizationArray.slice(startIndex(), endIndex() + 1)" >
                                     <td><img [src]="OrganizationItem.logo ? OrganizationItem.logo : 'assets/img/profile-pic.png'" alt="Image" style="width: 100px; height: auto;">
                                     </td>
@@ -55,6 +55,11 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <ng-template #noData>
+                                <tr>
+                                    <td class="text-center" colspan="6">No data available</td>
+                                </tr>
+                            </ng-template>
                         </table>
                     </div>
                 </div>        

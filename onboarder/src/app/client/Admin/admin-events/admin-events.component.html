@@ -34,7 +34,7 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngIf="EventArray.length > 0; else noData">
                                 <tr *ngFor="let EventItem of EventArray.slice(startIndex(), endIndex() + 1)">
                                     <td>{{EventItem.orgName}}</td>
                                     <td>{{EventItem.eventTitle}}</td>
@@ -48,6 +48,11 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <ng-template #noData>
+                                <tr>
+                                    <td class="text-center" colspan="6">No data available</td>
+                                </tr>
+                            </ng-template>
                         </table>
                     </div>
                 </div>        
