@@ -4,7 +4,6 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif !important;
   }
   
   html {
@@ -20,6 +19,7 @@
     color: #007FE1;
     font-weight: 600;
     font-size: 35px;
+    font-family: 'Roboto', sans-serif;
   }
   
   #msform {
@@ -57,8 +57,8 @@
     margin-top: 2px;
     width: 100%;
     box-sizing: border-box;
-    font-family: montserrat;
-    color: #007FE1;
+    font-family: 'Nunito', sans-serif;
+    color: black;
     background-color: #ECEFF1;
     font-size: 16px;
     letter-spacing: 1px
@@ -76,37 +76,47 @@
   #msform .action-button {
     width: 100px;
     background: #007FE1;
-    font-weight: bold;
+    font-weight: 500;
     color: white;
     border: 0 none;
-    border-radius: 0px;
+    border-radius: 5px;
     cursor: pointer;
-    padding: 10px 5px;
+    padding: 5px;
     margin: 10px 0px 10px 5px;
-    float: right
+    float: right;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 3px 3px 5px #707070;
+    font-size: 20px;
   }
   
   #msform .action-button:hover,
   #msform .action-button:focus {
-    background-color: #007FE1
+    background-color: transparent;
+    color: black;
+    border: 1.5px solid #007FE1;
   }
   
   #msform .action-button-previous {
     width: 100px;
     background: #616161;
-    font-weight: bold;
+    font-weight: 500;
     color: white;
     border: 0 none;
-    border-radius: 0px;
+    border-radius: 5px;
     cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px 10px 0px;
-    float: right
+    padding: 5px;
+    margin: 10px 0px 10px 5px;
+    float: right;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 3px 3px 5px #707070;
+    font-size: 20px;
   }
   
   #msform .action-button-previous:hover,
   #msform .action-button-previous:focus {
-    background-color: #000000
+    background-color: transparent;
+    color: black;
+    border: 1.5px solid #007FE1;
   }
   
   .card {
@@ -120,7 +130,11 @@
     color: #007FE1;
     margin-bottom: 15px;
     font-weight: normal;
-    text-align: left
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+  }
+  .fs-title {
+    font-family: 'Roboto', sans-serif;
   }
   
   .purple-text {
@@ -133,12 +147,15 @@
     color: gray;
     margin-bottom: 10px;
     font-weight: normal;
-    text-align: right
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
   }
   
   .fieldlabels {
     color: gray;
-    text-align: left
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
   }
   
   #progressbar {

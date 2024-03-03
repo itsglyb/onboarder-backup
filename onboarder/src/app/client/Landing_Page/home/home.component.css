@@ -1,4 +1,37 @@
 /* NAV BAR */
+:root{
+  --bs-secfill:pink;
+}
+.svg-container {
+	position: absolute;
+	bottom: 0;
+  left:0;
+	height: 0;
+	width: 100%;
+	padding-bottom: calc(100% * 97 / 1440);
+}
+  .bg-image {
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.ls-tight {
+    letter-spacing: -0.07em !important;
+}
+.mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-attachment: fixed;
+}
+
 a{
   text-decoration:none;
 }
@@ -164,8 +197,6 @@ p {
   border:1.5x solid #007FE1;
   transition: all ease-in-out 350ms;
 }
-
-
 /*Benefits*/
 #Benefits {
     /* background-color: #bedef7;

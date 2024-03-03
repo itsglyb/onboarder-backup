@@ -8,8 +8,8 @@
                     <!-- progressbar -->
                     <ul id="progressbar">
                         <li class="active" id="account"><strong>Privacy Notice</strong></li>
-                        <li id="information"><strong>Org Information</strong></li>
-                        <li id="goals"><strong>Org Goals</strong></li> 
+                        <li id="information"><strong>Organization Information</strong></li>
+                        <li id="goals"><strong>Organization Goals</strong></li> 
                         <li id="image"><strong>Image</strong></li>
                         <li id="information"><strong>Account Information</strong></li>
                         <li id="confirm"><strong>Finish</strong></li>
@@ -99,10 +99,10 @@
 
 
                                 <label class="fieldlabels">Brief Description of the Organization's Purpose: *</label> 
-                                <input type="text" id="about" name="about" formControlName="about" placeholder="Organization Purpose and Description" /> 
+                                <textarea id="about" name="about" formControlName="about" placeholder="Organization Purpose and Description" rows="4" cols="50"></textarea>
 
                                 <label class="fieldlabels">Organization's History: *</label> 
-                                <input type="text" id="orgHistory" name="orgHistory" formControlName="orgHistory" placeholder="Organization History" /> 
+                                <textarea id="orgHistory" name="orgHistory" formControlName="orgHistory" placeholder="Organization History" rows="4" cols="50"></textarea>
 
                             </div> 
                         
@@ -120,14 +120,15 @@
                                 </div>
                             </div> 
 
-                            <label class="fieldlabels">Mission: </label> 
-                            <input type="text" id="mission" name="orgType" formControlName="mission" placeholder="Mission" /> 
+                            <label class="fieldlabels">Mission: </label>
+                            <textarea id="mission" name="orgType" formControlName="mission" placeholder="Mission" rows="4" cols="50"></textarea>
+                            
 
                             <label class="fieldlabels">Vision: </label> 
-                            <input type="text" id="vision" formControlName="vision" placeholder="Vision" /> 
+                            <textarea id="vision" formControlName="vision" placeholder="Vision" rows="4" cols="50"></textarea>
 
                             <label class="fieldlabels">Core Values: </label>
-                            <input type="text"  id="coreValues" formControlName="coreValues" placeholder="Core Values" />
+                            <textarea  id="coreValues" formControlName="coreValues" placeholder="Core Values" rows="4" cols="50"></textarea>
 
                     </div> 
                         

@@ -42,8 +42,27 @@
                     </div>
                 </div>
             </div>
-
             <div *ngIf="OrgArray && OrgArray.length > 0; else loading">
+              <div class="row">
+                <div class="col-md-4" *ngFor="let org of OrgArray">
+                  <div class="card profile-card-3">
+                    <div class="background-block">
+                      <img src="assets\img\bg_04.png" alt="profile-sample1" class="background"/>
+                    </div>
+                    <div class="profile-thumb-block">
+                      <img [src]="org.logo ? org.logo : 'assets/img/profile-pic.png'" alt="profile-image" class="profile"/>
+                    </div>
+                    <div class="card-content">
+                      <h2>{{org.orgName }}<small>{{org.orgType}}</small></h2>
+                      <button (click)="onBtnClick(org._id)" class="btn card_btn">VIEW EVENTS</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+            
+
+            <!-- <div *ngIf="OrgArray && OrgArray.length > 0; else loading">
                 <div class="row" *ngFor="let org of OrgArray">
 
                     <div class="col-md-4">
@@ -60,8 +79,15 @@
                           </div>
                       </div>
                   </div>
-              </div>
+              </div> -->
   
           </div>
-            </div>
+        </div>
       </section>
+
+      <footer class="bg-primary text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3 text-white">
+          © 2023 Copyright: Technovators | Academic Year 2023 - 2024
+        </div>
+      </footer>
