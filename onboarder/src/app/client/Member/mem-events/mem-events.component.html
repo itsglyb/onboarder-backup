@@ -10,11 +10,19 @@
                   <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
                     <a class="navbar-brand col-lg-9 me-0">My Events</a>
                   </div>
+                  <div class="d-flex justify-content-center ml-auto mb-0 col-6">
+                    <div class="input-group">
+                      <input type="text" class="search form-control" placeholder="Search by event name" [(ngModel)]="searchQuery">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" (click)="search()">Search</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </nav>
             
-            <div *ngIf="EventArray && EventArray.length > 0; else loading" >
-              <div *ngFor="let event of EventArray">
+            <div class="event-container" *ngIf="EventArray && EventArray.length > 0; else loading" #eventContainer>
+              <div class="event" *ngFor="let event of EventArray">
   
               <div class="row">
                 <div class="col-12 mt-3">

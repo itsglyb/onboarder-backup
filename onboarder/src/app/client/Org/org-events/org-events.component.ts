@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { ElementRef, NgModule, ViewChild } from '@angular/core';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -43,6 +43,7 @@ export class OrgEventsComponent implements OnInit {
   ];
 
   orgEventArray: OrgEvent[] = [];
+  orgID!: string;
   _id = "";
   eventTitle = "";
   eventDesc = "";
@@ -56,6 +57,8 @@ export class OrgEventsComponent implements OnInit {
   eventSeats = "";
   eventPrice = "";
   eventPaymentDetails = "";
+  searchQuery: string = '';
+  @ViewChild('eventContainer') eventContainer!: ElementRef;
 
 
   constructor(
@@ -67,8 +70,8 @@ export class OrgEventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const orgID = params['orgID'];
-      this.getOrgEvent(orgID);
+      this.orgID = params['orgID'];
+      this.getOrgEvent(this.orgID);
     })
   }
 
@@ -156,6 +159,34 @@ export class OrgEventsComponent implements OnInit {
       }
     );
   }  
+
+  search() {
+    // If search query is empty, reset orgEventArray to show all events
+    if (!this.searchQuery.trim()) {
+      this.getOrgEvent(this.orgID);
+      return;
+    }
+  
+    // Convert searchQuery to lowercase for case-insensitive search
+    const searchTerm = this.searchQuery.toLowerCase();
+  
+    // Find index of the event that matches the search query
+    const index = this.orgEventArray.findIndex(event => {
+      return event.eventTitle.toLowerCase().includes(searchTerm);
+    });
+  
+    if (index !== -1) {
+      // Scroll to the corresponding card
+      this.scrollToEventCard(index);
+    }
+  }
+  
+  scrollToEventCard(index: number) {
+    const eventCard = this.eventContainer.nativeElement.querySelectorAll('.card')[index];
+    if (eventCard) {
+      eventCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 
 
   redirecttoEventDetails(orgID: string, _id: string){

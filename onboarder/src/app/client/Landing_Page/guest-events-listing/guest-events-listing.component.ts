@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -32,6 +32,7 @@ export class GuestEventsListingComponent implements OnInit {
   poster!: string;
   memID: string = ""; 
   eventSeats: number = 0;// Initialize memID property
+  @ViewChild('eventContainer') eventContainer!: ElementRef;
 
   constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef, private route: ActivatedRoute, private http: HttpClient, private formBuilder: FormBuilder) {
   }
@@ -43,7 +44,8 @@ export class GuestEventsListingComponent implements OnInit {
   orgName!:string;
   eventID!: string;
   eventTitle!:string;
-  eventInfo: any[] = [];// Declare and initialize memType here
+  eventInfo: any[] = [];
+  searchQuery: string = '';// Declare and initialize memType here
 
   ngOnInit(): void {
     const n = "#nav";
@@ -181,6 +183,35 @@ convertfiletobase64(file: File, callback: (base64string: string) => void) {
         }
     );
 }
+
+search() {
+  // If search query is empty, reset orgEventArray to show all events
+  if (!this.searchQuery.trim()) {
+    this.getOrgEvent(this.orgID);
+    return;
+  }
+
+  // Convert searchQuery to lowercase for case-insensitive search
+  const searchTerm = this.searchQuery.toLowerCase();
+
+  // Find index of the event that matches the search query
+  const index = this.orgEventArray.findIndex(event => {
+    return event.eventTitle.toLowerCase().includes(searchTerm);
+  });
+
+  if (index !== -1) {
+    // Scroll to the corresponding card
+    this.scrollToEventCard(index);
+  }
+}
+
+scrollToEventCard(index: number) {
+  const eventCard = this.eventContainer.nativeElement.querySelectorAll('.event')[index];
+  if (eventCard) {
+    eventCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 
   closeModal() {
     $('#susbc-form').modal('hide');
