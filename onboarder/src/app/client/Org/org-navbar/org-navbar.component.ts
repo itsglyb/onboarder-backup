@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 
 declare var $: any; // Declare jQuery to avoid TypeScript errors
@@ -16,13 +16,16 @@ export class OrgNavbarComponent implements OnInit {
   orgID!: string;
   expirationDate!:string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private renderer: Renderer2, private el: ElementRef,  private http:HttpClient,
+    private router: Router) { }
 
   redirecttoOrgEvent(orgID: string) {
     this.router.navigate(['/org-events', orgID]);
   }
 
   ngOnInit(): void {
+    this.initializeSidebar();
+
     this.http.get('http://localhost:5000/api/organization', {
       withCredentials: true
     }).subscribe(
@@ -51,6 +54,49 @@ export class OrgNavbarComponent implements OnInit {
     }).catch(error => {
       console.error('Error loading navbar.js', error);
     });
+  }
+
+  private initializeSidebar(): void {
+    const body = document.querySelector("body"),
+      sidebar = document.querySelector(".sidebar"),
+      toggle = document.querySelector(".toggle"),
+      modeSwitch = document.querySelector(".toggle-switch"),
+      modeText = document.querySelector(".mode-text"),
+      searchBtn = document.querySelector(".search-bar");
+
+    if (modeSwitch) {
+      modeSwitch.addEventListener("click", () => {
+        if (body) {
+          body.classList.toggle("dark");
+
+          if (body.classList.contains("dark")) {
+            if (modeText instanceof HTMLElement) {
+              modeText.innerText = " Light Mode ";
+            }
+          } else {
+            if (modeText instanceof HTMLElement) {
+              modeText.innerText = " Dark Mode ";
+            }
+          }
+        }
+      });
+    }
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        if (sidebar) {
+          sidebar.classList.toggle("close");
+        }
+      });
+    }
+
+    if (searchBtn) {
+      searchBtn.addEventListener("click", () => {
+        if (sidebar) {
+          sidebar.classList.remove("close");
+        }
+      });
+    }
   }
 
   logout() {

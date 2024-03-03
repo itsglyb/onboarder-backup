@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-mem-navbar',
   templateUrl: './mem-navbar.component.html',
@@ -9,14 +8,12 @@ import { Router } from '@angular/router';
 })
 export class MemNavbarComponent implements OnInit {
   member!: string;
-  constructor(
-    private http:HttpClient,
-    private router: Router
-  ) { }
+  
+  constructor(private renderer: Renderer2, private el: ElementRef,  private http:HttpClient,
+    private router: Router) { }
 
   ngOnInit(): void {
-
-    
+    this.initializeSidebar();
 
     this.http.get('http://localhost:5000/api/member', {
       withCredentials: true
@@ -40,6 +37,49 @@ export class MemNavbarComponent implements OnInit {
     }).catch(error => {
       console.error('Error loading navbar.js', error);
     });
+  }
+
+  private initializeSidebar(): void {
+    const body = document.querySelector("body"),
+      sidebar = document.querySelector(".sidebar"),
+      toggle = document.querySelector(".toggle"),
+      modeSwitch = document.querySelector(".toggle-switch"),
+      modeText = document.querySelector(".mode-text"),
+      searchBtn = document.querySelector(".search-bar");
+
+    if (modeSwitch) {
+      modeSwitch.addEventListener("click", () => {
+        if (body) {
+          body.classList.toggle("dark");
+
+          if (body.classList.contains("dark")) {
+            if (modeText instanceof HTMLElement) {
+              modeText.innerText = " Light Mode ";
+            }
+          } else {
+            if (modeText instanceof HTMLElement) {
+              modeText.innerText = " Dark Mode ";
+            }
+          }
+        }
+      });
+    }
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        if (sidebar) {
+          sidebar.classList.toggle("close");
+        }
+      });
+    }
+
+    if (searchBtn) {
+      searchBtn.addEventListener("click", () => {
+        if (sidebar) {
+          sidebar.classList.remove("close");
+        }
+      });
+    }
   }
 
   logout() {

@@ -190,4 +190,8 @@ convertfiletobase64(file: File, callback: (base64string: string) => void) {
   redirectToLogin() {
     this.router.navigate(['/auth-login']);
   }
+
+  backToOrgsPage() {
+    this.router.navigate(['/guestEvents']);
+  }
 }
