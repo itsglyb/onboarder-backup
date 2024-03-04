@@ -19,32 +19,22 @@
             </nav> 
 
             <div class="row" *ngIf="OrganizationArray && OrganizationArray.length > 0; else loading">
-              <div class="col-6 mt-3">
-                  <div class="card" *ngFor="let OrganizationItem of OrganizationArray" >
-                      <div class="card-horizontal">
-                          <div class="img-square-wrapper">
-                              <img class="img-logo" [src]="OrganizationItem.logo ? OrganizationItem.logo : 'assets/img/profile-pic.png'" alt="Card image cap">
-                          </div>
-
-                          
-                          <div class="card-body" >
-
-                            <h4 class="card-eventtitle">{{OrganizationItem.orgName}}</h4>
-                            <p class="card-text">{{OrganizationItem.about}}</p>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                              <button class="btn btn-primary" (click)="redirectToOrgProfile(OrganizationItem._id)">Read More</button>
-
-                            </div>   
-                            
-                            
-
-
-                          </div>
-                      </div>
+              <div class="col-md-4" *ngFor="let org of OrganizationArray">
+                <div class="card profile-card-3">
+                  <div class="background-block">
+                    <img src="assets\img\bg_04.png" alt="profile-sample1" class="background"/>
                   </div>
+                  <div class="profile-thumb-block">
+                    <img [src]="org.logo ? org.logo : 'assets/img/profile-pic.png'" alt="profile-image" class="profile"/>
+                  </div>
+                  <div class="card-content">
+                    <h2>{{org.orgName }}<small>{{org.orgType}}</small></h2>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <button class="btn btn-primary" (click)="redirectToOrgProfile(org._id)">Read More</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-         
             </div>
 
             <ng-template #loading>

@@ -33,6 +33,10 @@ export class GuestEventsListingComponent implements OnInit {
   memID: string = ""; 
   eventSeats: number = 0;// Initialize memID property
   @ViewChild('eventContainer') eventContainer!: ElementRef;
+  eventTime!: string;
+  location!: string;
+  eventPrice!: string;
+  eventPaymentDetails!: string;
 
   constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef, private route: ActivatedRoute, private http: HttpClient, private formBuilder: FormBuilder) {
   }
@@ -93,17 +97,22 @@ export class GuestEventsListingComponent implements OnInit {
   }
 
 
-  showModalAfterDelay(eventID: string, poster: string, eventTitle: string, eventSeats: number) {
-    this.showSusbcFormModal(eventID, poster, eventTitle, eventSeats);
+  showModalAfterDelay(eventID: string, poster: string, eventTitle: string, eventSeats: number, eventTime: string, location: string, eventDesc:string, eventPrice: string, eventPaymentDetails: string) {
+    this.showSusbcFormModal(eventID, poster, eventTitle, eventSeats, eventTime, location, eventDesc, eventPrice, eventPaymentDetails);
 }
 
   
-  showSusbcFormModal(eventID: string, poster: string, eventTitle: string, eventSeats: number) {
+  showSusbcFormModal(eventID: string, poster: string, eventTitle: string, eventSeats: number, eventTime: string, location: string, eventDesc: string, eventPrice: string, eventPaymentDetails: string) {
     const susbcFormModal = this.el.nativeElement.querySelector('#susbc-form');
     this.eventID = eventID;
     this.poster = poster; // Set the eventID property of the component
     this.eventTitle = eventTitle;
     this.eventSeats = eventSeats;
+    this.eventTime = eventTime;
+    this.location = location;
+    this.eventDesc = eventDesc;
+    this.eventPaymentDetails = eventPaymentDetails;
+    this.eventPrice = eventPrice;
     $(susbcFormModal).modal('show');
 }
 

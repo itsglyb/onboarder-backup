@@ -39,7 +39,7 @@
           <div class="event-date">
               <p class="date">{{event.eventDate}}</p>
           </div>
-          <img [src]="event.poster ? event.poster : 'assets/img/profile-pic.png'" alt="Events Banner">
+          <img [src]="event.poster ? event.poster : 'assets/img/image-holder-pic.png'" alt="Events Banner" class="poster">
       </div>
   
       <div class="event-right">     
@@ -54,7 +54,7 @@
               <i class="fa fa-location-dot"></i> <span>{{event.location ? event.location : 'No data provided'}}</span>
           </div>
           <div class="register-btn">
-              <button class="btn btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle, +event.eventSeats)" [disabled]="+event.eventSeats === 0">Register</button>
+              <button class="btn btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle, +event.eventSeats, event.eventTime, event.location, event.eventDesc, event.eventPrice, event.eventPaymentDetails)" [disabled]="+event.eventSeats === 0">Register</button>
           </div>
       </div>
     </div>
@@ -70,6 +70,7 @@
           <div class="text-center">
             <img class="img-fluid" [src]="poster ? poster : 'assets/img/image-holder.png'" alt="" style="width: 30%;">
             <h4>{{eventTitle}}</h4>
+            <p>{{eventDesc}}</p>
           </div>
           <div class="row">
             <div class="col-md-12">
