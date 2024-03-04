@@ -660,6 +660,7 @@ router.post('/createEvent', async (req, res) => {
   let eventDesc = req.body.eventDesc;
   let eventDate = req.body.eventDate;
   let eventTime = req.body.eventTime;
+  let eventType = req.body.eventType;
   let location = req.body.location;
   let meetingURL = req.body.meetingURL;
   let poster = req.body.poster;
@@ -688,6 +689,7 @@ router.post('/createEvent', async (req, res) => {
       eventDesc: eventDesc,
       eventDate: eventDate,
       eventTime: eventTime,
+      eventType: eventType,
       location: location,
       meetingURL: meetingURL,
       poster: poster,

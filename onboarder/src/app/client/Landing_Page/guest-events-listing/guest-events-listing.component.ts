@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, catchError, tap } from 'rxjs';
+import { map } from 'rxjs/operators';
 declare var $: any;
 
 interface OrgEvent {
@@ -12,6 +13,7 @@ interface OrgEvent {
   eventDesc: string;
   eventDate: Date;
   eventTime: string;
+  eventType: string,
   location: string;
   meetingURL: string;
   poster: string;
@@ -88,11 +90,14 @@ export class GuestEventsListingComponent implements OnInit {
   }
 
   getOrgEvent(orgID: string) {
-    this.orgEvent$ = this.http.get<OrgEvent[]>(`http://localhost:5000/api/events/${orgID}`);
-    this.orgEvent$.subscribe((data) => {
-      this.orgEventArray = data;
+    this.orgEvent$ = this.http.get<OrgEvent[]>(`http://localhost:5000/api/events/${orgID}`).pipe(
+      map(events => events.filter(event => event.eventType === 'Public'))
+    );
+    
+    this.orgEvent$.subscribe((filteredEvents) => {
+      this.orgEventArray = filteredEvents;
       // Update the length variable
-      console.log('Organization Events:', data);
+      console.log('Organization Public Events:', filteredEvents);
     });
   }
 

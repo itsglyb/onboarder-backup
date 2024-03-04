@@ -40,7 +40,13 @@
                                 
                                 <label class="fieldlabels">Time of the Event: *</label> 
                                 <input type="time" id="eventTime" name="eventTime" formControlName="eventTime" step="any/"/>
-    
+
+                                <label class="fieldlabels">Type of the Event: *</label>
+                                <select id="eventType" class="form-control" formControlName="eventType" name="eventType">
+                                    <option value="" disabled selected></option>
+                                    <option value="Exclusive">Exclusive</option>
+                                    <option value="Public">Public</option>
+                                </select>
     
                             </div> 
 

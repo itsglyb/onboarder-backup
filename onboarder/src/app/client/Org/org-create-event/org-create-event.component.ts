@@ -48,6 +48,7 @@ export class OrgCreateEventComponent implements OnInit{
         eventDesc: ['', Validators.required],
         eventDate : ['', Validators.required],
         eventTime: ['', Validators.required],
+        eventType: ['', Validators.required],
         location: ['', Validators.required],
         meetingURL: ['', Validators.required],
         poster: ['', Validators.required],
@@ -107,7 +108,8 @@ export class OrgCreateEventComponent implements OnInit{
           !event.eventTitle.trim() ||
           !event.eventDesc.trim() ||
           !event.eventDate.trim() ||
-          !event.eventTime.trim()
+          !event.eventTime.trim() ||
+          !event.eventType.trim()
         ) {
           Swal.fire("Error", "Please fill up all the required fields in Step 1", "error");
           this.isStep1Valid = false;
@@ -200,6 +202,7 @@ export class OrgCreateEventComponent implements OnInit{
             eventDesc: event.eventDesc,
             eventDate: event.eventDate,
             eventTime: event.eventTime,
+            eventType: event.eventType,
             location: event.location,
             meetingURL: event.meetingURL,
             poster: event.poster,
