@@ -27,6 +27,11 @@ aside {
     max-width: 100%;
 }
 
+.card-img-overlay{
+  display: flex; /* Make the overlay a flex container */
+  justify-content: center; /* Horizontally center the content */
+}
+
 .content {
     /* Scrollable content area */
     flex: 1; /* Allow content to grow and take remaining space */
@@ -179,8 +184,9 @@ label {
 }
 
 .card-body {
-    justify-content: center;
-    align-items: center;
+  flex-direction: column; /* Stack elements vertically (optional) */
+  justify-content: center; /* Horizontally center the content */
+  justify-content: center;
 }
 
 .btn {

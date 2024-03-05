@@ -43,7 +43,11 @@ aside {
 
 .container-fluid {
     padding-bottom: 10px;
-    border-bottom: 1px solid #a0a0a0;
+}
+
+.card-img-overlay {
+  display: flex; /* Make the overlay a flex container */
+  justify-content: center; /* Horizontally center the content */
 }
 
 .content {
@@ -51,8 +55,8 @@ aside {
 }
 
 .navbar-brand {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
 	font-size: 35px;
 }
 
@@ -85,6 +89,10 @@ aside {
     transform: translate(-50%, -50%);
     font-size: 0.8rem;
     z-index: 1;
+}
+
+.text-xs {
+  font-size: 1.2rem;
 }
 
 .image-area img {
@@ -123,7 +131,10 @@ aside {
 .card-horizontal {
     display: flex;
     flex: 1 1 auto;
+    text-align: left;
 }
+
+
 
 .text-title {
     padding: 10px;
@@ -153,9 +164,15 @@ aside {
     border-bottom: 1px solid #435d7d;
 }
 
+.border-left-primary {
+  border-left: 0.25rem solid #4e73df!important;
+}
+
 .card-body {
-    justify-content: center;
-    align-items: center;
+  display: flex; /* Make the card body a flex container */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align content to the left edge */
+  justify-content: center; /* Horizontally center the content (optional) */
 }
 
 .btn {
