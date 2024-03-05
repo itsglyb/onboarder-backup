@@ -6,14 +6,12 @@
 
         <div class="content">
             <nav class="navbar navbar-expand-lg  rounded" aria-label="Thirteenth navbar example">
-                <div class="container-fluid">          
+                <div class="container-fluid">
                   <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
                     <a class="navbar-brand col-lg-9 me-0">Member Verification Panel</a>
                   </div>
                 </div>
-            </nav>  
-    
-
+            </nav>
             <div class="container-xl">
                 <div class="table-responsive">
                     <div class="table-wrapper">
@@ -49,7 +47,7 @@
                                     <td>{{ApplicationItem.fullName}}</td>
                                     <td>{{ApplicationItem.email}}</td>
                                     <td>{{ApplicationItem.dateCreated}}</td>
-                                    
+
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewMemberModal" (click)="setView(ApplicationItem)"><i class="fa-solid fa-eye"></i></button>
                                     </td>
@@ -66,7 +64,7 @@
                           </ng-template>
                         </table>
                     </div>
-                </div>        
+                </div>
             </div>
             <div class="text-center">
               <button class="btn btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)">Previous</button>
@@ -87,11 +85,11 @@
               <div class="form-group">
                 <textarea type="text" class="form-control" id="editUserEmail" placeholder="Remarks" formControlName="remarks" required=""></textarea>
               </div>
-            
+
               <button type="submit" (click)="reject(rejectModalId)" class="btn btn-danger" data-bs-dismiss="modal">Reject</button>
               <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
             </form>
-            
+
         </div>
         </div>
     </div>
@@ -116,35 +114,35 @@
     <div class="modal-dialog" >
         <div class="modal-content">
         <div class="modal-body text-center center">
-            
+
             <form class="row g-3 needs-validation"  *ngIf="(memForm$ | async) as memForm">
 
                 <div class="row" *ngIf="memForm.personalInfo">
                   <div class="col-md-12 position-relative">
                     <h5 class="card-title">
-                      <label for="categorytitle">Personal Information</label> 
+                      <label for="categorytitle">Personal Information</label>
                     </h5>
                   </div>
                 </div>
-  
+
                 <div class="col-md-12 position-relative" *ngIf="memForm.photo">
-  
+
                   <label class="form-label" for="customFile" readonly>2x2 Photo</label>
                   <div>
                     <p *ngIf="!photo" style="color: red;">The applicant did not submit.</p>
                     <img [src]="photo" class="img">
                   </div>
                 </div>
-  
+
                 <br>
 
                   <div class="col-md-12 position-relative" *ngIf="memForm.fullName">
                     <label for="fullName" class="form-label">Full Name</label>
 
                     <input type="text" class="form-control" id="validationTooltip01" placeholder="ex. Dela Cruz, Juan R." [(ngModel)]="fullName" [ngModelOptions]="{standalone: true}"readonly>
-                    
+
                   </div>
-  
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.sex">
                     <label for="sex" class="form-label">Sex</label>
 
@@ -152,21 +150,21 @@
                       <option selected readonly value="">Choose...</option>
                       <option>Male</option>
                       <option>Female</option>
-                    </select>          
+                    </select>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.birthDate">
                     <label for="birthDate" class="form-label">Date of Birth</label>
                     <input type="text" class="form-control" id="validationTooltip02" placeholder="Date of Birth" [(ngModel)]="birthDate" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.placeOfBirth">
                     <label for="placeOfBirth" class="form-label">Place of Birth</label>
                     <input type="text" class="form-control" id="validationTooltip02" placeholder="City of Birth" [(ngModel)]="placeOfBirth" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.civilStatus">
-  
+
                     <label for="civilStatus" class="form-label">Civil Status</label>
                     <select class="form-select" id="validationTooltip04" [(ngModel)]="civilStatus" [ngModelOptions]="{standalone: true}" readonly>
                       <option selected readonly value="">Choose...</option>
@@ -175,54 +173,54 @@
                       <option>Divorced</option>
                       <option>Widowed</option>
                       <option>In Civil Partnership</option>
-                    </select>         
+                    </select>
                   </div>
-  
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.religion">
                     <label for="religion" class="form-label">Religion</label>
                     <input type="text" class="form-control" id="validationTooltip01" placeholder="Please enter your religion" [(ngModel)]="religion" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.address">
                     <label for="address" class="form-label">Full Address</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your full address" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.zip">
                     <label for="zip" class="form-label">Zip</label>
                     <input type="text" class="form-control" id="validationTooltip05" placeholder="Please enter your zip code" [(ngModel)]="zip" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.email">
                     <label for="email" class="form-label">Email Address</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your email address" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.contactNum">
                     <label for="contactNum" class="form-label">Contact Number</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your contact number" [(ngModel)]="contactNum" [ngModelOptions]="{standalone: true}" readonly>
-                  </div> 
-                  
+                  </div>
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.linkedIn">
                     <label for="linkedIn" class="form-label">LinkedIn Account</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your LinkedIn account name" [(ngModel)]="linkedIn" [ngModelOptions]="{standalone: true}" readonly>
-                  </div>   
-  
+                  </div>
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.facebook">
                     <label for="facebook" class="form-label">Facebook Name</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your Facebook name" [(ngModel)]="facebook" [ngModelOptions]="{standalone: true}" readonly>
-                  </div>   
-  
+                  </div>
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.skype">
                     <label for="skype" class="form-label">Skype Username</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your Skype name" [(ngModel)]="skype" [ngModelOptions]="{standalone: true}" readonly>
-                  </div> 
-  
+                  </div>
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.zoom">
                     <label for="zoom" class="form-label">Zoom Username</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your Zoom name" [(ngModel)]="zoom" [ngModelOptions]="{standalone: true}" readonly>
-                  </div> 
-  
+                  </div>
+
                   <br>
                   <br>
 
@@ -231,37 +229,37 @@
                       <h5 class="card-title">ID Card and Licenses</h5>
                     </div>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.prcNo">
                     <label for="validationTooltip04" class="form-label">PRC License No.</label>
                     <input type="text" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" [(ngModel)]="prcNo" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.prcDate">
                     <label for="validationTooltip04" class="form-label">PRC Registration Date</label>
                     <input type="date" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" [(ngModel)]="prcDate" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.prcExpiration">
                     <label for="validationTooltip04" class="form-label">PRC Expiration Date</label>
                     <input type="date" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" [(ngModel)]="prcExpiration" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.studentID">
                     <label for="validationTooltip04" class="form-label">Student ID No.</label>
                     <input type="text" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" [(ngModel)]="studentID" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.aviation">
                     <label for="validationTooltip04" class="form-label">Aviation License No.</label>
                     <input type="text" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" [(ngModel)]="aviation" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.caap">
                     <label for="validationTooltip04" class="form-label">CAAP ID No.</label>
                     <input type="text" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" [(ngModel)]="caap" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.taxID">
                     <label for="validationTooltip04" class="form-label">Tax ID No.</label>
                     <input type="text" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" [(ngModel)]="taxID" [ngModelOptions]="{standalone: true}" readonly>
@@ -275,22 +273,22 @@
                       <h5 class="card-title"> Educational Attainment</h5>
                     </div>
                   </div>
-  
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.tertiary">
                     <label for="validationTooltip05" class="form-label">Tertiary University / College</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your undergraduate university" [(ngModel)]="tertiary" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative" *ngIf="memForm.tertiaryDegree">
                     <label for="validationTooltip05" class="form-label">Degree</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your degree" [(ngModel)]="tertiaryDegree" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.tertiaryYear">
                     <label for="validationTooltip05" class="form-label">Year of Graduation</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your year of graduation" [(ngModel)]="tertiaryYear" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.tertiaryDiploma">
                     <label class="form-label" for="customFile" readonly>Diploma Photo</label>
                     <div>
@@ -298,22 +296,22 @@
                         <img *ngIf="tertiaryDiploma"[src]="tertiaryDiploma" class="diploma">
                       </div>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.masteral">
                     <label for="validationTooltip05" class="form-label">Masteral University / College</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your masteral university" [(ngModel)]="masteral" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.masteralDegree">
                     <label for="validationTooltip05" class="form-label">Degree</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your degree" [(ngModel)]="masteralDegree" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.masteralYear">
                     <label for="validationTooltip05" class="form-label">Year of Graduation</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your year of graduation" [(ngModel)]="masteralYear" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.masteralDiploma">
                     <label class="form-label" for="customFile" readonly>Diploma Photo</label>
                     <div>
@@ -321,22 +319,22 @@
                         <img *ngIf="masteralDiploma" [src]="masteralDiploma" class="diploma">
                       </div>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.doctoral">
                     <label for="validationTooltip05" class="form-label">Doctoral University / College</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your doctoral university" [(ngModel)]="doctoral" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.doctoralDegree">
                     <label for="validationTooltip05" class="form-label">Degree</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your degree" [(ngModel)]="doctoralDegree" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.doctoralYear">
                     <label for="validationTooltip05" class="form-label">Year of Graduation</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your year of graduation" [(ngModel)]="doctoralYear" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.doctoralDiploma">
                     <label class="form-label" for="customFile" readonly>Diploma Photo</label>
                     <div>
@@ -345,7 +343,7 @@
                       </div>
                   </div>
 
-                  <br> 
+                  <br>
                   <br>
 
                   <div class="row"*ngIf="memForm.employmentDetails">
@@ -353,12 +351,12 @@
                       <h5 class="card-title">Employment Details</h5>
                     </div>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.employer">
                     <label for="validationTooltip05" class="form-label">Current Employer</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your current employer" [(ngModel)]="employer" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
+
                   <div class="col-md-12 position-relative"*ngIf="memForm.jobTitle">
                     <label for="validationTooltip05" class="form-label">Job Title</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your job title" [(ngModel)]="jobTitle" [ngModelOptions]="{standalone: true}" readonly>
@@ -368,8 +366,8 @@
                     <label for="validationTooltip05" class="form-label">Employer Address</label>
                     <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your job title" [(ngModel)]="employerAdd" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
-    
+
+
 
                   <br>
                   <br>
@@ -383,10 +381,10 @@
                   <div class="col-md-12 position-relative"*ngIf="memForm.memType1">
                     <label for="sex" class="form-label">Membership Type</label>
 
-                    <input type="text" class="form-control" id="validationTooltip04" [(ngModel)]="chooseMem" [ngModelOptions]="{standalone: true}" readonly>        
+                    <input type="text" class="form-control" id="validationTooltip04" [(ngModel)]="chooseMem" [ngModelOptions]="{standalone: true}" readonly>
                   </div>
-  
-    
+
+
                   <div class="col-md-15 position-relative"*ngIf="memForm.payment">
                     <label class="form-label" for="customFile" readonly>Proof of Payment</label>
                     <div>
