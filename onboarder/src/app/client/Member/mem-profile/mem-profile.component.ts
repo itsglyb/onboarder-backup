@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-mem-profile',
@@ -13,14 +14,22 @@ export class MemProfileComponent implements OnInit {
   memberemail!: string;
   member_id!: string;
   MemberArray: any[] = [];
+  form!: FormGroup;
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
     this.fetchMemberInfo();
+    this.form = this.formBuilder.group({
+      memberfirstName: [''],
+      memberlastName: [''],
+      memberemail: ['']
+
+    })
   }
 
   private fetchMemberInfo(): void {
