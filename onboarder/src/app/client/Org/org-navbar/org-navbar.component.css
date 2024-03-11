@@ -63,7 +63,8 @@ body {
 }
 
 .header-text .sub {
-  margin-top: -2px;
+  margin-top: 5px;
+  font-weight: 400;
 }
 
 .sidebar header .toggle {

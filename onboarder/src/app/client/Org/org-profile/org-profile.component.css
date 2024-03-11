@@ -55,9 +55,15 @@ aside {
 }
 
 .navbar-brand {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: 'Roboto';
   font-weight: 700;
 	font-size: 35px;
+}
+.breadcrumb {
+    margin-top: 10px; 
+    font-family: 'Nunito'; 
+    font-size: 18px;
+    
 }
 
 

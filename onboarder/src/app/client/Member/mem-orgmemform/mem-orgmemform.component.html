@@ -6,12 +6,12 @@
 
 
       <div class="content">
-        <!--New Membership Form-->
+        <!--New Membership Form-
         <div class="accordion" id="accordionExample" [formGroup]="form"(submit)="submit()" *ngIf="(memForm$ | async) as memForm">
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <h5 class="card-title"><input class="form-check-input"  type="checkbox" value="" id="categorytitle" onchange="checkAll(this)" formControlName="personalInfo" [checked]="form.get('personalInfo')?.value" ng-model="all" style="margin-right: 5px;">
+                <h5 class="card-title">
                 <label for="categorytitle">Personal Information</label> </h5>
               </button>
             </h2>
@@ -447,9 +447,9 @@
             </div>
           </div>
         </div>
+      -->
 
-
-        <!--OLD MEMBERSHIP FORM
+        <!--OLD MEMBERSHIP FORM-->
           <div class="card">
             <h5 class="card-header">Membership Form</h5>
             <div class="card-body">
@@ -604,7 +604,7 @@
                 <br>
                 <br>
 
-                <div class="row" *ngIf="memForm.idLicense">  >
+                <div class="row" *ngIf="memForm.idLicense">  
                   <div class="col-md-12 position-relative">
                     <h5 class="card-title">ID Card and Licenses</h5>
                   </div>
@@ -829,32 +829,32 @@
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType1Details">
-                  <label for="validationTooltip05" class="form-label text-primary">Qualification Details</label>
+                  <label for="validationTooltip05" class="form-label ">Qualification Details</label>
                   <p class="card-text">{{memForm.memType1DetailsInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType2Details">
-                  <label for="validationTooltip05" class="form-label text-primary">Qualification Details</label>
+                  <label for="validationTooltip05" class="form-label ">Qualification Details</label>
                   <p class="card-text">{{memForm.memType2DetailsInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType3Details">
-                  <label for="validationTooltip05" class="form-label text-primary">Qualification Details</label>
+                  <label for="validationTooltip05" class="form-label ">Qualification Details</label>
                   <p class="card-text">{{memForm.memType3DetailsInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType1Fee">
-                  <label for="validationTooltip05" class="form-label text-primary">Membership Fee Price</label>
+                  <label for="validationTooltip05" class="form-label ">Membership Fee Price</label>
                   <p class="card-text">{{memForm.memType1FeeInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType2Fee">
-                  <label for="validationTooltip05" class="form-label text-primary">Membership Fee Price</label>
+                  <label for="validationTooltip05" class="form-label ">Membership Fee Price</label>
                   <p class="card-text">{{memForm.memType2FeeInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType3Fee">
-                  <label for="validationTooltip05" class="form-label text-primary">Membership Fee Price</label>
+                  <label for="validationTooltip05" class="form-label ">Membership Fee Price</label>
                   <p class="card-text">{{memForm.memType3FeeInput}}</p>
                 </div>
 
@@ -866,7 +866,7 @@
 
 
                 <div class="col-md-12 position-relative" *ngIf="memForm.memType1Process">
-                  <label for="validationTooltip05" class="form-label text-primary">Payment Process</label>
+                  <label for="validationTooltip05" class="form-label ">Payment Process</label>
                   <textarea class="form-control" disabled>{{memForm.memType1ProcessInput}}></textarea>
 
 
@@ -874,7 +874,7 @@
 
 
                 <div class="col-md-12 position-relative" *ngIf="memForm.payment">
-                  <label class="form-label text-primary" for="customFile">Proof of Payment</label>
+                  <label class="form-label " for="customFile">Proof of Payment</label>
                   <input type="file" class="form-control" id="customFile" formControlName="payment1" (change)="onChange($event, 'payment1')" accept="image/*"/>
                 </div>
 
@@ -893,4 +893,4 @@
 </div>
 </body>
 
--->
+

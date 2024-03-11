@@ -45,13 +45,16 @@ aside {
     padding-bottom: 10px;
     border-bottom: 1px solid #a0a0a0;
 }
+.accordion {
+    margin-top: 10px;
+}
 
 .content {
     height: 100vh;
 }
 
 .navbar-brand {
-    font-family: "Plus Jakarta Sans", sans-serif;
+    font-family: 'Roboto';
     font-weight: 700;
 	font-size: 35px;
 }

@@ -4,12 +4,20 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f3f5fa;
+    background-color: #eef0f5;
 }
+
 
 .container {
     display: flex;
     margin: 0;
+}
+.container-2 {
+	background-color: #ffffff;
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 10px;
+	box-shadow: 0.5px 0.5px 8.5px 0.5px #dddddd;
 }
 
 aside {
@@ -34,6 +42,8 @@ aside {
     margin-top: 20px;
     padding: 20px; /* Add padding as needed */
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
+	/* background-color: white;
+	border-radius: 10px; */
 }
 
 /* Hide the scrollbar for webkit-based browsers */
@@ -51,7 +61,7 @@ aside {
 }
 
 .navbar-brand {
-    font-family: "Plus Jakarta Sans", sans-serif;
+    font-family: 'Roboto';
     font-weight: 700;
 	font-size: 35px;
 }
@@ -66,6 +76,7 @@ aside {
 	border-radius: 3px;
 	min-width: 1000px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	border: 1px solid #e2e2e2;
 }
 .table-title {        
 	padding-bottom: 15px;
@@ -191,7 +202,15 @@ table.table .avatar {
 	float: left;
 	margin-top: 10px;
 	font-size: 13px;
-}    
+}  
+
+.btn-next, .btn-prev {
+	text-decoration: none;
+	margin: 15px 5px;
+	color: #007FE1;
+	border:none;
+	font-size: 20px;
+}
 /* Custom checkbox */
 .custom-checkbox {
 	position: relative;
