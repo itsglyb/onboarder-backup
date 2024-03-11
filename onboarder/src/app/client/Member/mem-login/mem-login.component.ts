@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import * as $ from 'jquery';
 
 interface ServerResponse {
   userType: string;
@@ -30,6 +31,20 @@ export class MemLoginComponent implements OnInit{
 
     })
 
+  }
+  togglePassword(): void {
+    const passwordInput = document.getElementById('form3Example4') as HTMLInputElement;
+    const passwordIcon = document.querySelector('.toggle-password') as HTMLElement;
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      passwordIcon.classList.remove('fa-eye');
+      passwordIcon.classList.add('fa-eye-slash');
+    } else {
+      passwordInput.type = 'password';
+      passwordIcon.classList.remove('fa-eye-slash');
+      passwordIcon.classList.add('fa-eye');
+    }
   }
 
   ValidateEmail = (email: any) => {

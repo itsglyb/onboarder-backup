@@ -43,7 +43,7 @@ aside {
 
 .container-fluid {
     padding-bottom: 10px;
-    border-bottom: 1px solid #f6f6f6;
+    border-bottom: 1px solid #a0a0a0;
 }
 
 .content {
@@ -51,9 +51,14 @@ aside {
 }
 
 .navbar-brand {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-weight: bold;
+    font-family: 'Roboto';
+    font-weight: 700;
+	font-size: 35px;
 }
+.img-square-wrapper img {
+	display: block;
+	margin: auto;
+ }
 
 .content {
     height: 100vh;
@@ -65,32 +70,49 @@ aside {
     font-size: 20px;
     padding: 20px;
 }
-
+.container-2 {
+    background-color: #ffffff;
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 10px;
+	box-shadow: 0.5px 0.5px 8.5px 0.5px #dddddd;
+}
+.card-body {
+    padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0.5px 0.5px 2px 0.5px #dddddd;
+}
 .form-label {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 8px;
     font-weight: bold;
     text-transform: uppercase;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #007FE1;
+    font-size: 20px;
 }
-
 .card-title {
-    margin-top: 5px;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 20px;
     text-transform: uppercase;
     padding-bottom: 4px;
 }
-
 .card-event-deets {
     margin-top: 10px;
-    margin-bottom: 10px;
-    padding-bottom: 4px;
+    font-size: 20px;
+}
+.card-text-event {
+    font-family: 'Nunito';
+    font-size: 18px;
 }
 
 label {
     font-weight: bold;
+}
+.btn-next, .btn-prev {
+	text-decoration: none;
+	margin: 15px 5px;
+	color: #007FE1;
+	border:none;
+	font-size: 20px;
 }
 
 .iframe-container {

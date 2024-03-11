@@ -5,45 +5,60 @@
         </aside>
   
         <div class="content" *ngFor="let event of eventInfo">
-              <div class="card-body">
-
-                <div class="img-square-wrapper">
-                    <img class="" [src]="event.poster ? event.poster : 'assets/img/imge-holder.png'" width="500" alt="Card image cap">
+            <nav class="navbar navbar-expand-lg  rounded" aria-label="Thirteenth navbar example">
+                <div class="container-fluid">          
+                  <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                    <a class="navbar-brand col-lg-9 me-0">{{event.orgName}}</a>
+                  </div>
                 </div>
+            </nav>  
+
+            <div class="container-2">
     
                 <div class="col-md-12">
-                    <h2 class="form-label mt-3 text-uppercase text-center">{{event.eventTitle}}</h2>
-                    <div class="card-body">
-                        <p class="card-event-deets text-center mb-5">{{event.eventDesc}}</p>
+                    <h2 class="form-label mt-3 text-uppercase text-center fs-2">{{event.eventTitle}}</h2>
+                    <div class="card-body-1">
+                        <p class="card-event-deets text-center">{{event.eventDesc}}</p>
                     </div>
                 </div>
+
+                <div class="img-square-wrapper">
+                    <img class="" [src]="event.poster" width="700" alt="Card image cap">
+                </div>
     
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <label class="form-label">Available Seats</label>
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{event.eventSeats}} SEATS LEFT</h5>
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <label class="form-label"> <i class="fa-solid fa-couch"></i> Available Seats</label>
+                        <div class="card-body" style="background-color: #e6870b9d;">
+                            <h5 class="card-title ">{{event.eventSeats}} SEATS LEFT</h5>
                         </div>
                     </div>
     
-                    <div class="col-md-4">
-                        <label class="form-label">Date of the Event</label>
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{event.eventDate}}</h5>
+                    <div class="col-md-3">
+                        <label class="form-label"><i class="fa-solid fa-calendar-days"></i> Date of the Event</label>
+                        <div class="card-body" style="background-color: #007fe1b6;">
+                            <h5 class="card-title">{{event.eventDate}}</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label"><i class="fa fa-location-dot"></i> Location</label>
+                        <div class="card-body" style="background: #8ce291">
+                            <h5 class="card-title ">{{event.location ? event.location : 'No data provided'}}</h5>
                         </div>
                     </div>
     
-                    <div class="col-md-4">
-                        <label class="form-label">Time of the Event</label>
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{event.eventTime}}</h5>
+                    <div class="col-md-3">
+                        <label class="form-label"><i class="fa-solid fa-clock"></i> Time of the Event</label>
+                        <div class="card-body" style="background: #f5e79c;">
+                            <h5 class="card-title">{{event.eventTime}}</h5>
                         </div>
                     </div>
                 </div>
     
                 <label class="form-label">Program Flow</label> 
                 <div class="img-square-wrapper">
-                    <img class="" [src]="event.programme ? event.programme : 'assets/img/image-holder.png'" width="100%" alt="Card image cap">
+                    <img class="" [src]="event.programme ? event.programme : 'assets/img/image-holder.png'" width="700" alt="Card image cap">
                 </div>
 
                 <label class="form-label">Video Teaser</label> 
@@ -110,9 +125,9 @@
             </div>
 
             <div class="text-center">
-                <button class="btn btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)">Previous</button>
+                <button class="btn-prev btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)"><i class="fa-solid fa-caret-left"></i></button>
                 <span>Page {{ currentPage }} of {{ Math.ceil(regMemArray.length / itemsPerPage) }}</span>
-                <button class="btn btn-link" [disabled]="currentPage === Math.ceil(regMemArray.length / itemsPerPage)" (click)="setPage(currentPage + 1)">Next</button>
+                <button class="btn-next btn-link" [disabled]="currentPage === Math.ceil(regMemArray.length / itemsPerPage)" (click)="setPage(currentPage + 1)"><i class="fa-solid fa-caret-right"></i></button>
               </div>
 
             <div class="container-xl">
@@ -162,9 +177,9 @@
                 </div>        
             </div>
             <div class="text-center">
-                <button class="btn btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)">Previous</button>
+                <button class="btn-prev btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)"><i class="fa-solid fa-caret-left"></i></button>
                 <span>Page {{ currentPage }} of {{ Math.ceil(regGuestArray.length / itemsPerPage) }}</span>
-                <button class="btn btn-link" [disabled]="currentPage === Math.ceil(regGuestArray.length / itemsPerPage)" (click)="setPage(currentPage + 1)">Next</button>
+                <button class="btn-next btn-link" [disabled]="currentPage === Math.ceil(regGuestArray.length / itemsPerPage)" (click)="setPage(currentPage + 1)"><i class="fa-solid fa-caret-right"></i></button>
               </div>
         </div>
     </div>
