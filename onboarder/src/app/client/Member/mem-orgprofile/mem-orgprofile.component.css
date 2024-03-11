@@ -33,10 +33,17 @@ aside {
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
     height: 100vh;
 }
+
+.card-img-overlay {
+  display: flex; /* Make the overlay a flex container */
+  justify-content: center; /* Horizontally center the content */
+}
+
 /*Horizontal Scrolling Cards*/
 .scrolling-wrapper{
 	overflow-x: auto;
 }
+
 h1{
 	font-weight: 700;
 	font-size: 3.4em;
@@ -45,10 +52,6 @@ h1{
 .subtitle{
 	font-size: 1.25em;
 	opacity: 0.65;
-}
-.card-date {
-    font-weight: 800;
-    color: gray;
 }
 
 .card-text {
@@ -87,11 +90,6 @@ h1{
 	font-size: 35px;
 }
 
-
-.card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
-}
 
 .text-title {
     padding: 10px;
