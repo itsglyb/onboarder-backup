@@ -35,6 +35,7 @@ aside {
 }
 
 .card-img-overlay {
+  padding: 0px;
   display: flex; /* Make the overlay a flex container */
   justify-content: center; /* Horizontally center the content */
 }
@@ -94,10 +95,6 @@ h1{
 .text-title {
     padding: 10px;
     padding-bottom: 0;
-}
-
-.card {
-    font-family: 'Fira Sans', sans-serif;
 }
 
 .card-text {

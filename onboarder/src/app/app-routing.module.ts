@@ -36,12 +36,11 @@ import { MemOrgmemformComponent } from './client/Member/mem-orgmemform/mem-orgme
 import { OrgEventDetailsComponent } from './client/Org/org-event-details/org-event-details.component';
 import { MemRejectComponent } from './client/Org/mem-reject/mem-reject.component';
 import { NotfoundpageComponent } from './client/extrapages/notfoundpage/notfoundpage.component';
+import { AdminOrgapprovalComponent } from './client/Admin/admin-orgapproval/admin-orgapproval.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-
   { path: 'general-login', component: GeneralLoginComponent },
-
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'services', component: ServicesComponent },
@@ -76,9 +75,11 @@ const routes: Routes = [
   { path: 'admin-orgs', component: AdminOrgsComponent},
   { path: 'admin-users', component: AdminUsersComponent},
   { path: 'admin-events', component: AdminEventsComponent},
+  { path: 'admin-orgapproval', component: AdminOrgapprovalComponent},
 
-  //Wild Card Route for 404 request 
-  { path: '**', pathMatch: 'full', component: NotfoundpageComponent }, 
+
+  //Wild Card Route for 404 request
+  { path: '**', pathMatch: 'full', component: NotfoundpageComponent },
 ];
 
 @NgModule({

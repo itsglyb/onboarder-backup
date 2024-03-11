@@ -4,7 +4,9 @@
     "@googlemaps/js-api-loader": "^1.16.6",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
-    "ngx-google-places-autocomplete": "^2.0.5"
+    "ngx-google-places-autocomplete": "^2.0.5",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.10.6"
   },
   "devDependencies": {
     "@types/google.maps": "^3.55.3"

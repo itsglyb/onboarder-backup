@@ -31,50 +31,42 @@
           </div>
 
 
-          <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
-            <div class="card-body">
-                <h4 class="card-eventtitle" name="memberlastName" value="memberlastName" [(ngModel)]="memberlastName" [ngModelOptions]="{standalone: true}">{{memberlastName}}</h4>
-                <h4 class="card-eventtitle1"  name="memberfirstName" value="memberfirstName" [(ngModel)]="memberfirstName" [ngModelOptions]="{standalone: true}">{{memberfirstName}}</h4>
-                <p  [(ngModel)]="memberemail" name="memberemail" value="memberemail" [(ngModel)]="memberemail" [ngModelOptions]="{standalone: true}">{{memberemail}}</p>
-            </div>
         </div>
       </div>
-  </div>
 
 
 <!-- Edit Org Profile User Modal -->
 <div class="modal fade" id="editOrgProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-body center gap-3">
-      <h2 class="text-center">Edit Member Information</h2>
-          <form id="editMemberForm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body center gap-3">
+        <h2 class="text-center">Edit Member Information</h2>
+            <form id="editMemberForm">
 
-              <!-- Organization Information -->
-              <div class="form-group">
-                  <label style="margin-top: 10px;">Member Surname</label>
-                      <input type="text" class="form-control" id="editOrgName" placeholder="Enter your surname" name="memberlastName" [value]="memberlastName" [(ngModel)]="memberlastName" [ngModelOptions]="{standalone: true}">
-              </div>
-              <div class="form-group">
-                <label style="margin-top: 10px;">Member First and Middle Name</label>
-                <input type="text" class="form-control" id="editOrgEmail" placeholder="Enter your first name followed by your middle name" name="memberfirstName" [value]="memberfirstName"  [(ngModel)]="memberfirstName" [ngModelOptions]="{standalone: true}">
-              </div>
-              <div class="form-group">
-                  <label style="margin-top: 10px;">Member Email</label>
-                  <textarea class="form-control" id="editOrgDescription" placeholder="Enter your email" name="memberemail" [(ngModel)]="memberemail" [value]="memberemail"  [ngModelOptions]="{standalone: true}"></textarea>
-              </div>
+                <!-- Organization Information -->
+                <div class="form-group">
+                    <label style="margin-top: 10px;">Member Surname</label>
+                        <input type="text" class="form-control" id="editOrgName" placeholder="Enter your surname" name="memberlastName" [value]="memberlastName" [(ngModel)]="memberlastName" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="form-group">
+                  <label style="margin-top: 10px;">Member First and Middle Name</label>
+                  <input type="text" class="form-control" id="editOrgEmail" placeholder="Enter your first name followed by your middle name" name="memberfirstName" [value]="memberfirstName"  [(ngModel)]="memberfirstName" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="form-group">
+                    <label style="margin-top: 10px;">Member Email</label>
+                    <textarea class="form-control" id="editOrgDescription" placeholder="Enter your email" name="memberemail" [(ngModel)]="memberemail" [value]="memberemail"  [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
 
 
-              <div class="text-center center">
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="updateMemberInfo()">Save Changes</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-              </div>
-          </form>
+                <div class="text-center center">
+                  <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="updateMemberInfo()">Save Changes</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
 
 </body>
 

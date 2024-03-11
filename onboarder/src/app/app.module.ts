@@ -51,9 +51,10 @@ import { NotfoundpageComponent } from './client/extrapages/notfoundpage/notfound
 import { GuestEventsComponent } from './client/Landing_Page/guest-events/guest-events.component';
 import { GuestEventsListingComponent } from './client/Landing_Page/guest-events-listing/guest-events-listing.component';
 import { Loader } from '@googlemaps/js-api-loader';
+import { AdminOrgapprovalComponent } from './client/Admin/admin-orgapproval/admin-orgapproval.component';
 
 
-export function playerFactory(): any {  
+export function playerFactory(): any {
   return import('lottie-web');
 }
 
@@ -71,7 +72,7 @@ export function playerFactory(): any {
     OrgProfileComponent,
     OrgMemformsComponent,
     OrgMemverificationComponent,
-    OrgMembersComponent,    
+    OrgMembersComponent,
     MemRegistrationComponent,
     MemLandingComponent,
     MemberSignupComponent,
@@ -94,10 +95,11 @@ export function playerFactory(): any {
     MemRejectComponent,
     NotfoundpageComponent,
     GuestEventsComponent,
-    GuestEventsListingComponent
+    GuestEventsListingComponent,
+    AdminOrgapprovalComponent,
   ],
   imports: [
-  
+
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -105,8 +107,8 @@ export function playerFactory(): any {
     ReactiveFormsModule,
     NgxGpAutocompleteModule,
     NgxPaginationModule,
-    LottieModule.forRoot({ player: playerFactory }),  
-    
+    LottieModule.forRoot({ player: playerFactory }),
+
   ],
   providers: [
     {
