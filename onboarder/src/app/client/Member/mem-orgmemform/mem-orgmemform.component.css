@@ -68,14 +68,13 @@ aside {
 }
 
 .card-title {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
     font-weight: bold;
     text-transform: uppercase;
-    padding-bottom: 4px;
     border-bottom: 1px solid #007FE1;
 }
 
 label {
     font-weight: bold;
 }
+
