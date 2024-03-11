@@ -45,3 +45,4 @@ function checkAll(myCheckbox) {
       sectionToRemove.parentNode.removeChild(sectionToRemove);
     });
   });
+
