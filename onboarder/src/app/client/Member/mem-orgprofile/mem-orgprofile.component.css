@@ -100,11 +100,9 @@ h1{
 }
 
 .card {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
 }
-.card-img {
-    filter:brightness(85%);
-}
+
 .card-text {
     margin-bottom: 3px;
     margin-top: 0;

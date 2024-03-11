@@ -9,16 +9,16 @@
                     <ul id="progressbar">
                         <li class="active" id="account"><strong>Privacy Notice</strong></li>
                         <li id="information"><strong>Organization Information</strong></li>
-                        <li id="goals"><strong>Organization Goals</strong></li> 
+                        <li id="goals"><strong>Organization Goals</strong></li>
                         <li id="image"><strong>Image</strong></li>
                         <li id="information"><strong>Account Information</strong></li>
                         <li id="confirm"><strong>Finish</strong></li>
                     </ul>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> 
-                    
-                    <br> 
+                    </div>
+
+                    <br>
                     <!-- fieldsets -->
                     <fieldset>
                         <div class="form-card">
@@ -40,7 +40,7 @@
                                     <li><strong>Usage Information:</strong> We gather data about your interactions with the Onboarder application, such as the features you use and the duration of your sessions.</li>
                                     <li><strong>Device Information:</strong> We may collect information about your device, including its type, operating system, unique device identifiers, and IP address.</li>
                                 </ol>
-                            
+
                                 <br>
                                 <h2 class="fs-title1">How We Use Your Information</h2>
                                 <p>We utilize the information we collect for the following purposes:</p><br>
@@ -50,22 +50,22 @@
                                     <li><strong>Enhance User Experience:</strong> To analyze usage patterns and improve the functionality and quality of the Onboarder application.</li>
                                     <li><strong>Security:</strong> To maintain the security of your data, prevent fraud, and protect against unauthorized access.</li>
                                 </ol>
-                                                        
+
                                 <br>
                                 <h2 class="fs-title1">Data Security</h2>
                                 <p>We implement reasonable security measures to protect your data; however, no method of transmission or storage is entirely secure. We cannot guarantee the absolute security of your information.</p>
-                            
+
                                 <br>
                                 <h2 class="fs-title1">Changes to this Privacy Notice</h2>
                                 <p>We may revise this Privacy Notice periodically. Any changes will be posted on this page, and the "Last Updated" date will be modified accordingly.</p>
-                            
+
                                 <br>
                                 <p><strong>By clicking next, means you are accepting the terms and conditions written above and wishes to proceed with the registration.</strong></p>
-                                  
-                            </div> 
+
+                            </div>
                         <input type="button" name="next" class="next action-button" value="Next"  />
                     </fieldset>
-  
+
                     <fieldset>
                         <div class="form-card">
                             <div class="row">
@@ -75,12 +75,12 @@
                                 <div class="col-5">
                                     <h2 class="steps">Step 2 - 6</h2>
                                 </div>
-                            </div> 
+                            </div>
 
-                                <label class="fieldlabels">Organization Name: *</label> 
+                                <label class="fieldlabels">Organization Name: *</label>
                                 <input type="text" id="orgName" name="orgName" formControlName="orgName" placeholder="Organization Name" />
-                                
-                                <label class="fieldlabels">Organization Type: *</label> 
+
+                                <label class="fieldlabels">Organization Type: *</label>
                                 <select id="orgType" formControlName="orgType" name="orgType">
                                     <option value="" disabled selected>Select Organization Type</option>
                                     <option value="Human Rights">Human Rights</option>
@@ -98,17 +98,17 @@
                                 </select>
 
 
-                                <label class="fieldlabels">Brief Description of the Organization's Purpose: *</label> 
+                                <label class="fieldlabels">Brief Description of the Organization's Purpose: *</label>
                                 <textarea id="about" name="about" formControlName="about" placeholder="Organization Purpose and Description" rows="4" cols="50"></textarea>
 
-                                <label class="fieldlabels">Organization's History: *</label> 
+                                <label class="fieldlabels">Organization's History: *</label>
                                 <textarea id="orgHistory" name="orgHistory" formControlName="orgHistory" placeholder="Organization History" rows="4" cols="50"></textarea>
 
-                            </div> 
-                        
+                            </div>
+
                         <input type="button" name="next" class="next action-button" value="Next" (click)="validateStep1()"/> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
-  
+
                     <fieldset>
                         <div class="form-card">
                             <div class="row">
@@ -118,43 +118,47 @@
                                 <div class="col-5">
                                     <h2 class="steps">Step 3 - 6</h2>
                                 </div>
-                            </div> 
+                            </div>
 
                             <label class="fieldlabels">Mission: </label>
                             <textarea id="mission" name="orgType" formControlName="mission" placeholder="Mission" rows="4" cols="50"></textarea>
-                            
 
-                            <label class="fieldlabels">Vision: </label> 
+
+                            <label class="fieldlabels">Vision: </label>
                             <textarea id="vision" formControlName="vision" placeholder="Vision" rows="4" cols="50"></textarea>
 
                             <label class="fieldlabels">Core Values: </label>
                             <textarea  id="coreValues" formControlName="coreValues" placeholder="Core Values" rows="4" cols="50"></textarea>
 
-                    </div> 
-                        
+                    </div>
+
                         <input type="button" name="next" class="next action-button" value="Next" (click)="validateStep2()"/> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
-                    
+
                     <fieldset>
                         <div class="form-card">
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2 class="fs-title">Logo Upload:</h2>
+                                        <h2 class="fs-title">Image Uploads:</h2>
                                     </div>
                                     <div class="col-5">
                                         <h2 class="steps">Step 4 - 6</h2>
                                     </div>
-                                </div> 
+                                </div>
 
-                                <label class="fieldlabels">Upload Your Organization Logo:</label> 
-                                <input type="file" formControlName="logo" name="logo" accept="image/*" (change)="onChange($event)"> 
+                                <label class="fieldlabels">Upload Your Organization Logo:</label>
+                                <input type="file" formControlName="logo" name="logo" accept="image/*" (change)="onChange($event)">
 
-                                <input type="button" name="next" class="next action-button" (click)="validateStep3()" value="Next"/> 
+                                <label class="fieldlabels">Upload Your Proof of Authenticity (SEC Certificate):</label>
+                                <input type="file" formControlName="logo" name="logo" accept="image/*" (change)="onChange($event)">
+
+                                <input type="button" name="next" class="next action-button" (click)="validateStep3()" value="Next"/>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
 
-                            </div> 
-                        
+
+                            </div>
+
                         </div>
                     </fieldset>
 
@@ -167,20 +171,20 @@
                                 <div class="col-5">
                                     <h2 class="steps">Step 5 - 6</h2>
                                 </div>
-                            </div> 
-                                   <label class="fieldlabels">Organization Email: *</label> 
-                                   <input type="text" id="email" formControlName="email" name="email" placeholder="Organization Email" /> 
-   
+                            </div>
+                                   <label class="fieldlabels">Organization Email: *</label>
+                                   <input type="text" id="email" formControlName="email" name="email" placeholder="Organization Email" />
+
                                    <label class="fieldlabels">Password: *</label>
-                                   <input type="password" id="password" name="password" formControlName="password" placeholder="Password" /> 
+                                   <input type="password" id="password" name="password" formControlName="password" placeholder="Password" />
                                    <label class="fieldlabels">Confirm Password: *</label>
-                                   <input type="password" id="cpassword" name="cpassword" formControlName="cpassword" placeholder="Confirm Password" /> 
-                        </div> 
-                        
-                        <input type="submit"  class="success action-button"  /> 
+                                   <input type="password" id="cpassword" name="cpassword" formControlName="cpassword" placeholder="Confirm Password" />
+                        </div>
+
+                        <input type="submit"  class="success action-button"  />
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
-                    
+
                     <fieldset>
                         <div class="form-card">
                             <div class="form-card">
@@ -191,15 +195,15 @@
                                     <div class="col-5">
                                         <h2 class="steps">Step 6 - 6</h2>
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div class="row justify-content-center">
                                     <div class="col-3"> <img src="../../../assets/img/success.png" class="fit-image"> </div>
                                 </div>
-      
+
                                 <div class="row justify-content-center">
-                                    <div class="col-7 text-center">                          
-                                      <h2 class="purple-text text-center"><strong>SUCCESS!</strong></h2> 
+                                    <div class="col-7 text-center">
+                                      <h2 class="purple-text text-center"><strong>SUCCESS!</strong></h2>
                                       <h5 class="purple-text text-center">You have successfully created an organization account. Below is your organization code for your members to access your announcements and events.</h5>
                                       <div class="form-floating mb-3">
                                         <input class="form-control" placeholder="Leave a comment here" style="height: 100px" [(ngModel)]="orgCode" readonly/>
@@ -207,8 +211,8 @@
                                       </div>
                                     </div>
                                 </div>
-                            </div> 
-                            
+                            </div>
+
                             <input type="button" name="next" class="next action-button" value="Submit" value="Done" (click)="done()"  />
                         </div>
                     </fieldset>
@@ -230,7 +234,7 @@
                 <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close" (click)="navigatetoHome()"></button>
             </div>
 			<div class="modal-body text-center">
-				<h4>Great!</h4>	
+				<h4>Great!</h4>
 				<p>Your organization account has been created successfully.</p>
 				<button class="btn btn-success" data-dismiss="modal" (click)="navigatetoLogin()" ><span>Start Exploring</span> <i class="fa-solid fa-arrow-right" style="width: 5px; height: 5px;"></i></button>
 			</div>
