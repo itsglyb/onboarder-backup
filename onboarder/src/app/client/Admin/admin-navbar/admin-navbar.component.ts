@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 
 declare var $: any; // Declare jQuery to avoid TypeScript errors
@@ -12,11 +12,11 @@ declare var $: any; // Declare jQuery to avoid TypeScript errors
 export class AdminNavbarComponent implements OnInit {
   admin!: string;
 
-  constructor(
-    private http:HttpClient,
+  constructor(private renderer: Renderer2, private el: ElementRef,  private http:HttpClient,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.initializeSidebar();
 
     this.http.get('http://localhost:5000/api/admin', {
       withCredentials: true
@@ -31,12 +31,6 @@ export class AdminNavbarComponent implements OnInit {
     
       });
 
-      
-  
-
-
-
-
 
     // Load and initialize the JavaScript file
     this.loadScript('assets/js/navbar.js').then(() => {
@@ -45,6 +39,52 @@ export class AdminNavbarComponent implements OnInit {
       console.error('Error loading navbar.js', error);
     });
   }
+  private initializeSidebar(): void {
+    const body = document.querySelector("body"),
+      sidebar = document.querySelector(".sidebar"),
+      toggle = document.querySelector(".toggle"),
+      modeSwitch = document.querySelector(".toggle-switch"),
+      modeText = document.querySelector(".mode-text"),
+      searchBtn = document.querySelector(".search-bar");
+
+    if (modeSwitch) {
+      modeSwitch.addEventListener("click", () => {
+        if (body) {
+          body.classList.toggle("dark");
+
+          if (body.classList.contains("dark")) {
+            if (modeText instanceof HTMLElement) {
+              modeText.innerText = " Light Mode ";
+            }
+          } else {
+            if (modeText instanceof HTMLElement) {
+              modeText.innerText = " Dark Mode ";
+            }
+          }
+        }
+      });
+    }
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        if (sidebar) {
+          sidebar.classList.toggle("close");
+        }
+      });
+    }
+
+    if (searchBtn) {
+      searchBtn.addEventListener("click", () => {
+        if (sidebar) {
+          sidebar.classList.remove("close");
+        }
+      });
+    }
+  }
+
+  
+  
+  
 
   logout() {
     this.http.post('http://localhost:5000/api/logout', null, { withCredentials: true }).subscribe(

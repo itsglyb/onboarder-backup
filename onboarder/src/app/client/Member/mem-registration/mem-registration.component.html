@@ -8,7 +8,7 @@
               <div class="card-body">
 
                 <div class="img-square-wrapper">
-                    <img class="" [src]="event.poster" width="100%" alt="Card image cap">
+                    <img class="" [src]="event.poster" width="500" alt="Card image cap">
                 </div>
     
                 <div class="col-md-12">
@@ -20,35 +20,30 @@
     
                 <div class="row g-3">
                     <div class="col-md-4">
-                        <label class="form-label">Available Seats</label>
+                        <label class="form-label"> <i class="fa-solid fa-couch"></i> Available Seats</label>
                         <div class="card-body">
-                            <h5 class="card-title text-center">{{event.eventSeats}} SEATS LEFT</h5>
+                            <h5 class="card-title ">{{event.eventSeats}} SEATS LEFT</h5>
                         </div>
                     </div>
     
                     <div class="col-md-4">
-                        <label class="form-label">Date of the Event</label>
+                        <label class="form-label"><i class="fa-solid fa-calendar-days"></i> Date of the Event</label>
                         <div class="card-body">
-                            <h5 class="card-title text-center">{{event.eventDate}}</h5>
+                            <h5 class="card-title ">{{event.eventDate}}</h5>
                         </div>
                     </div>
     
                     <div class="col-md-4">
-                        <label class="form-label">Time of the Event</label>
+                        <label class="form-label"><i class="fa-solid fa-clock"></i> Time of the Event</label>
                         <div class="card-body">
-                            <h5 class="card-title text-center">{{event.eventTime}}</h5>
+                            <h5 class="card-title ">{{event.eventTime}}</h5>
                         </div>
                     </div>
-                </div>
-    
-                <label class="form-label">Program Flow</label> 
-                <div class="img-square-wrapper">
-                    <img class="" [src]="event.programme" width="100%" alt="Card image cap">
                 </div>
 
                 <label class="form-label">Video Teaser</label> 
                 <div class="card-body">
-                    <ng-container *ngIf="event.video">
+                    <ng-container *ngIf="event.video"> <i class="fa-solid fa-link"></i>&nbsp;
                     <a [href]="event.video">{{ event.video }}</a>
                     </ng-container>
                 <ng-container *ngIf="!event.video">
@@ -62,8 +57,13 @@
                     <h5 class="card-title-event">Event Registration Fee: {{event.eventPrice}}</h5>
                     <p class="card-text-event">Before proceeding with registration, please follow this steps: <br> {{event.eventPaymentDetails}}</p>
                 </div>
+
+                <label class="form-label">Program Flow</label> 
+                <div class="img-square-wrapper">
+                    <img class="" [src]="event.programme" width="500" alt="Card image cap">
+                </div>
     
-                <div class="d-flex justify-content-center align-items-center">
+                <div class="d-flex justify-content-center align-items-center py-3">
                     <button type="submit" class="btn btn-success" (click)="redirecttoRegForm(event.orgName, event._id)" [disabled]="event.eventSeats === '0'">Register</button>
                 </div>
               </div>

@@ -1,4 +1,54 @@
-<div class="container">
+<nav class="sidebar">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="../../../../assets/img/profile-pic.png" alt="Profile Picture" />
+        </span>
+        <div class="text header-text">
+            <span class="sub">ADMIN</span><br>
+          <span class="main">{{admin}}</span>
+        </div>
+      </div>
+      <i class="bx fa-solid fa-arrow-right toggle"></i>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a routerLink="/admin-users">
+              <i class="bx fa-solid fa-people-group icons"></i>
+              <span class="text nav-text">Users</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a routerLink="/admin-orgs">
+              <i class="bx fa-solid fa-people-group icons"></i>
+              <span class="text nav-text">Organizations</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a routerLink="/admin-events">
+                <i class="bx fa-regular fa-calendar-days icons"></i>
+                <span class="text nav-text">Events</span>
+              </a>
+            </li>
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="nav-link">
+          <a (click)="logout()">
+            <i class="bx fa-solid fa-right-from-bracket icons"></i>
+            <span class="text nav-text">Log Out</span>
+          </a>
+        </li>
+      </div>
+    </div>
+  </nav>
+
+
+<!-- <div class="container">
     <div class="sidebar">
 
         <div class="head">
@@ -55,4 +105,4 @@
             </div>
         </div>
     </div>
-</div>  
+</div>   -->
