@@ -15,6 +15,9 @@ const memberSchema = new mongoose.Schema ({
         required: true,
         unique: true,
     },
+    emailToken:{
+        type: String, 
+    },
     password:{
         type: String,
         required: true
@@ -27,7 +30,10 @@ const memberSchema = new mongoose.Schema ({
     dateCreated:{
         type: Date,
         default :Date,
-    
+    },
+
+    isVerified:{
+        type: Boolean,
     }
 })
 

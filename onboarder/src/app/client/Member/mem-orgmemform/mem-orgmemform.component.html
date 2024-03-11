@@ -6,11 +6,455 @@
 
 
       <div class="content">
+        <!--New Membership Form-->
+        <div class="accordion" id="accordionExample" [formGroup]="form"(submit)="submit()" *ngIf="(memForm$ | async) as memForm">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h5 class="card-title"><input class="form-check-input"  type="checkbox" value="" id="categorytitle" onchange="checkAll(this)" formControlName="personalInfo" [checked]="form.get('personalInfo')?.value" ng-model="all" style="margin-right: 5px;">
+                <label for="categorytitle">Personal Information</label> </h5>
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body row">
+
+                <div class="sub-item col-md-11 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="photo" formControlName="photo" [checked]="form.get('photo')?.value" style="margin-right: 5px;">
+                  <label class="form-label" for="customFile">2x2 Photo</label>
+                  <input type="file" class="form-control" id="customFile" />
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" id="fullName" formControlName="fullName" [checked]="form.get('fullName')?.value" ng-checked="all" style="margin-right: 5px;">
+                  <label for="fullName" class="form-label">Full Name (Last Name, First Name Middle Initial)</label>
+                  <input type="text" class="form-control" id="validationTooltip01" placeholder="ex. Dela Cruz, Juan R." disabled>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" id="sex" formControlName="sex" [checked]="form.get('sex')?.value" style="margin-right: 5px;">
+                  <label for="sex" class="form-label">Gender</label>
+                  <select class="form-select" id="validationTooltip04" disabled>
+                    <option selected disabled value="">Choose...</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Lesbian</option>
+                    <option>Gay</option>
+                    <option>Bisexual</option>
+                    <option>Transexual</option>
+                  </select>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="birthDate" formControlName="birthDate" [checked]="form.get('birthDate')?.value"  style="margin-right: 5px;">
+                  <label for="birthDate" class="form-label">Date of Birth</label>
+                  <input type="text" class="form-control" id="validationTooltip02" placeholder="Date of Birth" disabled>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="placeOfBirth" formControlName="placeOfBirth" [checked]="form.get('placeOfBirth')?.value"  style="margin-right: 5px;">
+                  <label for="placeOfBirth" class="form-label">Place of Birth</label>
+                  <input type="text" class="form-control" id="validationTooltip02" placeholder="City of Birth" disabled>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="address" formControlName="address" [checked]="form.get('address')?.value" style="margin-right: 5px;">
+                  <label for="address" class="form-label">Full Address</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your full address" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your full address.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="address" formControlName="address" [checked]="form.get('address')?.value" style="margin-right: 5px;">
+                  <label for="address" class="form-label">Region</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your region" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your region.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="civilStatus" formControlName="civilStatus" [checked]="form.get('civilStatus')?.value" style="margin-right: 5px;">
+                  <label for="civilStatus" class="form-label">Civil Status</label>
+                  <select class="form-select" id="validationTooltip04" disabled>
+                    <option selected disabled value="">Choose...</option>
+                    <option>Single</option>
+                    <option>Married</option>
+                    <option>Divorced</option>
+                    <option>Widowed</option>
+                    <option>In Civil Partnership</option>
+                  </select>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="religion" formControlName="religion" [checked]="form.get('religion')?.value" style="margin-right: 5px;">
+                  <label for="religion" class="form-label">Religion</label>
+                  <input type="text" class="form-control" id="validationTooltip01" placeholder="Please enter your religion" disabled>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="email" formControlName="email" [checked]="form.get('email')?.value" style="margin-right: 5px;">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your email address" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your email address.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="contactNum" formControlName="contactNum" [checked]="form.get('contactNum')?.value" style="margin-right: 5px;">
+                  <label for="contactNum" class="form-label">Contact Number</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your contact number" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your contact number.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h5 class="card-title"> <input class="form-check-input" type="checkbox" value="" id="idLicense" formControlName="idLicense" [checked]="form.get('idLicense')?.value" style="margin-right: 5px;">ID Card and Licenses</h5>
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body row">
+
+                <div class="sub-item sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="prcNo" formControlName="prcNo" [checked]="form.get('prcNo')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip04" class="form-label">PRC License No.</label>
+                  <input type="text" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" disabled>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-4 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="prcDate" formControlName="prcDate" [checked]="form.get('prcDate')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip04" class="form-label">PRC Registration Date</label>
+                  <input type="date" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" disabled>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-4 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="prcExpiration" formControlName="prcExpiration" [checked]="form.get('prcExpiration')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip04" class="form-label">PRC Expiration Date</label>
+                  <input type="date" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" disabled>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="studentID" formControlName="studentID" [checked]="form.get('studentID')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip04" class="form-label">Student ID No.</label>
+                  <input type="text" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" disabled>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="aviation" formControlName="aviation" [checked]="form.get('aviation')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip04" class="form-label">Company ID No.</label>
+                  <input type="text" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" disabled>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h5 class="card-title"> <input class="form-check-input" type="checkbox" value="" id="EducAttainment" formControlName="EducAttainment" [checked]="form.get('EducAttainment')?.value" style="margin-right: 5px;">Educational Attainment</h5>
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body row">
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="tertiary" formControlName="tertiary" [checked]="form.get('tertiary')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Tertiary University / School</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your undergraduate university" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your school.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="tertiaryDegree" formControlName="tertiaryDegree" [checked]="form.get('tertiaryDegree')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Degree</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your degree" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your degree.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="tertiaryYear" formControlName="tertiaryYear" [checked]="form.get('tertiaryYear')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Inclusive Date ( Year )</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your Inclusive Date ( Year )" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your Inclusive Date ( Year ).
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="masteral" formControlName="masteral" [checked]="form.get('masteral')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Masteral University / School</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your masteral university" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your school.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="masteralDegree" formControlName="masteralDegree" [checked]="form.get('masteralDegree')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Degree</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your degree" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your degree.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="masteralYear" formControlName="masteralYear" [checked]="form.get('masteralYear')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Inclusive Date ( Year )</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your Inclusive Date ( Year )" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your Inclusive Date ( Year ).
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="doctoral" formControlName="doctoral" [checked]="form.get('doctoral')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Doctoral University / School</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your doctoral university" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your school.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="doctoralDegree" formControlName="doctoralDegree" [checked]="form.get('doctoralDegree')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Degree</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your degree" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your degree.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="doctoralYear" formControlName="doctoralYear" [checked]="form.get('doctoralYear')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Inclusive Date ( Year )</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your Inclusive Date ( Year )" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your Inclusive Date ( Year ).
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <h5 class="card-title"> <input class="form-check-input" type="checkbox" value="" id="employmentDetails" formControlName="employmentDetails" [checked]="form.get('employmentDetails')?.value" style="margin-right: 5px;">Employment Details</h5>
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body row">
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="employer" formControlName="employer" [checked]="form.get('employer')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Current Company / Business Name:</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your current employer" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your current employer.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value=""  id="employerAdd" formControlName="employerAdd" [checked]="form.get('employerAdd')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Employer Address</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your employer address" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your employer address.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="jobTitle" formControlName="jobTitle" [checked]="form.get('jobTitle')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Position</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your position" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your position.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value=""  id="employerAdd" formControlName="employerAdd" [checked]="form.get('employerAdd')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Specialization</label>
+                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your specialization" disabled>
+                  <div class="invalid-tooltip">
+                    Please provide your specialization.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <h5 class="card-title"> <input class="form-check-input" type="checkbox" value="" id="membership" formControlName="membership" [checked]="form.get('membership')?.value" style="margin-right: 5px;">Membership Details and Categories</h5>
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body row">
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType1" formControlName="memType1" [checked]="form.get('memType1')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">First Member Category</label>
+                  <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership">
+                  <div class="invalid-tooltip">
+                    Please enter the first category
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType2" formControlName="memType2" [checked]="form.get('memType2')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Second Member Category</label>
+                  <input type="text" class="form-control" id="validationTooltip03" formControlName="memType2Input" placeholder="i.e. Associate Membership">
+                  <div class="invalid-tooltip">
+                    Please enter the second category
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType3" formControlName="memType3" [checked]="form.get('memType3')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Third Member Category</label>
+                  <input type="text" class="form-control" id="validationTooltip03" formControlName="memType3Input" placeholder="i.e. Lifetime Membership">
+                  <div class="invalid-tooltip">
+                    Please enter the third category
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType1Details" formControlName="memType1Details" [checked]="form.get('memType1Details')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Qualification Details</label>
+                  <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications, membership fee, inclusions and application attachment required for this category"></textarea>
+                  <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType2Details" formControlName="memType2Details" [checked]="form.get('memType2Details')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Qualification Details</label>
+                  <textarea class="form-control" id="validationTextarea" formControlName="memType2DetailsInput" placeholder="Enter the qualifications, membership fee, inclusions and application attachment disabled for this category"></textarea>
+                  <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType3Details" formControlName="memType3Details" [checked]="form.get('memType3Details')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Qualification Details</label>
+                  <textarea class="form-control" id="validationTextarea" formControlName="memType3DetailsInput" placeholder="Enter the qualifications, membership fee, inclusions and application attachment disabled for this category"></textarea>
+                  <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType1Fee" formControlName="memType1Fee" [checked]="form.get('memType1Fee')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
+                  <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price"></textarea>
+                  <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType2Fee" formControlName="memType2Fee" [checked]="form.get('memType2Fee')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
+                  <textarea class="form-control" id="validationTextarea" formControlName="memType2FeeInput" placeholder="Enter the membership fee price"></textarea>
+                  <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-3 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType3Fee" formControlName="memType3Fee" [checked]="form.get('memType3Fee')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
+                  <textarea class="form-control" id="validationTextarea" formControlName="memType3FeeInput" placeholder="Enter the membership fee price"></textarea>
+                  <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-9 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="memType1Process" formControlName="memType1Process" [checked]="form.get('memType1Process')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Payment Process</label>
+                  <textarea class="form-control" id="validationTextarea" formControlName="memType1ProcessInput" placeholder="Enter the payment process"></textarea>
+                  <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-5 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="paymentDate" formControlName="paymentDate" [checked]="form.get('paymentDate')?.value" style="margin-right: 5px;">
+                  <label for="validationTooltip05" class="form-label">Payment Date</label>
+                  <input class="form-control" type="date" id="validationTextarea" formControlName="paymentDateInput" placeholder="Enter the payment process">
+                  <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div>
+                </div>
+
+                <div class="sub-item col-md-4 position-relative">
+                  <input class="form-check-input" type="checkbox" value="" id="payment" formControlName="payment" [checked]="form.get('payment')?.value" style="margin-right: 5px;">
+                  <label class="form-label" for="customFile">Proof of Payment</label>
+                  <input type="file" class="form-control" id="customFile"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--OLD MEMBERSHIP FORM
           <div class="card">
             <h5 class="card-header">Membership Form</h5>
             <div class="card-body">
           <form class="row g-3 needs-validation" [formGroup]="form"(submit)="submit()" *ngIf="(memForm$ | async) as memForm">
-          
+
               <div class="row" *ngIf="memForm.personalInfo">
                 <div class="col-md-12 position-relative">
                   <h5 class="card-title">Personal Information </h5>
@@ -38,13 +482,13 @@
                 </div>
 
                 <div class="col-md-6 position-relative" *ngIf="memForm.sex">
-      
+
                   <label for="validationTooltip02" class="form-label">Sex</label>
                   <select class="form-select" id="validationTooltip04" formControlName="sex" >
                     <option selected  value="">Choose...</option>
                     <option>Male</option>
                     <option>Female</option>
-                  </select>          
+                  </select>
 
                   <div class="valid-tooltip">
                     Looks good!
@@ -52,7 +496,7 @@
                 </div>
 
                 <div class="col-md-6 position-relative" *ngIf="memForm.birthDate">
-                  
+
                   <label for="validationTooltip03" class="form-label">Date of Birth</label>
                   <input type="text" class="form-control" id="validationTooltip02" formControlName="birthDate" placeholder="Date of Birth" >
 
@@ -79,7 +523,7 @@
                     <option>Widowed</option>
                     <option>In Civil Partnership</option>
 
-                  </select>         
+                  </select>
                 </div>
 
                 <div class="col-md-6 position-relative" *ngIf="memForm.religion">
@@ -121,8 +565,8 @@
                   <div class="invalid-tooltip">
                     Please provide your contact number.
                   </div>
-                </div> 
-                
+                </div>
+
                 <div class="col-md-6 position-relative" *ngIf="memForm.linkedIn">
                   <label for="validationTooltip05" class="form-label">LinkedIn Account</label>
                   <input type="text" class="form-control" id="validationTooltip03" formControlName="linkedIn" placeholder="Please enter your LinkedIn account name" >
@@ -130,7 +574,7 @@
                   <div class="invalid-tooltip">
                     Please provide your LinkedIn account name.
                   </div>
-                </div>   
+                </div>
 
                 <div class="col-md-6 position-relative" *ngIf="memForm.facebook">
                   <label for="validationTooltip05" class="form-label">Facebook Name</label>
@@ -138,7 +582,7 @@
                   <div class="invalid-tooltip">
                     Please provide your Facebook name.
                   </div>
-                </div>   
+                </div>
 
                 <div class="col-md-6 position-relative" *ngIf="memForm.skype">
                   <label for="validationTooltip05" class="form-label">Skype Username</label>
@@ -146,7 +590,7 @@
                   <div class="invalid-tooltip">
                     Please provide your Sype username.
                   </div>
-                </div> 
+                </div>
 
                 <div class="col-md-6 position-relative" *ngIf="memForm.zoom">
                   <label for="validationTooltip05" class="form-label">Zoom Username</label>
@@ -154,7 +598,7 @@
                   <div class="invalid-tooltip">
                     Please provide your Zoom username.
                   </div>
-                </div> 
+                </div>
                 <br>
                 <br>
                 <br>
@@ -319,7 +763,7 @@
                 <br>
                 <br>
                 <br>
-                
+
                 <div class="row" *ngIf="memForm.employmentDetails">
                   <div class="col-md-12 position-relative">
                     <h5 class="card-title">Employment Details</h5>
@@ -367,9 +811,9 @@
                     <option>{{memForm.memType1Input}}</option>
                     <option>{{memForm.memType2Input}}</option>
                     <option>{{memForm.memType3Input}}</option>
-                   
 
-                  </select>         
+
+                  </select>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType1">
@@ -383,35 +827,35 @@
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType3">
                   <label class="form-label">{{memForm.memType3Input}}</label>
                 </div>
-                
+
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType1Details">
                   <label for="validationTooltip05" class="form-label text-primary">Qualification Details</label>
-                  <p class="card-text">{{memForm.memType1DetailsInput}}</p>                
+                  <p class="card-text">{{memForm.memType1DetailsInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType2Details">
                   <label for="validationTooltip05" class="form-label text-primary">Qualification Details</label>
-                  <p class="card-text">{{memForm.memType2DetailsInput}}</p>                
+                  <p class="card-text">{{memForm.memType2DetailsInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType3Details">
                   <label for="validationTooltip05" class="form-label text-primary">Qualification Details</label>
-                  <p class="card-text">{{memForm.memType3DetailsInput}}</p>                
+                  <p class="card-text">{{memForm.memType3DetailsInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType1Fee">
                   <label for="validationTooltip05" class="form-label text-primary">Membership Fee Price</label>
-                  <p class="card-text">{{memForm.memType1FeeInput}}</p>                
+                  <p class="card-text">{{memForm.memType1FeeInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType2Fee">
                   <label for="validationTooltip05" class="form-label text-primary">Membership Fee Price</label>
-                  <p class="card-text">{{memForm.memType2FeeInput}}</p>                
+                  <p class="card-text">{{memForm.memType2FeeInput}}</p>
                 </div>
 
                 <div class="col-md-4 position-relative" *ngIf="memForm.memType3Fee">
                   <label for="validationTooltip05" class="form-label text-primary">Membership Fee Price</label>
-                  <p class="card-text">{{memForm.memType3FeeInput}}</p>                
+                  <p class="card-text">{{memForm.memType3FeeInput}}</p>
                 </div>
 
                 <div class="row" *ngIf="memForm.payment">
@@ -419,13 +863,13 @@
                     <h5 class="card-title">Payment</h5>
                   </div>
                 </div>
-             
+
 
                 <div class="col-md-12 position-relative" *ngIf="memForm.memType1Process">
                   <label for="validationTooltip05" class="form-label text-primary">Payment Process</label>
                   <textarea class="form-control" disabled>{{memForm.memType1ProcessInput}}></textarea>
-                  
-                         
+
+
                 </div>
 
 
@@ -434,19 +878,19 @@
                   <input type="file" class="form-control" id="customFile" formControlName="payment1" (change)="onChange($event, 'payment1')" accept="image/*"/>
                 </div>
 
-               
-                
+
+
                 <div class="col-12">
                   <input type="submit"  class=" btn btn-success action-button"  />
-                </div> 
-           
+                </div>
+
               </form>
-              
+
             </div>
-          </div>  
+          </div>
       </div>
 
 </div>
 </body>
 
-
+-->

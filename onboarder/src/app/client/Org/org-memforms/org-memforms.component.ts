@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -58,8 +58,6 @@ photo: boolean,
 })
 export class OrgMemformsComponent implements OnInit {
 
-  
-
   memForm: MemForm | null = null;
 
   form!: FormGroup;
@@ -69,7 +67,6 @@ export class OrgMemformsComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
   ) { }
-
 
 
   ngOnInit(): void {
@@ -127,7 +124,7 @@ export class OrgMemformsComponent implements OnInit {
       memType2Fee: new FormControl(false),
       memType3Fee: new FormControl(false),
       memType1Process: new FormControl(false),
-    
+
       payment: new FormControl(false),
 
       memType1Input: [''],
@@ -140,8 +137,6 @@ export class OrgMemformsComponent implements OnInit {
       memType2FeeInput: [''],
       memType3FeeInput: [''],
       memType1ProcessInput: [''],
-     
-      
 
     });
 
@@ -150,7 +145,7 @@ export class OrgMemformsComponent implements OnInit {
       // The JavaScript file is loaded and initialized
     }).catch(error => {
       console.error('Error loading checkbox-function.js', error);
-    });   
+    });
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -170,12 +165,12 @@ export class OrgMemformsComponent implements OnInit {
         (resultData: MemForm) => {
           console.log(resultData);
           this.memForm = resultData;
-  
+
           // Check if orgID is present in the memForm object
           if (this.memForm && this.memForm.orgID) {
             // Populate the form controls with the received data
             this.form.patchValue(resultData);
-            
+
             // Access orgID and perform operations dependent on it here
             console.log('orgID:', this.memForm.orgID);
           } else {
@@ -187,12 +182,12 @@ export class OrgMemformsComponent implements OnInit {
         }
       );
   }
-  
+
 
   submit()  {
      const formData = {
       ...this.form.value,
-      orgID: this.memForm?.orgID 
+      orgID: this.memForm?.orgID
     };
 
     console.log('orgID:', this.memForm?.orgID);
@@ -200,7 +195,7 @@ export class OrgMemformsComponent implements OnInit {
     this.http.patch(`http://localhost:5000/api/customizeForm/${this.memForm?.orgID}`, formData, { withCredentials: true })
     .subscribe(
       (response: any) => {
-        
+
         console.log(response);
         Swal.fire('Changes to Membership Form has been saved.')
 
@@ -212,5 +207,27 @@ export class OrgMemformsComponent implements OnInit {
     );
   }
 
-  
+  memCatForm: FormGroup = new FormGroup({
+    memCatList: new FormArray([this.getmemCatFields()])
+  });
+
+  getmemCatFields(): FormGroup {
+    return new FormGroup({
+      memType: new FormControl(''),
+      memTypeDetails: new FormControl(''),
+      memTypeFee: new FormControl(''),
+    });
+  }
+
+  memCatList() {
+    return (this.memCatForm.get('memCatList') as FormArray).controls;
+  }
+
+  addmemCatField() {
+    (this.memCatForm.get('memCatList') as FormArray).push(this.getmemCatFields());
+  }
+
+  deleteMemCatField(index: number) {
+    (this.memCatForm.get('memCatList') as FormArray).removeAt(index);
+  }
 }

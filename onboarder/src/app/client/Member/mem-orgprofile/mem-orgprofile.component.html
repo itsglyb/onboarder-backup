@@ -5,117 +5,90 @@
         </aside>
 
         <div class="content"*ngFor="let OrganizationItem of orgInfo">
-            <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
-                <div class="img-square-wrapper">
-                    <img class="img-logo" [src]="OrganizationItem.logo ? OrganizationItem.logo : 'assets/img/profile-pic.png'" alt="Card image cap">
-                </div>
-                <div class="card-body" *ngFor="let status of membershipStatus" >
-                    <h4 class="card-eventtitle">{{OrganizationItem.orgName}}</h4>
-                    <p class="card-text">{{OrganizationItem.about}}</p>
+            <div class="card-horizontal gap-3 text-center justify-content-center row">
 
-                    <!-- <p class="card-text"*ngIf="status[0]?.isVerified">Your Membership Expires on: <span style="color: blue;">{{OrganizationItem.dateCreated}}</span></p>  -->
-
+              <div class="card">
+                <img src="assets\img\bg_04.png" class="card-img" width="200" height="200">
+                <div class="card-img-overlay d-flex center">
+                  <div class="img-square-wrapper">
+                    <img class="" [src]="OrganizationItem.logo ? OrganizationItem.logo : 'assets/img/profile-pic.png'" alt="Organization Logo" style="width: auto; height: 170px;">
+                  </div>
+                  <div class="card-body p-3" *ngFor="let status of membershipStatus" >
+                    <h4 class="card-text mb-0" style="font-weight: 700;" name="orgName" value="orgName">{{OrganizationItem.orgName}}</h4>
+                    <p class="card-text mb-0">{{OrganizationItem.about}}</p>
                     <button class="btn btn-primary"  style="background-color: green; border:none;" *ngIf="status[0]?.isVerified">MEMBER</button>
-
-                    <button class="btn btn-primary" style="background-color: green; border:none;"  *ngIf="status.length > 0 && !status[0]?.isVerified && !status[0]?.isRejected">WAITING FOR VERIFICATION</button> 
-
-                     <button class="btn btn-primary" style="background-color: green; border:none;" (click)="redirectToMemOrMemForm(OrganizationItem._id)" *ngIf="status.length === 0 || 
-                     (status[0]?.isRejected && !status[0]?.isVerified)">REGISTER</button>
-
+                    <button class="btn btn-primary" style="background-color: green; border:none;"  *ngIf="status.length > 0 && !status[0]?.isVerified && !status[0]?.isRejected">WAITING FOR VERIFICATION</button>
+                     <button class="btn btn-primary" style="background-color: green; border:none;" (click)="redirectToMemOrMemForm(OrganizationItem._id)" *ngIf="status.length === 0 ||
+                      (status[0]?.isRejected && !status[0]?.isVerified)">REGISTER</button>
                     <p class="card-text" *ngIf="status.length > 0 && !status[0]?.isVerified && !status[0]?.isRejected">If the Register button appears the next time you visit, it means that your membership application was rejected. Email this organization for clarifications and register again. Here's your reference number: <span style="color: blue;"> {{status[0]._id}}</span></p>
+                  </div>
                 </div>
-            </div>
+              </div>
 
-            <hr>
 
-            <!-- <div class="container-fluid">
-                <h1 class="mt-5">Events</h1>
-                    
-                <div class="scrolling-wrapper row flex-row flex-nowrap mt-1 pb-4 pt-1">
-                        <div class="col-5">
-                                <div class="row">
-                                    <div class="col-12 mt-3">
-                                        <div class="card">
-                                            <div class="card-horizontal">
-                                              
-                                                <div class="img-square-wrapper">
-                                                    <img class="img-preview" src="assets\img\jcm.jpg" alt="Card image cap">
-                                                </div>
-                                                <div class="card-body">
-                                                  <span class="card-date">Event Date</span>
-                                                  <h4 class="card-eventtitle">Event <title></title></h4>
-                                                  <p class="card-text">Event Desc</p> 
-                                                  <button class="btn btn-primary">Read More</button>
-                                                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                   
-                                                  </div>                              
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  </div> 
-                        </div>
- 
+              <div class="col-xl-12 col-md-6 mb-4 justify-content-center">
+                <div class="card border-left-primary h-100 py-2">
+                    <div class="card-body">
+                      <div class="col mr-2">
+                        <h4 class="text-xs font-weight-bold text-primary text-uppercase mb-1 p-0" style="font-weight: 700;">History</h4>
+                        <p class="card-text" name="orgHistory" value="orgHistory">{{OrganizationItem.orgHistory}}</p>
+                      </div>
+                    </div>
                 </div>
-            </div> -->
+              </div>
 
-            
+              <div class="row">
+                <div class="col-xl-4 col-md-6 mb-4 justify-content-center">
+                  <div class="card border-left-primary h-100 py-2">
+                    <div class="card-body">
+                      <div class="col mr-2">
+                        <h4 class="text-xs font-weight-bold text-primary text-uppercase mb-1 p-0" style="font-weight: 700;">Mission</h4>
+                        <ng-container *ngIf="OrganizationItem.mission; else noCoreValues">
+                          <p class="card-text">{{OrganizationItem.mission}}</p>
+                        </ng-container>
+                        <ng-template #noCoreValues>
+                          <p class="card-text">No mission available</p>
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-            <div class="card-body">
-                <h4 class="card-eventtitle">About</h4>
-                <p class="card-text">{{OrganizationItem.about}}</p>
-            </div>
+                <div class="col-xl-4 col-md-6 mb-4 justify-content-center">
+                  <div class="card border-left-primary h-100 py-2">
+                    <div class="card-body">
+                      <div class="col mr-2">
+                        <h4 class="text-xs font-weight-bold text-primary text-uppercase mb-1 p-0" style="font-weight: 700;">Vision</h4>
+                        <ng-container *ngIf="OrganizationItem.Vision; else noCoreValues">
+                          <p class="card-text">{{OrganizationItem.coreValues}}</p>
+                      </ng-container>
+                      <ng-template #noCoreValues>
+                          <p class="card-text">No vision available</p>
+                      </ng-template>                      </div>
+                    </div>
+                  </div>
+                </div>
 
-            <hr>
+                <div class="col-xl-4 col-md-6 mb-4 justify-content-center">
+                  <div class="card border-left-primary h-100 py-2">
+                    <div class="card-body">
+                      <div class="col mr-2">
+                        <h4 class="text-xs font-weight-bold text-primary text-uppercase mb-1 p-0" style="font-weight: 700;">Core Values</h4>
+                        <ng-container *ngIf="OrganizationItem.Vision; else noCoreValues">
+                          <p class="card-text">{{OrganizationItem.coreValues}}</p>
+                      </ng-container>
+                      <ng-template #noCoreValues>
+                          <p class="card-text">No vision available</p>
+                      </ng-template>
+                            </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-            <div class="card-body">
-                <h4 class="card-eventtitle">History</h4>
-                <p class="card-text">{{OrganizationItem.orgHistory}}</p>
-            </div>
-
-            <hr>
-
-            <div class="card-body">
-                <h4 class="card-eventtitle">Mission</h4>
-                <ng-container *ngIf="OrganizationItem.mission; else noCoreValues">
-                    <p class="card-text">{{OrganizationItem.mission}}</p>
-                </ng-container>
-                <ng-template #noCoreValues>
-                    <p class="card-text">No mission available</p>
-                </ng-template>
-            </div>
-            
-
-            <hr>
-
-            <div class="card-body">
-                <h4 class="card-eventtitle">Vision</h4>
-                <ng-container *ngIf="OrganizationItem.Vision; else noCoreValues">
-                    <p class="card-text">{{OrganizationItem.coreValues}}</p>
-                </ng-container>
-                <ng-template #noCoreValues>
-                    <p class="card-text">No vision available</p>
-                </ng-template>
-            </div>
-            
-
-            <hr>
-
-            <div class="card-body">
-                <h4 class="card-eventtitle">Core Values</h4>
-                <ng-container *ngIf="OrganizationItem.coreValues; else noCoreValues">
-                    <p class="card-text">{{OrganizationItem.coreValues}}</p>
-                </ng-container>
-                <ng-template #noCoreValues>
-                    <p class="card-text">No core values available</p>
-                </ng-template>
-            </div>
-            
-
-            <hr>
 
         </div>
     </div>
-</body>
+
 
 
