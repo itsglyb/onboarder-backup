@@ -17,27 +17,27 @@
           </nav>
 
           <div class="card gap-3 text-right" [formGroup]="form">
-            <img src="assets\img\bg_04.png" class="card-img" width="200" height="200">
+            <img src="assets\img\bg_06.png" class="card-img" width="200" height="320">
             <div class="card-img-overlay d-flex">
               <div class="img-square-wrapper">
-                <img class="" src="assets/img/profile-pic.png" alt="Organization Logo" style="width: auto; height: 170px;">
+                <img class="" src="assets/img/profile-pic.png" alt="Organization Logo" style="width: auto; height: 170px; padding-top: 15px;">
               </div>
               <div class="card-body d-flex">
                 <h4 class="card-eventtitle" name="memberlastName" value="memberlastName" [(ngModel)]="memberlastName" [ngModelOptions]="{standalone: true}">{{memberlastName}}</h4>
                 <h4 class="card-eventtitle1"  name="memberfirstName" value="memberfirstName" [(ngModel)]="memberfirstName" [ngModelOptions]="{standalone: true}">{{memberfirstName}}</h4>
-                <p  [(ngModel)]="memberemail" name="memberemail" value="memberemail" [(ngModel)]="memberemail" [ngModelOptions]="{standalone: true}">{{memberemail}}</p>
+                <p class="memberemail" name="memberemail" value="memberemail" [(ngModel)]="memberemail" [ngModelOptions]="{standalone: true}">{{memberemail}}</p>
               </div>
             </div>
           </div>
 
 
-          <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
+          <!-- <div class="card-horizontal gap-3 text-center align-items-center justify-content-center">
             <div class="card-body">
                 <h4 class="card-eventtitle" name="memberlastName" value="memberlastName" [(ngModel)]="memberlastName" [ngModelOptions]="{standalone: true}">{{memberlastName}}</h4>
                 <h4 class="card-eventtitle1"  name="memberfirstName" value="memberfirstName" [(ngModel)]="memberfirstName" [ngModelOptions]="{standalone: true}">{{memberfirstName}}</h4>
                 <p  [(ngModel)]="memberemail" name="memberemail" value="memberemail" [(ngModel)]="memberemail" [ngModelOptions]="{standalone: true}">{{memberemail}}</p>
             </div>
-        </div>
+        </div> -->
       </div>
   </div>
 

@@ -49,4 +49,7 @@ export class MemRegistrationComponent implements OnInit {
     // Check if eventSeats is 0
     return this.eventSeats == 0;
   }
+  backToEvents() {
+    this.router.navigate(['/member-events']);
+  }
 }

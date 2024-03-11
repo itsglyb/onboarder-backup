@@ -35,8 +35,11 @@ aside {
 }
 
 .card-img-overlay {
-  display: flex; /* Make the overlay a flex container */
-  justify-content: center; /* Horizontally center the content */
+    display: flex; /* Make the overlay a flex container */
+    justify-content: center; /* Horizontally center the content */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 /*Horizontal Scrolling Cards*/
@@ -85,7 +88,7 @@ h1{
 }
 
 .navbar-brand {
-    font-family: "Plus Jakarta Sans", sans-serif;
+    font-family: 'Roboto';
     font-weight: 700;
 	font-size: 35px;
 }
@@ -97,9 +100,11 @@ h1{
 }
 
 .card {
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
-
+.card-img {
+    filter:brightness(85%);
+}
 .card-text {
     margin-bottom: 3px;
     margin-top: 0;
@@ -121,6 +126,7 @@ h1{
 .card-body {
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .btn {
