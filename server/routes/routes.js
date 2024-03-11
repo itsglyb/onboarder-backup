@@ -483,6 +483,7 @@ router.post('/orgRegister', async (req, res) => {
   let coreValues = req.body.coreValues
   let userType = req.body.userType
   let logo = req.body.logo
+  let certificate = req.body.certificate
   let orgCode = req.body.orgCode
   let expirationDate = req.body.expirationDate
  
@@ -510,6 +511,7 @@ router.post('/orgRegister', async (req, res) => {
       coreValues:coreValues,
       userType:userType,
       logo: logo,
+      certificate: certificate,
       orgCode: orgCode,
       expirationDate: expirationDate,
       isVerified : false
