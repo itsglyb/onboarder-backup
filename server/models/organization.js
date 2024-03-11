@@ -17,6 +17,9 @@ const organizationSchema = new mongoose.Schema ({
         required: true,
         unique: true,
     },
+    emailToken:{
+        type: String, 
+    },
     password:{
         type: String,
         required: true
@@ -56,6 +59,10 @@ const organizationSchema = new mongoose.Schema ({
     },
     expirationDate: {
         type: Date
+    },
+
+    isVerified:{
+        type: Boolean,
     }
 
 })

@@ -2,6 +2,9 @@ const {Router} = require('express')
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+require('dotenv').config();
 const Member = require('../models/member');
 const Organization = require('../models/organization');
 const Events = require('../models/events');
@@ -12,6 +15,7 @@ const EventRegForm = require('../models/eventregForm');
 const GuestRegForm = require('../models/guestRegForm');
 const MembershipApplication = require('../models/membershipApplication');
 const guestRegForm = require('../models/guestRegForm');
+const { error } = require('console');
 
 
 
@@ -19,6 +23,8 @@ const ObjectId = mongoose.Types.ObjectId;
 
 
 const router = Router()
+
+
 
 //CREATE ADMIN
 router.post('/admin', async (req, res) => {
@@ -67,6 +73,18 @@ router.post('/admin', async (req, res) => {
 
 });
 
+//mail
+
+let transporter = nodemailer.createTransport({
+  service: 'outlook',
+  auth:{
+    user: process.env.AUTH_EMAIL,
+    pass: process.env.AUTH_PASS,
+  },
+  tls:{ rejectUnauthorized: false
+
+  }
+})
 
 //MEMBER REGISTRATION
 router.post('/register', async (req, res) => {
@@ -98,28 +116,74 @@ router.post('/register', async (req, res) => {
         firstName:firstName,
         lastName:lastName,
         email:email,
+        emailToken : crypto.randomBytes(64).toString('hex'),
         password:hashedPassword,
         userType:userType,
+        isVerified: false
     })
 
     const result = await member.save();
 
-    //JWT 
+    // send verification
 
-    const { _id } = await result.toJSON();
+    const mailOptions = {
+      from: process.env.AUTH_EMAIL,
+      to: member.email,
+      subject: "ONBOARDER | Account Verification",
+      html:`<h2> Hi ${member.firstName}!</h2> <h4>To start your onboarding journey, please verify your email.</h4> 
+      <a href="http://${req.headers.host}/api/verify-email?token=${member.emailToken}">LINK</a>`
+    }
 
-    const token = jwt.sign({ _id: _id }, "secret");
+    //sending email
 
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
-    });
-
-    res.send({
-        message: "success"
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+        console.log(error)
+      }else{
+        console.log('Verification sent in email')
+      }
     })
+
+    res.json({ redirectTo: '/auth-login' });
 }
 
+});
+
+
+router.get('/verify-email', async (req, res) => {
+  try {
+    const token = req.query.token;
+    const member = await Member.findOne({ emailToken: token });
+
+    if (member) {
+      member.emailToken = null;
+      member.isVerified = true;
+      await member.save();
+
+      // Send HTML with a script for client-side redirection after verification
+      res.send(`
+      <html>
+      <head>
+        <script>
+          window.location.href = 'http://localhost:4200/auth-login';
+        </script>
+      </head>
+      <body>
+        Redirecting...
+      </body>
+    </html>
+      `);
+    } else {
+      return res.status(400).send({
+        message: "Email not verified"
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      error: 'Internal Server Error'
+    });
+  }
 });
 
 //READ Member
@@ -226,6 +290,12 @@ router.post('/login', async (req, res) => {
         });
   }// pag hindi mali,
 
+  else if(organization.isVerified === false){
+    return res.status(400).send ({
+      message:"Account not verified. Please check in your email."
+    });
+  }
+
   else{const token = jwt.sign({
     _id: organization._id, 
     userType: organization.userType, 
@@ -248,12 +318,19 @@ router.post('/login', async (req, res) => {
     });
   } //B
 
+  else if(member.isVerified === false){
+    return res.status(400).send ({
+      message:"Account not verified. Please check in your email."
+    });
+  }
+
   else {const token = jwt.sign({
     _id: member._id, 
     email: member.email,
     firstName: member.firstName,
     lastName: member.lastName,
-    userType: member.userType
+    userType: member.userType,
+    isVerified: member.isVerified
   
   },"secret") //but this if valid
 
@@ -424,6 +501,7 @@ router.post('/orgRegister', async (req, res) => {
       orgName:orgName,
       orgType:orgType,
       email:email,
+      emailToken : crypto.randomBytes(64).toString('hex'),
       password:hashedPassword,
       about:about,
       orgHistory:orgHistory,
@@ -433,13 +511,70 @@ router.post('/orgRegister', async (req, res) => {
       userType:userType,
       logo: logo,
       orgCode: orgCode,
-      expirationDate: expirationDate
+      expirationDate: expirationDate,
+      isVerified : false
   })
 
   const result = await organization.save();
   res.status(201).json({ orgID: result._id, message: 'Organization created successfully' });
+
+  const mailOptions = {
+    from: process.env.AUTH_EMAIL,
+    to: organization.email,
+    subject: "ONBOARDER | Account Verification",
+    html:`<h2> Greetings ${organization.orgName}!</h2> <h4>To start your onboarding journey, please verify your email.</h4> 
+    <a href="http://${req.headers.host}/api/email-verify?token=${organization.emailToken}">LINK</a>`
+  }
+
+  //sending email
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+      console.log(error)
+    }else{
+      console.log('Verification sent in email')
+    }
+  })
 }
 
+});
+
+//
+
+router.get('/email-verify', async (req, res) => {
+  try {
+    const token = req.query.token;
+    const organization = await Organization.findOne({ emailToken: token });
+
+    if (organization) {
+      organization.emailToken = null;
+      organization.isVerified = true;
+      await organization.save();
+
+      // Send HTML with a script for client-side redirection after verification
+      res.send(`
+      <html>
+      <head>
+        <script>
+          window.location.href = 'http://localhost:4200/auth-login';
+        </script>
+      </head>
+      <body>
+        Redirecting...
+      </body>
+    </html>
+      `);
+    } else {
+      return res.status(400).send({
+        message: "Email not verified"
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      error: 'Internal Server Error'
+    });
+  }
 });
 
 //READ Organization

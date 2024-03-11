@@ -234,67 +234,82 @@ const membershipFormSchema = new mongoose.Schema ({
         type: Boolean,
     },
 
-    memType1Input:{
-        type: String,
-                default: null,
-
+    payment:{
+        type: Boolean,
     },
 
-    memType2Input:{
-        type: String,
-                default: null,
-
+    memCategory:{
+        type: [String],
     },
 
-    memType3Input:{
-        type: String,
-                default: null,
-
+    categoryDetails:{
+        type: [String],
     },
 
-    memType1DetailsInput:{
-        type: String,
-                default: null,
-
+    categoryFee:{
+        type: [String],
     },
 
-    memType2DetailsInput:{
-        type: String,
-                default: null,
+    // memType1Input:{
+    //     type: String,
+    //             default: null,
 
-    },
+    // },
 
-    memType3DetailsInput:{
-        type: String,
-                default: null,
+    // memType2Input:{
+    //     type: String,
+    //             default: null,
+    // },
 
-    },
+    // memType3Input:{
+    //     type: String,
+    //             default: null,
 
-    memType1FeeInput:{
-        type: String,
-                default: null,
+    // },
 
-    },
+    // memType1DetailsInput:{
+    //     type: String,
+    //             default: null,
 
-    memType2FeeInput:{
-        type: String,
-                default: null,
+    // },
 
-    },
+    // memType2DetailsInput:{
+    //     type: String,
+    //             default: null,
 
-    memType3FeeInput:{
-        type: String,
-                default: null,
+    // },
 
-    },
+    // memType3DetailsInput:{
+    //     type: String,
+    //             default: null,
 
-    memType1ProcessInput:{
-        type: String,
-                default: null,
+    // },
+
+    // memType1FeeInput:{
+    //     type: String,
+    //             default: null,
+
+    // },
+
+    // memType2FeeInput:{
+    //     type: String,
+    //             default: null,
+
+    // },
+
+    // memType3FeeInput:{
+    //     type: String,
+    //             default: null,
+
+    // },
+
+    // memType1ProcessInput:{
+    //     type: String,
+    //             default: null,
 
         
 
-    },
+    // },
 
 });
 
