@@ -181,12 +181,12 @@ a{
   
 .event .event-left .date {
     width: 75px;
-	font-size: 1.5em;
-	line-height: 1em;
-	font-weight: bold;
-	text-align: center;
+	  font-size: 1.5em;
+	  line-height: 1em;
+	  font-weight: bold;
+	  text-align: center;
     padding: .5em 0;
-	margin-bottom: .7em;
+	  margin-bottom: .7em;
     box-shadow:0px 1px 0px #e0e0e041;
     background: #007FE1;
 }
@@ -202,6 +202,18 @@ a{
     justify-content: center;
     padding: 0 24px;
 }
+.event .event-right .event-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+}
+.event .event-right .event-details i {
+  font-size: 15px;
+  padding-top: 2px;
+  padding-right: 5px;
+  
+}
 .event .event-right h3.event-title {
     font-size: 24px;
     margin: 10px 0 10px 0;
@@ -212,31 +224,51 @@ a{
 .event .event-right .event-time {
     background: #f5e79c;
     display: flex;
-    width: 100px;
+    /* width: 120px; */
     padding: 8px;
     border-radius: 16px;
     margin: 15px 0 5px;
     font-size: 14px;
 }
-.event .event-right .event-time span, .event .event-right .event-location span {
-    padding-left: 4px;
+span {
+    padding-left: 5px;
 }
-  
-.event .event-right .event-time img {
+/* .event .event-right .event-time img {
     height: 20px;
     padding-right: 8px;
-}
+} */
 .event .event-right .event-location {
     background: #8ce291;
     display: flex;
-    width: 250px;
+    /* width: 250px; */
     padding: 8px;
     border-radius: 16px;
     margin: 10px 0;
     font-size: 14px;
-}   
+}  
+.event .event-right .event-seats {
+    background: #e6870b9d;
+    display: flex;
+    height: 40px;
+    padding: 8px;
+    border-radius: 16px;
+    margin: 5px 0 5px;
+    font-size: 14px;
+
+} 
+
+.event .event-right .event-fee {
+    background: #007fe173;
+    display: flex;
+    height: 40px;
+    padding: 8px;
+    border-radius: 16px;
+    margin: 5px 10px 5px;
+    font-size: 14px; 
+  
+} 
 .event .event-right a {
-    background-color: #007FE1;
+    background-color: #007fe18c;
     color: white;
     text-decoration: none;
     padding: 10px 30px;
@@ -313,8 +345,20 @@ input{
     background-color: #f5f5f5;
 }
 
-.register-btn {
-  margin-bottom: 10px;
+.btn-reg {
+  margin: 3px 0 15px;
+  float: right;
+  background: #007FE1;
+  padding: 8px;
+  width: 110px;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 2px 2px 5px #707070;
+}
+.btn-reg:hover {
+  background: #0492ff;
 }
 
 .close {
