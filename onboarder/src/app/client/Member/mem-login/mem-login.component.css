@@ -31,4 +31,8 @@ input {
     position: relative;
     z-index: 2;
   }
-  
+
+  .form-label{
+    padding-bottom: 0;
+    margin: 0;
+  }

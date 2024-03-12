@@ -464,7 +464,7 @@
         </nav>
 
           <div class="card">
-            <div class="card-body">
+          <div class="card-body">
           <form class="row g-3 needs-validation" [formGroup]="form"(submit)="submit()" *ngIf="(memForm$ | async) as memForm">
 
               <div class="row" *ngIf="memForm.personalInfo">
@@ -880,7 +880,7 @@
               </div>
 
               <div class="col-md-12 position-relative" *ngIf="memForm.membership">
-                <label for="validationTooltip03" class="form-label">Membership Type</label>
+                <label for="validationTooltip03" class="form-label">Membership Category</label>
                 <select class="form-select" id="validationTooltip04" formControlName="chooseMem" >
                   <option selected  value="">Choose...</option>
                   <option>{{memForm.memType1Input}}</option>
