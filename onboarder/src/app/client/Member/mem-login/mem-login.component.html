@@ -44,10 +44,10 @@
                   <!-- Password input -->
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4">Password</label>
-                    <input type="password" id="form3Example4" class="form-control" formControlName="password"/>
+                    <input type="password" id="form3Example4" class="form-control" formControlName="password" [ngClass]="{'is-invalid': submitted && form.controls['password'].errors}"/>
                     <span (click)="togglePassword()" class="fa-solid fa-eye field-icon toggle-password"></span>
                     <div class="invalid-feedback">
-                      Wrong Password!
+                      Please enter your password
                     </div>
                   </div>
 
