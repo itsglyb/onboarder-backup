@@ -99,6 +99,10 @@ const membershipFormSchema = new mongoose.Schema ({
         type: Boolean,
     },
 
+    companyID:{
+        type: Boolean,
+    },
+
     aviation:{
         type: Boolean,
     },
@@ -234,82 +238,125 @@ const membershipFormSchema = new mongoose.Schema ({
         type: Boolean,
     },
 
-    payment:{
+    date:{
         type: Boolean,
     },
 
-    memCategory:{
-        type: [String],
+    memType1Input:{
+        type: String,
+                default: null,
+
     },
 
-    categoryDetails:{
-        type: [String],
+    memType2Input:{
+        type: String,
+                default: null,
     },
 
-    categoryFee:{
-        type: [String],
+    memType3Input:{
+        type: String,
+                default: null,
+
     },
 
-    // memType1Input:{
-    //     type: String,
-    //             default: null,
+    memType4Input:{
+        type: String,
+                default: null,
 
-    // },
+    },
 
-    // memType2Input:{
-    //     type: String,
-    //             default: null,
-    // },
+    memType5Input:{
+        type: String,
+                default: null,
 
-    // memType3Input:{
-    //     type: String,
-    //             default: null,
+    },
 
-    // },
+    memType6Input:{
+        type: String,
+                default: null,
 
-    // memType1DetailsInput:{
-    //     type: String,
-    //             default: null,
+    },
 
-    // },
 
-    // memType2DetailsInput:{
-    //     type: String,
-    //             default: null,
+    memType1DetailsInput:{
+        type: String,
+                default: null,
 
-    // },
+    },
 
-    // memType3DetailsInput:{
-    //     type: String,
-    //             default: null,
+    memType2DetailsInput:{
+        type: String,
+                default: null,
 
-    // },
+    },
 
-    // memType1FeeInput:{
-    //     type: String,
-    //             default: null,
+    memType3DetailsInput:{
+        type: String,
+                default: null,
 
-    // },
+    },
 
-    // memType2FeeInput:{
-    //     type: String,
-    //             default: null,
+    memType4DetailsInput:{
+        type: String,
+                default: null,
 
-    // },
+    },
 
-    // memType3FeeInput:{
-    //     type: String,
-    //             default: null,
+    memType5DetailsInput:{
+        type: String,
+                default: null,
 
-    // },
+    },
 
-    // memType1ProcessInput:{
-    //     type: String,
-    //             default: null,
+    memType6DetailsInput:{
+        type: String,
+                default: null,
 
-        
+    },
 
-    // },
+    memType1FeeInput:{
+        type: String,
+                default: null,
+
+    },
+
+    memType2FeeInput:{
+        type: String,
+                default: null,
+
+    },
+
+    memType3FeeInput:{
+        type: String,
+                default: null,
+
+    },
+
+    memType4FeeInput:{
+        type: String,
+                default: null,
+
+    },
+
+    memType5FeeInput:{
+        type: String,
+                default: null,
+
+    },
+
+    memType6FeeInput:{
+        type: String,
+                default: null,
+
+    },
+
+
+    memType1ProcessInput:{
+        type: String,
+                default: null,
+
+
+    },
 
 });
 
