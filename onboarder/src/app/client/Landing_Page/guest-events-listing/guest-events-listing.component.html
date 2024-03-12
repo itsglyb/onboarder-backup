@@ -47,14 +47,28 @@
           <div class="event-description">
               {{event.eventDesc}}
           </div>
-          <div class="event-time">
+          <!-- <div class="event-time">
+              <i class="fa fa-clock" aria-hidden="true"></i> <span>{{event.eventTime}}</span>
+          </div>
+          <div class="event-location">
+              <i class="fa fa-location-dot"></i> <span>{{event.location ? event.location : 'No data provided'}}</span>
+          </div> -->
+          <div class="event-details">
+            <div class="event-time">
               <i class="fa fa-clock" aria-hidden="true"></i> <span>{{event.eventTime}}</span>
           </div>
           <div class="event-location">
               <i class="fa fa-location-dot"></i> <span>{{event.location ? event.location : 'No data provided'}}</span>
           </div>
+          <div class="event-seats">
+            <i class="fa fa-couch"></i><p>Available Seats:</p> <span>{{event.eventSeats}}</span>
+        </div>
+        <div class="event-fee">
+          <i class="fa fa-money"></i><p>Fee:</p> <span>{{event.eventPrice}}</span>
+      </div>
+          </div>
           <div class="register-btn">
-            <button class="btn btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle, +event.eventSeats, event.eventTime, event.location, event.eventDesc, event.eventPrice, event.eventPaymentDetails)" [disabled]="+event.eventSeats === 0">Register</button>
+            <button class="btn-reg btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle, +event.eventSeats, event.eventTime, event.location, event.eventDesc, event.eventPrice, event.eventPaymentDetails)" [disabled]="+event.eventSeats === 0">Register</button>
           </div>
       </div>
     </div>
