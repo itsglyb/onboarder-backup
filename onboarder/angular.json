@@ -35,7 +35,8 @@
               "src/assets/js/org-reg.js",
               "src/assets/menu.js",
               "src/assets/js/regBtn.js",
-              "src/assets/js/sideNav.js"
+              "src/assets/js/sideNav.js",
+              "src/assets/js/showPass.js"
               
             ]
           },

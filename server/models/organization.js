@@ -54,6 +54,9 @@ const organizationSchema = new mongoose.Schema ({
     logo: {
         type: String
     },
+    certificate: {
+        type: String
+    },
     orgCode: {
         type: String
     },

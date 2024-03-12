@@ -44,6 +44,7 @@ export class OrgRegistrationComponent implements OnInit {
       vision: ['', Validators.required],
       coreValues: ['', Validators.required],
       logo: ['', Validators.required],
+      certificate: ['', Validators.required],
       orgCode: ['', Validators.required]
   });
 
@@ -79,6 +80,7 @@ onChange = ($event: Event) => {
   this.convertfiletobase64(file, (base64String) => {
     // Set the base64 string to the logo form control
     this.form.get('logo')?.setValue(base64String);
+    this.form.get('certificate')?.setValue(base64String);
   });
 }
 
