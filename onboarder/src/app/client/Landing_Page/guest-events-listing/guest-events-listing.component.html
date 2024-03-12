@@ -54,7 +54,7 @@
               <i class="fa fa-location-dot"></i> <span>{{event.location ? event.location : 'No data provided'}}</span>
           </div>
           <div class="register-btn">
-              <button class="btn btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle, +event.eventSeats, event.eventTime, event.location, event.eventDesc, event.eventPrice, event.eventPaymentDetails)" [disabled]="+event.eventSeats === 0">Register</button>
+            <button class="btn btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle, +event.eventSeats, event.eventTime, event.location, event.eventDesc, event.eventPrice, event.eventPaymentDetails)" [disabled]="+event.eventSeats === 0">Register</button>
           </div>
       </div>
     </div>

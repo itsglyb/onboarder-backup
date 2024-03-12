@@ -109,6 +109,19 @@ a{
   height: 100%;
   border-top:1px solid #f5f5f5;
 }
+.btn-banner {
+  background-color: #fff; 
+  filter: drop-shadow(3px 3px 5px #707070); 
+  font-weight: 500;
+  border: none;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+.btn-banner:hover {
+  background-color: transparent;
+  border: 1.5px solid #FFF;
+  color: #FFF;
+}
 
 
 /*ABOUT*/

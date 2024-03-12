@@ -62,9 +62,9 @@
       
           <!-- Pagination controls -->
           <div class="text-center">
-            <button class="btn btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)">Previous</button>
+            <button class="btn-prev btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)"><i class="fa-solid fa-caret-left"></i></button>
             <span>Page {{ currentPage }} of {{ Math.ceil(MemberArray.length / itemsPerPage) }}</span>
-            <button class="btn btn-link" [disabled]="currentPage === Math.ceil(MemberArray.length / itemsPerPage)" (click)="setPage(currentPage + 1)">Next</button>
+            <button class="btn-next btn-link" [disabled]="currentPage === Math.ceil(MemberArray.length / itemsPerPage)" (click)="setPage(currentPage + 1)"><i class="fa-solid fa-caret-right"></i></button>
           </div>
         </div>
       </div>

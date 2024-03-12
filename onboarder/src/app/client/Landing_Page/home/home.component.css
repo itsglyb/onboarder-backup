@@ -169,8 +169,14 @@ p {
   transform: scale(1.03); 
 }
 .learn-more-btn{
-    background-color:#007FE1;
-
+  background-color: #fff; 
+  filter: drop-shadow(3px 3px 5px #707070); 
+  font-family: 'Roboto' sans-serif;
+  font-weight: 500;
+}
+.learn-more-btn:hover {
+  border: 1.5px solid white;
+  color: #FFF;
 }
 /*About*/
 #About {
