@@ -657,12 +657,21 @@ router.post('/createForm', async (req, res) => {
   let memType1Input = req.body.memType1Input
   let memType2Input = req.body.memType2Input
   let memType3Input = req.body.memType3Input
+  let memType4Input = req.body.memType4Input
+  let memType5Input = req.body.memType5Input
+  let memType6Input = req.body.memType6Input
   let memType1DetailsInput = req.body.memType1DetailsInput
   let memType2DetailsInput = req.body.memType2DetailsInput
   let memType3DetailsInput = req.body.memType3DetailsInput
+  let memType4DetailsInput = req.body.memType4DetailsInput
+  let memType5DetailsInput = req.body.memType5DetailsInput
+  let memType6DetailsInput = req.body.memType6DetailsInput
   let memType1FeeInput = req.body.memType1FeeInput
   let memType2FeeInput = req.body.memType2FeeInput
   let memType3FeeInput = req.body.memType3FeeInput
+  let memType4FeeInput = req.body.memType4FeeInput
+  let memType5FeeInput = req.body.memType5FeeInput
+  let memType6FeeInput = req.body.memType6FeeInput
   let memType1ProcessInput = req.body.memType1ProcessInput
  
 
@@ -670,44 +679,77 @@ router.post('/createForm', async (req, res) => {
       // Create a new Member instance with checkbox data
       const newMembershipForm = new MemForm({
 
+        photo: false,
+
         personalInfo: true,
         fullName: true, sex: false,
         birthDate: true, placeOfBirth : false,
         civilStatus: false, religion: false,
         address: false, zip: false,
         email: true, contactNum: false,
+
         facebook: false, linkedIn:false,
         skype: false, zoom: false,
+
         idLicense: false, prcNo : false,
         prcDate: false, prcExpiration: false,
-        studentID: false, aviation: false,
-        caap: false, taxID: false, EducAttainment: false,
+        studentID: false, companyID: false, 
+        
+        aviation: false,
+        caap: false, taxID: false, 
+        
+        EducAttainment: false,
         tertiary: false, tertiaryDegree: false,
         tertiaryYear: false, tertiaryDiploma : false,
         masteral: false, masteralDegree: false,
         masteralYear: false, masteralDiploma: false,
         doctoral: false, doctoralDegree: false,
-        doctoralYear: false, employmentDetails: false,
+        doctoralYear: false,
+        
+        employmentDetails: false,
         employer: false, jobTitle: false,
-        employerAdd: false, membership: false,
+        employerAdd: false, 
+        
+        membership: false,
+
         memType1: false, memType2: false,
-        memType3: false,
+        memType3: false, memType4: false,
+        memType5: false, memType6: false,
+
         memType1Details: false, memType2Details: false,
-        memType3Details: false, memType1Fee: false,
-        memType2Fee: false, memType3Fee: false,
-        memType1Process: false, memType2Process: false,
-        memType3Process: false, payment: false,
+        memType3Details: false, memType4Details: false,
+        memType5Details: false, memType6Details: false,
+
+        memType1Fee: false,memType2Fee: false,
+        memType3Fee: false, memType4Fee: false, 
+        memType5Fee: false, memType6Fee: false, 
+        memType1Process: false,
+        date: false,
+       
         
         memType1Input : memType1Input,
         memType2Input : memType2Input,
         memType3Input : memType3Input,
+        memType4Input : memType4Input,
+        memType5Input : memType5Input,
+        memType6Input : memType6Input,
+
         memType1DetailsInput : memType1DetailsInput,
         memType2DetailsInput : memType2DetailsInput,
         memType3DetailsInput : memType3DetailsInput,
+        memType4DetailsInput : memType4DetailsInput,
+        memType5DetailsInput : memType5DetailsInput,
+        memType6DetailsInput : memType6DetailsInput,
+
         memType1FeeInput : memType1FeeInput,
         memType2FeeInput : memType2FeeInput,
         memType3FeeInput : memType3FeeInput,
+        memType4FeeInput : memType4FeeInput,
+        memType5FeeInput : memType5FeeInput,
+        memType6FeeInput : memType6FeeInput,
+
         memType1ProcessInput : memType1ProcessInput,
+
         orgID:orgID,     
         
 

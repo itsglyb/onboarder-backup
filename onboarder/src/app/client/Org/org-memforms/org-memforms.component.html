@@ -6,12 +6,12 @@
 </head>
 
 <body>
-  <div class="container">
+  <body class="container">
       <aside>
         <app-org-navbar></app-org-navbar>
       </aside>
 
-      <div class="content" [formGroup]="form">
+      <form class="content" [formGroup]="form" (submit)="submit()">
 
           <nav class="navbar navbar-expand-lg  rounded" aria-label="Thirteenth navbar example">
               <div class="container-fluid">
@@ -23,9 +23,7 @@
                     </ul>
                   </div>
                   <div class="d-flex">
-                    <button type="button" class="btn btn-success">
-                      Save Changes
-                    </button>
+                    <input type="submit"  class=" btn btn-success action-button"  />
                   </div>
                 </div>
               </div>
@@ -212,7 +210,7 @@
                   </div>
 
                   <div class="sub-item col-md-5 position-relative">
-                    <input class="form-check-input" type="checkbox" value="" id="aviation" formControlName="aviation" [checked]="form.get('aviation')?.value" style="margin-right: 5px;">
+                    <input class="form-check-input" type="checkbox" value="" id="companyID" formControlName="companyID" [checked]="form.get('companyID')?.value" style="margin-right: 5px;">
                     <label for="validationTooltip04" class="form-label">Company ID No.</label>
                     <input type="text" class="form-control" id="validationTooltip01" placeholder="Type N/A if not applicable" disabled>
                     <div class="valid-tooltip">
@@ -404,7 +402,7 @@
                   <div class="member-category-container">
                     <div class="sub-item row">
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType" formControlName="memType1" [checked]="form.get('memType')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType1" formControlName="memType1" [checked]="form.get('memType1')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Member Category</label>
                         <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership">
                         <div class="invalid-tooltip">
@@ -413,7 +411,7 @@
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memDetails" formControlName="memType1Details"  style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType1Details" formControlName="memType1Details"  [checked]="form.get('memType1Details')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Qualification Details</label>
                         <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
                         <div class="invalid-feedback">
@@ -422,7 +420,7 @@
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType1Fee" formControlName="memTypeFee" [checked]="form.get('memTypeFee')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType1Fee" formControlName="memType1Fee" [checked]="form.get('memType1Fee')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
                         <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price"></textarea>
                         <div class="invalid-feedback">
@@ -433,27 +431,27 @@
 
                     <div class="sub-item row">
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType" formControlName="memType1" [checked]="form.get('memType')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType2" formControlName="memType2" [checked]="form.get('memType2')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Member Category</label>
-                        <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership">
+                        <input type="text" class="form-control" id="validationTooltip03" formControlName="memType2Input" placeholder="i.e. Regular Membership">
                         <div class="invalid-tooltip">
                           Please enter the category
                         </div>
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memDetails" formControlName="memType1Details"  style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType2Details" formControlName="memType2Details" [checked]="form.get('memType2Details')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                        <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType2DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
                         <div class="invalid-feedback">
                           Please enter a message in the textarea.
                         </div>
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType1Fee" formControlName="memTypeFee" [checked]="form.get('memTypeFee')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType2Fee" formControlName="memType2Fee" [checked]="form.get('memType2Fee')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                        <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price"></textarea>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType2FeeInput" placeholder="Enter the membership fee price"></textarea>
                         <div class="invalid-feedback">
                           Please enter a message in the textarea.
                         </div>
@@ -462,27 +460,27 @@
 
                     <div class="sub-item row">
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType" formControlName="memType1" [checked]="form.get('memType')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType3" formControlName="memType3" [checked]="form.get('memType3')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Member Category</label>
-                        <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership">
+                        <input type="text" class="form-control" id="validationTooltip03" formControlName="memType3Input" placeholder="i.e. Regular Membership">
                         <div class="invalid-tooltip">
                           Please enter the category
                         </div>
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memDetails" formControlName="memType1Details"  style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType3Details" formControlName="memType3Details" [checked]="form.get('memType3Details')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                        <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType3DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
                         <div class="invalid-feedback">
                           Please enter a message in the textarea.
                         </div>
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType1Fee" formControlName="memTypeFee" [checked]="form.get('memTypeFee')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType3Fee" formControlName="memType3Fee" [checked]="form.get('memType3Fee')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                        <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price"></textarea>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType3FeeInput" placeholder="Enter the membership fee price"></textarea>
                         <div class="invalid-feedback">
                           Please enter a message in the textarea.
                         </div>
@@ -491,27 +489,27 @@
 
                     <div class="sub-item row">
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType" formControlName="memType1" [checked]="form.get('memType')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType4" formControlName="memType4" [checked]="form.get('memType4')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Member Category</label>
-                        <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership">
+                        <input type="text" class="form-control" id="validationTooltip03" formControlName="memType4Input" placeholder="i.e. Regular Membership">
                         <div class="invalid-tooltip">
                           Please enter the category
                         </div>
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memDetails" formControlName="memType1Details"  style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType4Details" formControlName="memType4Details" [checked]="form.get('memType4Details')?.value"  style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                        <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType4DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
                         <div class="invalid-feedback">
                           Please enter a message in the textarea.
                         </div>
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType1Fee" formControlName="memTypeFee" [checked]="form.get('memTypeFee')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType4Fee" formControlName="memType4Fee" [checked]="form.get('memType4Fee')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                        <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price"></textarea>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType4FeeInput" placeholder="Enter the membership fee price"></textarea>
                         <div class="invalid-feedback">
                           Please enter a message in the textarea.
                         </div>
@@ -520,32 +518,62 @@
 
                     <div class="sub-item row">
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType" formControlName="memType1" [checked]="form.get('memType')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType5" formControlName="memType5" [checked]="form.get('memType5')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Member Category</label>
-                        <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership">
+                        <input type="text" class="form-control" id="validationTooltip03" formControlName="memType5Input" placeholder="i.e. Regular Membership">
                         <div class="invalid-tooltip">
                           Please enter the category
                         </div>
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memDetails" formControlName="memType1Details"  style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType5Details" formControlName="memType5Details" [checked]="form.get('memType5Details')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                        <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType5DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
                         <div class="invalid-feedback">
                           Please enter a message in the textarea.
                         </div>
                       </div>
 
                       <div class="col-md-4 position-relative">
-                        <input class="form-check-input" type="checkbox" value="" id="memType1Fee" formControlName="memTypeFee" [checked]="form.get('memTypeFee')?.value" style="margin-right: 5px;">
+                        <input class="form-check-input" type="checkbox" value="" id="memType5Fee" formControlName="memType5Fee" [checked]="form.get('memType5Fee')?.value" style="margin-right: 5px;">
                         <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                        <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price"></textarea>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType5FeeInput" placeholder="Enter the membership fee price"></textarea>
                         <div class="invalid-feedback">
                           Please enter a message in the textarea.
                         </div>
                       </div>
                     </div>
+
+                    <div class="sub-item row">
+                      <div class="col-md-4 position-relative">
+                        <input class="form-check-input" type="checkbox" value="" id="memType6" formControlName="memType6" [checked]="form.get('memType6')?.value" style="margin-right: 5px;">
+                        <label for="validationTooltip05" class="form-label">Member Category</label>
+                        <input type="text" class="form-control" id="validationTooltip03" formControlName="memType6Input" placeholder="i.e. Regular Membership">
+                        <div class="invalid-tooltip">
+                          Please enter the category
+                        </div>
+                      </div>
+
+                      <div class="col-md-4 position-relative">
+                        <input class="form-check-input" type="checkbox" value="" id="memType6Details" formControlName="memType6Details" [checked]="form.get('memType6Details')?.value" style="margin-right: 5px;">
+                        <label for="validationTooltip05" class="form-label">Qualification Details</label>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType6DetailsInput" placeholder="Enter the qualifications required for this category"></textarea>
+                        <div class="invalid-feedback">
+                          Please enter a message in the textarea.
+                        </div>
+                      </div>
+
+                      <div class="col-md-4 position-relative">
+                        <input class="form-check-input" type="checkbox" value="" id="memType6Fee" formControlName="memType6Fee" [checked]="form.get('memType6Fee')?.value" style="margin-right: 5px;">
+                        <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
+                        <textarea class="form-control" id="validationTextarea" formControlName="memType6FeeInput" placeholder="Enter the membership fee price"></textarea>
+                        <div class="invalid-feedback">
+                          Please enter a message in the textarea.
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
 
                   <div class="sub-item">
@@ -561,9 +589,9 @@
 
                   <div class="sub-item row">
                     <div class="col-md-6 position-relative">
-                      <input class="form-check-input" type="checkbox" value="" id="paymentDate" formControlName="paymentDate" [checked]="form.get('paymentDate')?.value" style="margin-right: 5px;">
+                      <input class="form-check-input" type="checkbox" value="" id="date" formControlName="date" [checked]="form.get('date')?.value" style="margin-right: 5px;">
                       <label for="validationTooltip05" class="form-label">Payment Date</label>
-                      <input class="form-control" type="date" id="validationTextarea" formControlName="paymentDateInput" placeholder="Enter the payment process">
+                      <input class="form-control" type="date" id="validationTextarea" formControlName="date" placeholder="Enter the payment process">
                       <div class="invalid-feedback">
                         Please enter a message in the textarea.
                       </div>
@@ -580,8 +608,10 @@
               </div>
             </div>
           </div>
-
-
+          </div>
+      
+        </form>
+  </body>
 
 
 

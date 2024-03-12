@@ -17,20 +17,17 @@ photo: boolean,
   civilStatus: boolean,
   religion: boolean,
   address: boolean,
-  zip: boolean,
+
   email: boolean,
   contactNum: boolean,
-  facebook: boolean,
-  skype: boolean,
-  zoom: boolean,
+
   idLicense: boolean,
   prcNo : boolean,
   prcDate: boolean,
   prcExpiration: boolean,
   studentID: boolean,
-  aviation: boolean,
-  caap: boolean,
-  taxID: boolean,
+  companyID: boolean,
+
   EducAttainment: boolean,
   tertiary: boolean,
   tertiaryDegree: boolean,
@@ -49,6 +46,23 @@ photo: boolean,
   jobTitle: boolean,
   employerAdd: boolean,
   membership: boolean,
+
+  memType1: boolean, memType2: boolean,
+  memType3: boolean, memType4: boolean,
+  memType5: boolean, memType6: boolean,
+
+  memType1Details: boolean, memType2Details: boolean,
+  memType3Details: boolean, memType4Details: boolean,
+  memType5Details: boolean, memType6Details: boolean,
+
+  memType1Fee: boolean,memType2Fee: boolean,
+  memType3Fee: boolean, memType4Fee: boolean, 
+  memType5Fee: boolean, memType6Fee: boolean, 
+
+  payment: boolean,
+  date: boolean,
+  memType1Process: boolean
+
 }
 
 @Component({
@@ -84,18 +98,13 @@ export class OrgMemformsComponent implements OnInit {
       zip: new FormControl(false),
       email: new FormControl(false),
       contactNum: new FormControl(false),
-      facebook: new FormControl(false),
-      linkedIn: new FormControl(false),
-      skype: new FormControl(false),
-      zoom: new FormControl(false),
       idLicense: new FormControl(false),
       prcNo : new FormControl(false),
       prcDate: new FormControl(false),
       prcExpiration: new FormControl(false),
       studentID: new FormControl(false),
-      aviation: new FormControl(false),
-      caap: new FormControl(false),
-      taxID: new FormControl(false),
+      companyID : new FormControl(false),
+  
       EducAttainment: new FormControl(false),
       tertiary: new FormControl(false),
       tertiaryDegree: new FormControl(false),
@@ -114,29 +123,47 @@ export class OrgMemformsComponent implements OnInit {
       jobTitle: new FormControl(false),
       employerAdd: new FormControl(false),
       membership: new FormControl(false),
-      memType1: new FormControl(false),
-      memType2: new FormControl(false),
-      memType3: new FormControl(false),
-      memType1Details: new FormControl(false),
-      memType2Details: new FormControl(false),
-      memType3Details: new FormControl(false),
-      memType1Fee: new FormControl(false),
-      memType2Fee: new FormControl(false),
-      memType3Fee: new FormControl(false),
+
+      memType1: new FormControl(false), memType2: new FormControl(false),
+      memType3: new FormControl(false), memType4: new FormControl(false),
+      memType5: new FormControl(false), memType6: new FormControl(false),
+
+      memType1Details: new FormControl(false), memType2Details: new FormControl(false),
+      memType3Details: new FormControl(false), memType4Details: new FormControl(false),
+      memType5Details: new FormControl(false), memType6Details: new FormControl(false),
+
+      memType1Fee: new FormControl(false),memType2Fee: new FormControl(false),
+      memType3Fee: new FormControl(false), memType4Fee: new FormControl(false), 
+      memType5Fee: new FormControl(false), memType6Fee: new FormControl(false), 
+      
       memType1Process: new FormControl(false),
 
-      payment: new FormControl(false),
+      
 
-      memType1Input: [''],
-      memType2Input: [''],
-      memType3Input: [''],
+      payment: new FormControl(false),
+      date: new FormControl(false),
+
+      memType1Input: [''], memType2Input: [''],
+      memType3Input: [''], memType4Input : [''],
+      memType5Input : [''], memType6Input :[''],
+
       memType1DetailsInput: [''],
       memType2DetailsInput: [''],
       memType3DetailsInput: [''],
+      memType4DetailsInput : [''],
+      memType5DetailsInput : [''],
+      memType6DetailsInput : [''],
+
       memType1FeeInput: [''],
       memType2FeeInput: [''],
       memType3FeeInput: [''],
+      memType4FeeInput : [''],
+      memType5FeeInput : [''],
+      memType6FeeInput : [''],
+
       memType1ProcessInput: [''],
+
+      
 
     });
 
@@ -207,27 +234,4 @@ export class OrgMemformsComponent implements OnInit {
     );
   }
 
-  memCatForm: FormGroup = new FormGroup({
-    memCatList: new FormArray([this.getmemCatFields()])
-  });
-
-  getmemCatFields(): FormGroup {
-    return new FormGroup({
-      memType: new FormControl(''),
-      memTypeDetails: new FormControl(''),
-      memTypeFee: new FormControl(''),
-    });
-  }
-
-  memCatList() {
-    return (this.memCatForm.get('memCatList') as FormArray).controls;
-  }
-
-  addmemCatField() {
-    (this.memCatForm.get('memCatList') as FormArray).push(this.getmemCatFields());
-  }
-
-  deleteMemCatField(index: number) {
-    (this.memCatForm.get('memCatList') as FormArray).removeAt(index);
-  }
 }
