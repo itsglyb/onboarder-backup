@@ -80,8 +80,9 @@ export class MemLoginComponent implements OnInit {
       }
     );
   }
+
+  backToLandingPage() {
+    this.router.navigate(['/home']);
+  }
 }
 
-backToLandingPage() {
-  this.router.navigate(['/home']);
-}
