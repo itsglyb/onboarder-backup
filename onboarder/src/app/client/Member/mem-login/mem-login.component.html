@@ -21,7 +21,7 @@
               <div class="card-body py-5 px-md-5">
                 <form  [formGroup]="form" (submit)="submit()">
                   <div class=" d-flex justify-content-center">
-                    <img class="bi mt-4 mb-3" src="assets/img/logo-name.png">
+                    <img class="bi" src="assets/img/logo-name.png">
                   </div>
 
                   <div class=" d-flex justify-content-center p-0 mb-0">
@@ -33,7 +33,7 @@
                   </div>
 
                   <!-- Email input -->
-                  <div class="form-outline mb-4">
+                  <div class="form-outline mb-2">
                     <label class="form-label" for="form3Example3">Email address</label>
                     <input type="email" id="form3Example3" class="form-control" formControlName="email" [ngClass]="{'is-invalid': submitted && form.controls['email'].errors}" />
                     <div class="invalid-feedback">
@@ -42,7 +42,7 @@
                   </div>
 
                   <!-- Password input -->
-                  <div class="form-outline mb-4">
+                  <div class="form-outline mb-2">
                     <label class="form-label" for="form3Example4">Password</label>
                     <input type="password" id="form3Example4" class="form-control" formControlName="password" [ngClass]="{'is-invalid': submitted && form.controls['password'].errors}"/>
                     <span (click)="togglePassword()" class="fa-solid fa-eye field-icon toggle-password"></span>
