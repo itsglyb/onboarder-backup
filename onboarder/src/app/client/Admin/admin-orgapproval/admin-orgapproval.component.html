@@ -46,10 +46,10 @@
                                   <td>proofofauthenticity</td>
                                   <td>dateCreated</td>
                                   <td>
-                                      <button type="button" class="btn btn-success"><i class="bi bi-eye"></i></button>
+                                      <button type="button" class="btn btn-primary"><i class="bi bi-eye"></i></button>
                                   </td>
                                   <td>
-                                      <button type="button" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>
+                                      <button type="button" class="btn btn-success"><i class="fa-solid fa-square-check"></i></button>
                                       <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                   </td>
                               </tr>
@@ -62,11 +62,6 @@
                       </table>
                   </div>
               </div>
-          </div>
-          <div class="text-center">
-              <button class="btn btn-link"></button>
-              <span></span>
-              <button class="btn btn-link">Next</button>
           </div>
       </div>
   </div>
@@ -83,80 +78,6 @@
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
               </div>
             </div>
-          </div>
-      </div>
-  </div>
-
-  <!-- Edit Org Modal -->
-  <div>
-      <div class="modal fade" id="editOrgModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-body center">
-                      <h2 class="text-center">Edit Organization Information</h2>
-                      <form id="editOrgForm">
-                          <!-- Organization Information -->
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Organization Name</label>
-                                  <input type="text" class="form-control" id="editOrgName" placeholder="Enter organization name">
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Organization Type</label>
-                              <textarea class="form-control" id="editOrgType" placeholder="Enter organization type"></textarea>
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Brief Description of the Organization's Purpose</label>
-                              <textarea class="form-control" id="editOrgDescription" placeholder="Enter organization description"></textarea>
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Organization's History</label>
-                              <textarea class="form-control" id="editOrgHistory" placeholder="Enter organization history"></textarea>
-                          </div>
-
-                          <!-- Organization Goals -->
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Mission</label>
-                              <textarea class="form-control" id="editOrgMission" placeholder="Enter organization mission"></textarea>
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Vision</label>
-                              <textarea class="form-control" id="editOrgVision" placeholder="Enter organization vision" ></textarea>
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Core Values</label>
-                              <textarea class="form-control" id="editCoreValues" placeholder="Enter your organization's core values" ></textarea>
-                          </div>
-
-                          <!-- Organization Goals -->
-                          <div class="form-group" id="editEventPoster">
-                              <div>
-                                  <label style="margin-top: 10px;">Organization's Logo </label>
-                                  <input class="form-control" type="file" id="formFile" onchange="preview('frame')" onchange="preview('frame')"   accept="image/*">
-                              </div>
-                              <img id="frame" src="" class="img-fluid" />
-                          </div>
-
-                          <div class="form-group" id="editEventPoster">
-                            <div>
-                                <label style="margin-top: 10px;">Proof of Authenticity</label>
-                                <input class="form-control" type="file" id="formFile" onchange="preview('frame')" onchange="preview('frame')"   accept="image/*">
-                            </div>
-                            <img id="frame" src="" class="img-fluid" />
-                          </div>
-
-                          <!-- Account Information -->
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Organization Email</label>
-                              <input type="text" class="form-control" id="editOrgEmail" placeholder="Enter the organization email">
-                          </div>
-
-                          <div class="text-center center">
-                              <button type="submit" class="btn btn-success1" data-bs-dismiss="modal">Save</button>
-                              <button type="button" class="btn btn-danger1" data-bs-dismiss="modal" data-bs-dismiss="modal">Cancel</button>
-                          </div>
-                      </form>
-                  </div>
-              </div>
           </div>
       </div>
   </div>
