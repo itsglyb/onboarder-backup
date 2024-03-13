@@ -530,15 +530,7 @@
                 </div>
               </div>
 
-              <div class="col-md-6 position-relative">
-                <label for="validationTooltip05" class="form-label">Region</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="address" placeholder="Please enter your full address" >
-
-                <div class="invalid-tooltip">
-                  Please provide your region.
-                </div>
-              </div>
-
+            
               <div class="col-md-6 position-relative" *ngIf="memForm.civilStatus">
                 <label for="validationTooltip03" class="form-label">Civil Status</label>
                 <select class="form-select" id="validationTooltip04" formControlName="civilStatus" >
@@ -576,7 +568,7 @@
               </div>
 
 
-              <div class="row" *ngIf="memForm.idLicense">
+              <div class="row" *ngIf="memForm.idLicense" >
                 <div class="col-md-12 position-relative">
                   <h5 class="card-title">ID Card and Licenses</h5>
                 </div>
@@ -614,7 +606,7 @@
                 </div>
               </div>
 
-              <div class="col-md-5 position-relative">
+              <div class="col-md-5 position-relative" *ngIf="memForm.companyID">
                 <label for="validationTooltip04" class="form-label">Company ID No.</label>
                 <input type="text" class="form-control" id="validationTooltip01" formControlName="studentID" placeholder="Type N/A if not applicable" >
                 <div class="valid-tooltip">
@@ -745,13 +737,7 @@
                 </div>
               </div>
 
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Specialization</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="jobTitle" placeholder="Please enter your job title" >
-                <div class="invalid-tooltip">
-                  Please provide your specialization.
-                </div>
-              </div>
+            
 
               <div class="row" *ngIf="memForm.membership">
                 <div class="col-md-12 position-relative">
@@ -759,124 +745,86 @@
                 </div>
               </div>
 
+              <!-- 1 -->
+
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Member Category</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
-                <div class="invalid-tooltip">
-                  Please enter the category
-                </div>
+                <label class="form-label">{{memForm.memType1Input}}</label>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
+                <p class="card-text">{{memForm.memType1DetailsInput}}</p>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
+                <p class="card-text">{{memForm.memType1FeeInput}}</p>
+              </div>
+
+              <!-- 2 -->
+
+              <div class="col-md-4 position-relative">
+                <label class="form-label">{{memForm.memType2Input}}</label>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Member Category</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
-                <div class="invalid-tooltip">
-                  Please enter the category
-                </div>
+                <p class="card-text">{{memForm.memType2DetailsInput}}</p>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
+                <p class="card-text">{{memForm.memType2FeeInput}}</p>
+              </div>
+
+              <!-- 3 -->
+
+              <div class="col-md-4 position-relative">
+                <label class="form-label">{{memForm.memType3Input}}</label>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
+                <p class="card-text">{{memForm.memType3DetailsInput}}</p>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Member Category</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
-                <div class="invalid-tooltip">
-                  Please enter the category
-                </div>
+                <p class="card-text">{{memForm.memType3FeeInput}}</p>
+              </div>
+
+              <!-- 4 -->
+
+              <div class="col-md-4 position-relative">
+                <label class="form-label">{{memForm.memType4Input}}</label>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
+                <p class="card-text">{{memForm.memType4DetailsInput}}</p>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
+                <p class="card-text">{{memForm.memType4FeeInput}}</p>
+              </div>
+
+              <!-- 5 -->
+              <div class="col-md-4 position-relative">
+                <label class="form-label">{{memForm.memType5Input}}</label>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Member Category</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
-                <div class="invalid-tooltip">
-                  Please enter the category
-                </div>
+                <p class="card-text">{{memForm.memType5DetailsInput}}</p>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
+                <p class="card-text">{{memForm.memType5FeeInput}}</p>
+              </div>
+              <!-- 6 -->
+
+              <div class="col-md-4 position-relative">
+                <label class="form-label">{{memForm.memType6Input}}</label>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
+                <p class="card-text">{{memForm.memType6DetailsInput}}</p>
               </div>
 
               <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Member Category</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
-                <div class="invalid-tooltip">
-                  Please enter the category
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
+                <p class="card-text">{{memForm.memType6FeeInput}}</p>
               </div>
 
               <div class="col-md-12 position-relative" *ngIf="memForm.membership">
@@ -886,8 +834,111 @@
                   <option>{{memForm.memType1Input}}</option>
                   <option>{{memForm.memType2Input}}</option>
                   <option>{{memForm.memType3Input}}</option>
+                  <option>{{memForm.memType4Input}}</option>
+                  <option>{{memForm.memType5Input}}</option>
+                  <option>{{memForm.memType6Input}}</option>
                 </select>
               </div>
+
+              
+
+              <!-- <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Member Category</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
+                <div class="invalid-tooltip">
+                  Please enter the category
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Qualification Details</label>
+                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
+                <div class="invalid-feedback">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
+                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
+                <div class="invalid-feedback">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Member Category</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
+                <div class="invalid-tooltip">
+                  Please enter the category
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Qualification Details</label>
+                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
+                <div class="invalid-feedback">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
+                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
+                <div class="invalid-feedback">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Member Category</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
+                <div class="invalid-tooltip">
+                  Please enter the category
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Qualification Details</label>
+                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
+                <div class="invalid-feedback">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
+                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
+                <div class="invalid-feedback">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Member Category</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
+                <div class="invalid-tooltip">
+                  Please enter the category
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Qualification Details</label>
+                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
+                <div class="invalid-feedback">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
+                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
+                <div class="invalid-feedback">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+
+           
 
               <div class="col-md-4 position-relative" *ngIf="memForm.memType1">
                 <label class="form-label">{{memForm.memType1Input}}</label>
@@ -929,7 +980,7 @@
               <div class="col-md-4 position-relative" *ngIf="memForm.memType3Fee">
                 <label for="validationTooltip05" class="form-label ">Membership Fee Price</label>
                 <p class="card-text">{{memForm.memType3FeeInput}}</p>
-              </div>
+              </div> -->
 
 
               <div class="col-md-12 position-relative" *ngIf="memForm.memType1Process">
@@ -937,8 +988,8 @@
                 <textarea class="form-control" disabled>{{memForm.memType1ProcessInput}}></textarea>
               </div>
 
-              <div class="col-md-6 position-relative">
-                <input class="form-check-input" type="checkbox" value="" id="paymentDate" formControlName="paymentDate" [checked]="form.get('paymentDate')?.value" style="margin-right: 5px;">
+              <div class="col-md-6 position-relative" *ngIf="memForm.date">
+             
                 <label for="validationTooltip05" class="form-label">Payment Date</label>
                 <input class="form-control" type="date" id="validationTextarea" formControlName="paymentDateInput" placeholder="Enter the payment process">
                 <div class="invalid-feedback">

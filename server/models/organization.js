@@ -66,7 +66,12 @@ const organizationSchema = new mongoose.Schema ({
 
     isVerified:{
         type: Boolean,
-    }
+        default: false
+    },
+    remarks:{
+        type: String,
+        default: null
+      },
 
 })
 

@@ -84,7 +84,24 @@ let transporter = nodemailer.createTransport({
   tls:{ rejectUnauthorized: false
 
   }
-})
+});
+
+
+router.patch('/orgRegister/:id', async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const body = req.body;
+    const updateApplication = await Organization.findByIdAndUpdate(_id, body, { new: true });
+
+    if (!updateApplication) {
+      return res.status(404).send('Application not found');
+    }
+
+    return res.status(200).send(updateApplication);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 //MEMBER REGISTRATION
 router.post('/register', async (req, res) => {
@@ -148,6 +165,48 @@ router.post('/register', async (req, res) => {
 }
 
 });
+
+  //reject and delete organization
+  router.delete('/reject-organization/:id', async (req, res) => {
+    try {
+      const _id = req.params.id;
+      const organization = await Organization.findById(_id)
+
+      const mailOptions = {
+        from: process.env.AUTH_EMAIL,
+        to: organization.email,
+        subject: "ONBOARDER | Account Verification",
+        html:`<h2>Hi ${organization.orgName}!</h2> <h4>Unfortunately, your registration was rejected due to the following reason/s : </h4>  <h4>${organization.remarks}</h4>`
+      }
+  
+      //sending email
+  
+      transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+          console.log(error)
+        }else{
+          console.log('Verification sent in email')
+        }
+      })
+
+      const deleteOrganization = await Organization.findByIdAndDelete(_id);
+      if(!deleteOrganization)
+      {
+       return res.status(404).send();
+      }
+
+      res.status(201).send(
+        {
+          "status" : true,
+          "message" : "org deleted"
+        }
+      );
+     
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  
+  });
 
 
 router.get('/verify-email', async (req, res) => {
@@ -407,6 +466,26 @@ router.post('/login', async (req, res) => {
         })
       }
   });
+
+  // org approval
+  router.get('/approval', async (req, res) => {
+    try {
+      
+      const approval = await Organization.find({
+        $and: [{ isVerified: false }]
+      });
+  
+      res.send(approval);
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({
+        message: 'Internal Server Error'
+      });
+    }
+  });
+
+
   
   // TO GET DETAILS FOR LOGGED IN ORGANIZATION
 
@@ -472,6 +551,8 @@ router.post('/logout', (req,res) =>{
 
 //ORGANIZATION REGISTRATION
 router.post('/orgRegister', async (req, res) => {
+ 
+  let remarks = req.body.remarks
   let orgName = req.body.orgName
   let orgType = req.body.orgType
   let email = req.body.email
@@ -486,6 +567,7 @@ router.post('/orgRegister', async (req, res) => {
   let certificate = req.body.certificate
   let orgCode = req.body.orgCode
   let expirationDate = req.body.expirationDate
+  
  
 
   const salt = await bcrypt.genSalt(10)
@@ -499,6 +581,7 @@ router.post('/orgRegister', async (req, res) => {
     } else {
 
   const organization = new Organization({
+    remarks : remarks,
       orgName:orgName,
       orgType:orgType,
       email:email,
@@ -632,6 +715,8 @@ router.delete('/organization/:id', async (req, res) => {
   }
 
 });
+
+
 
 // CUSTOMIZE MEMBERSHIP FORM
 router.patch('/customizeForm/:orgID', async (req, res) => {
