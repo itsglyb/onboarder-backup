@@ -37,10 +37,14 @@ import { OrgEventDetailsComponent } from './client/Org/org-event-details/org-eve
 import { MemRejectComponent } from './client/Org/mem-reject/mem-reject.component';
 import { NotfoundpageComponent } from './client/extrapages/notfoundpage/notfoundpage.component';
 import { AdminOrgapprovalComponent } from './client/Admin/admin-orgapproval/admin-orgapproval.component';
+import { ForgetPasswordComponent } from './client/Login/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './client/Login/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'general-login', component: GeneralLoginComponent },
+  { path: 'forget-password', component: ForgetPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'services', component: ServicesComponent },
@@ -70,7 +74,6 @@ const routes: Routes = [
   { path: 'member-orgprofile/:id', component: MemOrgprofileComponent},
   { path: 'member-orgprofile1/:orgCode', component: MemOrgprofileComponent},
   { path: 'member-orgmemform/:id', component: MemOrgmemformComponent},
-
 
   { path: 'admin-orgs', component: AdminOrgsComponent},
   { path: 'admin-users', component: AdminUsersComponent},

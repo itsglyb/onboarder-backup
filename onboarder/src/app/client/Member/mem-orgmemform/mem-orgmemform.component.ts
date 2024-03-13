@@ -100,15 +100,13 @@ export class MemOrgmemformComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    ) {}
+  ){}
 
   ngOnInit(): void {
-
     this.form = this.formBuilder.group({
-      
-      photo: "",
-      photo1: "",
-      remarks:"",
+    photo: "",
+    photo1: "",
+    remarks:"",
     fullName: "",
     sex: null,
     birthDate: "",
@@ -120,49 +118,43 @@ export class MemOrgmemformComponent implements OnInit {
     email: "",
     contactNum: "",
     facebook: "",
-      linkedIn: "",
-      skype: "",
-      zoom: "",
-      prcNo : "",
-      prcDate: "",
-      prcExpiration: "",
-      studentID: "",
-      aviation: "",
-      caap: "",
-      taxID: "",
-      tertiary: "",
-      tertiaryDegree: "",
-      tertiaryYear: "",
-      tertiaryDiploma : "",
-      tertiaryDiploma1: "",
-      masteral: "",
-      masteralDegree: "",
-      masteralYear: "",
-      masteralDiploma: "",
-      masteralDiploma1: "",
-      doctoral: "",
-      doctoralDegree: "",
-      doctoralYear: "",
-      doctoralDiploma: "",
-      doctoralDiploma1: "",
-      employer: "",
-      jobTitle: "",
-      employerAdd: "",
-      chooseMem: "",
-      payment: "",
-      payment1: ""
-
-
+    linkedIn: "",
+    skype: "",
+    zoom: "",
+    prcNo : "",
+    prcDate: "",
+    prcExpiration: "",
+    studentID: "",
+    aviation: "",
+    caap: "",
+    taxID: "",
+    tertiary: "",
+    tertiaryDegree: "",
+    tertiaryYear: "",
+    tertiaryDiploma : "",
+    tertiaryDiploma1: "",
+    masteral: "",
+    masteralDegree: "",
+    masteralYear: "",
+    masteralDiploma: "",
+    masteralDiploma1: "",
+    doctoral: "",
+    doctoralDegree: "",
+    doctoralYear: "",
+    doctoralDiploma: "",
+    doctoralDiploma1: "",
+    employer: "",
+    jobTitle: "",
+    employerAdd: "",
+    chooseMem: "",
+    payment: "",
+    payment1: ""
     })
-
-    
 
     this.route.params.subscribe(params => {
       const _id = params['id'];
       this.getMemForm(_id);
-     });
-
-    
+    });
   }
 
   onChange = ($event: Event, controlName: string) => {
@@ -189,7 +181,7 @@ export class MemOrgmemformComponent implements OnInit {
 }
 
 
-  
+
   // Your convertfiletobase64 function
   convertfiletobase64(file: File, callback: (base64string: string) => void) {
     const reader = new FileReader();
@@ -206,12 +198,12 @@ export class MemOrgmemformComponent implements OnInit {
       console.log('API Response:', data);
     });
 
-    
+
   }
 
   submit() {
     // Get the event data from the form
-    
+
     this.route.params.subscribe(params => {
       const _id = params['id'];
 
@@ -225,9 +217,9 @@ export class MemOrgmemformComponent implements OnInit {
           Swal.fire("Success", "You have submitted your membership form to the organization")
           // Extract organization ID from the response
           const memID = memResponse._id;
-          
-          
-    
+
+
+
           // Create an object with organization ID and event data
           const memApplicationData = {
 
@@ -273,8 +265,8 @@ export class MemOrgmemformComponent implements OnInit {
         employerAdd : membershipApplication.employerAdd,
         chooseMem :membershipApplication.chooseMem,
         payment : membershipApplication.payment,
-          };          
-    
+          };
+
           // Post the event data to the createEvent API endpoint
           this.http.post('http://localhost:5000/api/membershipApplication', memApplicationData, {
             withCredentials: true
@@ -297,13 +289,13 @@ export class MemOrgmemformComponent implements OnInit {
 
      });
 
-   
+
   }
 
- 
-  
 
-   
-  
-  
+
+
+
+
+
 }

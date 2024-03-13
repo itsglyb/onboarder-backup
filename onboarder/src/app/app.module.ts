@@ -52,6 +52,7 @@ import { GuestEventsComponent } from './client/Landing_Page/guest-events/guest-e
 import { GuestEventsListingComponent } from './client/Landing_Page/guest-events-listing/guest-events-listing.component';
 import { Loader } from '@googlemaps/js-api-loader';
 import { AdminOrgapprovalComponent } from './client/Admin/admin-orgapproval/admin-orgapproval.component';
+import { ResetPasswordComponent } from './client/Login/reset-password/reset-password.component';
 
 
 export function playerFactory(): any {
@@ -97,6 +98,7 @@ export function playerFactory(): any {
     GuestEventsComponent,
     GuestEventsListingComponent,
     AdminOrgapprovalComponent,
+    ResetPasswordComponent,
   ],
   imports: [
 
