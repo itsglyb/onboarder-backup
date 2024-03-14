@@ -95,7 +95,7 @@ export class AdminOrgapprovalComponent {
   }
 
   accept(_id: string): void{
-    const updatedData = { isVerified: true };
+    const updatedData = { isApproved: true };
     this.http.patch(`http://localhost:5000/api/orgRegister/${_id}`, updatedData, { withCredentials: true })
       .subscribe((response: any) => {
         // Handle the response as needed, for example, update the UI or show a success message

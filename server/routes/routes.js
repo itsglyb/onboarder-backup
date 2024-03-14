@@ -97,10 +97,10 @@ router.patch('/orgRegister/:id', async (req, res) => {
     if (!updateApplication) {
       return res.status(404).send('Application not found');
     }
-
     return res.status(200).send(updateApplication);
+    
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send(error);S
   }
 });
 
@@ -326,9 +326,6 @@ router.post('/reset-password', async (req,res, next)=>{
 
 });
 
-
-
-
   //reject and delete organization
   router.delete('/reject-organization/:id', async (req, res) => {
     try {
@@ -520,6 +517,13 @@ router.post('/login', async (req, res) => {
     });
   }
 
+  else if(organization.isApproved === false){
+    return res.status(400).send ({
+      message:"Pending approval. Please check in your email."
+    });
+
+  }
+
   else{const token = jwt.sign({
     _id: organization._id, 
     userType: organization.userType, 
@@ -637,7 +641,7 @@ router.post('/login', async (req, res) => {
     try {
       
       const approval = await Organization.find({
-        $and: [{ isVerified: false }]
+        $and: [{ isApproved: false }]
       });
   
       res.send(approval);
@@ -762,7 +766,8 @@ router.post('/orgRegister', async (req, res) => {
       certificate: certificate,
       orgCode: orgCode,
       expirationDate: expirationDate,
-      isVerified : false
+      isVerified : false,
+      isApproved : false
   })
 
   const result = await organization.save();
