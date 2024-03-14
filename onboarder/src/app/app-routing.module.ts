@@ -43,7 +43,7 @@ import { ResetPasswordComponent } from './client/Login/reset-password/reset-pass
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'forget-password', component: ForgetPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'reset-password/:token', component: ResetPasswordComponent },
 
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },

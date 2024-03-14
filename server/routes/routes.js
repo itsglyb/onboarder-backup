@@ -16,6 +16,7 @@ const GuestRegForm = require('../models/guestRegForm');
 const MembershipApplication = require('../models/membershipApplication');
 const guestRegForm = require('../models/guestRegForm');
 const { error } = require('console');
+const MemberToken = require('../models/memberToken');
 
 
 
@@ -166,6 +167,168 @@ router.post('/register', async (req, res) => {
 
 });
 
+router.post('/forgot-password', async (req, res, next) => {
+
+  try{
+    const email = req.body.email;
+    const member = await Member.findOne({ email: email });
+  
+    if (!member) {
+      // return res.status(400).send("Member not found");
+      const organization = await Organization.findOne({ email: email });
+
+      if(!organization){
+        // return res.status(400).send("Member not found");
+      }
+
+      else{
+        const payload = {
+          email: organization.email
+        }
+        const expiryTime = 3000;
+        const token = jwt.sign({ payload, expiresIn: expiryTime }, "secret");
+        const newToken = new MemberToken({
+          memID: organization._id,
+          token: token
+        });
+      
+        const mailOptions = {
+          from: process.env.AUTH_EMAIL,
+          to: organization.email,
+          subject: "ONBOARDER | Reset Password",
+          html: `<h2>Greetings ${organization.orgName}!</h2> <h4>We have received a request to reset your password. To complete the process, please click the link below</h4> <a href=${process.env.URL}/reset-password/${token}>Reset Password Link</a>`
+        }
+      
+        
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+            return res.status(500).send({ message: "Error sending email" });
+          } else {
+            newToken.save()
+              .then(() => {
+                console.log('Verification sent in email');
+                res.status(200).send({ message: "Email sent successfully" });
+              })
+              .catch(err => {
+                console.error("Error saving token:", err);
+                res.status(500).send({ message: "Error saving token" });
+              });
+          }
+        });
+      }
+
+    } else{
+      const payload = {
+        email: member.email
+      }
+      const expiryTime = 3000;
+      const token = jwt.sign({ payload, expiresIn: expiryTime }, "secret");
+      const newToken = new MemberToken({
+        memID: member._id,
+        token: token
+      });
+    
+      const mailOptions = {
+        from: process.env.AUTH_EMAIL,
+        to: member.email,
+        subject: "ONBOARDER | Reset Password",
+        html: `<h2>Hi ${member.firstName}!</h2> <h4>We have received a request to reset your password. To complete the process, please click the link below</h4> <a href=${process.env.URL}/reset-password/${token}>Reset Password Link</a>`
+      }
+    
+      
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+          return res.status(500).send({ message: "Error sending email" });
+        } else {
+          newToken.save()
+            .then(() => {
+              console.log('Verification sent in email');
+              res.status(200).send({ message: "Email sent successfully" });
+            })
+            .catch(err => {
+              console.error("Error saving token:", err);
+              res.status(500).send({ message: "Error saving token" });
+            });
+        }
+      });
+    }
+  
+   
+  }
+
+
+  catch(error){
+    console.error(error);
+    res.status(400).send({ message: "Bad Request" });
+  }
+ 
+});
+
+router.post('/reset-password', async (req,res, next)=>{
+
+  try {
+   
+   const token = req.body.token;  
+   const newpass = req.body.password;
+
+   jwt.verify(token, "secret", async (err, data)=>{
+    if(err){
+      console.log(err);
+      return res.status(500).send("Expired Link");
+    } else{
+      console.log("Decoded token data:", data);
+      const response = data;
+      const user = await Member.findOne({ email: response.payload.email }); 
+
+      if(!user){
+        const user = await Organization.findOne({ email: response.payload.email }); 
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newpass, salt);
+  
+        user.password = hashedPassword;
+        try{
+            const updatedPass = await Organization.findOneAndUpdate({_id: user._id}, {$set: user}, {new:true})
+            await user.save();
+  
+            return res.status(200).send("Password reset successfully")
+  
+        }catch(error){
+          return res.status(500).send("Expired Link");
+        }
+
+
+      }else{
+        const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(newpass, salt);
+
+      user.password = hashedPassword;
+      try{
+          const updatedPass = await Member.findOneAndUpdate({_id: user._id}, {$set: user}, {new:true})
+          await user.save();
+
+          return res.status(200).send("Password reset successfully")
+
+      }catch(error){
+        return res.status(500).send("Expired Link");
+      }
+      }
+
+
+      
+    }
+   })
+
+  } catch (error) {
+    res.status(400).send(error);
+  }
+
+});
+
+
+
+
   //reject and delete organization
   router.delete('/reject-organization/:id', async (req, res) => {
     try {
@@ -207,6 +370,8 @@ router.post('/register', async (req, res) => {
     }
   
   });
+
+  
 
 
 router.get('/verify-email', async (req, res) => {
