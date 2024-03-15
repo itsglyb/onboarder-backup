@@ -474,22 +474,21 @@
               </div>
 
               <div class="col-md-12 position-relative" *ngIf="memForm.photo">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="photo" [checked]="form.get('photo')?.value" style="margin-right: 5px;">
                 <label class="form-label" for="customFile">2x2 Photo</label>
-                <input type="file" class="form-control" id="customFile" formControlName="photo1" (change)="onChange($event, 'photo1')" accept="image/*"/>
+                <input type="file" class="form-control" id="customFile" formControlName="photo1" (change)="onChange($event, 'photo1')" accept="image/*" [ngClass]="{'is-invalid': submitted && form.controls['photo1'].errors}"/>
               </div>
 
               <div class="col-md-6 position-relative" *ngIf="memForm.fullName">
                 <label for="validationTooltip01" class="form-label">Full Name (Last Name, First Name Middle Initial)</label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="fullName" placeholder="Please enter your full name" >
-                <div class="valid-tooltip">
-                  Looks good!
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="fullName" placeholder="Please enter your full name" [ngClass]="{'is-invalid': submitted && form.controls['fullName'].errors}" >
+                <div class="invalid-tooltip">
+                  Please state your full name.
                 </div>
               </div>
 
               <div class="col-md-6 position-relative" *ngIf="memForm.sex">
                 <label for="sex" class="form-label">Gender</label>
-                <select class="form-select" id="validationTooltip04">
+                <select class="form-select" id="validationTooltip04" [ngClass]="{'is-invalid': submitted && form.controls['sex'].errors}">
                   <option selected value="">Choose...</option>
                   <option>Male</option>
                   <option>Female</option>
@@ -498,42 +497,39 @@
                   <option>Bisexual</option>
                   <option>Transexual</option>
                 </select>
-
-                <div class="valid-tooltip">
-                  Looks good!
+                <div class="invalid-tooltip">
+                  Please choose your gender.
                 </div>
               </div>
 
               <div class="col-md-6 position-relative" *ngIf="memForm.birthDate">
                 <label for="validationTooltip03" class="form-label">Date of Birth</label>
-                <input type="text" class="form-control" id="validationTooltip02" formControlName="birthDate" placeholder="Date of Birth" >
-
-                <div class="valid-tooltip">
-                  Looks good!
+                <input type="text" class="form-control" id="validationTooltip02" formControlName="birthDate" placeholder="Date of Birth" [ngClass]="{'is-invalid': submitted && form.controls['birthDate'].errors}" >
+                <div class="invalid-tooltip">
+                  Please state your date of birth.
                 </div>
               </div>
 
               <div class="col-md-6 position-relative" *ngIf="memForm.placeOfBirth">
                 <label for="validationTooltip03" class="form-label">Place of Birth</label>
-                <input type="text" class="form-control" id="validationTooltip02" formControlName="placeOfBirth" placeholder="City of Birth" >
-                <div class="valid-tooltip">
-                  Looks good!
+                <input type="text" class="form-control" id="validationTooltip02" formControlName="placeOfBirth" placeholder="City of Birth" [ngClass]="{'is-invalid': submitted && form.controls['placeOfBirth'].errors}">
+                <div class="invalid-tooltip">
+                  Please state your place of birth.
                 </div>
               </div>
 
-              <div class="col-md-6 position-relative" *ngIf="memForm.address">
+              <div class="col-md-12 position-relative" *ngIf="memForm.address">
                 <label for="validationTooltip05" class="form-label">Full Address</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="address" placeholder="Please enter your full address" >
-
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="address" placeholder="Please enter your full address" [ngClass]="{'is-invalid': submitted && form.controls['address'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your full address.
                 </div>
               </div>
 
-            
+
               <div class="col-md-6 position-relative" *ngIf="memForm.civilStatus">
                 <label for="validationTooltip03" class="form-label">Civil Status</label>
-                <select class="form-select" id="validationTooltip04" formControlName="civilStatus" >
+                <select class="form-select" id="validationTooltip04" formControlName="civilStatus" [ngClass]="{'is-invalid': submitted && form.controls['civilStatus'].errors}">
                   <option selected  value="">Choose...</option>
                   <option>Single</option>
                   <option>Married</option>
@@ -541,19 +537,22 @@
                   <option>Widowed</option>
                   <option>In Civil Partnership</option>
                 </select>
+                <div class="invalid-tooltip">
+                  Please choose your civil status
+                </div>
               </div>
 
               <div class="col-md-6 position-relative" *ngIf="memForm.religion">
                 <label for="validationTooltip04" class="form-label">Religion</label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="religion" placeholder="Please enter your religion" >
-                <div class="valid-tooltip">
-                  Looks good!
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="religion" placeholder="Please enter your religion" [ngClass]="{'is-invalid': submitted && form.controls['religion'].errors}">
+                <div class="invalid-tooltip">
+                  Please provide your religion
                 </div>
               </div>
 
               <div class="col-md-6 position-relative" *ngIf="memForm.email">
                 <label for="validationTooltip05" class="form-label">Email Address</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="email" placeholder="Please enter your email address" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="email" placeholder="Please enter your email address" [ngClass]="{'is-invalid': submitted && form.controls['email'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your email address.
                 </div>
@@ -561,7 +560,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.contactNum">
                 <label for="validationTooltip05" class="form-label">Contact Number</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="contactNum" placeholder="Please enter your contact number" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="contactNum" placeholder="Please enter your contact number" [ngClass]="{'is-invalid': submitted && form.controls['contactNum'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your contact number.
                 </div>
@@ -576,15 +575,15 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.prcNo">
                 <label for="validationTooltip04" class="form-label">PRC License No.</label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="prcNo" placeholder="Type N/A if not applicable" >
-                <div class="valid-tooltip">
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="prcNo" placeholder="Type N/A if not applicable" [ngClass]="{'is-invalid': submitted && form.controls['prcNo'].errors}">
+                <div class="invalid-tooltip">
                   Looks good!
                 </div>
               </div>
 
               <div class="col-md-4 position-relative" *ngIf="memForm.prcDate">
                 <label for="validationTooltip04" class="form-label">PRC Registration Date</label>
-                <input type="date" class="form-control" id="validationTooltip01" formControlName="prcDate" placeholder="Type N/A if not applicable" >
+                <input type="date" class="form-control" id="validationTooltip01" formControlName="prcDate" placeholder="Type N/A if not applicable" [ngClass]="{'is-invalid': submitted && form.controls['prcDate'].errors}">
                 <div class="valid-tooltip">
                   Looks good!
                 </div>
@@ -592,7 +591,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.prcExpiration">
                 <label for="validationTooltip04" class="form-label">PRC Expiration Date</label>
-                <input type="date" class="form-control" id="validationTooltip01" formControlName="prcExpiration" placeholder="Type N/A if not applicable" >
+                <input type="date" class="form-control" id="validationTooltip01" formControlName="prcExpiration" placeholder="Type N/A if not applicable" [ngClass]="{'is-invalid': submitted && form.controls['prcExpiration'].errors}">
                 <div class="valid-tooltip">
                   Looks good!
                 </div>
@@ -600,17 +599,17 @@
 
               <div class="col-md-5 position-relative" *ngIf="memForm.studentID">
                 <label for="validationTooltip04" class="form-label">Student ID No.</label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="studentID" placeholder="Type N/A if not applicable" >
-                <div class="valid-tooltip">
-                  Looks good!
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="studentID" placeholder="Type N/A if not applicable" [ngClass]="{'is-invalid': submitted && form.controls['studentID'].errors}" >
+                <div class="invalid-tooltip">
+                  Please state your student ID no.
                 </div>
               </div>
 
               <div class="col-md-5 position-relative" *ngIf="memForm.companyID">
                 <label for="validationTooltip04" class="form-label">Company ID No.</label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="studentID" placeholder="Type N/A if not applicable" >
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="companyID" placeholder="Type N/A if not applicable" [ngClass]="{'is-invalid': submitted && form.controls['companyID'].errors}">
                 <div class="valid-tooltip">
-                  Looks good!
+                  Please state your company ID no.
                 </div>
               </div>
 
@@ -622,7 +621,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.tertiary">
                 <label for="validationTooltip05" class="form-label">Tertiary University / College</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiary" placeholder="Please enter your undergraduate university" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiary" placeholder="Please enter your undergraduate university" [ngClass]="{'is-invalid': submitted && form.controls['tertiary'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your school.
                 </div>
@@ -630,28 +629,31 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.tertiaryDegree">
                 <label for="validationTooltip05" class="form-label">Degree</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiaryDegree" placeholder="Please enter your degree" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiaryDegree" placeholder="Please enter your degree" [ngClass]="{'is-invalid': submitted && form.controls['tertiaryDegree'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your degree.
                 </div>
               </div>
 
               <div class="col-md-3 position-relative" *ngIf="memForm.tertiaryYear">
-                <label for="validationTooltip05" class="form-label">Year of Graduation</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiaryYear" placeholder="Please enter your year of graduation" >
+                <label for="validationTooltip05" class="form-label">Inclusive Date (Years)</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiaryYear" placeholder="Please enter your year of graduation" [ngClass]="{'is-invalid': submitted && form.controls['tertiaryYear'].errors}">
                 <div class="invalid-tooltip">
-                  Please provide your year of graduation.
+                  Please provide the inclusive years.
                 </div>
               </div>
 
               <div class="col-md-3 position-relative" *ngIf="memForm.tertiaryDiploma">
                 <label class="form-label" for="customFile">Diploma Photo</label>
-                <input type="file" class="form-control" id="customFile" formControlName="tertiaryDiploma1" (change)="onChange($event, 'tertiaryDiploma1')" accept="image/*"/>
+                <input type="file" class="form-control" id="customFile" formControlName="tertiaryDiploma" (change)="onChange($event, 'tertiaryDiploma1')" accept="image/*" [ngClass]="{'is-invalid': submitted && form.controls['tertiaryDiploma'].errors}"/>
+                <div class="invalid-tooltip">
+                  Please attach your diploma here.
+                </div>
               </div>
 
               <div class="col-md-3 position-relative" *ngIf="memForm.masteral">
                 <label for="validationTooltip05" class="form-label">Masteral University / College</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteral" placeholder="Please enter your masteral university" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteral" placeholder="Please enter your masteral university" [ngClass]="{'is-invalid': submitted && form.controls['masteral'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your school.
                 </div>
@@ -659,28 +661,31 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.masteralDegree">
                 <label for="validationTooltip05" class="form-label">Degree</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteralDegree" placeholder="Please enter your degree" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteralDegree" placeholder="Please enter your degree" [ngClass]="{'is-invalid': submitted && form.controls['masteralDegree'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your degree.
                 </div>
               </div>
 
               <div class="col-md-3 position-relative" *ngIf="memForm.masteralYear">
-                <label for="validationTooltip05" class="form-label">Year of Graduation</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteralYear" placeholder="Please enter your year of graduation" >
+                <label for="validationTooltip05" class="form-label">Inclusive Date (Years)</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteralYear" placeholder="Please enter your year of graduation" [ngClass]="{'is-invalid': submitted && form.controls['masteralYear'].errors}">
                 <div class="invalid-tooltip">
-                  Please provide your year of graduation.
+                  Please provide your inclusive years.
                 </div>
               </div>
 
               <div class="col-md-3 position-relative" *ngIf="memForm.masteralDiploma">
                 <label class="form-label" for="customFile">Diploma Photo</label>
-                <input type="file" class="form-control" id="customFile" formControlName="masteralDiploma1" (change)="onChange($event, 'masteralDiploma1')" accept="image/*"/>
+                <input type="file" class="form-control" id="customFile" formControlName="masteralDiploma" (change)="onChange($event, 'masteralDiploma')" accept="image/*" [ngClass]="{'is-invalid': submitted && form.controls['masteralDiploma'].errors}"/>
+                <div class="invalid-tooltip">
+                  Please attach your diploma here.
+                </div>
               </div>
 
               <div class="col-md-3 position-relative" *ngIf="memForm.doctoral">
                 <label for="validationTooltip05" class="form-label">Doctoral University / College</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoral" placeholder="Please enter your doctoral university" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoral" placeholder="Please enter your doctoral university" [ngClass]="{'is-invalid': submitted && form.controls['doctoral'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your school.
                 </div>
@@ -688,23 +693,27 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.doctoralDegree">
                 <label for="validationTooltip05" class="form-label">Degree</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoralDegree" placeholder="Please enter your degree" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoralDegree" placeholder="Please enter your degree" [ngClass]="{'is-invalid': submitted && form.controls['doctoralDegree'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your degree.
                 </div>
               </div>
 
               <div class="col-md-3 position-relative" *ngIf="memForm.doctoralYear">
-                <label for="validationTooltip05" class="form-label">Year of Graduation</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoralYear" placeholder="Please enter your year of graduation" >
+                <label for="validationTooltip05" class="form-label">Inclusive Date (Years)</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoralYear" placeholder="Please enter your year of graduation" [ngClass]="{'is-invalid': submitted && form.controls['doctoralYear'].errors}">
                 <div class="invalid-tooltip">
-                  Please provide your year of graduation.
+                  Please provide your inclusive years.
                 </div>
               </div>
 
               <div class="col-md-3 position-relative" *ngIf="memForm.doctoralDiploma">
                 <label class="form-label" for="customFile">Diploma Photo</label>
-                <input type="file" class="form-control" id="customFile" formControlName="doctoralDiploma1" (change)="onChange($event, 'doctoralDiploma1')" accept="image/*"/>
+                <input type="file" class="form-control" id="customFile" formControlName="doctoralDiploma" (change)="onChange($event, 'doctoralDiploma')" accept="image/*" [ngClass]="{'is-invalid': submitted && form.controls['doctoralDiploma'].errors}"/>
+                <div class="invalid-tooltip">
+                  Please attach your diploma here.
+                </div>
+
               </div>
 
               <div class="row" *ngIf="memForm.employmentDetails">
@@ -715,7 +724,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.employer">
                 <label for="validationTooltip05" class="form-label">Current Company / Business Name</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="employer" placeholder="Please enter your current employer" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="employer" placeholder="Please enter your current employer" [ngClass]="{'is-invalid': submitted && form.controls['employer'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your current employer.
                 </div>
@@ -723,7 +732,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.employerAdd">
                 <label for="validationTooltip05" class="form-label">Employer Address</label>
-                <input type="text" class="form-control" id="employerAdd" formControlName="employerAdd"  placeholder="Please enter your employer address" >
+                <input type="text" class="form-control" id="employerAdd" formControlName="employerAdd"  placeholder="Please enter your employer address" [ngClass]="{'is-invalid': submitted && form.controls['employerAdd'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your employer address.
                 </div>
@@ -731,13 +740,11 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.jobTitle">
                 <label for="validationTooltip05" class="form-label">Job Title</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="jobTitle" placeholder="Please enter your job title" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="jobTitle" placeholder="Please enter your job title" [ngClass]="{'is-invalid': submitted && form.controls['jobTitle'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your job title.
                 </div>
               </div>
-
-            
 
               <div class="row" *ngIf="memForm.membership">
                 <div class="col-md-12 position-relative">
@@ -746,7 +753,6 @@
               </div>
 
               <!-- 1 -->
-
               <div class="col-md-4 position-relative">
                 <label class="form-label">{{memForm.memType1Input}}</label>
               </div>
@@ -760,7 +766,6 @@
               </div>
 
               <!-- 2 -->
-
               <div class="col-md-4 position-relative">
                 <label class="form-label">{{memForm.memType2Input}}</label>
               </div>
@@ -774,7 +779,6 @@
               </div>
 
               <!-- 3 -->
-
               <div class="col-md-4 position-relative">
                 <label class="form-label">{{memForm.memType3Input}}</label>
               </div>
@@ -788,7 +792,6 @@
               </div>
 
               <!-- 4 -->
-
               <div class="col-md-4 position-relative">
                 <label class="form-label">{{memForm.memType4Input}}</label>
               </div>
@@ -814,7 +817,6 @@
                 <p class="card-text">{{memForm.memType5FeeInput}}</p>
               </div>
               <!-- 6 -->
-
               <div class="col-md-4 position-relative">
                 <label class="form-label">{{memForm.memType6Input}}</label>
               </div>
@@ -829,7 +831,7 @@
 
               <div class="col-md-12 position-relative" *ngIf="memForm.membership">
                 <label for="validationTooltip03" class="form-label">Membership Category</label>
-                <select class="form-select" id="validationTooltip04" formControlName="chooseMem" >
+                <select class="form-select" id="validationTooltip04" formControlName="chooseMem" [ngClass]="{'is-invalid': submitted && form.controls['chooseMem'].errors}">
                   <option selected  value="">Choose...</option>
                   <option>{{memForm.memType1Input}}</option>
                   <option>{{memForm.memType2Input}}</option>
@@ -838,150 +840,10 @@
                   <option>{{memForm.memType5Input}}</option>
                   <option>{{memForm.memType6Input}}</option>
                 </select>
-              </div>
-
-              
-
-              <!-- <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Member Category</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
                 <div class="invalid-tooltip">
-                  Please enter the category
+                  Please choose your membership category.
                 </div>
               </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Member Category</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
-                <div class="invalid-tooltip">
-                  Please enter the category
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Member Category</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
-                <div class="invalid-tooltip">
-                  Please enter the category
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Member Category</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="memType1Input" placeholder="i.e. Regular Membership" readonly>
-                <div class="invalid-tooltip">
-                  Please enter the category
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Qualification Details</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1DetailsInput" placeholder="Enter the qualifications required for this category" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
-              </div>
-
-              <div class="col-md-4 position-relative">
-                <label for="validationTooltip05" class="form-label">Membership Fee Price</label>
-                <textarea class="form-control" id="validationTextarea" formControlName="memType1FeeInput" placeholder="Enter the membership fee price" readonly></textarea>
-                <div class="invalid-feedback">
-                  Please enter a message in the textarea.
-                </div>
-              </div>
-
-           
-
-              <div class="col-md-4 position-relative" *ngIf="memForm.memType1">
-                <label class="form-label">{{memForm.memType1Input}}</label>
-              </div>
-
-              <div class="col-md-4 position-relative" *ngIf="memForm.memType2">
-                <label class="form-label">{{memForm.memType2Input}}</label>
-              </div>
-
-              <div class="col-md-4 position-relative" *ngIf="memForm.memType3">
-                <label class="form-label">{{memForm.memType3Input}}</label>
-              </div>
-
-              <div class="col-md-4 position-relative" *ngIf="memForm.memType1Details">
-                <label for="validationTooltip05" class="form-label ">Qualification Details</label>
-                <p class="card-text">{{memForm.memType1DetailsInput}}</p>
-              </div>
-
-              <div class="col-md-4 position-relative" *ngIf="memForm.memType2Details">
-                <label for="validationTooltip05" class="form-label ">Qualification Details</label>
-                <p class="card-text">{{memForm.memType2DetailsInput}}</p>
-              </div>
-
-              <div class="col-md-4 position-relative" *ngIf="memForm.memType3Details">
-                <label for="validationTooltip05" class="form-label ">Qualification Details</label>
-                <p class="card-text">{{memForm.memType3DetailsInput}}</p>
-              </div>
-
-              <div class="col-md-4 position-relative" *ngIf="memForm.memType1Fee">
-                <label for="validationTooltip05" class="form-label ">Membership Fee Price</label>
-                <p class="card-text">{{memForm.memType1FeeInput}}</p>
-              </div>
-
-              <div class="col-md-4 position-relative" *ngIf="memForm.memType2Fee">
-                <label for="validationTooltip05" class="form-label ">Membership Fee Price</label>
-                <p class="card-text">{{memForm.memType2FeeInput}}</p>
-              </div>
-
-              <div class="col-md-4 position-relative" *ngIf="memForm.memType3Fee">
-                <label for="validationTooltip05" class="form-label ">Membership Fee Price</label>
-                <p class="card-text">{{memForm.memType3FeeInput}}</p>
-              </div> -->
-
 
               <div class="col-md-12 position-relative" *ngIf="memForm.memType1Process">
                 <label for="validationTooltip05" class="form-label ">Payment Process</label>
@@ -989,32 +851,29 @@
               </div>
 
               <div class="col-md-6 position-relative" *ngIf="memForm.date">
-             
                 <label for="validationTooltip05" class="form-label">Payment Date</label>
-                <input class="form-control" type="date" id="validationTextarea" formControlName="paymentDateInput" placeholder="Enter the payment process">
+                <input class="form-control" type="date" id="validationTextarea" formControlName="paymentDateInput" placeholder="Enter the payment process" [ngClass]="{'is-invalid': submitted && form.controls['paymentDateInput'].errors}">
                 <div class="invalid-feedback">
-                  Please enter a message in the textarea.
+                  Please provide your payment date.
                 </div>
               </div>
 
               <div class="col-md-6 position-relative" *ngIf="memForm.payment">
                 <label class="form-label " for="customFile">Proof of Payment</label>
-                <input type="file" class="form-control" id="customFile" formControlName="payment1" (change)="onChange($event, 'payment1')" accept="image/*"/>
+                <input type="file" class="form-control" id="customFile" formControlName="payment1" (change)="onChange($event, 'payment1')" accept="image/*" [ngClass]="{'is-invalid': submitted && form.controls['payment1'].errors}"/>
+                <div class="invalid-tooltip">
+                  Please attach your proof of payment.
+                </div>
               </div>
-
-
 
                 <div class="col-12">
                   <input type="submit"  class=" btn btn-success action-button"  />
                 </div>
-
               </form>
-
             </div>
           </div>
       </div>
-
-</div>
+  </div>
 </body>
 
 

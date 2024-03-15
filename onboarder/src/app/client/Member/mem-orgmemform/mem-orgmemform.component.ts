@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
@@ -94,6 +94,7 @@ interface MemForm {
 export class MemOrgmemformComponent implements OnInit {
   memForm$: Observable<MemForm> | undefined;
   form!:FormGroup
+  submitted: boolean = false;
 
 
   constructor(private http: HttpClient,
@@ -104,51 +105,44 @@ export class MemOrgmemformComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-    photo: "",
-    photo1: "",
-    remarks:"",
-    fullName: "",
-    sex: null,
-    birthDate: "",
-    placeOfBirth : "",
-    civilStatus: "",
-    religion: "",
-    address: "",
-    zip: "",
-    email: "",
-    contactNum: "",
-    facebook: "",
-    linkedIn: "",
-    skype: "",
-    zoom: "",
-    prcNo : "",
-    prcDate: "",
-    prcExpiration: "",
-    studentID: "",
-    aviation: "",
-    caap: "",
-    taxID: "",
-    tertiary: "",
-    tertiaryDegree: "",
-    tertiaryYear: "",
-    tertiaryDiploma : "",
-    tertiaryDiploma1: "",
-    masteral: "",
-    masteralDegree: "",
-    masteralYear: "",
-    masteralDiploma: "",
-    masteralDiploma1: "",
-    doctoral: "",
-    doctoralDegree: "",
-    doctoralYear: "",
-    doctoralDiploma: "",
-    doctoralDiploma1: "",
-    employer: "",
-    jobTitle: "",
-    employerAdd: "",
-    chooseMem: "",
-    payment: "",
-    payment1: ""
+      // Define form controls with validators
+      photo: ['', Validators.required],
+      photo1: ['', Validators.required],
+      remarks: ['', Validators.required],
+      fullName: ['', Validators.required],
+      sex: ['', Validators.required],
+      birthDate: ['', Validators.required],
+      placeOfBirth: ['', Validators.required],
+      civilStatus: ['', Validators.required],
+      religion: ['', Validators.required],
+      address: ['', Validators.required],
+      zip: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]], // Use both required and email validators
+      contactNum: ['', Validators.required],
+      prcNo: ['', Validators.required],
+      prcDate: ['', Validators.required],
+      prcExpiration: ['', Validators.required],
+      studentID: ['', Validators.required],
+      companyID: ['', Validators.required],
+      EducAttainment: ['', Validators.required],
+      tertiary: ['', Validators.required],
+      tertiaryDegree: ['', Validators.required],
+      tertiaryYear: ['', Validators.required],
+      tertiaryDiploma: ['', Validators.required],
+      masteral: ['', Validators.required],
+      masteralDegree: ['', Validators.required],
+      masteralYear: ['', Validators.required],
+      masteralDiploma: ['', Validators.required],
+      doctoral: ['', Validators.required],
+      doctoralDegree: ['', Validators.required],
+      doctoralYear: ['', Validators.required],
+      doctoralDiploma: ['', Validators.required],
+      employer: ['', Validators.required],
+      jobTitle: ['', Validators.required],
+      employerAdd: ['', Validators.required],
+      chooseMem: ['', Validators.required],
+      payment: ['', Validators.required],
+      payment1: ['', Validators.required],
     })
 
     this.route.params.subscribe(params => {
@@ -202,8 +196,11 @@ export class MemOrgmemformComponent implements OnInit {
   }
 
   submit() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
     // Get the event data from the form
-
     this.route.params.subscribe(params => {
       const _id = params['id'];
 
