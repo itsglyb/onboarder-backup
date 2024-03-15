@@ -18,7 +18,7 @@
                                 <div class="d-flex justify-content-end ml-auto">
                                   <div class="input-group">
                                     <input type="text" class="search form-control" placeholder="Search by Organization's name">
-                                    <button class="btn btn-primary" type="button">Search</button>
+                                    <button class="btn btn-primary" (click)="search()" type="button">Search</button>
                                   </div>
                                 </div>
                               </div>
@@ -36,7 +36,7 @@
                                   <th>Status</th>
                               </tr>
                           </thead>
-                          <tbody>
+                          <tbody *ngIf="OrganizationArray.length > 0; else noData">
                               <tr *ngFor="let OrganizationItem of OrganizationArray">
                                   
                                   <td><img [src]="OrganizationItem.logo ? OrganizationItem.logo : 'assets/img/profile-pic.png'" alt="Image" style="width: 100px; height: auto;"></td>
@@ -62,6 +62,11 @@
                   </div>
               </div>
           </div>
+          <div class="text-center">
+            <button class="btn-prev btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)"><i class="fa-solid fa-caret-left"></i></button>
+            <span>Page {{ currentPage }} of {{ Math.ceil(OrganizationArray.length / itemsPerPage) }}</span>
+            <button class="btn-next btn-link" [disabled]="currentPage === Math.ceil(OrganizationArray.length / itemsPerPage)" (click)="setPage(currentPage + 1)"><i class="fa-solid fa-caret-right"></i></button>
+        </div>
       </div>
   </div>
 

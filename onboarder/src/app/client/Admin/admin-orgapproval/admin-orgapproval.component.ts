@@ -95,7 +95,7 @@ export class AdminOrgapprovalComponent {
   }
 
   accept(_id: string): void{
-    const updatedData = { isVerified: true };
+    const updatedData = { isApproved: true };
     this.http.patch(`http://localhost:5000/api/orgRegister/${_id}`, updatedData, { withCredentials: true })
       .subscribe((response: any) => {
         // Handle the response as needed, for example, update the UI or show a success message
@@ -166,6 +166,42 @@ export class AdminOrgapprovalComponent {
       this.getAllOrganization();
     })
   }
+
+  startIndex(): number {
+    return (this.currentPage - 1) * this.itemsPerPage;
+  }
+
+  // Calculate the end index of the items to display on the current page
+  endIndex(): number {
+    return Math.min(this.startIndex() + this.itemsPerPage - 1, this.OrganizationArray.length - 1);
+  }
+
+  // Function to change the current page
+  setPage(page: number) {
+    this.currentPage = page;
+  }
+
+  search() {
+    // If search query is empty, reset OrganizationArray to show all organizations
+    if (!this.searchQuery.trim()) {
+      this.getAllOrganization();
+      return;
+    }
+
+    // Convert searchQuery to lowercase for case-insensitive search
+    const searchTerm = this.searchQuery.toLowerCase();
+
+    // Filter OrganizationArray based on search query
+    this.OrganizationArray = this.OrganizationArray.filter(org => {
+      // Check if organization and orgName property exist
+      if (org && org.orgName) {
+        // Perform case-insensitive search on orgName
+        return org.orgName.toLowerCase().includes(searchTerm);
+      }
+      return false; // Exclude organization if orgName is not present
+    });
+  }
+
   private loadScript(scriptUrl: string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       const scriptElement = document.createElement('script');
