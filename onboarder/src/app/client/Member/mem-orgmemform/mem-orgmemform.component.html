@@ -846,12 +846,12 @@
               </div>
 
               <div class="col-md-12 position-relative" *ngIf="memForm.memType1Process">
-                <label for="validationTooltip05" class="form-label ">Payment Process</label>
+                <label for="validationTooltip04" class="form-label ">Payment Process</label>
                 <textarea class="form-control" disabled>{{memForm.memType1ProcessInput}}></textarea>
               </div>
 
               <div class="col-md-6 position-relative" *ngIf="memForm.date">
-                <label for="validationTooltip05" class="form-label">Payment Date</label>
+                <label for="validationTooltip04" class="form-label">Payment Date</label>
                 <input class="form-control" type="date" id="validationTextarea" formControlName="paymentDateInput" placeholder="Enter the payment process" [ngClass]="{'is-invalid': submitted && form.controls['paymentDateInput'].errors}">
                 <div class="invalid-feedback">
                   Please provide your payment date.
@@ -867,7 +867,7 @@
               </div>
 
                 <div class="col-12">
-                  <input type="submit"  class=" btn btn-success action-button"  />
+                  <input type="submit"  class=" btn btn-success action-button"/>
                 </div>
               </form>
             </div>
