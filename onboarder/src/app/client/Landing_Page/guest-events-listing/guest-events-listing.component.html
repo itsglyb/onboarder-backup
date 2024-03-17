@@ -86,11 +86,14 @@
             <img class="img-fluid" [src]="poster ? poster : 'assets/img/image-holder.png'" alt="" style="width: 30%;">
             <h4>{{eventTitle}}</h4>
             <p>{{eventDesc}}</p>
-            <h3>Event Payment Details:</h3>
-            <p>{{eventPaymentDetails}}</p>
+
           </div>
           <div class="row">
             <div class="col-md-12">
+              <div class="col-md-12 col-xs-12">
+                <label class="">Event Payment Details </label>
+                <p>{{eventPaymentDetails}}</p>
+              </div>
               <form id="subs-form" (submit)="onSubmitForm($event)" [formGroup]="form" *ngIf="(form!) as form">
                 <div class="form-group row">
                   <div class="col-md-12 col-xs-12">
