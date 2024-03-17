@@ -32,17 +32,18 @@ interface OrgEvent {
 export class GuestEventsListingComponent implements OnInit {
   eventDesc!: string;
   poster!: string;
-  memID: string = ""; 
+  memID: string = "";
   eventSeats: number = 0;// Initialize memID property
   @ViewChild('eventContainer') eventContainer!: ElementRef;
   eventTime!: string;
   location!: string;
   eventPrice!: string;
   eventPaymentDetails!: string;
+  submitted: boolean = false;
 
   constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef, private route: ActivatedRoute, private http: HttpClient, private formBuilder: FormBuilder) {
   }
-  
+
   orgEventArray: OrgEvent[] = [];
   form!: FormGroup;
   orgEvent$: Observable<OrgEvent[]> | undefined;
@@ -93,7 +94,7 @@ export class GuestEventsListingComponent implements OnInit {
     this.orgEvent$ = this.http.get<OrgEvent[]>(`http://localhost:5000/api/events/${orgID}`).pipe(
       map(events => events.filter(event => event.eventType === 'Public'))
     );
-    
+
     this.orgEvent$.subscribe((filteredEvents) => {
       this.orgEventArray = filteredEvents;
       // Update the length variable
@@ -106,7 +107,7 @@ export class GuestEventsListingComponent implements OnInit {
     this.showSusbcFormModal(eventID, poster, eventTitle, eventSeats, eventTime, location, eventDesc, eventPrice, eventPaymentDetails);
 }
 
-  
+
   showSusbcFormModal(eventID: string, poster: string, eventTitle: string, eventSeats: number, eventTime: string, location: string, eventDesc: string, eventPrice: string, eventPaymentDetails: string) {
     const susbcFormModal = this.el.nativeElement.querySelector('#susbc-form');
     this.eventID = eventID;
@@ -138,14 +139,18 @@ convertfiletobase64(file: File, callback: (base64string: string) => void) {
   reader.readAsDataURL(file);
 }
 
-  
+
   onSubmitForm(e: Event) {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
     e.preventDefault();
-  
+
     const subsForm = this.el.nativeElement.querySelector('#subs-form');
     const susbcFormModal = this.el.nativeElement.querySelector('#susbc-form');
     const susbcFormThankModal = this.el.nativeElement.querySelector('#susbc-form-thank');
-    
+
     const regForm = this.form.getRawValue();
     const formData = {
         orgID: this.orgID,
@@ -180,13 +185,13 @@ convertfiletobase64(file: File, callback: (base64string: string) => void) {
   registerToEvent(formData: any) {
     this.http.post('http://localhost:5000/api/createguestRegForm', formData, { withCredentials: true }).subscribe(
         () => {
-            
+
             const subsForm = this.el.nativeElement.querySelector('#subs-form');
             const susbcFormModal = this.el.nativeElement.querySelector('#susbc-form');
             const susbcFormThankModal = this.el.nativeElement.querySelector('#susbc-form-thank');
-  
+
             $(subsForm).trigger('reset');
-  
+
             // Hide form modal and show thank you modal
             $(susbcFormModal).modal('hide');
             $(susbcFormThankModal).modal('show');
