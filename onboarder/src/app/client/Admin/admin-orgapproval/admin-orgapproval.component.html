@@ -45,7 +45,7 @@
                                   <td>{{OrganizationItem.email}}</td>
                                   <td>{{OrganizationItem.dateCreated}}</td>
                                   <td>
-                                      <button type="button" class="btn btn-primary"><i class="bi bi-eye"></i></button>
+                                      <button type="button" class="btn btn-primary" (click)="setUpdate(OrganizationItem)"><i class="bi bi-eye"></i></button>
                                   </td>
                                   <td>
                                       <button type="button" class="btn btn-accept"><i class="fa-solid fa-square-check" data-bs-toggle="modal" (click)="setAcceptModalId(OrganizationItem._id)"></i></button>
@@ -123,66 +123,77 @@
 
   <!-- View Org Modal -->
   <div>
-      <div class="modal fade" id="viewOrgModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-body center">
-                      <form id="editOrgForm">
-                          <!-- Organization Information -->
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Organization Name</label>
-                                  <input type="text" class="form-control" id="editOrgName" placeholder="Enter organization name" readonly>
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Organization Type</label>
-                              <textarea class="form-control" id="editOrgType" placeholder="Enter organization type"  readonly></textarea>
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Brief Description of the Organization's Purpose</label>
-                              <textarea class="form-control" id="editOrgDescription" placeholder="Enter organization description" readonly></textarea>
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Organization's History</label>
-                              <textarea class="form-control" id="editOrgHistory" placeholder="Enter organization history"  readonly></textarea>
-                          </div>
+    <div *ngFor = "let OrganizationItem of OrganizationArray">
+        <div class="modal fade" id="editUserModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngIf="_id">    
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body center">
+                        <form id="editOrgForm">
+                            <!-- Organization Information -->
+                            <div class="form-group">
+                                <label style="margin-top: 10px;">Organization Name</label>
+                                    <input type="text" class="form-control" id="editOrgName" placeholder="Enter organization name" [(ngModel)]="orgName" [ngModelOptions]="{standalone: true}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-top: 10px;">Organization Type</label>
+                                <textarea class="form-control" id="editOrgType" placeholder="Enter organization type" [(ngModel)]="orgType" [ngModelOptions]="{standalone: true}" readonly></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-top: 10px;">Brief Description of the Organization's Purpose</label>
+                                <textarea class="form-control" id="editOrgDescription" placeholder="Enter organization description" [(ngModel)]="about" [ngModelOptions]="{standalone: true}" readonly></textarea>
+                            </div>                    
+                            <div class="form-group">
+                                <label style="margin-top: 10px;">Organization's History</label>
+                                <textarea class="form-control" id="editOrgHistory" placeholder="Enter organization history" [(ngModel)]="orgHistory" [ngModelOptions]="{standalone: true}" readonly></textarea>
+                            </div>
+        
+                            <!-- Organization Goals -->
+                            <div class="form-group">
+                                <label style="margin-top: 10px;">Mission</label>
+                                <textarea class="form-control" id="editOrgMission" placeholder="Enter organization mission" [(ngModel)]="mission" [ngModelOptions]="{standalone: true}" readonly></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-top: 10px;">Vision</label>
+                                <textarea class="form-control" id="editOrgVision" placeholder="Enter organization vision" [(ngModel)]="vision" [ngModelOptions]="{standalone: true}" readonly></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-top: 10px;">Core Values</label>
+                                <textarea class="form-control" id="editCoreValues" placeholder="Enter your organization's core values" [(ngModel)]="coreValues" [ngModelOptions]="{standalone: true}" readonly></textarea>
+                            </div>
+        
+                            <!-- Organization Goals -->
+                            <div class="form-group" id="editEventPoster">
+                                <div>
+                                    <label style="margin-top: 10px;">Organization's Logo </label>
+                                    <br>
+                                    <img [src]="logo" style="width: 100px; height: 100px; border-radius: 20px; display: block; margin: auto;">
+                                </div>
+                                <img id="frame" src="" class="img-fluid" />
+                            </div>
 
-                          <!-- Organization Goals -->
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Mission</label>
-                              <textarea class="form-control" id="editOrgMission" placeholder="Enter organization mission" readonly></textarea>
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Vision</label>
-                              <textarea class="form-control" id="editOrgVision" placeholder="Enter organization vision" readonly></textarea>
-                          </div>
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Core Values</label>
-                              <textarea class="form-control" id="editCoreValues" placeholder="Enter your organization's core values" readonly></textarea>
-                          </div>
-
-                          <!-- Organization Goals -->
-                          <div class="form-group" id="editEventPoster">
-                              <div>
-                                  <label style="margin-top: 10px;">Organization's Logo </label>
-                                  <br>
-                                  <img style="width: 100px; height: 100px; border-radius: 20px; display: block; margin: auto;">
-                              </div>
-                              <img id="frame" src="" class="img-fluid" />
-                          </div>
-
-                          <!-- Account Information -->
-                          <div class="form-group">
-                              <label style="margin-top: 10px;">Organization Email</label>
-                              <input type="text" class="form-control" id="editOrgEmail" placeholder="Enter the organization email" readonly>
-                          </div>
-
-                          <div class="text-center center">
-                              <button type="submit" class="btn btn-success" data-bs-dismiss="modal">OK</button>
-                          </div>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div>
+                            <div class="form-group" id="editEventPoster">
+                                <div>
+                                    <label style="margin-top: 10px;">Organization's Proof of Authenticity </label>
+                                    <br>
+                                    <img [src]="certificate" style="width: 100px; height: 100px; border-radius: 20px; display: block; margin: auto;">
+                                </div>
+                                <img id="frame" src="" class="img-fluid" />
+                            </div>
+        
+                            <!-- Account Information -->
+                            <div class="form-group">
+                                <label style="margin-top: 10px;">Organization Email</label>
+                                <input type="text" class="form-control" id="editOrgEmail" placeholder="Enter the organization email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" readonly>
+                            </div>
+        
+                            <div class="text-center center">
+                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
 </body>

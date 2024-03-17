@@ -74,13 +74,16 @@ export class OrgRegistrationComponent implements OnInit {
 
   
   // function to handle file changes
-onChange = ($event: Event) => {
+onChange = ($event: Event, controlName: string) => {
   const target = $event.target as HTMLInputElement;
   const file: File = (target.files as FileList)[0];
   this.convertfiletobase64(file, (base64String) => {
     // Set the base64 string to the logo form control
-    this.form.get('logo')?.setValue(base64String);
-    this.form.get('certificate')?.setValue(base64String);
+    if (controlName === 'logo') {
+      this.form.patchValue({ logo: base64String});
+    } else if (controlName === 'certificate') {
+      this.form.patchValue({ certificate: base64String});
+    }
   });
 }
 
