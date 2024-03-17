@@ -1205,6 +1205,27 @@ router.get('/events/:orgID', async (req, res) => {
   }
 })
 
+router.delete('/events/:orgID', async (req, res) => {
+  try {
+    const orgID = req.params.orgID;
+    const deleteOrgEvent = await Events.deleteMany({ orgID: orgID });
+    if (!deleteOrgEvent.deletedCount) {
+      return res.status(200).send({
+        status: false,
+        message: "No events found for the organization ID provided"
+      });
+    }
+    
+    res.status(200).send({
+      status: true,
+      message: "Organization events deleted successfully"
+    });
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+
 // display org-event details
 router.get('/thisevent/:id', async (req, res) => {
   try {

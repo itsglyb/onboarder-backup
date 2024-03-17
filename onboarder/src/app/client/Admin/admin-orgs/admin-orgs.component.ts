@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { event } from 'jquery';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -129,10 +130,14 @@ export class AdminOrgsComponent {
       "orgCode": this.orgCode
     }
 
-    this.http.delete("http://localhost:5000/api/organization" + "/" + this._id).subscribe((resultData: any) => {
-      console.log(resultData);
-      this.getAllOrganization();
-    })
+    this.http.delete("http://localhost:5000/api/events" + "/" + this._id).subscribe((eventData: any) => {
+        console.log(eventData);
+        // After events are deleted, proceed to delete the organization
+        this.http.delete("http://localhost:5000/api/organization" + "/" + this._id).subscribe((resultData: any) => {
+            console.log(resultData);
+            this.getAllOrganization();
+        });
+    });
   }
 
   startIndex(): number {
