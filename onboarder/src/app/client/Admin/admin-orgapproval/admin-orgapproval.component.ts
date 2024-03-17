@@ -38,6 +38,7 @@ export class AdminOrgapprovalComponent {
   totalPages: number = 0;
 
   logo: string | ArrayBuffer | null = null;
+  certificate: string | ArrayBuffer | null = null;
   imageObjectUrl: string = "";
 
   constructor(
@@ -73,6 +74,7 @@ export class AdminOrgapprovalComponent {
     this.convertfiletobase64(file, (base64String) => {
       // Set the base64 string to the logo form control
       this.logo = base64String;
+      this.certificate = base64String;
     });
   }
 
@@ -110,6 +112,45 @@ export class AdminOrgapprovalComponent {
 
   }
 
+  setUpdate(data: any) {
+    this._id = data._id;
+    this.orgName = data.orgName;
+    this.orgType = data.orgType;
+    this.about = data.about;
+    this.orgHistory = data.orgHistory;
+    this.mission = data.mission;
+    this.vision = data.vision;
+    this.coreValues = data.coreValues;
+    this.email = data.email;
+    this.dateCreated = data.dateCreated;
+    this.logo = data.logo;
+    this.certificate = data.certificate;
+    this.orgCode = data.orgCode;
+  }
+
+  updateOrganization() {
+    let orgData = {
+      "orgName": this.orgName,
+      "orgType": this.orgType,
+      "orgHistory": this.orgHistory,
+      "email": this.email,
+      "dateCreated": this.dateCreated,
+      "_id": this._id,
+      "about": this.about,
+      "mission": this.mission,
+      "vision": this.vision,
+      "coreValues": this.coreValues,
+      "logo": this.logo,
+      "certificate": this.certificate,
+      "orgCode": this.orgCode
+    }
+
+    this.http.patch("http://localhost:5000/api/organization" + "/" + this._id, orgData).subscribe((resultData: any) => {
+      console.log(resultData);
+      this.getAllOrganization();
+    })
+  }
+
   setDelete(data: any) {
     this._id = data._id;
     this.orgName = data.orgName;
@@ -122,6 +163,7 @@ export class AdminOrgapprovalComponent {
     this.email = data.email;
     this.dateCreated = data.dateCreated;
     this.logo = data.logo;
+    this.certificate = data.certificate;
     this.orgCode = data.orgCode;
   }
 
@@ -138,6 +180,7 @@ export class AdminOrgapprovalComponent {
       "vision": this.vision,
       "coreValues": this.coreValues,
       "logo": this.logo,
+      "certificate": this.certificate,
       "orgCode": this.orgCode
     }
 
