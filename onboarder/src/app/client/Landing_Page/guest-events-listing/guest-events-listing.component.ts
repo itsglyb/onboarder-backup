@@ -62,6 +62,7 @@ export class GuestEventsListingComponent implements OnInit {
       this.eventID = params['_id'];
       this.orgName = params['orgName'];
       this.eventTitle = params['eventTitle'];
+      this.eventPaymentDetails = params['eventPaymentDetails'];
       this.getOrgEvent(this.orgID);
     })
 
