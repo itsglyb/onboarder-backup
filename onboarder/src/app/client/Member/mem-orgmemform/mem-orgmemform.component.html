@@ -488,7 +488,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.sex">
                 <label for="sex" class="form-label">Gender</label>
-                <select class="form-select" id="validationTooltip04" [ngClass]="{'is-invalid': submitted && form.controls['sex'].errors}">
+                <select class="form-select" id="validationTooltip04" formControlName="sex" [ngClass]="{'is-invalid': submitted && form.controls['sex'].errors}">
                   <option selected value="">Choose...</option>
                   <option>Male</option>
                   <option>Female</option>

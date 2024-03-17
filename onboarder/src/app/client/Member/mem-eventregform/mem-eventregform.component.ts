@@ -23,6 +23,7 @@ export class MemEventregformComponent implements OnInit {
   orgName!: string;
   memType: string = '';
   form!: FormGroup;
+  submitted: boolean = false;
   membershipStatus: any[] = [];
 
   ngOnInit(): void {
@@ -62,18 +63,18 @@ export class MemEventregformComponent implements OnInit {
           (statusRes: any[]) => {
             this.membershipStatus = statusRes;
             console.log("Membership:", this.membershipStatus);
-  
+
             // Loop through each element in the array to check for chooseMem property
             this.membershipStatus.forEach((status: any) => {
               console.log("chooseMem:", status.chooseMem);
             });
-  
+
             // Extract chooseMem property from each element in membershipStatus array
             const chooseMems = this.membershipStatus.map((status: any) => status.chooseMem);
             console.log("Choose Mems:", chooseMems);
-  
+
             // If you want to set memType as the first element's chooseMem, you can do:
-            this.memType = chooseMems.length > 0 ? chooseMems[0] : ''; 
+            this.memType = chooseMems.length > 0 ? chooseMems[0] : '';
             console.log("Membership Type:", this.memType);
             this.form.get('memType')?.setValue(this.memType);
           },
@@ -90,8 +91,8 @@ export class MemEventregformComponent implements OnInit {
       }
     );
   }
-  
-  
+
+
 
 
   onChange = ($event: Event) => {
@@ -112,6 +113,10 @@ export class MemEventregformComponent implements OnInit {
   }
 
   submit() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
     const regForm = this.form.getRawValue();
     this.http.get(`http://localhost:5000/api/thisevent/${this.eventID}`, { withCredentials: true }).subscribe(
       (event: any) => {

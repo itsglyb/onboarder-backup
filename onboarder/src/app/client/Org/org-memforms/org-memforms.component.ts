@@ -56,8 +56,8 @@ photo: boolean,
   memType5Details: boolean, memType6Details: boolean,
 
   memType1Fee: boolean,memType2Fee: boolean,
-  memType3Fee: boolean, memType4Fee: boolean, 
-  memType5Fee: boolean, memType6Fee: boolean, 
+  memType3Fee: boolean, memType4Fee: boolean,
+  memType5Fee: boolean, memType6Fee: boolean,
 
   payment: boolean,
   date: boolean,
@@ -104,7 +104,7 @@ export class OrgMemformsComponent implements OnInit {
       prcExpiration: new FormControl(false),
       studentID: new FormControl(false),
       companyID : new FormControl(false),
-  
+
       EducAttainment: new FormControl(false),
       tertiary: new FormControl(false),
       tertiaryDegree: new FormControl(false),
@@ -133,12 +133,10 @@ export class OrgMemformsComponent implements OnInit {
       memType5Details: new FormControl(false), memType6Details: new FormControl(false),
 
       memType1Fee: new FormControl(false),memType2Fee: new FormControl(false),
-      memType3Fee: new FormControl(false), memType4Fee: new FormControl(false), 
-      memType5Fee: new FormControl(false), memType6Fee: new FormControl(false), 
-      
-      memType1Process: new FormControl(false),
+      memType3Fee: new FormControl(false), memType4Fee: new FormControl(false),
+      memType5Fee: new FormControl(false), memType6Fee: new FormControl(false),
 
-      
+      memType1Process: new FormControl(false),
 
       payment: new FormControl(false),
       date: new FormControl(false),
@@ -162,8 +160,6 @@ export class OrgMemformsComponent implements OnInit {
       memType6FeeInput : [''],
 
       memType1ProcessInput: [''],
-
-      
 
     });
 

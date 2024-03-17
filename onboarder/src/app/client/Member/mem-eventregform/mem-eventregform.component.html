@@ -1,67 +1,62 @@
-<body>
-  <div class="container">
-      <aside>
-          <app-mem-navbar></app-mem-navbar>
-      </aside>
+<div class="container">
+  <aside>
+      <app-mem-navbar></app-mem-navbar>
+  </aside>
 
-      <div class="content">
-          <div class="card">
-            <h5 class="card-header">Event Registration Form</h5>
-            <div class="card-body">
+  <div class="content">
+      <div class="card">
+          <h5 class="card-header">Event Registration Form</h5>
+          <div class="card-body">
               <form class="row g-3 needs-validation" novalidate [formGroup]="form">
 
-                <div class="row">
-                  <div class="col-md-12 position-relative">
-                    <h5 class="card-title">Event Registration Information</h5>
+                  <div class="row">
+                      <div class="col-md-12 position-relative">
+                          <h5 class="card-title">Event Registration Information</h5>
+                      </div>
                   </div>
-                </div>
 
-                <div class="col-md-15 position-relative">
-                  <label for="validationTooltip01" class="form-label">Member Name (First Name, Middle Name, Last Name)</label>
-                  <input type="text" class="form-control" id="validationTooltip01" placeholder="Please enter your full name" formControlName="memName" required>
-                  <div class="valid-tooltip">
-                    Looks good!
+                  <div class="col-md-15 position-relative">
+                      <label for="validationTooltip01" class="form-label">Member Name (First Name, Middle Name, Last Name)</label>
+                      <input type="text" class="form-control" id="validationTooltip01" placeholder="Please enter your full name" formControlName="memName" [ngClass]="{'is-invalid': submitted && form.controls['memName'].errors}" required>
+                      <div class="invalid-tooltip">
+                          Please enter your full name.
+                      </div>
                   </div>
-                </div>
 
-                <div class="col-md-6 position-relative">
-                  <label for="validationTooltip01" class="form-label">Membership Type</label>
-                  <input type="text" class="form-control" id="validationTooltip01" [(ngModel)]="memType" formControlName="memType" readonly>
-                  <div class="valid-tooltip">
-                    Looks good!
+                  <div class="col-md-6 position-relative">
+                      <label for="validationTooltip01" class="form-label">Membership Type</label>
+                      <input type="text" class="form-control" id="validationTooltip01" [(ngModel)]="memType" formControlName="memType" readonly>
                   </div>
-                </div>
 
-                <div class="col-md-6 position-relative">
-                  <label class="form-label" for="customFile">Proof of Payment</label>
-                  <input type="file" class="form-control" id="customFile" formControlName="proofofPayment" (change)="onChange($event)" accept="image/*"/>
-                </div>
-
-                <div class="col-md-6 position-relative">
-                  <label for="validationTooltip05" class="form-label">Email Address</label>
-                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your email address" formControlName="emailAddress" required>
-                  <div class="invalid-tooltip">
-                    Please provide your email address.
+                  <div class="col-md-6 position-relative">
+                      <label class="form-label" for="customFile">Proof of Payment</label>
+                      <input type="file" class="form-control" id="customFile" formControlName="proofofPayment" (change)="onChange($event)" accept="image/*" [ngClass]="{'is-invalid': submitted && form.controls['proofofPayment'].errors}"/>
+                      <div class="invalid-tooltip">
+                        Please provide your proof of payment.
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-md-6 position-relative">
-                  <label for="validationTooltip05" class="form-label">Contact Number</label>
-                  <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your contact number" formControlName="contactno" required>
-                  <div class="invalid-tooltip">
-                    Please provide your contact number.
+                  <div class="col-md-6 position-relative">
+                      <label for="validationTooltip05" class="form-label">Email Address</label>
+                      <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your email address" formControlName="emailAddress" [ngClass]="{'is-invalid': submitted && form.controls['emailAddress'].errors}" required>
+                      <div class="invalid-tooltip">
+                          Please provide your email address.
+                      </div>
                   </div>
-                </div>
 
+                  <div class="col-md-6 position-relative">
+                      <label for="validationTooltip05" class="form-label">Contact Number</label>
+                      <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your contact number" formControlName="contactno" [ngClass]="{'is-invalid': submitted && form.controls['contactno'].errors}" required>
+                      <div class="invalid-tooltip">
+                          Please provide your contact number.
+                      </div>
+                  </div>
 
-                <div class="col-12">
-                  <button class="btn btn-primary" type="submit" (click)="submit()">Submit</button>
-                </div>
+                  <div class="col-12">
+                      <button class="btn btn-primary" type="submit" (click)="submit()" *ngIf="(form!) as form">Submit</button>
+                  </div>
               </form>
-            </div>
           </div>
       </div>
   </div>
-</body>
-
-
+</div>

@@ -30,12 +30,12 @@ export class OrgCreateEventComponent implements OnInit{
   isStep3Valid = false;
   isStep4Valid = false;
 
-  formattedaddress=" "; 
-  options={ 
-    componentRestrictions:{ 
-      country:["PH"] 
-    } 
-  } 
+  formattedaddress=" ";
+  options={
+    componentRestrictions:{
+      country:["PH"]
+    }
+  }
 
   onButtonClicked(buttonNumber: number) {
     this.activeButton = buttonNumber;
@@ -72,7 +72,7 @@ export class OrgCreateEventComponent implements OnInit{
     }
 
       public AddressChange(address: any) {
-      
+
         const eventTimeControl = this.form.get('eventTime');
         if (eventTimeControl) {
           const currentEventTime = eventTimeControl.value;
@@ -92,17 +92,17 @@ export class OrgCreateEventComponent implements OnInit{
         // Set the formatted address to the location form control
         this.form.patchValue({ location: this.formattedaddress });
       }
-    
-    
-    
-  
+
+
+
+
       validateStep1() {
         const event = this.form.getRawValue();
         const eventDate = new Date(event.eventDate);
         const currentDate = new Date();
-      
+
         // Check if the event date is in the past
-      
+
         // Check if any required field in Step 1 is empty
         if (
           !event.eventTitle.trim() ||
@@ -121,11 +121,11 @@ export class OrgCreateEventComponent implements OnInit{
           this.isStep1Valid = false;
           return;
         }
-      
+
         // If all validations pass, set isStep1Valid to true
         this.isStep1Valid = true;
       }
-      
+
 
 
     validateStep2(){
@@ -155,7 +155,7 @@ export class OrgCreateEventComponent implements OnInit{
     onChange = ($event: Event, controlName: string) => {
       const target = $event.target as HTMLInputElement;
       const file: File = (target.files as FileList)[0];
-  
+
       this.convertfiletobase64(file, (base64String) => {
           // Set the base64 string to the appropriate form control
           if (controlName === 'poster') {
@@ -165,9 +165,9 @@ export class OrgCreateEventComponent implements OnInit{
           }
       });
   }
-  
-  
-    
+
+
+
     // Your convertfiletobase64 function
     convertfiletobase64(file: File, callback: (base64string: string) => void) {
       const reader = new FileReader();
@@ -187,13 +187,13 @@ export class OrgCreateEventComponent implements OnInit{
       }).subscribe(
         (orgResponse: any) => {
           console.log('Org Response:', orgResponse, event);
-    
+
           // Extract organization ID from the response
           const orgID = orgResponse._id;
           const orgName = orgResponse.orgName;
-          
+
           // Assuming the organization ID is stored in the "_id" field
-    
+
           // Create an object with organization ID and event data
           const eventData = {
             orgID: orgID,
@@ -211,8 +211,8 @@ export class OrgCreateEventComponent implements OnInit{
             eventSeats: event.eventSeats,
             eventPrice: event.eventPrice,
             eventPaymentDetails: event.eventPaymentDetails
-          };          
-    
+          };
+
           // Post the event data to the createEvent API endpoint
           this.http.post('http://localhost:5000/api/createEvent', eventData, {
             withCredentials: true
@@ -236,8 +236,8 @@ export class OrgCreateEventComponent implements OnInit{
     done(){
       this.router.navigate(['/org-profile']);
     }
-    
-  
+
+
     private loadScript(scriptUrl: string): Promise<void> {
       return new Promise<void>((resolve, reject) => {
         const scriptElement = document.createElement('script');
@@ -249,5 +249,5 @@ export class OrgCreateEventComponent implements OnInit{
       });
     }
   }
-  
+
 

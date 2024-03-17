@@ -91,7 +91,7 @@ aside {
 }
 .card-title {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 14px;
     text-transform: uppercase;
     padding-bottom: 4px;
 }
@@ -140,7 +140,7 @@ height: 100%;
 	min-width: 1000px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
-.table-title {        
+.table-title {
 	padding-bottom: 15px;
 	background: #007FE1;
 	color: #fff;
@@ -197,7 +197,7 @@ table.table th i {
 	font-size: 13px;
 	margin: 0 5px;
 	cursor: pointer;
-}	
+}
 table.table td:last-child i {
 	opacity: 0.9;
 	font-size: 19px;
@@ -262,11 +262,11 @@ table.table .avatar {
 }
 .pagination li a:hover {
 	color: #666;
-}	
+}
 .pagination li.active a, .pagination li.active a.page-link {
 	background: #03A9F4;
 }
-.pagination li.active a:hover {        
+.pagination li.active a:hover {
 	background: #0397d6;
 }
 .pagination li.disabled i {
