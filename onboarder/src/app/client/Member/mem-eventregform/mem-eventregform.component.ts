@@ -146,7 +146,7 @@ export class MemEventregformComponent implements OnInit {
         const formData = {
           orgID: orgID,
           orgName: this.orgName,
-          eventID: eventID,
+          eventID: this.eventID,
           memID: memID,
           memName: regForm.memName,
           memType: regForm.memType,

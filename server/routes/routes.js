@@ -1527,6 +1527,52 @@ router.post('/createRegForm', async (req, res) => {
   }
 })
 
+router.post('/createguestRegForm', async (req, res) => {
+  let orgID = req.body.orgID;
+  let orgName = req.body.orgName;
+  let eventID = req.body.eventID;
+  let guestName = req.body.guestName;
+  let proofofPayment = req.body.proofofPayment;
+  let emailAddress = req.body.emailAddress;
+  let contactno = req.body.contactno;
+  const event = await Events.findById(eventID)
+  try {
+    const eventRegForm = new GuestRegForm({
+      orgID: orgID,
+      orgName: orgName,
+      eventID: eventID,
+      guestName: guestName,
+      proofofPayment: proofofPayment,
+      emailAddress: emailAddress,
+      contactno: contactno
+    });
+
+    await eventRegForm.save();
+
+    const mailOptions = {
+      from: process.env.AUTH_EMAIL,
+      to: eventRegForm.emailAddress,
+      subject: "ONBOARDER | Event Registration",
+      html:`<h2>Hi ${eventRegForm.guestName}!</h2> <h4>Together with ${event.orgName}, we're excited to confirm your registration for ${event.eventTitle}! This email serves as both your registration confirmation ticket to the event.</h4>`
+    }
+  
+    //sending email
+  
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+        console.log(error)
+      }else{
+        console.log('Verification sent in email')
+      }
+    })
+
+
+    res.status(201).json({ eventRegForm });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+})
+
 // Display registered members for a specific event
 router.get('/myEventForm/:eventID', async (req, res) => {
   try {
@@ -1599,51 +1645,51 @@ router.get('/myEvents/:memID', async (req, res) => {
   }
 });
 
-router.post('/createguestRegForm', async (req, res) => {
-  let orgID = req.body.orgID;
-  let orgName = req.body.orgName;
-  let eventID = req.body.eventID;
-  let guestName = req.body.guestName;
-  let proofofPayment = req.body.proofofPayment;
-  let emailAddress = req.body.emailAddress;
-  let contactno = req.body.contactno;
-  const event = await Events.findById(eventID)
-  try {
-    const eventRegForm = new GuestRegForm({
-      orgID: orgID,
-      orgName: orgName,
-      eventID: eventID,
-      guestName: guestName,
-      proofofPayment: proofofPayment,
-      emailAddress: emailAddress,
-      contactno: contactno
-    });
+// router.post('/createguestRegForm', async (req, res) => {
+//   let orgID = req.body.orgID;
+//   let orgName = req.body.orgName;
+//   let eventID = req.body.eventID;
+//   let guestName = req.body.guestName;
+//   let proofofPayment = req.body.proofofPayment;
+//   let emailAddress = req.body.emailAddress;
+//   let contactno = req.body.contactno;
+//   const event = await Events.findById(eventID)
+//   try {
+//     const eventRegForm = new GuestRegForm({
+//       orgID: orgID,
+//       orgName: orgName,
+//       eventID: eventID,
+//       guestName: guestName,
+//       proofofPayment: proofofPayment,
+//       emailAddress: emailAddress,
+//       contactno: contactno
+//     });
 
-    await eventRegForm.save();
+//     await eventRegForm.save();
 
-    const mailOptions = {
-      from: process.env.AUTH_EMAIL,
-      to: eventRegForm.emailAddress,
-      subject: "ONBOARDER | Event Registration",
-      html:`<h2>Hi ${eventRegForm.guestName}!</h2> <h4>Together with ${event.orgName}, we're excited to confirm your registration for ${event.eventTitle}! This email serves as both your registration confirmation ticket to the event.</h4>`
-    }
+//     const mailOptions = {
+//       from: process.env.AUTH_EMAIL,
+//       to: eventRegForm.emailAddress,
+//       subject: "ONBOARDER | Event Registration",
+//       html:`<h2>Hi ${eventRegForm.guestName}!</h2> <h4>Together with ${event.orgName}, we're excited to confirm your registration for ${event.eventTitle}! This email serves as both your registration confirmation ticket to the event.</h4>`
+//     }
   
-    //sending email
+//     //sending email
   
-    transporter.sendMail(mailOptions, function(error, info){
-      if(error){
-        console.log(error)
-      }else{
-        console.log('Verification sent in email')
-      }
-    })
+//     transporter.sendMail(mailOptions, function(error, info){
+//       if(error){
+//         console.log(error)
+//       }else{
+//         console.log('Verification sent in email')
+//       }
+//     })
 
 
-    res.status(201).json({ eventRegForm });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-})
+//     res.status(201).json({ eventRegForm });
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// })
 
 
 router.get('/myguestEventForm/:eventID', async (req, res) => {

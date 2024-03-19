@@ -36,4 +36,4 @@ const eventregFormSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("eventRegForm", eventregFormSchema)
+module.exports = mongoose.model("EventRegForm", eventregFormSchema)

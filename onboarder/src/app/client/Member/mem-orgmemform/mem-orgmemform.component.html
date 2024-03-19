@@ -504,7 +504,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.birthDate">
                 <label for="validationTooltip03" class="form-label">Date of Birth</label>
-                <input type="text" class="form-control" id="validationTooltip02" formControlName="birthDate" placeholder="Date of Birth" [ngClass]="{'is-invalid': submitted && form.controls['birthDate'].errors}" >
+                <input type="date" class="form-control" id="validationTooltip02" formControlName="birthDate" placeholder="Date of Birth" [ngClass]="{'is-invalid': submitted && form.controls['birthDate'].errors}" >
                 <div class="invalid-tooltip">
                   Please state your date of birth.
                 </div>
