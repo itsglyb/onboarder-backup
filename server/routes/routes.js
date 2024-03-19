@@ -1490,6 +1490,7 @@ router.post('/createRegForm', async (req, res) => {
   let proofofPayment = req.body.proofofPayment;
   let emailAddress = req.body.emailAddress;
   let contactno = req.body.contactno;
+  const event = await Events.findById(eventID)
   try {
     const eventRegForm = new EventRegForm({
       orgID: orgID,
@@ -1504,6 +1505,22 @@ router.post('/createRegForm', async (req, res) => {
     });
 
     await eventRegForm.save();
+    const mailOptions = {
+      from: process.env.AUTH_EMAIL,
+      to: eventRegForm.emailAddress,
+      subject: "ONBOARDER | Event Registration",
+      html:`<h2>Hi ${eventRegForm.memName}!</h2> <h4>Together with ${event.orgName}, we're excited to confirm your registration for ${event.eventTitle}! This email serves as both your registration confirmation ticket to the event.</h4>`
+    }
+  
+    //sending email
+  
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+        console.log(error)
+      }else{
+        console.log('Verification sent in email')
+      }
+    })
     res.status(201).json({ eventRegForm });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -1590,6 +1607,7 @@ router.post('/createguestRegForm', async (req, res) => {
   let proofofPayment = req.body.proofofPayment;
   let emailAddress = req.body.emailAddress;
   let contactno = req.body.contactno;
+  const event = await Events.findById(eventID)
   try {
     const eventRegForm = new GuestRegForm({
       orgID: orgID,
@@ -1601,15 +1619,13 @@ router.post('/createguestRegForm', async (req, res) => {
       contactno: contactno
     });
 
-    const event = await Event.findById(eventRegForm.eventID)
-
     await eventRegForm.save();
 
     const mailOptions = {
       from: process.env.AUTH_EMAIL,
-      to: organization.email,
+      to: eventRegForm.emailAddress,
       subject: "ONBOARDER | Event Registration",
-      html:`<h2>Hi ${eventRegForm.guestName}!</h2> <h4>Together with ${eventRegForm.orgName}, we're excited to confirm your registration for ${event.eventTitle}! This email serves as both your registration confirmation ticket to the event.</h4> Event Details:`
+      html:`<h2>Hi ${eventRegForm.guestName}!</h2> <h4>Together with ${event.orgName}, we're excited to confirm your registration for ${event.eventTitle}! This email serves as both your registration confirmation ticket to the event.</h4>`
     }
   
     //sending email
