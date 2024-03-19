@@ -68,7 +68,7 @@
       </div>
           </div>
           <div class="register-btn">
-            <button class="btn-reg btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle, +event.eventSeats, event.eventTime, event.location, event.eventDesc, event.eventPrice, event.eventPaymentDetails)" [disabled]="+event.eventSeats === 0">Register</button>
+            <button class="btn-reg btn-primary" (click)="showModalAfterDelay(event._id, event.poster, event.eventTitle, +event.eventSeats, event.eventTime, event.location, event.eventDesc, event.eventPrice, event.eventPaymentDetails)" [disabled]="+event.eventSeats === 0 || isEventDatePassed(event.eventDate)">Register</button>
           </div>
       </div>
     </div>

@@ -245,4 +245,10 @@ scrollToEventCard(index: number) {
   backToOrgsPage() {
     this.router.navigate(['/guestEvents']);
   }
+
+  isEventDatePassed(eventDate: Date): boolean {
+    const eventDateTime = new Date(eventDate); 
+    const today = new Date();
+    return eventDateTime < today;
+  }
 }
