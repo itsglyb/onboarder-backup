@@ -171,6 +171,7 @@ convertfiletobase64(file: File, callback: (base64string: string) => void) {
         this.http.patch(`http://localhost:5000/api/event/${this.eventID}`, event, { withCredentials: true }).subscribe(
           () => {
             this.registerToEvent(formData);
+            this.getOrgEvent(this.orgID);
           },
           (updateError) => {
             console.error('Error updating event seats:', updateError);
