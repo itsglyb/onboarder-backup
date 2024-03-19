@@ -318,3 +318,21 @@ table.table .avatar {
 	width: 400px;
 	height: 400px;
 }
+
+.btn-accept {
+	background-color: #28a745; /* Green */
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+  }
+  
+  .btn-accept:hover {
+	background-color: #218838; /* Darker green on hover */
+  }
+  

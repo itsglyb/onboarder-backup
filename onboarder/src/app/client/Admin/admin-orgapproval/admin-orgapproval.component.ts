@@ -165,7 +165,6 @@ export class AdminOrgapprovalComponent {
     this.logo = data.logo;
     this.certificate = data.certificate;
     this.orgCode = data.orgCode;
-    this.remarks = data.remarks
   }
 
   deleteOrganization() {
@@ -196,7 +195,7 @@ export class AdminOrgapprovalComponent {
         .subscribe((response: any) => {
           // Handle the response as needed, for example, update the UI or show a success message
           console.log('Application rejected successfully:', response);
-          Swal.fire('Application Application Rejected');
+          Swal.fire('Application Rejected');
           // Optionally, you can reload the updated data after rejection
           this.getAllOrganization();
         }, (error) => {
