@@ -52,4 +52,10 @@ export class MemRegistrationComponent implements OnInit {
   backToEvents() {
     this.router.navigate(['/member-events']);
   }
+
+  isEventDatePassed(eventDate: Date): boolean {
+    const eventDateTime = new Date(eventDate); 
+    const today = new Date();
+    return eventDateTime < today;
+  }
 }
