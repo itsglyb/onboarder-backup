@@ -201,10 +201,10 @@ export class MemOrgmemformComponent implements OnInit {
   }
 
   submit() {
-    this.submitted = true;
-    if (this.form.invalid) {
-       return;
-     }
+  ///  this.submitted = true;
+   /// if (this.form.invalid) {
+   ///    return;
+   ///  }
 
     // Get the event data from the form
     this.route.params.subscribe(params => {
