@@ -98,6 +98,8 @@ export class OrgMemformsComponent implements OnInit {
       zip: new FormControl(false),
       email: new FormControl(false),
       contactNum: new FormControl(false),
+      region: new FormControl(false),
+
       idLicense: new FormControl(false),
       prcNo : new FormControl(false),
       prcDate: new FormControl(false),
@@ -122,6 +124,8 @@ export class OrgMemformsComponent implements OnInit {
       employer: new FormControl(false),
       jobTitle: new FormControl(false),
       employerAdd: new FormControl(false),
+      specialization: new FormControl(false),
+
       membership: new FormControl(false),
 
       memType1: new FormControl(false), memType2: new FormControl(false),

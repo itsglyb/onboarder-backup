@@ -70,18 +70,10 @@ const membershipApplicatioSchema = new mongoose.Schema ({
     contactNum: {
         type: String,
     },
-    facebook: {
-        type: String,
-    },
-      linkedIn: {
-        type: String,
-      },
-      skype: {
-        type: String,
-      },
-      zoom: {
-        type: String,
-      },
+    region: {
+      type: String,
+  },
+
       prcNo : {
         type: String,
       },
@@ -94,13 +86,7 @@ const membershipApplicatioSchema = new mongoose.Schema ({
       studentID: {
         type: String,
       },
-      aviation: {
-        type: String,
-      },
-      caap: {
-        type: String,
-      },
-      taxID: {
+      companyID: {
         type: String,
       },
       tertiary: {
@@ -148,12 +134,18 @@ const membershipApplicatioSchema = new mongoose.Schema ({
       employerAdd: {
         type: String,
       },
+      specialization: {
+        type: String,
+      },
       chooseMem: {
         type: String,
       },
       payment: {
         type: String,
     },
+    paymentDateInput:{
+      type: Date
+    }
    
 })
 

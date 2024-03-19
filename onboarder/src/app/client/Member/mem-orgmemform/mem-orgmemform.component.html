@@ -566,6 +566,14 @@
                 </div>
               </div>
 
+              <div class="col-md-6 position-relative" *ngIf="memForm.region">
+                <label for="validationTooltip05" class="form-label">Region</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="region" placeholder="Please enter your contact number" [ngClass]="{'is-invalid': submitted && form.controls['region'].errors}">
+                <div class="invalid-tooltip">
+                  Please provide your contact number.
+                </div>
+              </div>
+
 
               <div class="row" *ngIf="memForm.idLicense" >
                 <div class="col-md-12 position-relative">
@@ -746,6 +754,14 @@
                 </div>
               </div>
 
+              <div class="col-md-4 position-relative" *ngIf="memForm.specialization">
+                <label for="validationTooltip05" class="form-label">Job Title</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="specialization" placeholder="Please enter your job title" [ngClass]="{'is-invalid': submitted && form.controls['specialization'].errors}">
+                <div class="invalid-tooltip">
+                  Please provide your job title.
+                </div>
+              </div>
+
               <div class="row" *ngIf="memForm.membership">
                 <div class="col-md-12 position-relative">
                   <h5 class="card-title">Membership Details and Categories</h5>
@@ -860,7 +876,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.payment">
                 <label class="form-label " for="customFile">Proof of Payment</label>
-                <input type="file" class="form-control" id="customFile" formControlName="payment1" (change)="onChange($event, 'payment1')" accept="image/*" [ngClass]="{'is-invalid': submitted && form.controls['payment1'].errors}"/>
+                <input type="file" class="form-control" id="customFile" formControlName="payment" (change)="onChange($event, 'payment')" accept="image/*" [ngClass]="{'is-invalid': submitted && form.controls['payment'].errors}"/>
                 <div class="invalid-tooltip">
                   Please attach your proof of payment.
                 </div>
