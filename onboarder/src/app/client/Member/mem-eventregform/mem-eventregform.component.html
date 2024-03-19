@@ -16,7 +16,7 @@
                   </div>
 
                   <div class="col-md-15 position-relative">
-                      <label for="validationTooltip01" class="form-label">Member Name (First Name, Middle Name, Last Name)</label>
+                      <label for="validationTooltip01" class="form-label">Member Name (First Name, Middle Name, Last Name)<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="validationTooltip01" placeholder="Please enter your full name" formControlName="memName" [ngClass]="{'is-invalid': submitted && form.controls['memName'].errors}" required>
                       <div class="invalid-tooltip">
                           Please enter your full name.
@@ -24,12 +24,12 @@
                   </div>
 
                   <div class="col-md-6 position-relative">
-                      <label for="validationTooltip01" class="form-label">Membership Type</label>
+                      <label for="validationTooltip01" class="form-label">Membership Type<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="validationTooltip01" [(ngModel)]="memType" formControlName="memType" readonly>
                   </div>
 
                   <div class="col-md-6 position-relative">
-                      <label class="form-label" for="customFile">Proof of Payment</label>
+                      <label class="form-label" for="customFile">Proof of Payment<span class="text-danger">*</span></label>
                       <input type="file" class="form-control" id="customFile" formControlName="proofofPayment" (change)="onChange($event)" accept="image/*" [ngClass]="{'is-invalid': submitted && form.controls['proofofPayment'].errors}"/>
                       <div class="invalid-tooltip">
                         Please provide your proof of payment.
@@ -37,7 +37,7 @@
                   </div>
 
                   <div class="col-md-6 position-relative">
-                      <label for="validationTooltip05" class="form-label">Email Address</label>
+                      <label for="validationTooltip05" class="form-label">Email Address<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your email address" formControlName="emailAddress" [ngClass]="{'is-invalid': submitted && form.controls['emailAddress'].errors}" required>
                       <div class="invalid-tooltip">
                           Please provide your email address.
@@ -45,7 +45,7 @@
                   </div>
 
                   <div class="col-md-6 position-relative">
-                      <label for="validationTooltip05" class="form-label">Contact Number</label>
+                      <label for="validationTooltip05" class="form-label">Contact Number<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your contact number" formControlName="contactno" [ngClass]="{'is-invalid': submitted && form.controls['contactno'].errors}" required>
                       <div class="invalid-tooltip">
                           Please provide your contact number.

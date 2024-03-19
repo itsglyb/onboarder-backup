@@ -77,10 +77,10 @@
                                 </div>
                             </div>
 
-                                <label class="fieldlabels">Organization Name: *</label>
+                                <label class="fieldlabels">Organization Name: <span class="text-danger">*</span></label>
                                 <input type="text" id="orgName" name="orgName" formControlName="orgName" placeholder="Organization Name" />
 
-                                <label class="fieldlabels">Organization Type: *</label>
+                                <label class="fieldlabels">Organization Type: <span class="text-danger">*</span></label>
                                 <select id="orgType" formControlName="orgType" name="orgType">
                                     <option value="" disabled selected>Select Organization Type</option>
                                     <option value="Human Rights">Human Rights</option>
@@ -98,10 +98,10 @@
                                 </select>
 
 
-                                <label class="fieldlabels">Brief Description of the Organization's Purpose: *</label>
+                                <label class="fieldlabels">Brief Description of the Organization's Purpose: <span class="text-danger">*</span></label>
                                 <textarea id="about" name="about" formControlName="about" placeholder="Organization Purpose and Description" rows="4" cols="50"></textarea>
 
-                                <label class="fieldlabels">Organization's History: *</label>
+                                <label class="fieldlabels">Organization's History: <span class="text-danger">*</span></label>
                                 <textarea id="orgHistory" name="orgHistory" formControlName="orgHistory" placeholder="Organization History" rows="4" cols="50"></textarea>
 
                             </div>
@@ -172,12 +172,12 @@
                                     <h2 class="steps">Step 5 - 6</h2>
                                 </div>
                             </div>
-                                   <label class="fieldlabels">Organization Email: *</label>
+                                   <label class="fieldlabels">Organization Email: <span class="text-danger">*</span></label>
                                    <input type="text" id="email" formControlName="email" name="email" placeholder="Organization Email" />
 
-                                   <label class="fieldlabels">Password: *</label>
+                                   <label class="fieldlabels">Password: <span class="text-danger">*</span></label>
                                    <input type="password" id="password" name="password" formControlName="password" placeholder="Password" />
-                                   <label class="fieldlabels">Confirm Password: *</label>
+                                   <label class="fieldlabels">Confirm Password: <span class="text-danger">*</span></label>
                                    <input type="password" id="cpassword" name="cpassword" formControlName="cpassword" placeholder="Confirm Password" />
                         </div>
 
@@ -202,13 +202,12 @@
                                 </div>
 
                                 <div class="row justify-content-center">
-                                    <div class="col-7 text-center">
-                                      <h2 class="purple-text text-center"><strong>SUCCESS!</strong></h2>
-                                      <h5 class="purple-text text-center">You have successfully created an organization account. Below is your organization code for your members to access your announcements and events.</h5>
-                                      <h5 class="purple-text text-center">An email will be sent to your email address to verify your account.</h5>
+                                    <div class="col-12 text-center">
+                                      <h5 class="purple-text text-center"><strong>You have successfully created an organization account.</strong></h5>
+                                      <p class="purple-text text-center">Below is your organization code for your members to access your announcements and events and an email will be sent to your email address to verify your account.</p>
                                       <div class="form-floating mb-3">
-                                        <input class="form-control" placeholder="Leave a comment here" style="height: 100px" [(ngModel)]="orgCode" readonly/>
-                                        <label>{{form.get('orgCode')?.value}}</label>
+                                        <input class="form-control" style="height: 10px" [(ngModel)]="orgCode" readonly/>
+                                        <label class="text-success">{{form.get('orgCode')?.value}}</label>
                                       </div>
                                     </div>
                                 </div>

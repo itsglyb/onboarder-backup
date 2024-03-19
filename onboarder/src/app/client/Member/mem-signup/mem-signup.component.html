@@ -6,7 +6,7 @@
                 <h4 style="font-family: 'Roboto', sans-serif;">Need to register as an Organization? Register <a routerLink="/org-registration">here.</a></h4>
 <br>
                 <p>Fill all form field to go to next step</p>
-                
+
                     <!-- progressbar -->
                     <ul id="progressbar">
                         <li class="active" id="account"><strong>Introduction</strong></li>
@@ -15,11 +15,11 @@
                     </ul>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> 
-                    
-                    <br> 
+                    </div>
 
-                <form [formGroup]="form"(submit)="submit()" id="msform">    
+                    <br>
+
+                <form [formGroup]="form"(submit)="submit()" id="msform">
                     <!-- fieldsets -->
                     <fieldset>
                         <div class="form-card">
@@ -30,7 +30,7 @@
                                 <div class="col-5">
                                     <h2 class="steps">Step 1 - 4</h2>
                                 </div>
-                            </div> 
+                            </div>
 
                             <p>Welcome to Onboarder ("we," "our," or "us"). Protecting your privacy and ensuring the security of your personal information is of utmost importance to us. This Privacy Notice is designed to inform you about how we collect, use, disclose, and safeguard your personal data when you use the Onboarder application.
                                 <br> <br>  By using Onboarder, you acknowledge and consent to the practices described in this Privacy Notice.</p>
@@ -42,7 +42,7 @@
                                     <li><strong>Usage Information:</strong> We gather data about your interactions with the Onboarder application, such as the features you use and the duration of your sessions.</li>
                                     <li><strong>Device Information:</strong> We may collect information about your device, including its type, operating system, unique device identifiers, and IP address.</li>
                                 </ol>
-                            
+
                                 <br>
                                 <h2 class="fs-title1">How We Use Your Information</h2>
                                 <p>We utilize the information we collect for the following purposes:</p><br>
@@ -52,23 +52,23 @@
                                     <li><strong>Enhance User Experience:</strong> To analyze usage patterns and improve the functionality and quality of the Onboarder application.</li>
                                     <li><strong>Security:</strong> To maintain the security of your data, prevent fraud, and protect against unauthorized access.</li>
                                 </ol>
-                                                        
+
                                 <br>
                                 <h2 class="fs-title1">Data Security</h2>
                                 <p>We implement reasonable security measures to protect your data; however, no method of transmission or storage is entirely secure. We cannot guarantee the absolute security of your information.</p>
-                            
+
                                 <br>
                                 <h2 class="fs-title1">Changes to this Privacy Notice</h2>
                                 <p>We may revise this Privacy Notice periodically. Any changes will be posted on this page, and the "Last Updated" date will be modified accordingly.</p>
-                            
+
                                 <br>
                                 <p><strong>By clicking next, means you are accepting the terms and conditions written above and wishes to proceed with the registration.</strong></p>
-                                
-                        </div> 
-                
+
+                        </div>
+
                         <input type="button" name="next" class="next action-button" value="Next" />
                     </fieldset>
-  
+
                     <fieldset>
                         <div class="form-card">
                             <div class="row">
@@ -78,28 +78,28 @@
                                 <div class="col-5">
                                     <h2 class="steps">Step 1 - 3</h2>
                                 </div>
-                            </div> 
-                                  <label class="fieldlabels">First Name: *</label> 
-                                  <input class= "fields" type="text" name="firstName" placeholder="First Name" formControlName="firstName"/> 
+                            </div>
+                                  <label class="fieldlabels">First Name: <span class="text-danger">*</span></label>
+                                  <input class= "fields" type="text" name="firstName" placeholder="First Name" formControlName="firstName"/>
 
-                                  <label class="fieldlabels">Last Name: *</label> 
+                                  <label class="fieldlabels">Last Name: <span class="text-danger">*</span></label>
                                   <input class= "fields" type="text" name="lastName" placeholder="Last Name" formControlName="lastName"/>
 
-                                  <label class="fieldlabels">Email: *</label> 
-                                  <input class= "fields" type="email" name="email" placeholder="Email" formControlName="email" /> 
+                                  <label class="fieldlabels">Email: <span class="text-danger">*</span></label>
+                                  <input class= "fields" type="email" name="email" placeholder="Email" formControlName="email" />
 
-                                  <label class="fieldlabels">Password: *</label> 
-                                  
-                                  <input class= "fields" type="password" name="password" placeholder="Password" formControlName="password" /> 
-                                  <label class="fieldlabels">Confirm Password: *</label> <input type="password" formControlName="cpassword" name="cpassword" placeholder="Confirm Password" />
-                        </div> 
-                        
-                        <input type="submit"  class="success action-button"  /> 
-                        
+                                  <label class="fieldlabels">Password: <span class="text-danger">*</span></label>
+
+                                  <input class= "fields" type="password" name="password" placeholder="Password" formControlName="password" />
+                                  <label class="fieldlabels">Confirm Password: <span class="text-danger">*</span></label> <input type="password" formControlName="cpassword" name="cpassword" placeholder="Confirm Password" />
+                        </div>
+
+                        <input type="submit"  class="success action-button"  />
+
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
-  
-                    
+
+
                     <fieldset>
                         <div class="form-card">
                             <div class="row">
@@ -109,23 +109,23 @@
                                 <div class="col-5">
                                     <h2 class="steps"></h2>
                                 </div>
-                            </div> 
-  
+                            </div>
+
                             <div class="row justify-content-center">
                                 <div class="col-3"> <img src="../../../assets/img/success.png" class="fit-image"> </div>
                             </div>
-  
+
                             <div class="row justify-content-center">
-                                <div class="col-7 text-center">                          
-                                  <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> 
+                                <div class="col-7 text-center">
+                                  <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2>
                                   <h5 class="purple-text text-center">You have successfully created an account. This is just the first step. You can now access and register to organizations on this platform!</h5>
                                 </div>
                             </div>
-  
-                            <input type="button" class="next action-button" value="Done" (click)="done()" /> 
+
+                            <input type="button" class="next action-button" value="Done" (click)="done()" />
                         </div>
                     </fieldset>
-  
+
                 </form>
             </div>
         </div>
