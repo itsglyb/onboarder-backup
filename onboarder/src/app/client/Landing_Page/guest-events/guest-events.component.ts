@@ -47,9 +47,9 @@ export class GuestEventsComponent {
     })
   }
   // Fires on button click
-  onBtnClick(orgID:string){
+  onBtnClick(orgName: string, orgID:string){
     // Navigate to /products page
-    this.router.navigate(['/guestEventsListing', orgID]);
+    this.router.navigate(['/guestEventsListing', orgName, orgID]);
   }
   redirectToLogin() {
     this.router.navigate(['/auth-login']);

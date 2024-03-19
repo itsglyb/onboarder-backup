@@ -50,7 +50,7 @@ const routes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'developers', component: DevelopersComponent },
   { path: 'guestEvents', component: GuestEventsComponent },
-  { path: 'guestEventsListing/:orgID' , component: GuestEventsListingComponent},
+  { path: 'guestEventsListing/:orgName/:orgID' , component: GuestEventsListingComponent},
 
   { path: 'org-landing', component: OrgLandingComponent },
   { path: 'org-registration', component: OrgRegistrationComponent },
