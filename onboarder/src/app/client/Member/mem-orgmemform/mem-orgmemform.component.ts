@@ -201,10 +201,11 @@ export class MemOrgmemformComponent implements OnInit {
   }
 
   submit() {
-    // this.submitted = true;
-    // if (this.form.invalid) {
-    //   return;
-    // }
+    this.submitted = true;
+    if (this.form.invalid) {
+       return;
+     }
+
     // Get the event data from the form
     this.route.params.subscribe(params => {
       const _id = params['id'];
@@ -242,13 +243,13 @@ export class MemOrgmemformComponent implements OnInit {
         contactNum: membershipApplication.contactNum,
         region: membershipApplication.region,
 
-     
+
         prcNo : membershipApplication.prcNo,
         prcDate : membershipApplication.prcDate,
         prcExpiration : membershipApplication.prcExpiration,
         studentID : membershipApplication.studentID,
         companyID : membershipApplication.companyID,
-      
+
         tertiary : membershipApplication.tertiary,
         tertiaryDegree : membershipApplication.tertiaryDegree,
         tertiaryYear : membershipApplication.tertiaryYear,
