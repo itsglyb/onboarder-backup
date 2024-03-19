@@ -1629,43 +1629,6 @@ router.post('/createguestRegForm', async (req, res) => {
   }
 })
 
-try {
-  const _id = req.params.id;
-  const organization = await Organization.findById(_id)
-
-  const mailOptions = {
-    from: ONBOARDER,
-    to: organization.email,
-    subject: "ONBOARDER | Account Verification",
-    html:`<h2>Hi ${organization.orgName}!</h2> <h4>Unfortunately, your registration was rejected due to the following reason/s : </h4>  <h4>${organization.remarks}</h4>`
-  }
-
-  //sending email
-
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-      console.log(error)
-    }else{
-      console.log('Verification sent in email')
-    }
-  })
-
-  const deleteOrganization = await Organization.findByIdAndDelete(_id);
-  if(!deleteOrganization)
-  {
-   return res.status(404).send();
-  }
-
-  res.status(201).send(
-    {
-      "status" : true,
-      "message" : "org deleted"
-    }
-  );
- 
-} catch (error) {
-  res.status(400).send(error);
-}
 
 router.get('/myguestEventForm/:eventID', async (req, res) => {
   try {
