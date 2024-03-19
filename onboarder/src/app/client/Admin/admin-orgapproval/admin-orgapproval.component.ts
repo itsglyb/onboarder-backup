@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { data } from 'jquery';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,15 +9,15 @@ import Swal from 'sweetalert2';
   templateUrl: './admin-orgapproval.component.html',
   styleUrls: ['./admin-orgapproval.component.css']
 })
-export class AdminOrgapprovalComponent {
+export class AdminOrgapprovalComponent implements OnInit {
 
-  form!:FormGroup
+  form!: FormGroup;
 
   OrganizationArray: any[] = [];
   acceptModalId: string = '';
   rejectModalId: string = '';
 
-  remarks="";
+  remarks = "";
   _id = "";
   orgName = "";
   orgType = "";
@@ -42,27 +41,28 @@ export class AdminOrgapprovalComponent {
   imageObjectUrl: string = "";
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    ) {
-      this.getAllOrganization();
-    }
+  ) { }
 
-    ngOnInit(): void {
-      // Load and initialize the JavaScript file
-      this.loadScript('assets/js/accept-reject.js').then(() => {
-        // The JavaScript file is loaded and initialized
-      }).catch(error => {
-        console.error('Error loading admin-org.js', error);
-      });
-
+  ngOnInit(): void {
+    // Initialize form group
     this.form = this.formBuilder.group({
       remarks: ['', Validators.required],
-    })
+    });
 
-   }
+    // Load organization data
+    this.getAllOrganization();
+
+    // Load and initialize the JavaScript file
+    this.loadScript('assets/js/accept-reject.js').then(() => {
+      console.log('Script loaded successfully.');
+    }).catch(error => {
+      console.error('Error loading script:', error);
+    });
+  }
 
   setAcceptModalId(id: string): void {
     this.acceptModalId = id;
@@ -93,23 +93,22 @@ export class AdminOrgapprovalComponent {
       .subscribe((resultData: any) => {
         console.log(resultData);
         this.OrganizationArray = resultData;
-      })
+      });
   }
 
-  accept(_id: string): void{
-    const updatedData = { isApproved: true,  };
+  accept(_id: string): void {
+    const updatedData = { isApproved: true };
     this.http.patch(`http://localhost:5000/api/orgRegister/${_id}`, updatedData, { withCredentials: true })
       .subscribe((response: any) => {
         // Handle the response as needed, for example, update the UI or show a success message
         console.log('Application verified successfully:', response);
-        Swal.fire('Registration Accepted')
+        Swal.fire('Registration Accepted');
         // Optionally, you can reload the updated data after verification
         this.getAllOrganization();
       }, (error) => {
         // Handle error if the PATCH request fails
         console.error('Error verifying application:', error);
       });
-
   }
 
   setUpdate(data: any) {
@@ -143,12 +142,12 @@ export class AdminOrgapprovalComponent {
       "logo": this.logo,
       "certificate": this.certificate,
       "orgCode": this.orgCode
-    }
+    };
 
     this.http.patch("http://localhost:5000/api/organization" + "/" + this._id, orgData).subscribe((resultData: any) => {
       console.log(resultData);
       this.getAllOrganization();
-    })
+    });
   }
 
   setDelete(data: any) {
@@ -168,80 +167,53 @@ export class AdminOrgapprovalComponent {
   }
 
   deleteOrganization() {
-    let orgData = {
-      "orgName": this.orgName,
-      "orgType": this.orgType,
-      "orgHistory": this.orgHistory,
-      "email": this.email,
-      "dateCreated": this.dateCreated,
-      "_id": this._id,
-      "about": this.about,
-      "mission": this.mission,
-      "vision": this.vision,
-      "coreValues": this.coreValues,
-      "logo": this.logo,
-      "certificate": this.certificate,
-      "orgCode": this.orgCode
-    }
-
     const remarksControl = this.form.get('remarks');
-    
-    // if (remarksControl) {
-    //   const updatedData = { 
-    //     remarks: remarksControl.value,
-    //   };
-    
-      this.http.patch("http://localhost:5000/api/orgRegister/" + this._id, remarksControl, { withCredentials: true })
+    if (remarksControl && remarksControl.valid) {
+      const remarksValue = remarksControl.value;
+      this.http.patch("http://localhost:5000/api/orgRegister/" + this._id, { remarks: remarksValue }, { withCredentials: true })
         .subscribe((response: any) => {
-          // Handle the response as needed, for example, update the UI or show a success message
           console.log('Application rejected successfully:', response);
           Swal.fire('Application Rejected');
-          // Optionally, you can reload the updated data after rejection
           this.getAllOrganization();
         }, (error) => {
-          // Handle error if the PATCH request fails
           console.error('Error rejecting application:', error);
         });
-    // }
+    } else {
+      console.error('Invalid form data.');
+      return;
+    }
 
     this.http.delete("http://localhost:5000/api/reject-organization" + "/" + this._id).subscribe((resultData: any) => {
       console.log(resultData);
       this.getAllOrganization();
-    })
+    });
   }
 
   startIndex(): number {
     return (this.currentPage - 1) * this.itemsPerPage;
   }
 
-  // Calculate the end index of the items to display on the current page
   endIndex(): number {
     return Math.min(this.startIndex() + this.itemsPerPage - 1, this.OrganizationArray.length - 1);
   }
 
-  // Function to change the current page
   setPage(page: number) {
     this.currentPage = page;
   }
 
   search() {
-    // If search query is empty, reset OrganizationArray to show all organizations
     if (!this.searchQuery.trim()) {
       this.getAllOrganization();
       return;
     }
 
-    // Convert searchQuery to lowercase for case-insensitive search
     const searchTerm = this.searchQuery.toLowerCase();
 
-    // Filter OrganizationArray based on search query
     this.OrganizationArray = this.OrganizationArray.filter(org => {
-      // Check if organization and orgName property exist
       if (org && org.orgName) {
-        // Perform case-insensitive search on orgName
         return org.orgName.toLowerCase().includes(searchTerm);
       }
-      return false; // Exclude organization if orgName is not present
+      return false;
     });
   }
 
@@ -250,11 +222,9 @@ export class AdminOrgapprovalComponent {
       const scriptElement = document.createElement('script');
       scriptElement.src = scriptUrl;
       scriptElement.type = 'text/javascript';
-      scriptElement.onload = () => resolve(); // Change this line
-      scriptElement.onerror = (error) => reject(error); // Change this line
+      scriptElement.onload = () => resolve();
+      scriptElement.onerror = (error) => reject(error);
       document.body.appendChild(scriptElement);
     });
   }
-
-
 }
