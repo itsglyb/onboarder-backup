@@ -97,7 +97,7 @@ export class AdminOrgapprovalComponent {
   }
 
   accept(_id: string): void{
-    const updatedData = { isApproved: true };
+    const updatedData = { isApproved: true,  };
     this.http.patch(`http://localhost:5000/api/orgRegister/${_id}`, updatedData, { withCredentials: true })
       .subscribe((response: any) => {
         // Handle the response as needed, for example, update the UI or show a success message
@@ -165,6 +165,7 @@ export class AdminOrgapprovalComponent {
     this.logo = data.logo;
     this.certificate = data.certificate;
     this.orgCode = data.orgCode;
+    this.remarks = data.remarks
   }
 
   deleteOrganization() {
@@ -186,12 +187,12 @@ export class AdminOrgapprovalComponent {
 
     const remarksControl = this.form.get('remarks');
     
-    if (remarksControl) {
-      const updatedData = { 
-        remarks: remarksControl.value,
-      };
+    // if (remarksControl) {
+    //   const updatedData = { 
+    //     remarks: remarksControl.value,
+    //   };
     
-      this.http.patch("http://localhost:5000/api/orgRegister/" + this._id, updatedData, { withCredentials: true })
+      this.http.patch("http://localhost:5000/api/orgRegister/" + this._id, remarksControl, { withCredentials: true })
         .subscribe((response: any) => {
           // Handle the response as needed, for example, update the UI or show a success message
           console.log('Application rejected successfully:', response);
@@ -202,7 +203,7 @@ export class AdminOrgapprovalComponent {
           // Handle error if the PATCH request fails
           console.error('Error rejecting application:', error);
         });
-    }
+    // }
 
     this.http.delete("http://localhost:5000/api/reject-organization" + "/" + this._id).subscribe((resultData: any) => {
       console.log(resultData);
