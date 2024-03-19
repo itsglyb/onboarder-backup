@@ -20,6 +20,7 @@ interface MemForm {
     zip: boolean,
     email: boolean,
     contactNum: boolean,
+    region: boolean,
     facebook: boolean,
       linkedIn: boolean,
       skype: boolean,
@@ -50,6 +51,7 @@ interface MemForm {
       employer: boolean,
       jobTitle: boolean,
       employerAdd: boolean,
+      specialization: boolean,
       membership: boolean,
       payment: boolean,
       memType1: boolean,
@@ -119,6 +121,7 @@ export class MemOrgmemformComponent implements OnInit {
       zip: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]], // Use both required and email validators
       contactNum: ['', Validators.required],
+      region: ['', Validators.required],
       prcNo: ['', Validators.required],
       prcDate: ['', Validators.required],
       prcExpiration: ['', Validators.required],
@@ -139,10 +142,12 @@ export class MemOrgmemformComponent implements OnInit {
       doctoralDiploma: ['', Validators.required],
       employer: ['', Validators.required],
       jobTitle: ['', Validators.required],
+      specialization: ['', Validators.required],
       employerAdd: ['', Validators.required],
       chooseMem: ['', Validators.required],
       payment: ['', Validators.required],
-      payment1: ['', Validators.required],
+      paymentDateInput: ['', Validators.required],
+      // payment1: ['', Validators.required],
     })
 
     this.route.params.subscribe(params => {
@@ -168,7 +173,7 @@ export class MemOrgmemformComponent implements OnInit {
         else if (controlName === 'doctoralDiploma1') {
           this.form.patchValue({ doctoralDiploma : base64String})
         }
-        else if (controlName === 'payment1') {
+        else if (controlName === 'payment') {
           this.form.patchValue({ payment : base64String})
         }
     });
@@ -196,10 +201,10 @@ export class MemOrgmemformComponent implements OnInit {
   }
 
   submit() {
-    this.submitted = true;
-    if (this.form.invalid) {
-      return;
-    }
+    // this.submitted = true;
+    // if (this.form.invalid) {
+    //   return;
+    // }
     // Get the event data from the form
     this.route.params.subscribe(params => {
       const _id = params['id'];
@@ -235,17 +240,15 @@ export class MemOrgmemformComponent implements OnInit {
         zip: membershipApplication.zip,
         email: membershipApplication.email,
         contactNum: membershipApplication.contactNum,
-        facebook: membershipApplication.facebook,
-        linkedIn : membershipApplication.linkedIn,
-        skype : membershipApplication.skype,
-        zoom : membershipApplication.zoom,
+        region: membershipApplication.region,
+
+     
         prcNo : membershipApplication.prcNo,
         prcDate : membershipApplication.prcDate,
         prcExpiration : membershipApplication.prcExpiration,
         studentID : membershipApplication.studentID,
-        aviation : membershipApplication.aviation,
-        caap : membershipApplication.caap,
-        taxID : membershipApplication.taxID,
+        companyID : membershipApplication.companyID,
+      
         tertiary : membershipApplication.tertiary,
         tertiaryDegree : membershipApplication.tertiaryDegree,
         tertiaryYear : membershipApplication.tertiaryYear,
@@ -260,8 +263,12 @@ export class MemOrgmemformComponent implements OnInit {
         employer : membershipApplication.employer,
         jobTitle : membershipApplication.jobTitle,
         employerAdd : membershipApplication.employerAdd,
+        specialization: membershipApplication.specialization,
+
+
         chooseMem :membershipApplication.chooseMem,
         payment : membershipApplication.payment,
+        paymentDateInput : membershipApplication.paymentDateInput,
           };
 
           // Post the event data to the createEvent API endpoint

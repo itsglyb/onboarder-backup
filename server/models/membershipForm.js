@@ -59,6 +59,10 @@ const membershipFormSchema = new mongoose.Schema ({
         type: Boolean,
     },
 
+    region:{
+        type: Boolean,
+    },
+
     address:{
         type: Boolean,
     },
@@ -179,6 +183,10 @@ const membershipFormSchema = new mongoose.Schema ({
         type:Boolean
     },
     employerAdd:{
+        type:Boolean
+    },
+
+    specialization:{
         type:Boolean
     },
 

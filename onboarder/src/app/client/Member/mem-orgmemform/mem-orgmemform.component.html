@@ -566,6 +566,14 @@
                 </div>
               </div>
 
+              <div class="col-md-6 position-relative" *ngIf="memForm.region">
+                <label for="validationTooltip05" class="form-label">Region</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="region" placeholder="Please enter your contact number" [ngClass]="{'is-invalid': submitted && form.controls['region'].errors}">
+                <div class="invalid-tooltip">
+                  Please provide your contact number.
+                </div>
+              </div>
+
 
               <div class="row" *ngIf="memForm.idLicense" >
                 <div class="col-md-12 position-relative">
@@ -741,6 +749,14 @@
               <div class="col-md-4 position-relative" *ngIf="memForm.jobTitle">
                 <label for="validationTooltip05" class="form-label">Job Title<span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="validationTooltip03" formControlName="jobTitle" placeholder="Please enter your job title" [ngClass]="{'is-invalid': submitted && form.controls['jobTitle'].errors}">
+                <div class="invalid-tooltip">
+                  Please provide your job title.
+                </div>
+              </div>
+
+              <div class="col-md-4 position-relative" *ngIf="memForm.specialization">
+                <label for="validationTooltip05" class="form-label">Job Title</label>
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="specialization" placeholder="Please enter your job title" [ngClass]="{'is-invalid': submitted && form.controls['specialization'].errors}">
                 <div class="invalid-tooltip">
                   Please provide your job title.
                 </div>
