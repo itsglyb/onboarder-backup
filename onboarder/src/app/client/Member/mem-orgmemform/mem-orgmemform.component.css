@@ -78,3 +78,8 @@ label {
     font-weight: bold;
 }
 
+
+/* Style for input field with invalid state */
+.form-control.ng-invalid {
+  border-color: red;
+}

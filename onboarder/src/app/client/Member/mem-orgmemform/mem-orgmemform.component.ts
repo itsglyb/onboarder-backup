@@ -154,6 +154,8 @@ export class MemOrgmemformComponent implements OnInit {
       const _id = params['id'];
       this.getMemForm(_id);
     });
+
+
   }
 
   onChange = ($event: Event, controlName: string) => {
@@ -201,10 +203,14 @@ export class MemOrgmemformComponent implements OnInit {
   }
 
   submit() {
-  ///  this.submitted = true;
-   /// if (this.form.invalid) {
-   ///    return;
-   ///  }
+    this.submitted = true;
+    if (this.form.invalid) {
+      // Form is invalid, do not proceed with submission
+      return;
+    } else {
+
+    // Form is valid, proceed with form submission
+    const membershipApplication = this.form.getRawValue();
 
     // Get the event data from the form
     this.route.params.subscribe(params => {
@@ -221,17 +227,14 @@ export class MemOrgmemformComponent implements OnInit {
           // Extract organization ID from the response
           const memID = memResponse._id;
 
+        // Create an object with organization ID and event data
+        const memApplicationData = {
 
-
-          // Create an object with organization ID and event data
-          const memApplicationData = {
-
-            memID: memID,
-            orgID : _id,
-            photo: membershipApplication.photo,
-            remarks: membershipApplication.remarks,
-
-            fullName: membershipApplication.fullName,
+        memID: memID,
+        orgID : _id,
+        photo: membershipApplication.photo,
+        remarks: membershipApplication.remarks,
+        fullName: membershipApplication.fullName,
         sex: membershipApplication.sex,
         birthDate: membershipApplication.birthDate,
         placeOfBirth: membershipApplication.placeOfBirth,
@@ -242,7 +245,6 @@ export class MemOrgmemformComponent implements OnInit {
         email: membershipApplication.email,
         contactNum: membershipApplication.contactNum,
         region: membershipApplication.region,
-
 
         prcNo : membershipApplication.prcNo,
         prcDate : membershipApplication.prcDate,
@@ -291,16 +293,10 @@ export class MemOrgmemformComponent implements OnInit {
           console.error('Error fetching organization details:', orgError);
         }
       );
-
-     });
+    });
 
 
   }
 
-
-
-
-
-
-
+  }
 }
