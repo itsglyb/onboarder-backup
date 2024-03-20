@@ -206,6 +206,18 @@ const membershipFormSchema = new mongoose.Schema ({
         type: Boolean,
     },
 
+    memType4:{
+        type: Boolean,
+    },
+
+    memType5:{
+        type: Boolean,
+    },
+
+    memType6:{
+        type: Boolean,
+    },
+
     memType1Details:{
         type: Boolean,
     },
@@ -215,6 +227,18 @@ const membershipFormSchema = new mongoose.Schema ({
     },
 
     memType3Details:{
+        type: Boolean,
+    },
+
+    memType4Details:{
+        type: Boolean,
+    },
+
+    memType5Details:{
+        type: Boolean,
+    },
+
+    memType6Details:{
         type: Boolean,
     },
 
@@ -230,18 +254,30 @@ const membershipFormSchema = new mongoose.Schema ({
         type: Boolean,
     },
 
+    memType4Fee:{
+        type: Boolean,
+    },
+
+    memType5Fee:{
+        type: Boolean,
+    },
+
+    memType6Fee:{
+        type: Boolean,
+    },
+
     memType1Process:{
         type: Boolean,
     },
     
 
-    memType2Process:{
-        type: Boolean,
-    },
+    // memType2Process:{
+    //     type: Boolean,
+    // },
 
-    memType3Process:{
-        type: Boolean,
-    },
+    // memType3Process:{
+    //     type: Boolean,
+    // },
     payment:{
         type: Boolean,
     },
