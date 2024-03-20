@@ -71,27 +71,23 @@ export class OrgCreateEventComponent implements OnInit{
       });
     }
 
-      public AddressChange(address: any) {
-
-        const eventTimeControl = this.form.get('eventTime');
-        if (eventTimeControl) {
-          const currentEventTime = eventTimeControl.value;
-          // Extract hours and minutes from the time string
-          const [hours, minutes] = currentEventTime.split(':').map(Number);
-          // Create a Date object to determine AM or PM
-          const timeDate = new Date();
-          timeDate.setHours(hours, minutes);
-          // Check if it's AM or PM
-          const amOrPm = timeDate.getHours() >= 12 ? 'PM' : 'AM';
-          // Append AM or PM to the time string
-          const newEventTime = `${currentEventTime} ${amOrPm}`;
-          this.form.patchValue({ eventTime: newEventTime });
-        }
-
-        this.formattedaddress = address.formatted_address;
-        // Set the formatted address to the location form control
-        this.form.patchValue({ location: this.formattedaddress });
+    public AddressChange(address: any) {
+      const eventTimeControl = this.form.get('eventTime');
+      if (eventTimeControl) {
+        const currentEventTime = eventTimeControl.value;
+        const formattedTime = this.formatTime(currentEventTime);
+        this.form.patchValue({ eventTime: formattedTime });
       }
+    }
+    
+    private formatTime(time: string): string {
+      const [hourMinute, meridiem] = time.split(' ');
+      const [hours, minutes] = hourMinute.split(':').map(Number);
+      const amOrPm = meridiem.toUpperCase();
+      const formattedHours = hours < 10 ? `0${hours}` : hours;
+      const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+      return `${formattedHours}:${formattedMinutes} ${amOrPm}`;
+    }
 
 
 
