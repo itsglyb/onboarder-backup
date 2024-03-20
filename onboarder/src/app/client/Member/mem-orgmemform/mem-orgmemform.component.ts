@@ -107,7 +107,6 @@ export class MemOrgmemformComponent implements OnInit {
     this.form = this.formBuilder.group({
       // Define form controls with validators
       photo: ['', Validators.required],
-      photo1: ['', Validators.required],
       remarks: ['', Validators.required],
       fullName: ['', Validators.required],
       sex: ['', Validators.required],
@@ -160,22 +159,26 @@ export class MemOrgmemformComponent implements OnInit {
   onChange = ($event: Event, formControlName: string) => {
     const target = $event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
-
-    this.convertfiletobase64(file, (base64String) => {
-      // Set the base64 string to the appropriate form control
-      if (formControlName === 'photo') {
-        this.form.patchValue({ photo: base64String });
-      } else if (formControlName === 'tertiaryDiploma') {
-        this.form.patchValue({ tertiaryDiploma: base64String });
-      } else if (formControlName === 'masteralDiploma') {
-        this.form.patchValue({ masteralDiploma: base64String });
-      } else if (formControlName === 'doctoralDiploma') {
-        this.form.patchValue({ doctoralDiploma: base64String });
-      } else if (formControlName === 'payment') {
-        this.form.patchValue({ payment: base64String });
-      }
-    });
+  
+    if (file) {
+      this.convertfiletobase64(file, (base64String) => {
+        // Set the base64 string to the appropriate form control
+        if (formControlName === 'photo') {
+          this.form.setValue({ photo: base64String });
+        } else if (formControlName === 'tertiaryDiploma') {
+          this.form.setValue({ tertiaryDiploma: base64String });
+        } else if (formControlName === 'masteralDiploma') {
+          this.form.setValue({ masteralDiploma: base64String });
+        } else if (formControlName === 'doctoralDiploma') {
+          this.form.setValue({ doctoralDiploma: base64String });
+        } else if (formControlName === 'payment') {
+          this.form.setValue({ payment: base64String });
+        }
+       
+      });
+    }
   };
+  
 
   // Your convertfiletobase64 function
   convertfiletobase64(file: File, callback: (base64string: string) => void) {
@@ -196,7 +199,47 @@ export class MemOrgmemformComponent implements OnInit {
 
   submit() {
     const form = this.form.getRawValue();
-    if (form) {
+    const requiredFields = [
+      'photo',
+      'fullName',
+      'sex',
+      'birthDate',
+      'placeofBirth',
+      'civilStatus',
+      'religion',
+      'address',
+      'zip',
+      'email',
+      'contactNum',
+      'region',
+      'prcNo',
+      'prcDate',
+      'prcExpiration',
+      'studentID',
+      'companyID',
+      'tertiary',
+      'tertiaryDegree',
+      'tertiaryYear',
+      'tertiaryDiploma',
+      'masteral',
+      'masteralDegree',
+      'masteralYear',
+      'masteralDiploma',
+      'doctoral',
+      'doctoralDegree',
+      'doctoralYear',
+      'doctoralDiploma',
+      'employer',
+      'jobTitle',
+      'employerAdd',
+      'specialization',
+      'chooseMem',
+      'payment',
+      'paymentDateInput'
+    ]
+    
+    const fieldsEmpty = requiredFields.some(field => !form[field]);
+    if (!fieldsEmpty) {
       this.route.params.subscribe((params) => {
         const _id = params['id'];
   
