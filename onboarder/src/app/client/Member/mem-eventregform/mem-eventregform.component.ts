@@ -113,12 +113,18 @@ export class MemEventregformComponent implements OnInit {
   }
 
   submit() {
-    this.submitted = true;
-    if (this.form.invalid) {
-      return;
-    }
     const regForm = this.form.getRawValue();
-    this.http.get(`http://localhost:5000/api/thisevent/${this.eventID}`, { withCredentials: true }).subscribe(
+    const requiredFields = [
+      'memName',
+      'memType',
+      'proofofPayment',
+      'emailAddress',
+      'contactno'
+    ]
+    const anyRequiredFieldFilled = requiredFields.some(field => regForm[field]);
+    const allRequiredFieldsEmpty = requiredFields.every(field => !regForm[field]);
+    if (anyRequiredFieldFilled && !allRequiredFieldsEmpty) {
+      this.http.get(`http://localhost:5000/api/thisevent/${this.eventID}`, { withCredentials: true }).subscribe(
       (event: any) => {
         const updatedSeats = event.eventSeats - 1;
         event.eventSeats = updatedSeats;
@@ -135,6 +141,10 @@ export class MemEventregformComponent implements OnInit {
         console.error('Error fetching event details:', eventError);
       }
     );
+    }
+    else {
+      this.form.markAllAsTouched();
+    }
   }
 
   registerToEvent(regForm: any) {

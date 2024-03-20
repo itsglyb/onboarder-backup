@@ -163,18 +163,19 @@ export class MemOrgmemformComponent implements OnInit {
     if (file) {
       this.convertfiletobase64(file, (base64String) => {
         // Set the base64 string to the appropriate form control
-        if (formControlName === 'photo') {
-          this.form.setValue({ photo: base64String });
-        } else if (formControlName === 'tertiaryDiploma') {
-          this.form.setValue({ tertiaryDiploma: base64String });
-        } else if (formControlName === 'masteralDiploma') {
-          this.form.setValue({ masteralDiploma: base64String });
-        } else if (formControlName === 'doctoralDiploma') {
-          this.form.setValue({ doctoralDiploma: base64String });
-        } else if (formControlName === 'payment') {
-          this.form.setValue({ payment: base64String });
+        if (base64String) {
+          if (formControlName === 'photo') {
+            this.form.patchValue({ photo: base64String });
+          } else if (formControlName === 'tertiaryDiploma') {
+            this.form.patchValue({ tertiaryDiploma: base64String });
+          } else if (formControlName === 'masteralDiploma') {
+            this.form.patchValue({ masteralDiploma: base64String });
+          } else if (formControlName === 'doctoralDiploma') {
+            this.form.patchValue({ doctoralDiploma: base64String });
+          } else if (formControlName === 'payment') {
+            this.form.patchValue({ payment: base64String });
+          }
         }
-       
       });
     }
   };
@@ -204,7 +205,7 @@ export class MemOrgmemformComponent implements OnInit {
       'fullName',
       'sex',
       'birthDate',
-      'placeofBirth',
+      'placeOfBirth',
       'civilStatus',
       'religion',
       'address',
@@ -238,8 +239,9 @@ export class MemOrgmemformComponent implements OnInit {
       'paymentDateInput'
     ]
     
-    const fieldsEmpty = requiredFields.some(field => !form[field]);
-    if (!fieldsEmpty) {
+    const anyRequiredFieldFilled = requiredFields.some(field => form[field]);
+    const allRequiredFieldsEmpty = requiredFields.every(field => !form[field]);
+    if (anyRequiredFieldFilled && !allRequiredFieldsEmpty) {
       this.route.params.subscribe((params) => {
         const _id = params['id'];
   
@@ -325,5 +327,6 @@ export class MemOrgmemformComponent implements OnInit {
     } else {
       this.form.markAllAsTouched();
     }
-  }  
+ }
+
 }

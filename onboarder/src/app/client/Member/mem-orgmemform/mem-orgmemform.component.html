@@ -33,7 +33,7 @@
 
               <div class="col-md-12 position-relative" *ngIf="memForm.photo">
                 <label class="form-label" for="customFile">2x2 Photo <span class="text-danger">*</span></label>
-                <input type="file" class="form-control" id="customFile" formControlName="photo" (change)="onChange($event, 'photo')" accept="image/*"/>
+                <input type="file" class="form-control" id="customFile" formControlName="photo" (change)="onChange($event, 'photo')" accept="image/*" *ngIf="memForm.photo"/>
                 <div *ngIf="form.get('photo')?.invalid && form.get('photo')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('photo')?.errors?.['required']">2x2 photo is required</p>
                 </div>
@@ -41,7 +41,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.fullName">
                 <label for="validationTooltip01" class="form-label">Full Name (Last Name, First Name Middle Initial) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="fullName" placeholder="Please enter your full name" [ngClass]="{'is-invalid': submitted && form.controls['fullName'].errors?.['touched']}" >
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="fullName" placeholder="Please enter your full name" [ngClass]="{'is-invalid': submitted && form.controls['fullName'].errors?.['touched']}" *ngIf="memForm.fullName">
                 <div *ngIf="form.get('fullName')?.invalid && form.get('fullName')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('fullName')?.errors?.['required']">Full Name is required</p>
                 </div>
@@ -49,7 +49,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.sex">
                 <label for="sex" class="form-label">Gender <span class="text-danger">*</span></label>
-                <select class="form-select" id="validationTooltip04" formControlName="sex">
+                <select class="form-select" id="validationTooltip04" formControlName="sex" *ngIf="memForm.sex">
                   <option selected value="">Choose...</option>
                   <option>Male</option>
                   <option>Female</option>
@@ -65,7 +65,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.birthDate">
                 <label for="validationTooltip03" class="form-label">Date of Birth <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="validationTooltip02" formControlName="birthDate" placeholder="Date of Birth" >
+                <input type="date" class="form-control" id="validationTooltip02" formControlName="birthDate" placeholder="Date of Birth" *ngIf="memForm.birthDate">
                 <div *ngIf="form.get('birthDate')?.invalid && form.get('birthDate')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('birthDate')?.errors?.['required']">Birth date is required</p>
                 </div>
@@ -73,7 +73,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.placeOfBirth">
                 <label for="validationTooltip03" class="form-label">Place of Birth <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip02" formControlName="placeOfBirth" placeholder="City of Birth" >
+                <input type="text" class="form-control" id="validationTooltip02" formControlName="placeOfBirth" placeholder="City of Birth"  *ngIf="memForm.placeOfBirth">
                 <div *ngIf="form.get('placeOfBirth')?.invalid && form.get('placeOfBirth')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('placeOfBirth')?.errors?.['required']">Place of birth is required</p>
                 </div>
@@ -81,7 +81,7 @@
 
               <div class="col-md-12 position-relative" *ngIf="memForm.address">
                 <label for="validationTooltip05" class="form-label">Full Address <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="address" placeholder="Please enter your full address" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="address" placeholder="Please enter your full address" *ngIf="memForm.address">
                 <div class="invalid-tooltip" *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('address')?.errors?.['required']">Full address is required</p>
                 </div>
@@ -90,7 +90,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.civilStatus">
                 <label for="validationTooltip03" class="form-label">Civil Status <span class="text-danger">*</span></label>
-                <select class="form-select" id="validationTooltip04" formControlName="civilStatus">
+                <select class="form-select" id="validationTooltip04" formControlName="civilStatus" *ngIf="memForm.civilStatus">
                   <option selected  value="">Choose...</option>
                   <option>Single</option>
                   <option>Married</option>
@@ -105,7 +105,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.religion">
                 <label for="validationTooltip04" class="form-label">Religion <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="religion" placeholder="Please enter your religion" >
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="religion" placeholder="Please enter your religion" *ngIf="memForm.religion">
                 <div *ngIf="form.get('religion')?.invalid && form.get('religion')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('religion')?.errors?.['required']">Religion is required</p>
                 </div>
@@ -113,7 +113,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.email">
                 <label for="validationTooltip05" class="form-label">Email Address <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="email" placeholder="Please enter your email address" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="email" placeholder="Please enter your email address" *ngIf="memForm.email">
                 <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('email')?.errors?.['required']">Email address is required</p>
                 </div>
@@ -121,7 +121,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.contactNum">
                 <label for="validationTooltip05" class="form-label">Contact Number <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="contactNum" placeholder="Please enter your contact number" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="contactNum" placeholder="Please enter your contact number" *ngIf="memForm.contactNum">
                 <div *ngIf="form.get('contactNum')?.invalid && form.get('contactNum')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('contactNum')?.errors?.['required']">Contact number is required</p>
                 </div>
@@ -129,7 +129,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.region">
                 <label for="validationTooltip05" class="form-label">Region</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="region" placeholder="Please enter your contact number">
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="region" placeholder="Please enter your region" *ngIf="memForm.region">
                 <div *ngIf="form.get('region')?.invalid && form.get('region')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('region')?.errors?.['required']">Region is required</p>
                 </div>
@@ -144,7 +144,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.prcNo">
                 <label for="validationTooltip04" class="form-label">PRC License No. <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="prcNo" placeholder="Type N/A if not applicable">
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="prcNo" placeholder="Type N/A if not applicable" *ngIf="memForm.prcNo">
                 <div *ngIf="form.get('prcNo')?.invalid && form.get('prcNo')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('prcNo')?.errors?.['required']">PRC License No. is required</p>
                 </div>
@@ -152,7 +152,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.prcDate">
                 <label for="validationTooltip04" class="form-label">PRC Registration Date<span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="validationTooltip01" formControlName="prcDate" placeholder="Type N/A if not applicable" >
+                <input type="date" class="form-control" id="validationTooltip01" formControlName="prcDate" placeholder="Type N/A if not applicable" *ngIf="memForm.prcDate">
                 <div *ngIf="form.get('prcDate')?.invalid && form.get('prcDate')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('prcDate')?.errors?.['required']">PRC Registration Date is required</p>
                 </div>
@@ -160,7 +160,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.prcExpiration">
                 <label for="validationTooltip04" class="form-label">PRC Expiration Date <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="validationTooltip01" formControlName="prcExpiration" placeholder="Type N/A if not applicable" >
+                <input type="date" class="form-control" id="validationTooltip01" formControlName="prcExpiration" placeholder="Type N/A if not applicable" *ngIf="memForm.prcExpiration">
                 <div *ngIf="form.get('prcExpiration')?.invalid && form.get('prcExpiration')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('prcExpiration')?.errors?.['required']">PRC Expiration Date is required</p>
                 </div>
@@ -168,7 +168,7 @@
 
               <div class="col-md-5 position-relative" *ngIf="memForm.studentID">
                 <label for="validationTooltip04" class="form-label">Student ID No. <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="studentID" placeholder="Type N/A if not applicable"  >
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="studentID" placeholder="Type N/A if not applicable" *ngIf="memForm.studentID">
                 <div *ngIf="form.get('studentID')?.invalid && form.get('studentID')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('studentID')?.errors?.['required']">Student ID is required</p>
                 </div>
@@ -176,7 +176,7 @@
 
               <div class="col-md-5 position-relative" *ngIf="memForm.companyID">
                 <label for="validationTooltip04" class="form-label">Company ID No. <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip01" formControlName="companyID" placeholder="Type N/A if not applicable" >
+                <input type="text" class="form-control" id="validationTooltip01" formControlName="companyID" placeholder="Type N/A if not applicable" *ngIf="memForm.companyID">
                 <div *ngIf="form.get('companyID')?.invalid && form.get('companyID')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('companyID')?.errors?.['required']">Company ID is required</p>
                 </div>
@@ -190,7 +190,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.tertiary">
                 <label for="validationTooltip05" class="form-label">Tertiary University / College <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiary" placeholder="Please enter your undergraduate university" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiary" placeholder="Please enter your undergraduate university" *ngIf="memForm.tertiary">
                 <div *ngIf="form.get('tertiary')?.invalid && form.get('tertiary')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('tertiary')?.errors?.['required']">Tertiary University / College is required</p>
                 </div>
@@ -198,7 +198,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.tertiaryDegree">
                 <label for="validationTooltip05" class="form-label">Degree <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiaryDegree" placeholder="Please enter your degree">
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiaryDegree" placeholder="Please enter your degree" *ngIf="memForm.tertiaryDegree">
                 <div *ngIf="form.get('tertiaryDegree')?.invalid && form.get('tertiaryDegree')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('tertiaryDegree')?.errors?.['required']">Tertiary Degree is required</p>
                 </div>
@@ -206,7 +206,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.tertiaryYear">
                 <label for="validationTooltip05" class="form-label">Inclusive Date (Years) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiaryYear" placeholder="Please enter your year of graduation">
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="tertiaryYear" placeholder="Please enter your year of graduation" *ngIf="memForm.tertiaryYear">
                 <div *ngIf="form.get('tertiaryYear')?.invalid && form.get('tertiaryYear')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('tertiaryYear')?.errors?.['required']">Inclusive years is required</p>
                 </div>
@@ -214,7 +214,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.tertiaryDiploma">
                 <label class="form-label" for="customFile">Diploma Photo <span class="text-danger">*</span></label>
-                <input type="file" class="form-control" id="customFile" formControlName="tertiaryDiploma" (change)="onChange($event, 'tertiaryDiploma')" accept="image/*" />
+                <input type="file" class="form-control" id="customFile" formControlName="tertiaryDiploma"  (change)="onChange($event, 'tertiaryDiploma')" accept="image/*" *ngIf="memForm.tertiaryDiploma"/>
                 <div *ngIf="form.get('tertiaryDiploma')?.invalid && form.get('tertiaryDiploma')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('tertiaryDiploma')?.errors?.['required']">Diploma for Tertiary is required</p>
                 </div>
@@ -222,7 +222,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.masteral">
                 <label for="validationTooltip05" class="form-label">Masteral University / College <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteral" placeholder="Please enter your masteral university" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteral" placeholder="Please enter your masteral university" *ngIf="memForm.masteral">
                 <div *ngIf="form.get('masteral')?.invalid && form.get('masteral')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('masteral')?.errors?.['required']">Masteral University / College is required</p>
                 </div>
@@ -230,7 +230,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.masteralDegree">
                 <label for="validationTooltip05" class="form-label">Degree <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteralDegree" placeholder="Please enter your degree" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteralDegree" placeholder="Please enter your degree" *ngIf="memForm.masteralDegree">
                 <div *ngIf="form.get('masteralDegree')?.invalid && form.get('masteralDegree')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('masteralDegree')?.errors?.['required']">Masteral degree is required</p>
                 </div>
@@ -238,7 +238,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.masteralYear">
                 <label for="validationTooltip05" class="form-label">Inclusive Date (Years)<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteralYear" placeholder="Please enter your year of graduation">
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="masteralYear" placeholder="Please enter your year of graduation" *ngIf="memForm.masteralYear">
                 <div *ngIf="form.get('masteralYear')?.invalid && form.get('masteralYear')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('masteralYear')?.errors?.['required']">Inclusive years is required</p>
                 </div>
@@ -246,7 +246,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.masteralDiploma">
                 <label class="form-label" for="customFile">Diploma Photo</label>
-                <input type="file" class="form-control" id="customFile" formControlName="masteralDiploma" (change)="onChange($event, 'masteralDiploma')" accept="image/*"/>
+                <input type="file" class="form-control" id="customFile" formControlName="masteralDiploma" (change)="onChange($event, 'masteralDiploma')" accept="image/*" *ngIf="memForm.masteralDiploma"/>
                 <div *ngIf="form.get('masteralDiploma')?.invalid && form.get('masteralDiploma')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('masteralDiploma')?.errors?.['required']">Diploma for Masteral is required</p>
                 </div>
@@ -254,7 +254,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.doctoral">
                 <label for="validationTooltip05" class="form-label">Doctoral University / College <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoral" placeholder="Please enter your doctoral university">
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoral" placeholder="Please enter your doctoral university" *ngIf="memForm.doctoral">
                 <div *ngIf="form.get('doctoral')?.invalid && form.get('doctoral')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('doctoral')?.errors?.['required']">Doctoral University / College is required</p>
                 </div>
@@ -262,7 +262,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.doctoralDegree">
                 <label for="validationTooltip05" class="form-label">Degree<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoralDegree" placeholder="Please enter your degree" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoralDegree" placeholder="Please enter your degree" *ngIf="memForm.doctoralDegree">
                 <div *ngIf="form.get('doctoralDegree')?.invalid && form.get('doctoralDegree')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('doctoralDegree')?.errors?.['required']">Doctoral Degree is required</p>
                 </div>
@@ -270,7 +270,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.doctoralYear">
                 <label for="validationTooltip05" class="form-label">Inclusive Date (Years)<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoralYear" placeholder="Please enter your year of graduation">
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="doctoralYear" placeholder="Please enter your year of graduation" *ngIf="memForm.doctoralYear">
                 <div *ngIf="form.get('doctoralYear')?.invalid && form.get('doctoralYear')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('doctoralYear')?.errors?.['required']">Inclusive years is required</p>
                 </div>
@@ -278,7 +278,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.doctoralDiploma">
                 <label class="form-label" for="customFile">Diploma Photo<span class="text-danger">*</span></label>
-                <input type="file" class="form-control" id="customFile" formControlName="doctoralDiploma" (change)="onChange($event, 'doctoralDiploma')" accept="image/*" />
+                <input type="file" class="form-control" id="customFile" formControlName="doctoralDiploma" (change)="onChange($event, 'doctoralDiploma')" accept="image/*" *ngIf="memForm.doctoralDiploma"/>
                 <div *ngIf="form.get('doctoralDiploma')?.invalid && form.get('doctoralDiploma')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('doctoralDiploma')?.errors?.['required']">Diploma for Doctoral is required</p>
                 </div>
@@ -293,7 +293,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.employer">
                 <label for="validationTooltip05" class="form-label">Current Company / Business Name<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="employer" placeholder="Please enter your current employer" >
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="employer" placeholder="Please enter your current employer" *ngIf="memForm.employer">
                 <div *ngIf="form.get('employer')?.invalid && form.get('employer')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('employer')?.errors?.['required']">Current Company / Business Name is required</p>
                 </div>
@@ -301,7 +301,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.employerAdd">
                 <label for="validationTooltip05" class="form-label">Employer Address<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="employerAdd" formControlName="employerAdd"  placeholder="Please enter your employer address">
+                <input type="text" class="form-control" id="employerAdd" formControlName="employerAdd"  placeholder="Please enter your employer address" *ngIf="memForm.employerAdd">
                 <div *ngIf="form.get('employerAdd')?.invalid && form.get('employerAdd')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('employerAdd')?.errors?.['required']">Employer Address is required</p>
                 </div>
@@ -309,7 +309,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.jobTitle">
                 <label for="validationTooltip05" class="form-label">Job Title<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="jobTitle" placeholder="Please enter your job title">
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="jobTitle" placeholder="Please enter your job title" *ngIf="memForm.jobTitle">
                 <div *ngIf="form.get('jobTitle')?.invalid && form.get('jobTitle')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('jobTitle')?.errors?.['required']">Job title is required</p>
                 </div>
@@ -317,7 +317,7 @@
 
               <div class="col-md-4 position-relative" *ngIf="memForm.specialization">
                 <label for="validationTooltip05" class="form-label">Specialization</label>
-                <input type="text" class="form-control" id="validationTooltip03" formControlName="specialization" placeholder="Please enter your job title">
+                <input type="text" class="form-control" id="validationTooltip03" formControlName="specialization" placeholder="Please enter your job title" *ngIf="memForm.specialization">
                 <div *ngIf="form.get('specialization')?.invalid && form.get('specialization')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('specialization')?.errors?.['required']">Specialization is required</p>
                 </div>
@@ -429,7 +429,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.date">
                 <label for="validationTooltip04" class="form-label">Payment Date<span class="text-danger">*</span></label>
-                <input class="form-control" type="date" id="validationTextarea" formControlName="paymentDateInput" placeholder="Enter the payment process">
+                <input class="form-control" type="date" id="validationTextarea" formControlName="paymentDateInput" placeholder="Enter the payment process" *ngIf="memForm.date">
                 <div *ngIf="form.get('paymentDateInput')?.invalid && form.get('paymentDateInput')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('paymentDateInput')?.errors?.['required']" class="invalid-tooltip">Payment date is required</p>
                 </div>
@@ -437,7 +437,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.payment">
                 <label class="form-label " for="customFile">Proof of Payment<span class="text-danger">*</span></label>
-                <input type="file" class="form-control" id="customFile" formControlName="payment" (change)="onChange($event, 'payment')" accept="image/*"/>
+                <input type="file" class="form-control" id="customFile" formControlName="payment" (change)="onChange($event, 'payment')" accept="image/*" *ngIf="memForm.payment"/>
                 <div *ngIf="form.get('payment')?.invalid && form.get('payment')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('payment')?.errors?.['required']" class="invalid-tooltip">Proof of payment is required</p>
                 </div>
