@@ -33,9 +33,9 @@
 
               <div class="col-md-12 position-relative" *ngIf="memForm.photo">
                 <label class="form-label" for="customFile">2x2 Photo <span class="text-danger">*</span></label>
-                <input type="file" class="form-control" id="customFile" formControlName="photo" (change)="onChange($event, 'photo1')" accept="image/*"/>
+                <input type="file" class="form-control" id="customFile" formControlName="photo" (change)="onChange($event, 'photo')" accept="image/*"/>
                 <div *ngIf="form.get('photo')?.invalid && form.get('photo')?.touched">
-                  <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('photo')?.errors?.['required']">Full Name is required</p>
+                  <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('photo')?.errors?.['required']">2x2 photo is required</p>
                 </div>
               </div>
 
@@ -214,7 +214,7 @@
 
               <div class="col-md-3 position-relative" *ngIf="memForm.tertiaryDiploma">
                 <label class="form-label" for="customFile">Diploma Photo <span class="text-danger">*</span></label>
-                <input type="file" class="form-control" id="customFile" formControlName="tertiaryDiploma" (change)="onChange($event, 'tertiaryDiploma1')" accept="image/*" />
+                <input type="file" class="form-control" id="customFile" formControlName="tertiaryDiploma" (change)="onChange($event, 'tertiaryDiploma')" accept="image/*" />
                 <div *ngIf="form.get('tertiaryDiploma')?.invalid && form.get('tertiaryDiploma')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('tertiaryDiploma')?.errors?.['required']">Diploma for Tertiary is required</p>
                 </div>
