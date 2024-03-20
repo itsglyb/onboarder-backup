@@ -6,13 +6,13 @@
 
         <div class="content">
             <nav class="navbar navbar-expand-lg  rounded" aria-label="Thirteenth navbar example">
-                <div class="container-fluid">          
+                <div class="container-fluid">
                   <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
                     <a class="navbar-brand col-lg-9 me-0">Rejected Application Panel</a>
                   </div>
                 </div>
-            </nav>  
-    
+            </nav>
+
 
             <div class="container-2">
               <div class="container-xl">
@@ -46,16 +46,16 @@
                             </thead>
                             <tbody *ngIf="rejectedApplicationDetails.length > 0; else noData">
                                 <tr *ngFor="let ApplicationItems of rejectedApplicationDetails.slice(startIndex(), endIndex() + 1)">
-                                    
+
                                     <td>{{ApplicationItems._id}}</td>
 
                                     <td>{{ApplicationItems.fullName}}</td>
                                     <td>{{ApplicationItems.email}}</td>
-                                    
+
                                     <td>{{ApplicationItems.dateCreated}}</td>
                                     <td>{{ApplicationItems.remarks}}</td>
 
-                                    
+
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewMemberModal" (click)="setView(ApplicationItems)"><i class="fa-solid fa-eye"></i></button>
                                     </td>
@@ -68,7 +68,7 @@
                           </ng-template>
                         </table>
                     </div>
-                </div>        
+                </div>
             </div>
             </div>
             <div class="text-center">
@@ -81,7 +81,7 @@
 
 
 <!-- Reject Modal -->
-<div class="modal fade" id="rejectMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal" id="rejectMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-body text-center center">
@@ -94,7 +94,7 @@
 </div>
 
 <!-- Accept Modal -->
-<div class="modal fade" id="acceptMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+<div class="modal" id="acceptMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-body text-center center">
@@ -107,17 +107,17 @@
 </div>
 
 <!-- View Modal -->
-<div class="modal fade" id="viewMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"  *ngFor = "let OrganizationItem of rejectedApplicationDetails">
+<div class="modal" id="viewMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"  *ngFor = "let OrganizationItem of rejectedApplicationDetails">
   <div class="modal-dialog" >
       <div class="modal-content">
       <div class="modal-body text-center center">
-          
+
           <form class="row g-3 needs-validation" *ngIf="(memForm$ | async) as memForm" >
 
               <div class="row" *ngIf="memForm.personalInfo">
                 <div class="col-md-12 position-relative">
                   <h5 class="card-title">
-                    <label for="categorytitle">Personal Information</label> 
+                    <label for="categorytitle">Personal Information</label>
                   </h5>
                 </div>
               </div>
@@ -128,7 +128,7 @@
                 <div>
                   <p *ngIf="!photo" style="color: red;">The applicant did not submit.</p>
                   <img  *ngIf="photo" [src]="photo" class="img"  >
-                  
+
                 </div>
               </div>
 
@@ -138,7 +138,7 @@
                   <label for="fullName" class="form-label">Full Name</label>
 
                   <input type="text" class="form-control" id="validationTooltip01" placeholder="ex. Dela Cruz, Juan R." [(ngModel)]="fullName" [ngModelOptions]="{standalone: true}"readonly>
-                  
+
                 </div>
 
                 <div class="col-md-12 position-relative" *ngIf="memForm.sex">
@@ -148,7 +148,7 @@
                     <option selected readonly value="">Choose...</option>
                     <option>Male</option>
                     <option>Female</option>
-                  </select>          
+                  </select>
                 </div>
 
                 <div class="col-md-12 position-relative"*ngIf="memForm.birthDate">
@@ -171,7 +171,7 @@
                     <option>Divorced</option>
                     <option>Widowed</option>
                     <option>In Civil Partnership</option>
-                  </select>         
+                  </select>
                 </div>
 
                 <div class="col-md-12 position-relative" *ngIf="memForm.religion">
@@ -197,27 +197,27 @@
                 <div class="col-md-12 position-relative"*ngIf="memForm.contactNum">
                   <label for="contactNum" class="form-label">Contact Number</label>
                   <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your contact number" [(ngModel)]="contactNum" [ngModelOptions]="{standalone: true}" readonly>
-                </div> 
-                
+                </div>
+
                 <div class="col-md-12 position-relative"*ngIf="memForm.linkedIn">
                   <label for="linkedIn" class="form-label">LinkedIn Account</label>
                   <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your LinkedIn account name" [(ngModel)]="linkedIn" [ngModelOptions]="{standalone: true}" readonly>
-                </div>   
+                </div>
 
                 <div class="col-md-12 position-relative"*ngIf="memForm.facebook">
                   <label for="facebook" class="form-label">Facebook Name</label>
                   <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your Facebook name" [(ngModel)]="facebook" [ngModelOptions]="{standalone: true}" readonly>
-                </div>   
+                </div>
 
                 <div class="col-md-12 position-relative"*ngIf="memForm.skype">
                   <label for="skype" class="form-label">Skype Username</label>
                   <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your Skype name" [(ngModel)]="skype" [ngModelOptions]="{standalone: true}" readonly>
-                </div> 
+                </div>
 
                 <div class="col-md-12 position-relative" *ngIf="memForm.zoom">
                   <label for="zoom" class="form-label">Zoom Username</label>
                   <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your Zoom name" [(ngModel)]="zoom" [ngModelOptions]="{standalone: true}" readonly>
-                </div> 
+                </div>
 
                 <br>
                 <br>
@@ -341,7 +341,7 @@
                     </div>
                 </div>
 
-                <br> 
+                <br>
                 <br>
 
                 <div class="row"*ngIf="memForm.employmentDetails">
@@ -365,7 +365,7 @@
                   <input type="text" class="form-control" id="validationTooltip03" placeholder="Please enter your job title" [(ngModel)]="employerAdd" [ngModelOptions]="{standalone: true}" readonly>
                 </div>
 
-  
+
 
                 <br>
                 <br>
@@ -379,10 +379,10 @@
                 <div class="col-md-12 position-relative"*ngIf="memForm.memType1">
                   <label for="sex" class="form-label">Membership Type</label>
 
-                  <input type="text" class="form-control" id="validationTooltip04" [(ngModel)]="chooseMem" [ngModelOptions]="{standalone: true}" readonly>          
+                  <input type="text" class="form-control" id="validationTooltip04" [(ngModel)]="chooseMem" [ngModelOptions]="{standalone: true}" readonly>
                 </div>
 
-  
+
                 <div class="col-md-15 position-relative"*ngIf="memForm.payment">
                   <label class="form-label" for="customFile" readonly>Proof of Payment</label>
                   <div>

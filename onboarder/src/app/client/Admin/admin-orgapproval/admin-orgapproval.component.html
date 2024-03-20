@@ -38,7 +38,7 @@
                           </thead>
                           <tbody *ngIf="OrganizationArray.length > 0; else noData">
                               <tr *ngFor="let OrganizationItem of OrganizationArray">
-                                  
+
                                   <td><img [src]="OrganizationItem.logo ? OrganizationItem.logo : 'assets/img/profile-pic.png'" alt="Image" style="width: 100px; height: auto;"></td>
                                   <td>{{OrganizationItem.orgName}}</td>
                                   <td>{{OrganizationItem.orgType}}</td>
@@ -71,7 +71,7 @@
   </div>
 
   <!-- Accept Modal -->
-<div class="modal fade" id="acceptMemberModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal" id="acceptMemberModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body text-center center">
@@ -84,11 +84,11 @@
     </div>
 </div>
 
-  
+
 
   <!-- Delete Org Modal -->
   <!-- <div>
-      <div class="modal fade" id="deleteOrgModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal" id="deleteOrgModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-body text-center center">
@@ -102,7 +102,7 @@
       </div>
   </div> -->
 
-  <div class="modal fade" id="deleteOrgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+  <div class="modal" id="deleteOrgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-body text-center center">
@@ -124,7 +124,7 @@
   <!-- View Org Modal -->
   <div>
     <div *ngFor = "let OrganizationItem of OrganizationArray">
-        <div class="modal fade" id="editUserModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngIf="_id">    
+        <div class="modal" id="editUserModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngIf="_id">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body center">
@@ -141,12 +141,12 @@
                             <div class="form-group">
                                 <label style="margin-top: 10px;">Brief Description of the Organization's Purpose</label>
                                 <textarea class="form-control" id="editOrgDescription" placeholder="Enter organization description" [(ngModel)]="about" [ngModelOptions]="{standalone: true}" readonly></textarea>
-                            </div>                    
+                            </div>
                             <div class="form-group">
                                 <label style="margin-top: 10px;">Organization's History</label>
                                 <textarea class="form-control" id="editOrgHistory" placeholder="Enter organization history" [(ngModel)]="orgHistory" [ngModelOptions]="{standalone: true}" readonly></textarea>
                             </div>
-        
+
                             <!-- Organization Goals -->
                             <div class="form-group">
                                 <label style="margin-top: 10px;">Mission</label>
@@ -160,7 +160,7 @@
                                 <label style="margin-top: 10px;">Core Values</label>
                                 <textarea class="form-control" id="editCoreValues" placeholder="Enter your organization's core values" [(ngModel)]="coreValues" [ngModelOptions]="{standalone: true}" readonly></textarea>
                             </div>
-        
+
                             <!-- Organization Goals -->
                             <div class="form-group" id="editEventPoster">
                                 <div>
@@ -179,13 +179,13 @@
                                 </div>
                                 <img id="frame" src="" class="img-fluid" />
                             </div>
-        
+
                             <!-- Account Information -->
                             <div class="form-group">
                                 <label style="margin-top: 10px;">Organization Email</label>
                                 <input type="text" class="form-control" id="editOrgEmail" placeholder="Enter the organization email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" readonly>
                             </div>
-        
+
                             <div class="text-center center">
                                 <button type="submit" class="btn btn-success" data-bs-dismiss="modal">OK</button>
                             </div>

@@ -6,17 +6,17 @@
 
         <div class="content">
             <nav class="navbar navbar-expand-lg  rounded" aria-label="Thirteenth navbar example">
-                <div class="container-fluid">          
+                <div class="container-fluid">
                   <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
                     <a class="navbar-brand col-lg-9 me-0">Member Organization/s</a>
                   </div>
                   <div class="d-lg-flex col-lg-3 justify-content-lg-end">
 
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#joinOrgModal">Join by Code</button>
-                    
+
                   </div>
                 </div>
-            </nav> 
+            </nav>
 
             <div class="row" *ngIf="OrganizationArray && OrganizationArray.length > 0; else loading">
               <div class="col-md-4" *ngFor="let org of OrganizationArray">
@@ -40,16 +40,16 @@
             <ng-template #loading>
               <!-- Display loading message -->
               <p>Loading...</p>
-            </ng-template>  
+            </ng-template>
         </div>
     </div>
 
 <!-- Join by Code -->
-<div class="modal fade" id="joinOrgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+<div class="modal" id="joinOrgModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body text-center center">
-      
+
         <form [formGroup]="form" (submit)="submit($event)">
 
 

@@ -3,9 +3,9 @@
         <aside>
           <app-admin-navbar></app-admin-navbar>
         </aside>
-      
+
         <div class="content">
-      
+
           <div class="container">
             <div class="table-responsive">
               <div class="table-wrapper">
@@ -59,7 +59,7 @@
               </div>
             </div>
           </div>
-      
+
           <!-- Pagination controls -->
           <div class="text-center">
             <button class="btn-prev btn-link" [disabled]="currentPage === 1" (click)="setPage(currentPage - 1)"><i class="fa-solid fa-caret-left"></i></button>
@@ -68,9 +68,9 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Delete User Modal -->
-      <div class="modal fade" id="deleteUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+      <div class="modal" id="deleteUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-body text-center center">
@@ -82,9 +82,9 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Edit User Modal -->
-      <div class="modal fade" id="editUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+      <div class="modal" id="editUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-body center">
@@ -99,13 +99,13 @@
                   <label style="margin-top: 10px;">Last Name</label>
                   <textarea class="form-control" id="editUserLastname" placeholder="Enter your last name" [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}"></textarea>
                 </div>
-      
+
                 <!-- Account Information -->
                 <div class="form-group">
                   <label style="margin-top: 10px;">Email</label>
                   <input type="text" class="form-control" id="editUserEmail" placeholder="Enter your email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
                 </div>
-      
+
                 <div class="text-center center">
                   <button type="submit" class="btn btn-success1" (click)="updateMember()" data-bs-dismiss="modal">Save</button>
                   <button type="button" class="btn btn-danger1" data-bs-dismiss="modal">Cancel</button>
@@ -115,9 +115,9 @@
           </div>
         </div>
       </div>
-      
+
       <!-- View User Modal -->
-      <div class="modal fade" id="viewUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+      <div class="modal" id="viewUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-body center">
@@ -131,13 +131,13 @@
                   <label style="margin-top: 10px;">Last Name</label>
                   <textarea class="form-control" id="editUserLastname" placeholder="Enter your last name" [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}" readonly></textarea>
                 </div>
-      
+
                 <!-- Account Information -->
                 <div class="form-group">
                   <label style="margin-top: 10px;">Email</label>
                   <input type="text" class="form-control" id="editUserEmail" placeholder="Enter your email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" readonly>
                 </div>
-      
+
                 <div class="text-center center">
                   <button type="submit" class="btn btn-success" data-bs-dismiss="modal">OK</button>
                 </div>
@@ -145,7 +145,7 @@
             </div>
           </div>
         </div>
-      </div>      
+      </div>
 
 </body>
 
