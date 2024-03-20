@@ -17,6 +17,7 @@ export class AdminEventsComponent implements OnInit{
   eventDesc = "";
   eventDate: string | null = "";
   eventTime = "";
+  eventType = "";
   location = "";
   meetingURL = "";
   poster = "";
@@ -68,6 +69,7 @@ export class AdminEventsComponent implements OnInit{
     this.eventDesc = data.eventDesc;
     this.eventDate = this.datePipe.transform(new Date(data.eventDate), 'medium');
     this.eventTime = data.eventTime;
+    this.eventType = data.eventType;
     this.location = data.location;
     this.meetingURL = data.meetingURL;
     this.poster = data.poster;
@@ -85,6 +87,7 @@ export class AdminEventsComponent implements OnInit{
       "eventDesc" : this.eventDesc,
       "eventDate" : this.eventDate,
       "eventTime" : this.eventTime,
+      "eventType" : this.eventType,
       "location" : this.location,
       "meetingURL" : this.meetingURL,
       "poster" : this.poster,

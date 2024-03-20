@@ -81,31 +81,32 @@
                           <label for="editEventTime" style="margin-top: 10px;">Event Time</label>
                           <input type="time" class="form-control" id="editEventTime" [(ngModel)]="eventTime" [ngModelOptions]="{standalone: true}">
                       </div>
+                      <div class="form-group">
+                        <label class="editEventType" style="margin-top: 10px;">Type of the Event: </label>
+                                <select id="eventType" class="form-control" [(ngModel)]="eventType" [ngModelOptions]="{standalone: true}" name="eventType">
+                                    <option value="" disabled selected></option>
+                                    <option value="Exclusive">Exclusive</option>
+                                    <option value="Public">Public</option>
+                                </select>
+                      </div>
 
                       <!-- Location -->
                       <div class="form-group">
-                          <label for="editLocation" style="margin-top: 10px;">Location</label>
+                          <label for="editLocation" style="margin-top: 10px;">Mode</label>
                           <select class="form-control" id="editLocation">
                               <option value="Physical">Physical</option>
                               <option value="Online">Online</option>
                               <option value="Hybrid">Hybrid</option>
                           </select>
                       </div>
-                      <div class="form-group" id="editVenueLocation" style="display:none;">
+                      <div class="form-group" id="editVenueLocation">
                           <label for="editPhysicalLocationInput">Physical Location</label>
                           <input type="text" class="form-control" id="editVenueLocationInput" [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
                       </div>
-                      <div class="form-group" id="editOnlineLocation" style="display:none;">
+                      <div class="form-group" id="editOnlineLocation">
                           <label for="editOnlineLocationInput">Online Meeting URL</label>
                           <input type="text" class="form-control" id="editOnlineLocationInput" [(ngModel)]="meetingURL" [ngModelOptions]="{standalone: true}">
                       </div>
-                      <div class="form-group" id="editHybridLocation" style="display:none;">
-                          <label for="editHybridPhysicalLocationInput">Hybrid Physical Location</label>
-                          <input type="text" class="form-control" id="editHybridVenueLocationInput" [(ngModel)]="location" [ngModelOptions]="{standalone: true}">
-                          <label for="editHybridOnlineLocationInput">Hybrid Online Meeting URL</label>
-                          <input type="text" class="form-control" id="editHybridOnlineLocationInput" [(ngModel)]="meetingURL" [ngModelOptions]="{standalone: true}">
-                      </div>
-
                       <!-- Event Details -->
                       <div class="form-group" id="editEventPoster">
                           <div>

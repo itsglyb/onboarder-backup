@@ -106,6 +106,15 @@
                         <input type="time" class="form-control" id="editEventTime" [(ngModel)]="eventTime" [ngModelOptions]="{standalone: true}">
                     </div>
 
+                    <div class="form-group">
+                        <label class="editEventType" style="margin-top: 10px;">Type of the Event: </label>
+                                <select id="eventType" class="form-control" [(ngModel)]="eventType" [ngModelOptions]="{standalone: true}" name="eventType">
+                                    <option value="" disabled selected></option>
+                                    <option value="Exclusive">Exclusive</option>
+                                    <option value="Public">Public</option>
+                                </select>
+                      </div>
+
                     <!-- Location -->
                     <div class="form-group">
                         <label for="editLocation" style="margin-top: 10px;">Location</label>

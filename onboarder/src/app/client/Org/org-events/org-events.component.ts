@@ -13,6 +13,7 @@ interface OrgEvent {
   eventDesc: string;
   eventDate: Date;
   eventTime: string;
+  eventType: string;
   location: string;
   meetingURL: string;
   poster: string;
@@ -49,6 +50,7 @@ export class OrgEventsComponent implements OnInit {
   eventDesc = "";
   eventDate: string | null = "";
   eventTime = "";
+  eventType = "";
   location = "";
   meetingURL = "";
   poster = "";
@@ -110,7 +112,8 @@ export class OrgEventsComponent implements OnInit {
     this.eventTitle = data.eventTitle;
     this.eventDesc = data.eventDesc;
     this.eventDate = data.eventDate;
-    this.eventTime = data.eventTime; // Keep the original time value
+    this.eventTime = data.eventTime; 
+    this.eventType = data.eventType;// Keep the original time value
     this.location = data.location;
     this.meetingURL = data.meetingURL;
     this.poster = data.poster;
@@ -137,6 +140,7 @@ export class OrgEventsComponent implements OnInit {
       "eventDate": this.eventDate,
       "eventTime": this.eventTime,
       "location": this.location,
+      "eventType": this.eventType,
       "meetingURL": this.meetingURL,
       "poster": this.poster,
       "video": this.video,
