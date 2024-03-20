@@ -50,7 +50,7 @@ export class MemProfileComponent implements OnInit {
       }
     );
   }
-  setUpdate(res:any) 
+  setUpdate(res:any)
   {
     this.member_id = `${res._id}`;
     this.memberfirstName= `${res.firstName}`;
@@ -65,7 +65,7 @@ export class MemProfileComponent implements OnInit {
       "lastName": this.memberlastName,
       "email": this.memberemail
     };
-  
+
     this.http.patch('http://localhost:5000/api/member' + '/' + this.member_id, memberData, {
       withCredentials: true
     }).subscribe(
@@ -75,7 +75,7 @@ export class MemProfileComponent implements OnInit {
         this.memberfirstName = updatedData.firstName;
         this.memberlastName = updatedData.lastName;
         this.memberemail = updatedData.email;
-  
+
         console.log(updatedData);
         this.fetchMemberInfo();
       },

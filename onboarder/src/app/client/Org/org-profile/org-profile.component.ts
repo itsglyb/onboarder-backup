@@ -23,12 +23,12 @@ export class OrgProfileComponent implements OnInit {
   orgCode!: string;
   OrgArray: any[] = [];
 
-  
+
 
   constructor(
     private http: HttpClient,
     private router: Router
-  ) { 
+  ) {
     this.fetchOrgInfo();
     this.updateOrgInfo();
   }
@@ -169,14 +169,14 @@ export class OrgProfileComponent implements OnInit {
       this.logo = base64String;
     });
   }
-  
+
   // Your convertfiletobase64 function
   convertfiletobase64(file: File, callback: (base64string: string) => void) {
     const reader = new FileReader();
     reader.onload = (e) => {
       let base64string = reader.result as string;
-  
-  
+
+
       callback(base64string);
     };
     reader.readAsDataURL(file);

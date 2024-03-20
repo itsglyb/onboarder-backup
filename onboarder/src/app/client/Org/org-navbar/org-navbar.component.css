@@ -153,11 +153,11 @@ body {
     position: relative;
     top: -50px; /* Adjust the value as needed */
   }
-  
+
   .sidebar .bottom-content li {
     margin-top: 10px; /* Add some top margin to individual list items if needed */
   }
-  
+
 
 .sidebar.close {
   width: 78px;

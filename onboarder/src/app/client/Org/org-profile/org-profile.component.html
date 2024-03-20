@@ -88,4 +88,83 @@
             </div>
           </div>
 
+    <!-- Edit Org Modal -->
+      <div class="modal" id="editOrgProfileModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngIf="_id">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-body center">
+                      <h2 class="text-center">Edit Organization Information</h2>
+                      <form id="editOrgForm">
+                          <!-- Organization Information -->
+                          <div class="form-group">
+                              <label style="margin-top: 10px;">Organization Name</label>
+                                  <input type="text" class="form-control" id="editOrgName" placeholder="Enter organization name" [(ngModel)]="orgName" [ngModelOptions]="{standalone: true}">
+                          </div>
+                          <div class="form-group">
+                              <label style="margin-top: 10px;">Organization Type</label>
+                              <select id="orgType" formControlName="orgType" name="orgType" class="form-control" id="editOrgType" placeholder="Enter organization type" [(ngModel)]="orgType" [ngModelOptions]="{standalone: true}" >
+                                <option value="" disabled selected>Select Organization Type</option>
+                                <option value="Human Rights">Human Rights</option>
+                                <option value="Arts">Arts</option>
+                                <option value="Education">Education & Youth Development</option>
+                                <option value="Environmental">Environmental & Animal Welfare</option>
+                                <option value="Recreational">Recreational</option>
+                                <option value="Health">Health & Research</option>
+                                <option value="Political">Political</option>
+                                <option value="Professional & Employment">Professional & Employment</option>
+                                <option value="Religious">Religious</option>
+                                <option value="Student">Student</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Others">Others</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                              <label style="margin-top: 10px;">Brief Description of the Organization's Purpose</label>
+                              <textarea class="form-control" id="editOrgDescription" placeholder="Enter organization description" [(ngModel)]="about" [ngModelOptions]="{standalone: true}"></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label style="margin-top: 10px;">Organization's History</label>
+                              <textarea class="form-control" id="editOrgHistory" placeholder="Enter organization history" [(ngModel)]="orgHistory" [ngModelOptions]="{standalone: true}"></textarea>
+                          </div>
+
+                          <!-- Organization Goals -->
+                          <div class="form-group">
+                              <label style="margin-top: 10px;">Mission</label>
+                              <textarea class="form-control" id="editOrgMission" placeholder="Enter organization mission" [(ngModel)]="mission" [ngModelOptions]="{standalone: true}"></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label style="margin-top: 10px;">Vision</label>
+                              <textarea class="form-control" id="editOrgVision" placeholder="Enter organization vision" [(ngModel)]="vision" [ngModelOptions]="{standalone: true}"></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label style="margin-top: 10px;">Core Values</label>
+                              <textarea class="form-control" id="editCoreValues" placeholder="Enter your organization's core values" [(ngModel)]="coreValues" [ngModelOptions]="{standalone: true}"></textarea>
+                          </div>
+
+                          <!-- Organization Goals -->
+                          <div class="form-group" id="editEventPoster">
+                              <div>
+                                  <label style="margin-top: 10px;">Organization's Logo </label>
+                                  <input class="form-control" type="file" id="formFile" onchange="preview('frame')" onchange="preview('frame')" (change)="onChange($event)" [value]="logo" [(ngModel)]="logo" [ngModelOptions]="{standalone: true}"  accept="image/*">
+                              </div>
+                              <img id="frame" src="" class="img-fluid" />
+                          </div>
+
+                          <!-- Account Information -->
+                          <div class="form-group">
+                              <label style="margin-top: 10px;">Organization Email</label>
+                              <input type="text" class="form-control" id="editOrgEmail" placeholder="Enter the organization email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                          </div>
+
+                          <div class="text-center center">
+                              <button type="submit" class="btn btn-success" data-bs-dismiss="modal" (click)="updateOrgInfo()">Save</button>
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-dismiss="modal">Cancel</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+  </div>
+
+
 
