@@ -65,7 +65,7 @@
 
               <div class="col-md-6 position-relative" *ngIf="memForm.birthDate">
                 <label for="validationTooltip03" class="form-label">Date of Birth <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="validationTooltip02" formControlName="birthDate" placeholder="Date of Birth" >
+                <input type="date" class="form-control" id="validationTooltip02" formControlName="birthDate" placeholder="Date of Birth" >
                 <div *ngIf="form.get('birthDate')?.invalid && form.get('birthDate')?.touched">
                   <p class="text-danger" style="font-size: 12px; font-weight: bold;" *ngIf="form.get('birthDate')?.errors?.['required']">Birth date is required</p>
                 </div>
