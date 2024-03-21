@@ -7,13 +7,13 @@ const bodyParser = require("body-parser")
 const app = express()
 require('dotenv').config();
 
-app.use(cookieParser());
+app.use(cookieParser());ng
 
 // Allow requests from 'https://onboarder.site'
 app.use(cors({
   credentials: true,
   // origin:'https://onboarder.site',
-  origin: 'https://localhost:4200',
+  origin: 'https://onboarder-app-223a80294fdb.herokuapp.com/',
   methods: 'GET,POST',
   allowedHeaders: 'Access-Control-Allow-Origin',
   credentials: true
@@ -33,7 +33,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 .then(()=>{
     console.log("connected to db")
 
-    const port = process.env.PORT || 3000;
+    // const port = process.env.PORT || 3000;
 
 
   // //   // Middleware to set the CORS headers
@@ -63,8 +63,11 @@ mongoose.connect(process.env.MONGODB_URI, {
   //   app.listen(443, () => {
   //       console.log("App is listening on port 443");
   //   });
-  app.listen(port, () => {
-    console.log(`App is listening on port ${port}`);
+//   app.listen(port, () => {
+//     console.log(`App is listening on port ${port}`);
+// });
+app.listen(5000, () => {
+  console.log("App is listening on port 5000");
 });
 })
 
