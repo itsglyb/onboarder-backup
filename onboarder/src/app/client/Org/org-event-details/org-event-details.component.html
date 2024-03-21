@@ -191,8 +191,8 @@
                 <div class="modal-content">
                     <div class="modal-body center">
                         <h2>Proof of Payment</h2>
-                        <p *ngIf="!proofofPayment">The member did not submit proof of payment.</p>
-                        <img *ngIf="proofofPayment" class="image" [src]="proofofPayment" alt="Proof of Payment">
+                        <p *ngIf="!member.proofofPayment">The member did not submit proof of payment.</p>
+                        <img *ngIf="member.proofofPayment" class="image" [src]="member.proofofPayment" alt="Proof of Payment">
                     </div>
                 </div>
             </div>

@@ -68,7 +68,9 @@ export class OrgEventsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private datePipe: DatePipe
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
