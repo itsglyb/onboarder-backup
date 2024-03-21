@@ -59,8 +59,8 @@ mongoose.connect(process.env.MONGODB_URI, {
       }
     });
 
-    app.listen(443, () => {
-        console.log("App is listening on port 443");
+    app.listen(5000, () => {
+        console.log("App is listening on port 5000");
     });
 })
 
