@@ -33,7 +33,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 .then(()=>{
     console.log("connected to db")
 
-    // const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 5000;
 
 
   // //   // Middleware to set the CORS headers
@@ -63,12 +63,12 @@ mongoose.connect(process.env.MONGODB_URI, {
   //   app.listen(443, () => {
   //       console.log("App is listening on port 443");
   //   });
-//   app.listen(port, () => {
-//     console.log(`App is listening on port ${port}`);
-// });
-app.listen(5000, () => {
-  console.log("App is listening on port 5000");
+  app.listen(port, () => {
+    console.log(`App is listening on port ${port}`);
 });
+// app.listen(5000, () => {
+//   console.log("App is listening on port 5000");
+// });
 })
 
 
