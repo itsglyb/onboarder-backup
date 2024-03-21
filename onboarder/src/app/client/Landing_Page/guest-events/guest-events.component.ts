@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 declare var $: any;
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-guest-events',
@@ -10,6 +12,8 @@ declare var $: any;
   styleUrls: ['./guest-events.component.css']
 })
 export class GuestEventsComponent {
+
+  private apiUrl = environment.apiUrl;
 
   constructor(private router: Router, private renderer2: Renderer2, private el: ElementRef, private http: HttpClient) {
     this.getOrgs();
@@ -40,7 +44,7 @@ export class GuestEventsComponent {
   }
   
   getOrgs(): void {
-    this.http.get("http://localhost:5000/api/vieworganization")
+    this.http.get(`${this.apiUrl}api/vieworganization`)
     .subscribe((resData:any) => {
       console.log(resData);
       this.OrgArray = resData;

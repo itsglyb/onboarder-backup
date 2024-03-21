@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-admin-users',
@@ -7,6 +9,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-users.component.css']
 })
 export class AdminUsersComponent {
+  private apiUrl = environment.apiUrl;
+
   MemberArray: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 5;
@@ -23,7 +27,7 @@ export class AdminUsersComponent {
   }
 
   getAllMember() {
-    this.http.get("http://localhost:5000/api/viewmember")
+    this.http.get(`${this.apiUrl}api/viewmember`)
       .subscribe((resultData: any) => {
         console.log(resultData);
         this.MemberArray = resultData;
@@ -47,7 +51,7 @@ export class AdminUsersComponent {
       "dateCreated": this.dateCreated
     };
 
-    this.http.patch("http://localhost:5000/api/member" + "/" + this._id, memberData).subscribe((resultData: any) => {
+    this.http.patch(`${this.apiUrl}api/member` + "/" + this._id, memberData).subscribe((resultData: any) => {
       console.log(resultData);
       this.getAllMember();
     })
@@ -70,7 +74,7 @@ export class AdminUsersComponent {
       "dateCreated": this.dateCreated
     };
 
-    this.http.delete("http://localhost:5000/api/member" + "/" + this._id).subscribe((resultData: any) => {
+    this.http.delete(`${this.apiUrl}api/member` + "/" + this._id).subscribe((resultData: any) => {
       console.log(resultData);
       this.getAllMember();
     })

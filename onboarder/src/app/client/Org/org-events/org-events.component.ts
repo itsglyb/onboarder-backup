@@ -5,6 +5,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
+
+
 
 interface OrgEvent {
   _id: string,
@@ -33,6 +36,8 @@ interface OrgEvent {
 })
 
 export class OrgEventsComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
   orgEvent$: Observable<OrgEvent[]> | undefined;
   orgEventArrayLength: number = 0;
   links = [
@@ -80,7 +85,7 @@ export class OrgEventsComponent implements OnInit {
   }
 
   getOrgEvent(orgID: string) {
-    this.orgEvent$ = this.http.get<OrgEvent[]>(`http://localhost:5000/api/events/${orgID}`);
+    this.orgEvent$ = this.http.get<OrgEvent[]>(`${this.apiUrl}api/events/${orgID}`);
     this.orgEvent$.subscribe((data) => {
       this.orgEventArray = data;
       // Update the length variable
@@ -151,7 +156,7 @@ export class OrgEventsComponent implements OnInit {
       "eventPaymentDetails": this.eventPaymentDetails
     };
   
-    this.http.patch(`http://localhost:5000/api/event/${this._id}`, eventData).subscribe(
+    this.http.patch(`${this.apiUrl}api/event/${this._id}`, eventData).subscribe(
       (resultData: any) => {
         console.log(resultData);
         this.route.params.subscribe(params => {

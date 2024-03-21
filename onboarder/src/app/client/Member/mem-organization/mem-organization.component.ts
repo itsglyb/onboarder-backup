@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-mem-organization',
@@ -9,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./mem-organization.component.css']
 })
 export class MemOrganizationComponent implements OnInit{
+  
+private apiUrl = environment.apiUrl;
   form!:FormGroup
 
   OrganizationArray: any[] = [];
@@ -21,13 +25,13 @@ export class MemOrganizationComponent implements OnInit{
   }
 
   getAllOrganization() {
-    this.http.get('http://localhost:5000/api/member', {
+    this.http.get(`${this.apiUrl}api/member`, {
       withCredentials: true
     }).subscribe(
       (memResponse: any) => {
         const memID = memResponse._id;
   
-        this.http.get(`http://localhost:5000/api/myOrganizations/${memID}`, {
+        this.http.get(`${this.apiUrl}api/myOrganizations/${memID}`, {
           withCredentials: true
         }).subscribe((resultData: any) => {
           console.log(resultData);

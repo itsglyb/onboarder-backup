@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
+
 
 interface MemForm {
 
@@ -61,6 +63,8 @@ interface MemForm {
 
 
 export class MemRejectComponent {
+  private apiUrl = environment.apiUrl;
+
   memForm$: Observable<MemForm> | undefined;
   form!:FormGroup
 
@@ -127,7 +131,7 @@ constructor(
   }
 
   ngOnInit():void{
-    this.http.get('http://localhost:5000/api/organization', {
+    this.http.get(`${this.apiUrl}api/organization`, {
       withCredentials: true
     }).subscribe(
       (memResponse: any) => {
@@ -137,7 +141,7 @@ constructor(
   }
 
   getAllApplication(): void {
-    this.http.get("http://localhost:5000/api/rejected", {withCredentials: true})
+    this.http.get(`${this.apiUrl}api/rejected`, {withCredentials: true})
       .subscribe((resultData: any) => {
         console.log(resultData);
         this.rejectedApplicationDetails = resultData;
@@ -193,14 +197,14 @@ constructor(
 
   getMemFormat(_id: string) {
 
-    this.memForm$ = this.http.get<MemForm>(`http://localhost:5000/api/myMemForm/${_id}`);
+    this.memForm$ = this.http.get<MemForm>(`${this.apiUrl}api/myMemForm/${_id}`);
     this.memForm$.subscribe(data => {
       console.log('API Response:', data);
     });
   }
 
   getMemForm(_id: string): void {
-    this.http.get(`http://localhost:5000/api/membershipApplication/${_id}`, { withCredentials: true })
+    this.http.get(`${this.apiUrl}api/membershipApplication/${_id}`, { withCredentials: true })
       .subscribe((resultData) => {
         console.log(resultData);
         

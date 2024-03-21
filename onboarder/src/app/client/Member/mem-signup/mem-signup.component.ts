@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import {FormGroup, FormBuilder} from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
+
 
 declare var $: any; // Declare jQuery to avoid TypeScript errors
 
@@ -12,6 +14,8 @@ declare var $: any; // Declare jQuery to avoid TypeScript errors
   styleUrls: ['./mem-signup.component.css']
 })
 export class MemberSignupComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
   form!:FormGroup
 
   constructor(
@@ -93,7 +97,7 @@ export class MemberSignupComponent implements OnInit {
   else {
 
   this.http
-    .post('http://localhost:5000/api/register', member, {
+    .post(`${this.apiUrl}api/register`, member, {
       withCredentials: true,
       
     })

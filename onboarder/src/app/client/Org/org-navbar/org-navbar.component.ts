@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 
 declare var $: any; // Declare jQuery to avoid TypeScript errors
 
@@ -10,6 +12,8 @@ declare var $: any; // Declare jQuery to avoid TypeScript errors
   styleUrls: ['./org-navbar.component.css']
 })
 export class OrgNavbarComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
   organization!: string;
   logo!: string;
   orgCode!: string;
@@ -26,7 +30,7 @@ export class OrgNavbarComponent implements OnInit {
   ngOnInit(): void {
     this.initializeSidebar();
 
-    this.http.get('http://localhost:5000/api/organization', {
+    this.http.get(`${this.apiUrl}api/organization`, {
       withCredentials: true
     }).subscribe(
       (res: any) => {
@@ -100,7 +104,7 @@ export class OrgNavbarComponent implements OnInit {
   }
 
   logout() {
-    this.http.post('http://localhost:5000/api/logout', null, { withCredentials: true }).subscribe(
+    this.http.post(`${this.apiUrl}api/logout`, null, { withCredentials: true }).subscribe(
       (response) => {
         this.router.navigate(['/auth-login']);
       },
@@ -127,7 +131,7 @@ export class OrgNavbarComponent implements OnInit {
     const expirationDate = new Date();
     expirationDate.setDate(expirationDate.getDate() + 30); // expires in 30 days
 
-    this.http.patch(`http://localhost:5000/api/organization/${this.orgID}`, {
+    this.http.patch(`${this.apiUrl}api/organization/${this.orgID}`, {
       orgCode: newOrgCode,
       expirationDate: expirationDate.toISOString() // Convert to ISO string for backend compatibility
     }, {

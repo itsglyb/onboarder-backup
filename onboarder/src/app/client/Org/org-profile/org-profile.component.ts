@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
 
 declare var $: any; // Declare jQuery to avoid TypeScript errors
 
@@ -10,6 +12,8 @@ declare var $: any; // Declare jQuery to avoid TypeScript errors
   styleUrls: ['./org-profile.component.css']
 })
 export class OrgProfileComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
   _id!: string;
   orgName!: string;
   orgType!: string;
@@ -44,7 +48,7 @@ export class OrgProfileComponent implements OnInit {
   }
 
   fetchOrgInfo(): void {
-    this.http.get('http://localhost:5000/api/organization', {
+    this.http.get(`${this.apiUrl}api/organization`, {
       withCredentials: true
     }).subscribe(
       (res: any) => {
@@ -135,7 +139,7 @@ export class OrgProfileComponent implements OnInit {
       "orgCode": this.orgCode
     };
 
-    this.http.patch('http://localhost:5000/api/organization' + '/' + this._id, orgData, {
+    this.http.patch(`${this.apiUrl}api/organization` + '/' + this._id, orgData, {
       withCredentials: true
     }).subscribe(
       (updatedData: any) => {

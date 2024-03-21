@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-mem-profile',
@@ -9,6 +10,8 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./mem-profile.component.css']
 })
 export class MemProfileComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
   memberfirstName!: string;
   memberlastName!: string;
   memberemail!: string;
@@ -33,7 +36,7 @@ export class MemProfileComponent implements OnInit {
   }
 
   private fetchMemberInfo(): void {
-    this.http.get('http://localhost:5000/api/member', {
+    this.http.get(`${this.apiUrl}api/member`, {
       withCredentials: true
     }).subscribe(
       (res: any) => {
@@ -66,7 +69,7 @@ export class MemProfileComponent implements OnInit {
       "email": this.memberemail
     };
 
-    this.http.patch('http://localhost:5000/api/member' + '/' + this.member_id, memberData, {
+    this.http.patch(`${this.apiUrl}api/member` + '/' + this.member_id, memberData, {
       withCredentials: true
     }).subscribe(
       (updatedData: any) => {

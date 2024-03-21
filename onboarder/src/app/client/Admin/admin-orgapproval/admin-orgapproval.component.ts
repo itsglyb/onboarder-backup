@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-admin-orgapproval',
@@ -10,6 +12,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-orgapproval.component.css']
 })
 export class AdminOrgapprovalComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
 
   form!: FormGroup;
 
@@ -89,7 +93,7 @@ export class AdminOrgapprovalComponent implements OnInit {
   }
 
   getAllOrganization() {
-    this.http.get("http://localhost:5000/api/approval")
+    this.http.get(`${this.apiUrl}api/approval`)
       .subscribe((resultData: any) => {
         console.log(resultData);
         this.OrganizationArray = resultData;
@@ -98,7 +102,7 @@ export class AdminOrgapprovalComponent implements OnInit {
 
   accept(_id: string): void {
     const updatedData = { isApproved: true };
-    this.http.patch(`http://localhost:5000/api/orgRegister/${_id}`, updatedData, { withCredentials: true })
+    this.http.patch(`${this.apiUrl}api/orgRegister/${_id}`, updatedData, { withCredentials: true })
       .subscribe((response: any) => {
         // Handle the response as needed, for example, update the UI or show a success message
         console.log('Application verified successfully:', response);
@@ -144,7 +148,7 @@ export class AdminOrgapprovalComponent implements OnInit {
       "orgCode": this.orgCode
     };
 
-    this.http.patch("http://localhost:5000/api/organization" + "/" + this._id, orgData).subscribe((resultData: any) => {
+    this.http.patch(`${this.apiUrl}api/organization` + "/" + this._id, orgData).subscribe((resultData: any) => {
       console.log(resultData);
       this.getAllOrganization();
     });
@@ -170,7 +174,7 @@ export class AdminOrgapprovalComponent implements OnInit {
     const remarksControl = this.form.get('remarks');
     if (remarksControl && remarksControl.valid) {
       const remarksValue = remarksControl.value;
-      this.http.patch("http://localhost:5000/api/orgRegister/" + this._id, { remarks: remarksValue }, { withCredentials: true })
+      this.http.patch(`${this.apiUrl}api/orgRegister/` + this._id, { remarks: remarksValue }, { withCredentials: true })
         .subscribe((response: any) => {
           console.log('Application rejected successfully:', response);
           Swal.fire('Application Rejected');
@@ -183,7 +187,7 @@ export class AdminOrgapprovalComponent implements OnInit {
       return;
     }
 
-    this.http.delete("http://localhost:5000/api/reject-organization" + "/" + this._id).subscribe((resultData: any) => {
+    this.http.delete(`${this.apiUrl}api/reject-organization` + "/" + this._id).subscribe((resultData: any) => {
       console.log(resultData);
       this.getAllOrganization();
     });

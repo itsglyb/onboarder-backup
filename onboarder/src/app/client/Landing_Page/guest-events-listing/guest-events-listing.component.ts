@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, catchError, tap } from 'rxjs';
 import { map } from 'rxjs/operators';
 declare var $: any;
+import { environment } from 'src/environments/environment';
+
 
 interface OrgEvent {
   _id: string,
@@ -30,6 +32,8 @@ interface OrgEvent {
   styleUrls: ['./guest-events-listing.component.css']
 })
 export class GuestEventsListingComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
   eventDesc!: string;
   poster!: string;
   memID: string = "";
@@ -92,7 +96,7 @@ export class GuestEventsListingComponent implements OnInit {
   }
 
   getOrgEvent(orgID: string) {
-    this.orgEvent$ = this.http.get<OrgEvent[]>(`http://localhost:5000/api/events/${orgID}`).pipe(
+    this.orgEvent$ = this.http.get<OrgEvent[]>(`${this.apiUrl}api/events/${orgID}`).pipe(
       map(events => events.filter(event => event.eventType === 'Public'))
     );
 
@@ -164,11 +168,11 @@ convertfiletobase64(file: File, callback: (base64string: string) => void) {
     };
     console.log("Response:", formData);
 
-    this.http.get(`http://localhost:5000/api/thisevent/${this.eventID}`, { withCredentials: true }).subscribe(
+    this.http.get(`${this.apiUrl}api/thisevent/${this.eventID}`, { withCredentials: true }).subscribe(
       (event: any) => {
         const updatedSeats = event.eventSeats - 1;
         event.eventSeats = updatedSeats;
-        this.http.patch(`http://localhost:5000/api/event/${this.eventID}`, event, { withCredentials: true }).subscribe(
+        this.http.patch(`${this.apiUrl}api/event/${this.eventID}`, event, { withCredentials: true }).subscribe(
           () => {
             this.registerToEvent(formData);
             this.getOrgEvent(this.orgID);
@@ -185,7 +189,7 @@ convertfiletobase64(file: File, callback: (base64string: string) => void) {
   }
 
   registerToEvent(formData: any) {
-    this.http.post('http://localhost:5000/api/createguestRegForm', formData, { withCredentials: true }).subscribe(
+    this.http.post(`${this.apiUrl}api/createguestRegForm`, formData, { withCredentials: true }).subscribe(
         () => {
 
             const subsForm = this.el.nativeElement.querySelector('#subs-form');

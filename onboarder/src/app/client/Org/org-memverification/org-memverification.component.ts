@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
+
 
 interface MemForm {
 
@@ -60,6 +62,8 @@ interface MemForm {
   styleUrls: ['./org-memverification.component.css']
 })
 export class OrgMemverificationComponent {
+  private apiUrl = environment.apiUrl;
+
   memForm$: Observable<MemForm> | undefined;
 
   form!:FormGroup
@@ -191,7 +195,7 @@ constructor(
 
       
     })
-    this.http.get('http://localhost:5000/api/organization', {
+    this.http.get(`${this.apiUrl}api/organization`, {
           withCredentials: true
         }).subscribe(
           (memResponse: any) => {
@@ -206,7 +210,7 @@ constructor(
 
 
   getAllMembershipApplication(): void {
-    this.http.get("http://localhost:5000/api/verification", {withCredentials: true})
+    this.http.get(`${this.apiUrl}api/verification`, {withCredentials: true})
       .subscribe((resultData: any) => {
         console.log(resultData);
         this.membershipApplicationDetails = resultData;
@@ -269,7 +273,7 @@ constructor(
 
   accept(_id: string): void{
     const updatedData = { isVerified: true };
-    this.http.patch(`http://localhost:5000/api/membershipApplication/${_id}`, updatedData, { withCredentials: true })
+    this.http.patch(`${this.apiUrl}api/membershipApplication/${_id}`, updatedData, { withCredentials: true })
       .subscribe((response: any) => {
         // Handle the response as needed, for example, update the UI or show a success message
         console.log('Application verified successfully:', response);
@@ -284,14 +288,14 @@ constructor(
   }
 
   getMemFormat(_id: string) {
-    this.memForm$ = this.http.get<MemForm>(`http://localhost:5000/api/myMemForm/${_id}`);
+    this.memForm$ = this.http.get<MemForm>(`${this.apiUrl}api/myMemForm/${_id}`);
     this.memForm$.subscribe(data => {
       console.log('API Response:', data);
     });
   }
 
   getMemForm(_id: string): void {
-    this.http.get(`http://localhost:5000/api/membershipApplication/${_id}`, { withCredentials: true })
+    this.http.get(`${this.apiUrl}api/membershipApplication/${_id}`, { withCredentials: true })
       .subscribe((resultData) => {
         console.log(resultData);
         
@@ -310,7 +314,7 @@ constructor(
         remarks: remarksControl.value,
       };
     
-      this.http.patch(`http://localhost:5000/api/membershipApplication/${_id}`, updatedData, { withCredentials: true })
+      this.http.patch(`${this.apiUrl}api/membershipApplication/${_id}`, updatedData, { withCredentials: true })
         .subscribe((response: any) => {
           // Handle the response as needed, for example, update the UI or show a success message
           console.log('Application rejected successfully:', response);

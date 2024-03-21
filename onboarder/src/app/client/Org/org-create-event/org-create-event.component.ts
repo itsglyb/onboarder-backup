@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
+
 
 declare var $: any; // Declare jQuery to avoid TypeScript errors
 
@@ -14,6 +16,8 @@ declare var $: any; // Declare jQuery to avoid TypeScript errors
 
 
 export class OrgCreateEventComponent implements OnInit{
+  private apiUrl = environment.apiUrl;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -178,7 +182,7 @@ export class OrgCreateEventComponent implements OnInit{
       // Get the event data from the form
       const event = this.form.getRawValue();
       // Fetch organization details
-      this.http.get('http://localhost:5000/api/organization', {
+      this.http.get(`${this.apiUrl}api/organization`, {
         withCredentials: true
       }).subscribe(
         (orgResponse: any) => {
@@ -210,7 +214,7 @@ export class OrgCreateEventComponent implements OnInit{
           };
 
           // Post the event data to the createEvent API endpoint
-          this.http.post('http://localhost:5000/api/createEvent', eventData, {
+          this.http.post(`${this.apiUrl}api/createEvent`, eventData, {
             withCredentials: true
           }).subscribe(
             (eventResponse: any) => {

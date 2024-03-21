@@ -3,12 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
   form!:FormGroup
   token!:string
   
@@ -47,7 +51,7 @@ submit(): void {
   };
 
   this.http
-    .post('http://localhost:5000/api/reset-password', resetData, { responseType: 'text' })
+    .post(`${this.apiUrl}api/reset-password`, resetData, { responseType: 'text' })
     .subscribe(
       (res: any) => {
         console.log("Response:", res);

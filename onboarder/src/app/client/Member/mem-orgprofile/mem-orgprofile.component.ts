@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-mem-orgprofile',
@@ -8,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./mem-orgprofile.component.css']
 })
 export class MemOrgprofileComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
   orgInfo: any[] = [];
   membershipStatus: any[] = [];
 
@@ -30,21 +33,21 @@ export class MemOrgprofileComponent implements OnInit {
 
 
   getAllOrganization(orgId: string) {
-    this.http.get(`http://localhost:5000/api/thisOrg/${orgId}`)
+    this.http.get(`${this.apiUrl}api/thisOrg/${orgId}`)
       .subscribe(
         (resultData: any) => {
           console.log(resultData);
           this.orgInfo = [resultData];
           const id = resultData._id;
   
-          this.http.get('http://localhost:5000/api/member', {
+          this.http.get(`${this.apiUrl}api/member`, {
             withCredentials: true
           })
           .subscribe(
             (memResponse: any) => {
               const memID = memResponse._id;
   
-              this.http.get(`http://localhost:5000/api/applicationStatus/${id}/${memID}`, {
+              this.http.get(`${this.apiUrl}api/applicationStatus/${id}/${memID}`, {
                 withCredentials: true
               })
               .subscribe(
@@ -69,21 +72,21 @@ export class MemOrgprofileComponent implements OnInit {
   }
 
   getOrganization(orgCode: string) {
-    this.http.get(`http://localhost:5000/api/thisOrg1/${orgCode}`)
+    this.http.get(`${this.apiUrl}api/thisOrg1/${orgCode}`)
       .subscribe(
         (resultData: any) => {
           console.log(resultData);
           this.orgInfo = [resultData];
           const id = resultData._id;
   
-          this.http.get('http://localhost:5000/api/member', {
+          this.http.get(`${this.apiUrl}api/member`, {
             withCredentials: true
           })
           .subscribe(
             (memResponse: any) => {
               const memID = memResponse._id;
   
-              this.http.get(`http://localhost:5000/api/applicationStatus/${id}/${memID}`, {
+              this.http.get(`${this.apiUrl}api/applicationStatus/${id}/${memID}`, {
                 withCredentials: true
               })
               .subscribe(

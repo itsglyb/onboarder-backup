@@ -3,6 +3,8 @@
   import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   import { ActivatedRoute, Router } from '@angular/router';
   import { Observable } from 'rxjs';import { PaginationInstance } from 'ngx-pagination';
+  import { environment } from 'src/environments/environment';
+
 
   interface regForm {
     _id: string,
@@ -33,6 +35,8 @@
     styleUrls: ['./org-event-details.component.css']
   })
   export class OrgEventDetailsComponent implements OnInit {
+    private apiUrl = environment.apiUrl;
+
     eventInfo: any[] = [];
     regMemArray: regForm[] = [];
     regMem$: Observable<regForm[]> | undefined;
@@ -67,7 +71,7 @@
     }
 
     getEventInfo(_id: string) {
-      this.http.get(`http://localhost:5000/api/thisevent/${_id}`)
+      this.http.get(`${this.apiUrl}api/thisevent/${_id}`)
         .subscribe((resultData: any) => {
           console.log(resultData);
           this.eventInfo = [resultData]; // Store all event information
@@ -80,7 +84,7 @@
     }
 
     getregMem(eventID: string) {
-      this.regMem$ = this.http.get<regForm[]>(`http://localhost:5000/api/myEventForm/${eventID}`);
+      this.regMem$ = this.http.get<regForm[]>(`${this.apiUrl}api/myEventForm/${eventID}`);
       this.regMem$.subscribe((data) => {
         this.regMemArray = data;
         console.log('Registered Members:', data);
@@ -88,7 +92,7 @@
     }
 
     getregGuest(eventID: string) {
-      this.regGuest$ = this.http.get<guestregForm[]>(`http://localhost:5000/api/myguestEventForm/${eventID}`);
+      this.regGuest$ = this.http.get<guestregForm[]>(`${this.apiUrl}api/myguestEventForm/${eventID}`);
       this.regGuest$.subscribe((data) => {
         this.regGuestArray = data;
         console.log('Registered Guest:', data);

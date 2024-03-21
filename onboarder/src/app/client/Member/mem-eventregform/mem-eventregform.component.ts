@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { switchMap, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-mem-eventregform',
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./mem-eventregform.component.css']
 })
 export class MemEventregformComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -47,19 +49,19 @@ export class MemEventregformComponent implements OnInit {
 
   fetchMemberData() {
     // Fetch the member details including the memID
-    this.http.get<any>('http://localhost:5000/api/member', { withCredentials: true }).pipe(
+    this.http.get<any>(`${this.apiUrl}api/member`, { withCredentials: true }).pipe(
       switchMap((memberRes: any) => {
         const memID = memberRes._id;
         console.log("Member ID:", memID);
         // Fetch the organization details using the memID from the myOrganizations endpoint
-        return this.http.get<any>(`http://localhost:5000/api/thisevent/${this.eventID}`, { withCredentials: true }).pipe(
+        return this.http.get<any>(`${this.apiUrl}api/thisevent/${this.eventID}`, { withCredentials: true }).pipe(
           map((orgRes: any) => ({ memID, orgID: orgRes.orgID }))
         );
       })
     ).subscribe(
       ({ memID, orgID }: { memID: string, orgID: string }) => {
         console.log("Organization ID:", orgID);
-        this.http.get<any>(`http://localhost:5000/api/applicationStatus/${orgID}/${memID}`, { withCredentials: true }).subscribe(
+        this.http.get<any>(`${this.apiUrl}api/applicationStatus/${orgID}/${memID}`, { withCredentials: true }).subscribe(
           (statusRes: any[]) => {
             this.membershipStatus = statusRes;
             console.log("Membership:", this.membershipStatus);
@@ -124,11 +126,11 @@ export class MemEventregformComponent implements OnInit {
     const anyRequiredFieldFilled = requiredFields.some(field => regForm[field]);
     const allRequiredFieldsEmpty = requiredFields.every(field => !regForm[field]);
     if (anyRequiredFieldFilled && !allRequiredFieldsEmpty) {
-      this.http.get(`http://localhost:5000/api/thisevent/${this.eventID}`, { withCredentials: true }).subscribe(
+      this.http.get(`${this.apiUrl}api/thisevent/${this.eventID}`, { withCredentials: true }).subscribe(
       (event: any) => {
         const updatedSeats = event.eventSeats - 1;
         event.eventSeats = updatedSeats;
-        this.http.patch(`http://localhost:5000/api/event/${this.eventID}`, event, { withCredentials: true }).subscribe(
+        this.http.patch(`${this.apiUrl}api/event/${this.eventID}`, event, { withCredentials: true }).subscribe(
           () => {
             this.registerToEvent(regForm);
           },
@@ -148,7 +150,7 @@ export class MemEventregformComponent implements OnInit {
   }
 
   registerToEvent(regForm: any) {
-    this.http.get('http://localhost:5000/api/member', { withCredentials: true }).subscribe(
+    this.http.get(`${this.apiUrl}api/member`, { withCredentials: true }).subscribe(
       (memberRes: any) => {
         const orgID = memberRes.orgID;
         const eventID = memberRes.eventID;
@@ -164,7 +166,7 @@ export class MemEventregformComponent implements OnInit {
           emailAddress: regForm.emailAddress,
           contactno: regForm.contactno
         };
-        this.http.post('http://localhost:5000/api/createRegForm', formData, { withCredentials: true }).subscribe(
+        this.http.post(`${this.apiUrl}api/createRegForm`, formData, { withCredentials: true }).subscribe(
           () => {
             this.handleSuccess();
           },

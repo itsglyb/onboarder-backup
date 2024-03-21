@@ -4,6 +4,7 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 declare var $: any; // Declare jQuery to avoid TypeScript errors
 
@@ -13,6 +14,8 @@ declare var $: any; // Declare jQuery to avoid TypeScript errors
   styleUrls: ['./org-registration.component.css']
 })
 export class OrgRegistrationComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
   
   form!:FormGroup
   orgCode: string | undefined;
@@ -175,7 +178,7 @@ makeRandomCode(lengthOfCode: number, possible: string) {
         // Include expirationDate in the organization data
         organization.expirationDate = expirationDate.toISOString();
     
-        this.http.post('http://localhost:5000/api/orgRegister', organization, {
+        this.http.post(`${this.apiUrl}api/orgRegister`, organization, {
           withCredentials: true,
         }).subscribe(
           (orgResponse: any) => {
@@ -186,7 +189,7 @@ makeRandomCode(lengthOfCode: number, possible: string) {
               orgID: orgID,
             };
     
-            this.http.post('http://localhost:5000/api/createForm', membershipForm, {
+            this.http.post(`${this.apiUrl}api/createForm`, membershipForm, {
               withCredentials: true,
             }).subscribe(
               () => {

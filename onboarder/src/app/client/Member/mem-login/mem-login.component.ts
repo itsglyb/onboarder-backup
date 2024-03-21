@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as $ from 'jquery';
+import { environment } from 'src/environments/environment';
+
 
 interface ServerResponse {
   userType: string;
@@ -16,6 +18,7 @@ interface ServerResponse {
   styleUrls: ['./mem-login.component.css']
 })
 export class MemLoginComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
   form!: FormGroup;
   submitted: boolean = false;
 
@@ -56,9 +59,9 @@ export class MemLoginComponent implements OnInit {
 
     const member = this.form.value;
 
-    this.http.post('http://localhost:5000/api/login', member, { withCredentials: true }).subscribe(
+    this.http.post(`${this.apiUrl}api/login`, member, { withCredentials: true }).subscribe(
       (res: any) => {
-        this.http.get('http://localhost:5000/api/current', { withCredentials: true }).subscribe(
+        this.http.get(`${this.apiUrl}api/current`, { withCredentials: true }).subscribe(
           (userData: any) => {
             if (userData.userType === 'member') {
               this.router.navigate(['/member-profile']);

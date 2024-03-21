@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-forget-password',
@@ -10,6 +12,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./forget-password.component.css']
 })
 export class ForgetPasswordComponent implements OnInit {
+
+  private apiUrl = environment.apiUrl;
 
   form!: FormGroup;
 
@@ -33,7 +37,7 @@ export class ForgetPasswordComponent implements OnInit {
     console.log(this.form.value);
     const member = this.form.value;
   
-    this.http.post('http://localhost:5000/api/forgot-password', member)
+    this.http.post(`${this.apiUrl}api/forgot-password`, member)
       .subscribe(
         (response: any) => {
           console.log(response);

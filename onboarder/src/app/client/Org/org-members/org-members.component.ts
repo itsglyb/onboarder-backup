@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
+
 
 interface MemForm {
 
@@ -57,6 +59,8 @@ interface MemForm {
   styleUrls: ['./org-members.component.css']
 })
 export class OrgMembersComponent {
+  private apiUrl = environment.apiUrl;
+
   memForm$: Observable<MemForm> | undefined;
   form!:FormGroup
   membersDetails: any[] = [];
@@ -123,7 +127,7 @@ export class OrgMembersComponent {
     }
 
     ngOnInit():void{
-      this.http.get('http://localhost:5000/api/organization', {
+      this.http.get(`${this.apiUrl}api/organization`, {
         withCredentials: true
       }).subscribe(
         (memResponse: any) => {
@@ -185,14 +189,14 @@ export class OrgMembersComponent {
 
     getMemFormat(_id: string) {
 
-      this.memForm$ = this.http.get<MemForm>(`http://localhost:5000/api/myMemForm/${_id}`);
+      this.memForm$ = this.http.get<MemForm>(`${this.apiUrl}api/myMemForm/${_id}`);
       this.memForm$.subscribe(data => {
         console.log('API Response:', data);
       });
     }
   
     getMemForm(_id: string): void {
-      this.http.get(`http://localhost:5000/api/membershipApplication/${_id}`, { withCredentials: true })
+      this.http.get(`${this.apiUrl}api/membershipApplication/${_id}`, { withCredentials: true })
         .subscribe((resultData) => {
           console.log(resultData);
           
@@ -248,7 +252,7 @@ export class OrgMembersComponent {
     }
 
     getAllMembers(): void {
-      this.http.get("http://localhost:5000/api/myMembers", {withCredentials: true})
+      this.http.get(`${this.apiUrl}api/myMembers`, {withCredentials: true})
         .subscribe((resultData: any) => {
           console.log(resultData);
           this.membersDetails = resultData;

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { event } from 'jquery';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-admin-orgs',
@@ -9,6 +11,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./admin-orgs.component.css']
 })
 export class AdminOrgsComponent {
+  private apiUrl = environment.apiUrl;
+
   OrganizationArray: any[] = [];
   _id = "";
   orgName = "";
@@ -55,7 +59,7 @@ export class AdminOrgsComponent {
   }
 
   getAllOrganization() {
-    this.http.get("http://localhost:5000/api/vieworganization")
+    this.http.get(`${this.apiUrl}api/vieworganization`)
       .subscribe((resultData: any) => {
         console.log(resultData);
         this.OrganizationArray = resultData;
@@ -93,7 +97,7 @@ export class AdminOrgsComponent {
       "orgCode": this.orgCode
     }
 
-    this.http.patch("http://localhost:5000/api/organization" + "/" + this._id, orgData).subscribe((resultData: any) => {
+    this.http.patch(`${this.apiUrl}api/organization` + "/" + this._id, orgData).subscribe((resultData: any) => {
       console.log(resultData);
       this.getAllOrganization();
     })
@@ -130,10 +134,10 @@ export class AdminOrgsComponent {
       "orgCode": this.orgCode
     }
 
-    this.http.delete("http://localhost:5000/api/events" + "/" + this._id).subscribe((eventData: any) => {
+    this.http.delete(`${this.apiUrl}api/events` + "/" + this._id).subscribe((eventData: any) => {
         console.log(eventData);
         // After events are deleted, proceed to delete the organization
-        this.http.delete("http://localhost:5000/api/organization" + "/" + this._id).subscribe((resultData: any) => {
+        this.http.delete(`${this.apiUrl}api/organization` + "/" + this._id).subscribe((resultData: any) => {
             console.log(resultData);
             this.getAllOrganization();
         });

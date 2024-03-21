@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
+
 
 
 interface MemForm {
@@ -71,6 +73,8 @@ photo: boolean,
   styleUrls: ['./org-memforms.component.css']
 })
 export class OrgMemformsComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+
 
   memForm: MemForm | null = null;
 
@@ -187,7 +191,7 @@ export class OrgMemformsComponent implements OnInit {
   }
 
   getMemForm(): void {
-    this.http.get<MemForm>('http://localhost:5000/api/memForm', { withCredentials: true })
+    this.http.get<MemForm>(`${this.apiUrl}api/memForm`, { withCredentials: true })
       .subscribe(
         (resultData: MemForm) => {
           console.log(resultData);
@@ -219,7 +223,7 @@ export class OrgMemformsComponent implements OnInit {
 
     console.log('orgID:', this.memForm?.orgID);
 
-    this.http.patch(`http://localhost:5000/api/customizeForm/${this.memForm?.orgID}`, formData, { withCredentials: true })
+    this.http.patch(`${this.apiUrl}api/customizeForm/${this.memForm?.orgID}`, formData, { withCredentials: true })
     .subscribe(
       (response: any) => {
 

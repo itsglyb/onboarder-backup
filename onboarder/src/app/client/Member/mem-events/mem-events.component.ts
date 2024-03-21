@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-mem-events',
@@ -8,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./mem-events.component.css']
 })
 export class MemEventsComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
   EventArray: any[] = [];
   searchQuery: string = '';
   @ViewChild('eventContainer') eventContainer!: ElementRef;
@@ -29,13 +31,13 @@ export class MemEventsComponent implements OnInit {
   }
 
   getAllEvents() {
-    this.http.get('http://localhost:5000/api/member', {
+    this.http.get(`${this.apiUrl}api/member`, {
       withCredentials: true
     }).subscribe(
       (memResponse: any) => {
         const memID = memResponse._id;
   
-        this.http.get(`http://localhost:5000/api/myEvents/${memID}`, {
+        this.http.get(`${this.apiUrl}api/myEvents/${memID}`, {
           withCredentials: true
         }).subscribe((resultData: any) => {
           console.log(resultData);

@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-mem-navbar',
   templateUrl: './mem-navbar.component.html',
   styleUrls: ['./mem-navbar.component.css']
 })
 export class MemNavbarComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
   member!: string;
   
   constructor(private renderer: Renderer2, private el: ElementRef,  private http:HttpClient,
@@ -15,7 +18,7 @@ export class MemNavbarComponent implements OnInit {
   ngOnInit(): void {
     this.initializeSidebar();
 
-    this.http.get('http://localhost:5000/api/member', {
+    this.http.get(`${this.apiUrl}api/member`, {
       withCredentials: true
     }).subscribe(
       (res:any) => {
@@ -83,7 +86,7 @@ export class MemNavbarComponent implements OnInit {
   }
 
   logout() {
-    this.http.post('http://localhost:5000/api/logout', null, { withCredentials: true }).subscribe(
+    this.http.post(`${this.apiUrl}api/logout`, null, { withCredentials: true }).subscribe(
       (response) => {
         // Handle the successful logout response here
         this.router.navigate(['/auth-login']);
