@@ -14,7 +14,7 @@ app.use(cors({
   credentials: true,
   origin:'https://onboarder.site',
   methods: 'GET,POST',
-  allowedHeaders: Access-Control-Allow-Origin,
+  allowedHeaders: 'Access-Control-Allow-Origin',
   credentials: true
 }));
 
@@ -59,8 +59,8 @@ mongoose.connect(process.env.MONGODB_URI, {
       }
     });
 
-    app.listen(5000, () => {
-        console.log("App is listening on port 5000");
+    app.listen(443, () => {
+        console.log("App is listening on port 443");
     });
 })
 

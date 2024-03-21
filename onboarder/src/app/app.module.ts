@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LottieModule } from 'ngx-lottie';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { NgxGpAutocompleteModule } from "@angular-magic/ngx-gp-autocomplete";
-import player from 'lottie-web';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
