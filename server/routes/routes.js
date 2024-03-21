@@ -366,9 +366,6 @@ router.post('/reset-password', async (req,res, next)=>{
   
   });
 
-  
-
-
 router.get('/verify-email', async (req, res) => {
   try {
     const token = req.query.token;
@@ -384,7 +381,7 @@ router.get('/verify-email', async (req, res) => {
       <html>
       <head>
         <script>
-          window.location.href = 'http://localhost:4200/auth-login';
+          window.location.href = 'https://onboarder.site/auth-login';
         </script>
       </head>
       <body>
@@ -810,7 +807,7 @@ router.get('/email-verify', async (req, res) => {
       <html>
       <head>
         <script>
-          window.location.href = 'http://localhost:4200/auth-login';
+          window.location.href = 'https://onboarder.site/auth-login';
         </script>
       </head>
       <body>
