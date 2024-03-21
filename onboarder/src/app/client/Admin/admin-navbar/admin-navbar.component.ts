@@ -20,7 +20,7 @@ export class AdminNavbarComponent implements OnInit {
   ngOnInit(): void {
     this.initializeSidebar();
 
-    this.http.get('http://localhost:5000/api/admin', {
+    this.http.get(`${this.apiUrl}api/admin`, {
       withCredentials: true
     }).subscribe(
       (res:any) => {
@@ -89,7 +89,7 @@ export class AdminNavbarComponent implements OnInit {
 
 
   logout() {
-    this.http.post('http://localhost:5000/api/logout', null, { withCredentials: true }).subscribe(
+    this.http.post(`${this.apiUrl}api/logout`, null, { withCredentials: true }).subscribe(
       (response) => {
         // Handle the successful logout response here
         this.router.navigate(['/auth-login']);
