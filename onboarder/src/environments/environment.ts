@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl: "https://git.heroku.com/onboarder-app.git",
+  apiUrl: " https://onboarder-app-223a80294fdb.herokuapp.com/",
   production: "true"
 };
