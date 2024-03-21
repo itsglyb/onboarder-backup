@@ -12,7 +12,7 @@ app.use(cookieParser());
 // Allow requests from 'https://onboarder.site'
 app.use(cors({
   credentials: true,
-  origin:'https://onboarder.site',
+  origin:'https://onboarder-app-223a80294fdb.herokuapp.com/',
   methods: 'GET,POST',
   allowedHeaders: 'Access-Control-Allow-Origin',
   credentials: true
@@ -38,7 +38,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   //   // Middleware to set the CORS headers
     app.use((req, res, next) => {
       // Allow requests from 'https://onboarder.site'
-      res.header('Access-Control-Allow-Origin', 'https://onboarder.site.');
+      res.header('Access-Control-Allow-Origin', 'https://onboarder-app-223a80294fdb.herokuapp.com/');
       // You can also use a wildcard to allow requests from any origin:
       // res.header('Access-Control-Allow-Origin', '*');
   
