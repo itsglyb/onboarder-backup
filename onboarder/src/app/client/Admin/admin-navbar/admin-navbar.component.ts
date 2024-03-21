@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 declare var $: any; // Declare jQuery to avoid TypeScript errors
 
@@ -10,6 +11,7 @@ declare var $: any; // Declare jQuery to avoid TypeScript errors
   styleUrls: ['./admin-navbar.component.css']
 })
 export class AdminNavbarComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
   admin!: string;
 
   constructor(private renderer: Renderer2, private el: ElementRef,  private http:HttpClient,
@@ -23,12 +25,12 @@ export class AdminNavbarComponent implements OnInit {
     }).subscribe(
       (res:any) => {
         this.admin = `${res.firstName}`;
-    
+
       },
       (err) => {
         this.admin = "error"
-       
-    
+
+
       });
 
 
@@ -82,9 +84,9 @@ export class AdminNavbarComponent implements OnInit {
     }
   }
 
-  
-  
-  
+
+
+
 
   logout() {
     this.http.post('http://localhost:5000/api/logout', null, { withCredentials: true }).subscribe(

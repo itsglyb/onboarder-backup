@@ -79,7 +79,7 @@ export class OrgCreateEventComponent implements OnInit{
         this.form.patchValue({ eventTime: formattedTime });
       }
     }
-    
+
     private formatTime(time: string): string {
       const [hourMinute, meridiem] = time.split(' ');
       const [hours, minutes] = hourMinute.split(':').map(Number);

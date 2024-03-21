@@ -29,19 +29,19 @@
                                     <h2 class="steps">Step 1 - 5</h2>
                                 </div>
                             </div>
-                                <label class="fieldlabels">Event Title: *</label>
+                                <label class="fieldlabels">Event Title: <span class="text-danger">*</span></label>
                                 <input type="text" id="eventTitle" name="eventTitle" formControlName="eventTitle" placeholder="Please enter the name of the event" />
 
-                                <label class="fieldlabels">Event Description: *</label>
+                                <label class="fieldlabels">Event Description: <span class="text-danger">*</span></label>
                                 <textarea class="form-control" placeholder="Please enter your payment process and details" id="floatingTextarea" formControlName="eventDesc"></textarea>
 
-                                <label class="fieldlabels">Date of the Event: *</label>
+                                <label class="fieldlabels">Date of the Event: <span class="text-danger">*</span></label>
                                 <input type="date" id="eventDate" name="eventDate" formControlName="eventDate"/>
 
-                                <label class="fieldlabels">Time of the Event: *</label>
+                                <label class="fieldlabels">Time of the Event: <span class="text-danger">*</span></label>
                                 <input type="time" id="eventTime" name="eventTime" formControlName="eventTime" step="any/"/>
 
-                                <label class="fieldlabels">Type of the Event: *</label>
+                                <label class="fieldlabels">Type of the Event: <span class="text-danger">*</span></label>
                                 <select id="eventType" class="form-control" formControlName="eventType" name="eventType">
                                     <option value="" disabled selected></option>
                                     <option value="Exclusive">Exclusive</option>
@@ -52,7 +52,7 @@
 
 
                             <div class="location">
-                                <label class="fieldlabels">Mode</label>
+                                <label class="fieldlabels">Mode <span class="text-danger">*</span></label>
                                 <div class="button-container">
                                     <button (click)="onButtonClicked(1)" [class.active]="activeButton === 1">Physical</button>
                                     <button (click)="onButtonClicked(2)" [class.active]="activeButton === 2">Online</button>
@@ -63,25 +63,25 @@
                               <!-- Add content that will change based on the button pressed -->
                               <div class="loc" *ngIf="activeButton === 1">
                                 <div class="content">
-                                    <label class="fieldlabels">Location</label>
+                                    <label class="fieldlabels">Location <span class="text-danger">*</span></label>
                                     <input ngx-gp-autocomplete [options] =
                                     "options"  (onAddressChange)="AddressChange($event)" formControlName="location">
                                   </div>
                               </div>
                               <div class="loc" *ngIf="activeButton === 2">
                                 <div class="content">
-                                    <label class="fieldlabels">Meeting URL</label>
+                                    <label class="fieldlabels">Meeting URL<span class="text-danger">*</span></label>
                                     <input placeholder=" " id="meetingURL" name="meetingURL" type="text" formControlName="meetingURL">
                                   </div>
                               </div>
                               <div  class="loc"*ngIf="activeButton === 3">
                                 <div class="content">
-                                    <label class="fieldlabels">Search Location</label>
+                                    <label class="fieldlabels">Search Location<span class="text-danger">*</span></label>
                                     <input placeholder=" " id="location" name="location" type="text" formControlName="location">
                                   </div>
 
                                   <div class="content">
-                                    <label class="fieldlabels">Meeting URL</label>
+                                    <label class="fieldlabels">Meeting URL<span class="text-danger">*</span></label>
                                     <input placeholder="Please put the meeting link" id="meetingURL" name="meetingURL" type="text" formControlName="meetingURL">
                                   </div>
                               </div>
@@ -103,7 +103,7 @@
 
                                 <div class="container col-md-6">
                                     <div class="mb-5">
-                                        <label class="fieldlabels">Official Poster of the Event: *</label>
+                                        <label class="fieldlabels">Official Poster of the Event: <span class="text-danger">*</span></label>
                                         <input class="form-control" type="file" id="formFile" onchange="preview('frame', 'poster')" (change)="onChange($event, 'poster')" accept="image/*">
                                         <label class="fieldlabels">Recommended image size: 2160 x 1080px <br>  Maximum file size: 10MB <br> Supported image files: JPEG or PNG</label>
                                         <button onclick="clearImage('formFile', 'frame')" class="action-button">Delete</button>
@@ -113,7 +113,7 @@
 
                                 <div class="container col-md-6">
                                     <div class="mb-5">
-                                        <label class="fieldlabels">Programme: *</label>
+                                        <label class="fieldlabels">Programme: <span class="text-danger">*</span></label>
                                         <input class="form-control" type="file" id="formFile1" onchange="preview('frame1', 'programme')" (change)="onChange($event, 'programme')" accept="image/*">
                                         <label class="fieldlabels">Recommended image size: 2160 x 1080px <br>  Maximum file size: 10MB <br> Supported image files: JPEG or PNG</label>
                                         <button onclick="clearImage('formFile1', 'frame1')" class="action-button">Delete</button>
@@ -121,7 +121,7 @@
                                     <img id="frame1" src="" class="img-fluid" />
                                 </div>
 
-                                <label class="fieldlabels">Official Video: *</label>
+                                <label class="fieldlabels">Official Video: </label>
                                 <input type="text" id="eventVideo" name="eventVideo" formControlName="video" placeholder="Please copy and paste the video URL here"/>
 
 

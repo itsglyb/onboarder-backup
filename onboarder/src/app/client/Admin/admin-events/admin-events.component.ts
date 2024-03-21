@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   providers: [DatePipe],
@@ -9,6 +10,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./admin-events.component.css']
 })
 export class AdminEventsComponent implements OnInit{
+  private apiUrl = environment.apiUrl;
   EventArray: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 5;
@@ -26,9 +28,9 @@ export class AdminEventsComponent implements OnInit{
   eventSeats = "";
   eventPrice = "";
   eventPaymentDetails = "";
-  Math: any = Math; 
+  Math: any = Math;
   searchQuery: string = '';
-  
+
   constructor(private http: HttpClient, private datePipe: DatePipe){
     this.getAllEvents();
   }
@@ -42,21 +44,21 @@ export class AdminEventsComponent implements OnInit{
       this.programme = base64String;
     });
   }
-  
+
   // Your convertfiletobase64 function
   convertfiletobase64(file: File, callback: (base64string: string) => void) {
     const reader = new FileReader();
     reader.onload = (e) => {
       let base64string = reader.result as string;
-  
-  
+
+
       callback(base64string);
     };
     reader.readAsDataURL(file);
   }
 
   getAllEvents(){
-    this.http.get("http://localhost:5000/api/viewevent")
+    this.http.get(`${this.apiUrl}api/viewevent`)
     .subscribe((resultData:any) => {
       console.log(resultData);
       this.EventArray = resultData;
@@ -97,7 +99,7 @@ export class AdminEventsComponent implements OnInit{
       "eventPaymentDetails" : this.eventPaymentDetails
     }
 
-    this.http.patch("http://localhost:5000/api/event" + "/" + this._id, eventData).subscribe(
+    this.http.patch(`${this.apiUrl}api/event` + "/" + this._id, eventData).subscribe(
       (resultData: any) => {
         console.log(resultData);
         this.getAllEvents();
@@ -140,7 +142,7 @@ export class AdminEventsComponent implements OnInit{
       "eventPaymentDetails" : this.eventPaymentDetails
     }
 
-    this.http.delete("http://localhost:5000/api/event" + "/" + this._id).subscribe(
+    this.http.delete(`${this.apiUrl}api/event` + "/" + this._id).subscribe(
       (resultData: any) => {
         console.log(resultData);
         this.getAllEvents();
@@ -170,10 +172,10 @@ export class AdminEventsComponent implements OnInit{
       this.getAllEvents();
       return;
     }
-  
+
     // Convert searchQuery to lowercase for case-insensitive search
     const searchTerm = this.searchQuery.toLowerCase();
-  
+
     // Filter MemberArray based on search query
     this.EventArray = this.EventArray.filter(event => {
       // Check if member and memName property exist
@@ -185,14 +187,14 @@ export class AdminEventsComponent implements OnInit{
     });
   }
 
-  
+
   ngOnInit(): void {
     // Load and initialize the JavaScript file
     this.loadScript('assets/js/triggermodal.js').then(() => {
       // The JavaScript file is loaded and initialized
     }).catch(error => {
       console.error('Error loading triggermodal.js', error);
-    });    
+    });
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -206,4 +208,3 @@ export class AdminEventsComponent implements OnInit{
     });
   }
 }
-  
