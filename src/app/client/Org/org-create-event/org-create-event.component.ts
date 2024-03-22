@@ -76,12 +76,6 @@ export class OrgCreateEventComponent implements OnInit{
     }
 
     public AddressChange(address: any) {
-      const eventTimeControl = this.form.get('eventTime');
-      if (eventTimeControl) {
-        const currentEventTime = eventTimeControl.value;
-        const formattedTime = this.formatTime(currentEventTime);
-        this.form.patchValue({ eventTime: formattedTime });
-      }
       this.formattedaddress = address.formatted_address;
         // Set the formatted address to the location form control
         this.form.patchValue({ location: this.formattedaddress });
