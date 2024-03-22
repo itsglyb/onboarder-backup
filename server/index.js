@@ -7,7 +7,7 @@ const bodyParser = require("body-parser")
 const app = express()
 require('dotenv').config();
 
-app.use(cookieParser());ng
+app.use(cookieParser());
 
 // Allow requests from 'https://onboarder.site'
 app.use(cors({
