@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+
 
 function preview(imageId) {
     var frame = document.getElementById(imageId);
