@@ -108,11 +108,11 @@ export class OrgCreateEventComponent implements OnInit{
 
         // Check if any required field in Step 1 is empty
         if (
-          !event.eventTitle.trim() ||
-          !event.eventDesc.trim() ||
-          !event.eventDate.trim() ||
-          !event.eventTime.trim() ||
-          !event.eventType.trim()
+          event.eventTitle == '' ||
+          event.eventDesc == '' ||
+          event.eventDate == '' ||
+          event.eventTime == '' ||
+          event.eventType == ''
         ) {
           Swal.fire("Error", "Please fill up all the required fields in Step 1", "error");
           this.isStep1Valid = false;
