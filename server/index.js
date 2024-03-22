@@ -28,6 +28,11 @@ app.use("/api", routes)
 
 app.use(express.static(path.join(__dirname, 'dist/onboarder')));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/onboarder/index.html'));
+});
+s
+
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true 
