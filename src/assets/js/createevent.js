@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 function preview(imageId) {
     var frame = document.getElementById(imageId);
     frame.src = URL.createObjectURL(event.target.files[0]);
