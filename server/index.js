@@ -13,7 +13,7 @@ app.use(cookieParser());ng
 app.use(cors({
   credentials: true,
   // origin:'https://onboarder.site',
-  origin: 'https://onboarder-app-223a80294fdb.herokuapp.com/',
+  origin: 'https://onboarder-app-223a80294fdb.herokuapp.com',
   methods: 'GET,POST',
   allowedHeaders: 'Access-Control-Allow-Origin',
   credentials: true
