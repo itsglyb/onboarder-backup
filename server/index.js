@@ -5,6 +5,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const bodyParser = require("body-parser")
 const app = express()
+const path = require('path');
 require('dotenv').config();
 
 app.use(cookieParser());
@@ -24,6 +25,8 @@ app.use(bodyParser.urlencoded({extended:true, limit: '50mb', parameterLimit:5000
 app.use(express.json());
 app.use(bodyParser.json());
 app.use("/api", routes)
+
+app.use(express.static(path.join(__dirname, 'dist/onboarder')));
 
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
