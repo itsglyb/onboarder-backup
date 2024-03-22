@@ -82,6 +82,9 @@ export class OrgCreateEventComponent implements OnInit{
         const formattedTime = this.formatTime(currentEventTime);
         this.form.patchValue({ eventTime: formattedTime });
       }
+      this.formattedaddress = address.formatted_address;
+        // Set the formatted address to the location form control
+        this.form.patchValue({ location: this.formattedaddress });
     }
 
     private formatTime(time: string): string {
