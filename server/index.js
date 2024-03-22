@@ -26,10 +26,10 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use("/api", routes)
 
-app.use(express.static(path.join(__dirname, 'onboarder/dist/onboarder')));
+app.use(express.static(path.join(__dirname, '/dist/onboarder')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'onboarder/dist/onboarder/index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/dist/onboarder/index.html'));
 });
 
 
