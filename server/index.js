@@ -41,7 +41,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 .then(()=>{
     console.log("connected to db")
 
-    const port = process.env.PORT || 5000;
+    const port = process.env.PORT || 80;
 
 
   // //   // Middleware to set the CORS headers
