@@ -29,4 +29,4 @@ const guestregFormSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("guestRegForm", guestregFormSchema)
+module.exports = mongoose.model("GuestRegForm", guestregFormSchema)

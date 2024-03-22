@@ -14,7 +14,7 @@ const Admin = require('../models/admin');
 const EventRegForm = require('../models/eventregForm');
 const GuestRegForm = require('../models/guestRegForm');
 const MembershipApplication = require('../models/membershipApplication');
-const guestRegForm = require('../models/guestRegForm');
+// const guestRegForm = require('../models/guestRegForm');
 const { error } = require('console');
 const MemberToken = require('../models/memberToken');
 
