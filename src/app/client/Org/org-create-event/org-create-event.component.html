@@ -64,7 +64,7 @@
                               <div class="loc" *ngIf="activeButton === 1">
                                 <div class="content">
                                     <label class="fieldlabels">Location <span class="text-danger">*</span></label>
-                                    <input ngx-gp-autocomplete [options] =
+                                    <input type="text" ngx-gp-autocomplete [options] =
                                     "options"  (onAddressChange)="AddressChange($event)" formControlName="location">
                                   </div>
                               </div>

@@ -24,6 +24,7 @@ export class OrgCreateEventComponent implements OnInit{
     private http:HttpClient,
     private router: Router
   ) {}
+
   form!: FormGroup
   activeButton: number = 1; // Default to Button 1 active state
   isSmallScreen = false;
@@ -33,6 +34,7 @@ export class OrgCreateEventComponent implements OnInit{
   isStep2Valid = false;
   isStep3Valid = false;
   isStep4Valid = false;
+
 
   formattedaddress=" ";
   options={
@@ -90,38 +92,35 @@ export class OrgCreateEventComponent implements OnInit{
       return `${formattedHours}:${formattedMinutes} ${amOrPm}`;
     }
 
+    validateStep1() {
+      const event = this.form.getRawValue();
+      const eventDate = new Date(event.eventDate);
+      const currentDate = new Date();
 
+      // Check if the event date is in the past
 
-
-      validateStep1() {
-        const event = this.form.getRawValue();
-        const eventDate = new Date(event.eventDate);
-        const currentDate = new Date();
-
-        // Check if the event date is in the past
-
-        // Check if any required field in Step 1 is empty
-        if (
-          event.eventTitle == '' ||
-          event.eventDesc == '' ||
-          event.eventDate == '' ||
-          event.eventTime == '' ||
-          event.eventType == ''
-        ) {
-          Swal.fire("Error", "Please fill up all the required fields in Step 1", "error");
-          this.isStep1Valid = false;
-          return;
-        }
-
-        if (eventDate < currentDate) {
-          Swal.fire("Error", "Please select a future date for the event", "error");
-          this.isStep1Valid = false;
-          return;
-        }
-
-        // If all validations pass, set isStep1Valid to true
-        this.isStep1Valid = true;
+      // Check if any required field in Step 1 is empty
+      if (
+        event.eventTitle == '' ||
+        event.eventDesc == '' ||
+        event.eventDate == '' ||
+        event.eventTime == '' ||
+        event.eventType == ''
+      ) {
+        Swal.fire("Error", "Please fill up all the required fields in Step 1", "error");
+        this.isStep1Valid = false;
+        return;
       }
+
+      if (eventDate < currentDate) {
+        Swal.fire("Error", "Please select a future date for the event", "error");
+        this.isStep1Valid = false;
+        return;
+      }
+
+      // If all validations pass, set isStep1Valid to true
+      this.isStep1Valid = true;
+    }
 
 
 
