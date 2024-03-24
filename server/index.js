@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(cors({
   credentials: true,
   // origin:'https://onboarder.site',
-  origin: 'https://onboarder-app-223a80294fdb.herokuapp.com',
+  origin: 'http://www.onboarder.site',
   methods: 'GET,POST',
   allowedHeaders: 'Access-Control-Allow-Origin',
   credentials: true
@@ -35,9 +35,9 @@ app.get('*', (req, res) => {
 
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true 
+    useUnifiedTopology: true
 })
- 
+
 .then(()=>{
     console.log("connected to db")
 
@@ -50,16 +50,16 @@ mongoose.connect(process.env.MONGODB_URI, {
   //     res.header('Access-Control-Allow-Origin', 'https://onboarder.site.');
   //     // You can also use a wildcard to allow requests from any origin:
   //     // res.header('Access-Control-Allow-Origin', '*');
-  
+
   //     // Define the HTTP methods you want to allow
   //     res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-  
+
   //     // Define the headers you want to allow
   //     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
+
   //     // Allow credentials, if needed
   //     res.header('Access-Control-Allow-Credentials', 'true');
-  
+
   //     // Handle preflight requests
   //     if (req.method === 'OPTIONS') {
   //       res.sendStatus(204);
@@ -111,9 +111,9 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // mongoose.connect(process.env.MONGODB_URI, {
 //     useNewUrlParser: true,
-//     useUnifiedTopology: true 
+//     useUnifiedTopology: true
 // })
- 
+
 // .then(()=>{
 //     console.log("connected to db")
 
@@ -126,16 +126,16 @@ mongoose.connect(process.env.MONGODB_URI, {
 //       res.header('Access-Control-Allow-Origin', 'https://onboarder-app-223a80294fdb.herokuapp.com/');
 //       // You can also use a wildcard to allow requests from any origin:
 //       // res.header('Access-Control-Allow-Origin', '*');
-  
+
 //       // Define the HTTP methods you want to allow
 //       res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-  
+
 //       // Define the headers you want to allow
 //       res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
+
 //       // Allow credentials, if needed
 //       res.header('Access-Control-Allow-Credentials', 'true');
-  
+
 //       // Handle preflight requests
 //       if (req.method === 'OPTIONS') {
 //         res.sendStatus(204);
