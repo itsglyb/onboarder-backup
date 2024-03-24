@@ -13,7 +13,7 @@ app.use(cookieParser());
 // Allow requests from 'https://onboarder.site'
 app.use(cors({
   credentials: true,
-  origin:'http://www.onboarder.site',
+  origin:'https://www.onboarder.site',
   methods: 'GET,POST',
   allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Origin'],
   credentials: true
