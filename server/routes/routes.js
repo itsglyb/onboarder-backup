@@ -54,7 +54,7 @@ router.post('/admin', async (req, res) => {
 
   const result = await admin.save();
 
-  //JWT 
+  //JWT
 
   const { _id } = await result.toJSON();
 
@@ -96,7 +96,7 @@ router.patch('/orgRegister/:id', async (req, res) => {
       return res.status(404).send('Application not found');
     }
     return res.status(200).send(updateApplication);
-    
+
   } catch (error) {
     res.status(400).send(error);S
   }
@@ -146,7 +146,7 @@ router.post('/register', async (req, res) => {
       from: process.env.AUTH_EMAIL,
       to: member.email,
       subject: "ONBOARDER | Account Verification",
-      html:`<h2> Hi ${member.firstName}!</h2> <h4>To start your onboarding journey, please verify your email.</h4> 
+      html:`<h2> Hi ${member.firstName}!</h2> <h4>To start your onboarding journey, please verify your email.</h4>
       <a href="http://${req.headers.host}/api/verify-email?token=${member.emailToken}">LINK</a>`
     }
 
@@ -170,7 +170,7 @@ router.post('/forgot-password', async (req, res, next) => {
   try{
     const email = req.body.email;
     const member = await Member.findOne({ email: email });
-  
+
     if (!member) {
       // return res.status(400).send("Member not found");
       const organization = await Organization.findOne({ email: email });
@@ -189,15 +189,15 @@ router.post('/forgot-password', async (req, res, next) => {
           memID: organization._id,
           token: token
         });
-      
+
         const mailOptions = {
           from: process.env.AUTH_EMAIL,
           to: organization.email,
           subject: "ONBOARDER | Reset Password",
           html: `<h2>Greetings ${organization.orgName}!</h2> <h4>We have received a request to reset your password. To complete the process, please click the link below</h4> <a href=${process.env.URL}/reset-password/${token}>Reset Password Link</a>`
         }
-      
-        
+
+
         transporter.sendMail(mailOptions, function (error, info) {
           if (error) {
             console.log(error);
@@ -226,15 +226,15 @@ router.post('/forgot-password', async (req, res, next) => {
         memID: member._id,
         token: token
       });
-    
+
       const mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: member.email,
         subject: "ONBOARDER | Reset Password",
         html: `<h2>Hi ${member.firstName}!</h2> <h4>We have received a request to reset your password. To complete the process, please click the link below</h4> <a href=${process.env.URL}/reset-password/${token}>Reset Password Link</a>`
       }
-    
-      
+
+
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           console.log(error);
@@ -252,8 +252,8 @@ router.post('/forgot-password', async (req, res, next) => {
         }
       });
     }
-  
-   
+
+
   }
 
 
@@ -261,14 +261,14 @@ router.post('/forgot-password', async (req, res, next) => {
     console.error(error);
     res.status(400).send({ message: "Bad Request" });
   }
- 
+
 });
 
 router.post('/reset-password', async (req,res, next)=>{
 
   try {
-   
-   const token = req.body.token;  
+
+   const token = req.body.token;
    const newpass = req.body.password;
 
    jwt.verify(token, "secret", async (err, data)=>{
@@ -278,20 +278,20 @@ router.post('/reset-password', async (req,res, next)=>{
     } else{
       console.log("Decoded token data:", data);
       const response = data;
-      const user = await Member.findOne({ email: response.payload.email }); 
+      const user = await Member.findOne({ email: response.payload.email });
 
       if(!user){
-        const user = await Organization.findOne({ email: response.payload.email }); 
+        const user = await Organization.findOne({ email: response.payload.email });
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(newpass, salt);
-  
+
         user.password = hashedPassword;
         try{
             const updatedPass = await Organization.findOneAndUpdate({_id: user._id}, {$set: user}, {new:true})
             await user.save();
-  
+
             return res.status(200).send("Password reset successfully")
-  
+
         }catch(error){
           return res.status(500).send("Expired Link");
         }
@@ -314,7 +314,7 @@ router.post('/reset-password', async (req,res, next)=>{
       }
 
 
-      
+
     }
    })
 
@@ -336,9 +336,9 @@ router.post('/reset-password', async (req,res, next)=>{
         subject: "ONBOARDER | Account Verification",
         html:`<h2>Hi ${organization.orgName}!</h2> <h4>Unfortunately, your registration was rejected due to the following reason/s : </h4>  <h4>${organization.remarks}</h4>`
       }
-  
+
       //sending email
-  
+
       transporter.sendMail(mailOptions, function(error, info){
         if(error){
           console.log(error)
@@ -359,11 +359,11 @@ router.post('/reset-password', async (req,res, next)=>{
           "message" : "org deleted"
         }
       );
-     
+
     } catch (error) {
       res.status(400).send(error);
     }
-  
+
   });
 
 router.get('/verify-email', async (req, res) => {
@@ -381,7 +381,7 @@ router.get('/verify-email', async (req, res) => {
       <html>
       <head>
         <script>
-          window.location.href = 'https://onboarder.site/auth-login';
+          window.location.href = 'https://www.onboarder.site/auth-login';
         </script>
       </head>
       <body>
@@ -426,7 +426,7 @@ router.patch('/member/:id', async (req, res) => {
       return res.status(404).send;
     }
     return res.status(200).send(updateMember);
-   
+
   } catch (error) {
     res.status(400).send(error);
   }
@@ -442,14 +442,14 @@ router.delete('/member/:id', async (req, res) => {
     {
      return res.status(404).send();
     }
-    
+
     res.status(201).send(
       {
         "status" : true,
         "message" : "student deleted"
       }
     );
-   
+
   } catch (error) {
     res.status(400).send(error);
   }
@@ -481,23 +481,23 @@ router.post('/login', async (req, res) => {
       } // c
 
       const token = jwt.sign({ // but if hindi mali, then sign token
-        _id: admin._id, 
+        _id: admin._id,
         email: admin.email,
         firstName: admin.firstName,
         lastName: admin.lastName,
         userType: admin.userType
-      
+
       },"secret") //but this if valid
-    
+
       res.cookie("jwt", token,{
         httpOnly:true,
         maxAge:3*24*60*60*1000,
       })
-    
+
       res.send({
         message:"success"
       })
-      
+
       } // if may org
 
       else if (!(await bcrypt.compare(req.body.password, organization.password))){ // if may org compare pass,
@@ -520,8 +520,8 @@ router.post('/login', async (req, res) => {
   }
 
   else{const token = jwt.sign({
-    _id: organization._id, 
-    userType: organization.userType, 
+    _id: organization._id,
+    userType: organization.userType,
     orgName: organization.orgName},"secret") //sign pag di mali
 
   res.cookie("jwt", token,{
@@ -548,13 +548,13 @@ router.post('/login', async (req, res) => {
   }
 
   else {const token = jwt.sign({
-    _id: member._id, 
+    _id: member._id,
     email: member.email,
     firstName: member.firstName,
     lastName: member.lastName,
     userType: member.userType,
     isVerified: member.isVerified
-  
+
   },"secret") //but this if valid
 
   res.cookie("jwt", token,{
@@ -573,13 +573,13 @@ router.post('/login', async (req, res) => {
         try {
             const cookie = req.cookies['jwt'];
             const claims = jwt.verify(cookie, "secret");
-    
+
             if (!claims) {
                 return res.status(401).send({
                     message: "unauthenticated"
                 });
             }
-    
+
             let user;
 
             if (claims.userType === 'member') {
@@ -590,13 +590,13 @@ router.post('/login', async (req, res) => {
             else if (claims.userType === 'admin') {
               user = await Admin.findOne({ _id: claims._id });
           }
-    
+
             if (!user) {
                 return res.status(404).send({
                     message: "User not found"
                 });
             }
-    
+
             const { password, ...data } = await user.toJSON();
             res.send(data);
         } catch (err) {
@@ -605,24 +605,24 @@ router.post('/login', async (req, res) => {
             });
         }
     });
-   
+
   // TO GET DETAILS FOR LOGGED IN MEMBER
     router.get('/member', async (req, res) => {
       try{
         const cookie = req.cookies['jwt']
         const claims = jwt.verify(cookie,"secret")
-  
+
         if(!claims){
           return res.status(401).send({
             message: "unauthenticated"
           })
         }
-  
+
         const member = await Member.findOne({_id:claims._id})
         const {password,...data} = await member.toJSON()
-  
+
         res.send(data)
-  
+
       }
       catch(err){
         return res.status(401).send({
@@ -634,13 +634,13 @@ router.post('/login', async (req, res) => {
   // org approval
   router.get('/approval', async (req, res) => {
     try {
-      
+
       const approval = await Organization.find({
         $and: [{ isApproved: false }]
       });
-  
+
       res.send(approval);
-  
+
     } catch (error) {
       console.error(error);
       res.status(500).send({
@@ -650,7 +650,7 @@ router.post('/login', async (req, res) => {
   });
 
 
-  
+
   // TO GET DETAILS FOR LOGGED IN ORGANIZATION
 
 router.get('/organization', async (req, res) => {
@@ -715,7 +715,7 @@ router.post('/logout', (req,res) =>{
 
 //ORGANIZATION REGISTRATION
 router.post('/orgRegister', async (req, res) => {
- 
+
   let remarks = req.body.remarks
   let orgName = req.body.orgName
   let orgType = req.body.orgType
@@ -731,9 +731,9 @@ router.post('/orgRegister', async (req, res) => {
   let certificate = req.body.certificate
   let orgCode = req.body.orgCode
   let expirationDate = req.body.expirationDate
-  
-  
- 
+
+
+
 
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
@@ -773,7 +773,7 @@ router.post('/orgRegister', async (req, res) => {
     from: process.env.AUTH_EMAIL,
     to: organization.email,
     subject: "ONBOARDER | Account Verification",
-    html:`<h2> Greetings ${organization.orgName}!</h2> <h4>To start your onboarding journey, please verify your email.</h4> 
+    html:`<h2> Greetings ${organization.orgName}!</h2> <h4>To start your onboarding journey, please verify your email.</h4>
     <a href="http://${req.headers.host}/api/email-verify?token=${organization.emailToken}">LINK</a>`
   }
 
@@ -807,7 +807,7 @@ router.get('/email-verify', async (req, res) => {
       <html>
       <head>
         <script>
-          window.location.href = 'https://onboarder.site/auth-login';
+          window.location.href = 'https://www.onboarder.site/auth-login';
         </script>
       </head>
       <body>
@@ -852,7 +852,7 @@ router.patch('/organization/:id', async (req, res) => {
       return res.status(404).send;
     }
     return res.status(200).send(updateOrganization);
-   
+
   } catch (error) {
     res.status(400).send(error);
   }
@@ -868,14 +868,14 @@ router.delete('/organization/:id', async (req, res) => {
     {
      return res.status(404).send();
     }
-    
+
     res.status(201).send(
       {
         "status" : true,
         "message" : "organization deleted"
       }
     );
-   
+
   } catch (error) {
     res.status(400).send(error);
   }
@@ -924,7 +924,7 @@ router.post('/createForm', async (req, res) => {
   let memType5FeeInput = req.body.memType5FeeInput
   let memType6FeeInput = req.body.memType6FeeInput
   let memType1ProcessInput = req.body.memType1ProcessInput
- 
+
 
   try {
       // Create a new Member instance with checkbox data
@@ -942,9 +942,9 @@ router.post('/createForm', async (req, res) => {
 
         idLicense: false, prcNo : false,
         prcDate: false, prcExpiration: false,
-        studentID: false, companyID: false, 
-        
-        
+        studentID: false, companyID: false,
+
+
         EducAttainment: false,
         tertiary: false, tertiaryDegree: false,
         tertiaryYear: false, tertiaryDiploma : false,
@@ -952,11 +952,11 @@ router.post('/createForm', async (req, res) => {
         masteralYear: false, masteralDiploma: false,
         doctoral: false, doctoralDegree: false,
         doctoralYear: false,
-        
+
         employmentDetails: false,
         employer: false, jobTitle: false,
         employerAdd: false, specialization: false,
-        
+
         membership: false,
 
         memType1: false, memType2: false,
@@ -968,12 +968,12 @@ router.post('/createForm', async (req, res) => {
         memType5Details: false, memType6Details: false,
 
         memType1Fee: false,memType2Fee: false,
-        memType3Fee: false, memType4Fee: false, 
-        memType5Fee: false, memType6Fee: false, 
+        memType3Fee: false, memType4Fee: false,
+        memType5Fee: false, memType6Fee: false,
         memType1Process: false,
         date: false,
-       
-        
+
+
         memType1Input : memType1Input,
         memType2Input : memType2Input,
         memType3Input : memType3Input,
@@ -997,8 +997,8 @@ router.post('/createForm', async (req, res) => {
 
         memType1ProcessInput : memType1ProcessInput,
 
-        orgID:orgID,     
-        
+        orgID:orgID,
+
 
       })
 
@@ -1015,7 +1015,7 @@ router.post('/createForm', async (req, res) => {
 
 router.get('/myMemForm/:id', async (req, res) => {
   try {
-    const _id = req.params.id; 
+    const _id = req.params.id;
     const memForm = await MemForm.findOne({ orgID: _id });
     res.send(memForm);
   } catch (error) {
@@ -1052,7 +1052,7 @@ router.get('/memForm', async (req, res) => {
 //READ specific org via card
 router.get('/thisOrg/:id', async (req, res) => {
   try {
-    const orgId = req.params.id; // 
+    const orgId = req.params.id; //
     const thisOrg = await Organization.findById(orgId);
     if (!thisOrg) {
       return res.status(404).send({ error: 'Organization not found' });
@@ -1066,7 +1066,7 @@ router.get('/thisOrg/:id', async (req, res) => {
 //READ specific org via orgCode
 router.get('/thisOrg1/:orgCode', async (req, res) => {
   try {
-    const orgCode = req.params.orgCode; 
+    const orgCode = req.params.orgCode;
     const organization = await Organization.findOne({ orgCode: orgCode });
     if (!organization) {
       return res.status(404).send({ error: 'Organization not found' });
@@ -1155,13 +1155,13 @@ router.patch('/event/:id', async (req, res) => {
       return res.status(404).send;
     }
     return res.status(200).send(updateEvent);
-   
+
   } catch (error) {
     res.status(400).send(error);
   }
 });
 
-//delete event 
+//delete event
 router.delete('/event/:id', async (req, res) => {
   try {
     const eventID = req.params.id;
@@ -1170,7 +1170,7 @@ router.delete('/event/:id', async (req, res) => {
     {
      return res.status(404).send();
     }
-    
+
     res.status(201).send(
       {
         "status" : true,
@@ -1207,7 +1207,7 @@ router.delete('/events/:orgID', async (req, res) => {
         message: "No events found for the organization ID provided"
       });
     }
-    
+
     res.status(200).send({
       status: true,
       message: "Organization events deleted successfully"
@@ -1221,7 +1221,7 @@ router.delete('/events/:orgID', async (req, res) => {
 // display org-event details
 router.get('/thisevent/:id', async (req, res) => {
   try {
-    const eventID = req.params.id; // 
+    const eventID = req.params.id; //
     const thisOrg = await Events.findById(eventID);
     if (!thisOrg) {
       return res.status(404).send({ error: 'Event not found' });
@@ -1258,7 +1258,7 @@ router.post('/membershipApplication', async (req, res) => {
   let prcExpiration = req.body.prcExpiration;
   let studentID = req.body.studentID;
   let companyID = req.body.companyID;
-  
+
   let tertiary = req.body.tertiary;
   let tertiaryDegree = req.body.tertiaryDegree;
   let tertiaryYear = req.body.tertiaryYear;
@@ -1282,7 +1282,7 @@ router.post('/membershipApplication', async (req, res) => {
 
   try {
 
-    
+
     const membershipApplication = new MembershipApplication({
       orgID: orgID,
       memID : memID,
@@ -1302,13 +1302,13 @@ router.post('/membershipApplication', async (req, res) => {
       email: email,
       contactNum: contactNum,
       region : region,
-     
+
       prcNo : prcNo,
       prcDate : prcDate,
       prcExpiration : prcExpiration,
       studentID : studentID,
       companyID : companyID,
-   
+
       tertiary : tertiary,
       tertiaryDegree : tertiaryDegree,
       tertiaryYear : tertiaryYear,
@@ -1476,7 +1476,7 @@ router.get('/applicationStatus/:id/:memID', async (req, res) => {
 
 
 
-// create event reg form 
+// create event reg form
 router.post('/createRegForm', async (req, res) => {
   let orgID = req.body.orgID;
   let orgName = req.body.orgName;
@@ -1508,9 +1508,9 @@ router.post('/createRegForm', async (req, res) => {
       subject: "ONBOARDER | Event Registration",
       html:`<h2>Hi ${eventRegForm.memName}!</h2> <h4>Together with ${event.orgName}, we're excited to confirm your registration for ${event.eventTitle}! This email serves as both your registration confirmation ticket to the event.</h4>`
     }
-  
+
     //sending email
-  
+
     transporter.sendMail(mailOptions, function(error, info){
       if(error){
         console.log(error)
@@ -1552,9 +1552,9 @@ router.post('/createguestRegForm', async (req, res) => {
       subject: "ONBOARDER | Event Registration",
       html:`<h2>Hi ${eventRegForm.guestName}!</h2> <h4>Together with ${event.orgName}, we're excited to confirm your registration for ${event.eventTitle}! This email serves as both your registration confirmation ticket to the event.</h4>`
     }
-  
+
     //sending email
-  
+
     transporter.sendMail(mailOptions, function(error, info){
       if(error){
         console.log(error)
@@ -1670,9 +1670,9 @@ router.get('/myEvents/:memID', async (req, res) => {
 //       subject: "ONBOARDER | Event Registration",
 //       html:`<h2>Hi ${eventRegForm.guestName}!</h2> <h4>Together with ${event.orgName}, we're excited to confirm your registration for ${event.eventTitle}! This email serves as both your registration confirmation ticket to the event.</h4>`
 //     }
-  
+
 //     //sending email
-  
+
 //     transporter.sendMail(mailOptions, function(error, info){
 //       if(error){
 //         console.log(error)
