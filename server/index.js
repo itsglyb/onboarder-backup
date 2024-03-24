@@ -13,7 +13,7 @@ app.use(cookieParser());
 // Allow requests from 'https://onboarder.site'
 app.use(cors({
   credentials: true,
-  origin:['https://www.onboarder.site','https://onboarder-app-223a80294fdb.herokuapp.com/'],
+  origin:['https://www.onboarder.site','https://onboarder-app-223a80294fdb.herokuapp.com'],
   methods: 'GET,POST',
   allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Origin'],
   credentials: true
