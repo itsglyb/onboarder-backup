@@ -10,15 +10,6 @@ require('dotenv').config();
 
 app.use(cookieParser());
 
-// Allow requests from 'https://onboarder.site'
-app.use(cors({
-  credentials: true,
-  // origin:'https://onboarder.site',
-  origin: 'http://www.onboarder.site',
-  methods: 'GET,POST',
-  allowedHeaders: 'Access-Control-Allow-Origin',
-  credentials: true
-}));
 
 app.use(bodyParser.json({limit: '50mb' }));
 app.use(bodyParser.urlencoded({extended:true, limit: '50mb', parameterLimit:50000}))
